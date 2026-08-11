@@ -11,7 +11,7 @@ This file records what the content-focused build resolved and what still require
 - Teaching profile, philosophy summary, documented instructional roles, and areas of instruction
 - Representative summaries of teaching products explicitly classified as public candidates
 - Selected earlier repositories from the pinned `sal2222` archive
-- Current GitHub and LinkedIn profile links
+- Current GitHub profile link
 - Archive warning for outdated contact and affiliation information
 
 ## USS Terror map - required before substantive build
@@ -40,6 +40,7 @@ This file records what the content-focused build resolved and what still require
 
 ## Optional enhancements
 
+- Confirm the LinkedIn profile URL before publishing it as current
 - Professional headshot with approved alternative text
 - Open Graph preview image
 - Scholarly profiles such as ORCID or Google Scholar
