@@ -1,40 +1,46 @@
-# Content checklist
+# Content status and open questions
 
-This checklist identifies the information needed to replace the first version's
-neutral holding copy with a complete professional portfolio.
+This file records what the content-focused build resolved and what still requires authoritative input.
 
-## Profile
+## Resolved in this build
 
-- Current professional title and affiliation, if any
-- Preferred short biography (about 80–120 words)
-- Preferred public contact method
-- Current headshot, optional
-- Confirm that the existing LinkedIn URL is still current
+- Professional identity: Stephen A. Lewandowski, PhD, MS, CPH
+- Current professional headline and current 65th Medical Brigade roles
+- Public biography based on the current career portfolio
+- Web-readable and downloadable public CV without private contact or clearance details
+- Teaching profile, philosophy summary, documented instructional roles, and areas of instruction
+- Representative summaries of teaching products explicitly classified as public candidates
+- Selected earlier repositories from the pinned `sal2222` archive
+- Current GitHub and LinkedIn profile links
+- Archive warning for outdated contact and affiliation information
 
-## CV
+## USS Terror map - required before substantive build
 
-- Current CV or resume in PDF or Word format
-- Preferred label: **CV**, **Resume**, or both
-- Any sections that should appear directly on the website
+- One-sentence project question or purpose
+- Primary audience and intended use
+- Geographic and temporal scope
+- Candidate historical, geospatial, and interpretive sources
+- Existing notes, sketches, datasets, coordinates, code, or repository
+- Rights and attribution requirements for maps, images, and source material
+- Preferred first release: static narrative map, interactive explorer, or another form
 
-## Teaching
+## Teaching materials - next publication pass
 
-- Teaching philosophy or statement
-- Courses taught, assisted, or designed
-- Sample syllabi, assignments, slides, or activities
-- Student feedback or other evidence to include, with identifying details removed
-- Accessibility/download preferences for teaching materials
+- Decide which public-candidate files should be copied from the private teaching workspace into this public repository
+- Confirm whether to publish downloadable Markdown, PDF, HTML, or a selected combination
+- Confirm whether the Surveillance and GIS public slide sample and Physical Hazards lesson should join the four materials summarized on the teaching page
+- Retain public-release cautions and never expose internal catalogs, evidence maps, student information, answer keys, or local paths
 
-## Projects
+## CV review
 
-- USS Terror map: purpose, audience, geographic scope, and current status
-- Sources and data that may be named publicly
-- Screenshots, sketches, maps, or other visual material
-- Repository links for projects that should appear on the site
-- Three to six earlier projects to feature from the `sal2222` archive
+- Confirm that the abbreviated public CV is the preferred scope for general website visitors
+- Confirm whether a public email address should be added; none is currently published
+- Confirm whether to include the full ten-article publication list or keep the selected list
+- Review the current-role wording before merging if operational or affiliation details should be reduced
 
-## Archive and links
+## Optional enhancements
 
-- Confirm the old GitHub profile and website should remain public-facing links
-- Confirm or update the LinkedIn URL
-- Add any scholarly profiles, institutional pages, or publications list
+- Professional headshot with approved alternative text
+- Open Graph preview image
+- Scholarly profiles such as ORCID or Google Scholar
+- A current publications page after the publication audit is approved
