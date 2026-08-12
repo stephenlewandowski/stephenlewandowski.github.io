@@ -2,14 +2,13 @@
 
 ## Currentness Notice
 
-Verified on 2026-08-09. OSHA's federal heat-specific standard remains proposed; existing enforcement authorities and the 2026 National Emphasis Program are separate from that proposal.
+Evidence checked on 2026-08-09. OSHA's federal heat-specific standard remains proposed; existing enforcement authorities and the 2026 National Emphasis Program are separate from that proposal.
 
 ## Learning Objectives
 
 - Classify a claim by source authority and effective status.
 - Explain the topic's principal mechanisms and decision framework.
 - Apply current evidence to a bounded professional scenario.
-- Distinguish factual knowledge from archived instructional expression.
 - Identify uncertainty, jurisdiction, and dataset limitations.
 - Communicate a defensible conclusion with appropriate attribution.
 
@@ -60,14 +59,12 @@ Write a two-paragraph recommendation that separates current requirements, propos
 - Treating technical guidance or a recommendation as automatically enforceable.
 - Extending a regional, population-specific, or dataset-specific finding beyond its documented scope.
 - Confusing a publication or release date with an effective date or observation period.
-- Presenting archived instructional context as proof of current validity or authorship.
 
 ## Summary
 
 - Authority and status come before application.
 - Currentness is a dated claim, not a permanent property.
 - Clear attribution strengthens rather than interrupts instruction.
-- Public teaching resources should separate factual synthesis from private archival provenance.
 
 ## References
 
@@ -84,8 +81,3 @@ Write a two-paragraph recommendation that separates current requirements, propos
 - [National Institute for Occupational Safety and Health, *Workplace Recommendations for Heat Stress*](https://www.cdc.gov/niosh/heat-stress/recommendations/) — status: current guidance.
 - [National Institute for Occupational Safety and Health, *Acclimatization and PPE heat-burden guidance*](https://www.cdc.gov/niosh/heat-stress/recommendations/acclimatization.html) — status: current guidance.
 - [National Institute for Occupational Safety and Health, *Criteria for a Recommended Standard: Occupational Exposure to Heat and Hot Environments*](https://www.cdc.gov/niosh/docs/2016-106/default.html) — status: current guidance.
-
-## Public Provenance Statement
-
-This teaching resource is a project-generated synthesis informed by prior academic and instructional materials and updated using current authoritative sources. External sources are cited where applicable.
-

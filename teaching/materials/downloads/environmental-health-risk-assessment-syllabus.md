@@ -1,8 +1,8 @@
 # Environmental Health Risk Assessment
 
-## Portfolio Sample Notice
+## Course Format
 
-This syllabus is a newly developed teaching-portfolio artifact informed by documented prior teaching experience, course materials, and current professional sources. It is not an official syllabus of a current or former institution, and the activities below are not presented as a record of one historical course offering.
+A complete 14-week course design for graduate and professional instruction, with measurable objectives, applied cases, aligned assessment, and a cumulative risk-assessment project.
 
 ## Course Overview
 
@@ -42,7 +42,7 @@ Participation can take the form of written reasoning, calculations, source evalu
 
 ## Course Materials and Readings
 
-Readings are selected for the problem at hand and checked for authority, scope, and currency. Students will work with current official guidance, peer-reviewed evidence, transparent models, and small public or project-generated datasets. Archived course materials may inform instructor preparation but are not assigned or represented as current authority unless separately reviewed.
+Readings are selected for the problem at hand and checked for authority, scope, and currency. Students will work with current official guidance, peer-reviewed evidence, transparent models, and small public or project-generated datasets.
 
 Students are expected to maintain an evidence ledger recording source, version or access date, claim supported, limitation, and whether the source is regulation, guidance, recommendation, data, or research evidence.
 
@@ -117,7 +117,7 @@ Students must protect privacy, minimize unnecessary sensitive data, represent af
 
 Risk frameworks are durable, but regulations, screening values, toxicity information, datasets, and agency recommendations change. Course materials are checked for currency during development, yet students and practitioners must verify controlling requirements and current official sources at the point of use. Proposed rules are not final requirements, recommendations are not regulations, and a screening value is not automatically a complete risk conclusion.
 
-This portfolio syllabus is educational. It does not replace a site-specific assessment, legal advice, institutional review, occupational-safety determination, or agency decision.
+This syllabus is educational. It does not replace a site-specific assessment, legal advice, institutional review, occupational-safety determination, or agency decision.
 
 ## Selected References
 
@@ -126,10 +126,5 @@ This portfolio syllabus is educational. It does not replace a site-specific asse
 - U.S. Environmental Protection Agency. [Guidelines for Human Exposure Assessment](https://www.epa.gov/risk/guidelines-human-exposure-assessment). Final agency guidelines, 2019; webpage accessed 2026-08-10.
 - U.S. Environmental Protection Agency. [Risk Management](https://www.epa.gov/risk/risk-management). Assessment-management distinction; accessed 2026-08-10.
 - U.S. Environmental Protection Agency. [PFAS National Primary Drinking Water Regulation](https://www.epa.gov/sdwa/and-polyfluoroalkyl-substances-pfas). Verify current final requirements and any active proposals at use.
-- National Institute for Occupational Safety and Health. [Hierarchy of Controls](https://www.cdc.gov/niosh/hierarchy-of-controls/index.html). Current professional prevention framework; accessed in the portfolio's controlled source set.
+- National Institute for Occupational Safety and Health. [Hierarchy of Controls](https://www.cdc.gov/niosh/hierarchy-of-controls/index.html). Current professional prevention framework; accessed 2026-08-10.
 - U.S. Global Change Research Program. [Fifth National Climate Assessment, Chapter 15: Human Health](https://nca2023.globalchange.gov/chapter/15/). Climate-health evidence and vulnerability context.
-
-## Portfolio Context
-
-This sample demonstrates a current course design built from documented experience in environmental-health risk assessment, exposure assessment, water, occupational health, climate and health, applied quantitative work, and professional communication. Historical evidence supports the teaching context and many instructional practices; the exact sequence, cases, policy wording, assessment weights, and integrated project are newly generated for this portfolio sample.
-
