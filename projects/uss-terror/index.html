@@ -1,12 +1,74 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#17324d"><meta name="description" content="Development brief for Stephen Lewandowski's USS Terror map project."><meta property="og:title" content="USS Terror Map | Stephen A. Lewandowski"><meta property="og:description" content="A transparent development brief for an early-stage map-based research project."><meta property="og:type" content="article"><meta property="og:url" content="https://stephenlewandowski.github.io/projects/uss-terror/"><link rel="canonical" href="https://stephenlewandowski.github.io/projects/uss-terror/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><title>USS Terror Map | Stephen A. Lewandowski</title></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#17324d"><meta name="description" content="Evidence-aware R/Shiny reconstruction of USS Terror's Pacific deployment, 1943–1946."><meta property="og:title" content="USS Terror Map | Stephen A. Lewandowski"><meta property="og:description" content="Interactive chronology, spatial reconstruction, uncertainty, maps, reports, and QGIS outputs for USS Terror (CM-5)."><meta property="og:type" content="article"><meta property="og:url" content="https://stephenlewandowski.github.io/projects/uss-terror/"><link rel="canonical" href="https://stephenlewandowski.github.io/projects/uss-terror/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><title>USS Terror Map | Stephen A. Lewandowski</title></head>
   <body><a class="skip-link" href="#main">Skip to main content</a><header class="site-header"><a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a><nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav></header>
-    <main id="main" class="document-page project-log"><header class="page-intro"><p class="eyebrow">Project development brief</p><h1>USS Terror map</h1><p class="lead">A transparent record of an early-stage map-based project: what is known, what remains open, and what must be established before an interactive map is presented.</p><div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> early project definition</div></header>
-      <section class="content-grid section-compact" aria-labelledby="documented"><div><p class="section-kicker">01 · Current record</p><h2 id="documented">What is documented.</h2></div><div class="prose"><p>The current website and project request establish the project title, its map-based form, and that it remains in development. No reviewed source presently establishes a public purpose statement, target audience, geographic scope, dataset, historical source inventory, or technical implementation.</p><p>This page therefore treats those items as open decisions rather than presenting plausible details as facts.</p></div></section>
-      <section class="content-grid section-compact" aria-labelledby="purpose"><div><p class="section-kicker">02 · Purpose &amp; audience</p><h2 id="purpose">Questions before design.</h2></div><div class="prose"><ul class="question-list"><li>What question should the map help a visitor answer?</li><li>Is the primary audience scholarly, educational, public-history, exploratory, or personal?</li><li>What geographic and temporal boundaries belong in the first release?</li><li>What level of uncertainty and source disagreement must the interface display?</li></ul></div></section>
-      <section class="content-grid section-compact" aria-labelledby="sources"><div><p class="section-kicker">03 · Sources</p><h2 id="sources">Inventory before interpretation.</h2></div><div class="prose"><p>No source inventory has yet been approved for publication. The next source step is to create a record for each candidate source that captures citation, date, type, geographic coverage, relevant claim or feature, reuse rights, uncertainty, and the exact map element it may support.</p><p>Historical narrative, geospatial data, reconstructed coordinates, and interpretive hypotheses should remain visibly distinct.</p></div></section>
-      <section class="content-grid section-compact" aria-labelledby="methods"><div><p class="section-kicker">04 · Methods</p><h2 id="methods">Method follows the question.</h2></div><div class="prose"><p>No mapping stack or analytical method has been selected. The technical decision should follow the approved audience, source formats, uncertainty needs, and desired interaction. A lightweight static map may be sufficient for a bounded narrative; a documented data pipeline and interactive interface would be justified only if the research question requires them.</p></div></section>
-      <section class="content-grid section-compact" aria-labelledby="next"><div><p class="section-kicker">05 · Next development gate</p><h2 id="next">A five-part foundation.</h2></div><div class="prose"><ol class="steps"><li><strong>Write the project question.</strong> One sentence identifying the decision, interpretation, or exploration the map supports.</li><li><strong>Name the audience and scope.</strong> Define geography, time period, reading level, and intended use.</li><li><strong>Build the source inventory.</strong> Record provenance, rights, confidence, and map relevance.</li><li><strong>Choose the minimum viable map.</strong> Select a method only after reviewing the sources and uncertainty.</li><li><strong>Prototype and document.</strong> Test legibility, accessibility, mobile use, citations, and the distinction between fact and reconstruction.</li></ol></div></section>
-      <aside class="project-note"><h2>Information needed for the next version</h2><p>Research notes, candidate sources, sketches, map files, geographic scope, preferred audience, and any existing code or repository. These remain tracked in the site's content checklist.</p></aside>
-    </main><footer><p>© 2026 Stephen A. Lewandowski</p><p>USS Terror map · Development brief</p></footer>
+    <main id="main" class="document-page project-log">
+      <header class="page-intro">
+        <p class="eyebrow">R/Shiny · Spatial history · Reproducible research</p>
+        <h1>USS Terror (CM-5): Pacific deployment, 1943–1946</h1>
+        <p class="lead">An evidence-aware chronology and spatial reconstruction that distinguishes documented locations, modeled connections, disputed evidence, and uncertainty.</p>
+        <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Phase 5.2 implementation complete</div>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/stephenlewandowski/uss-terror">View GitHub repository</a>
+          <a class="button button-secondary" href="https://github.com/stephenlewandowski/uss-terror/blob/main/app.R">View Shiny app source</a>
+        </div>
+      </header>
+
+      <section class="content-grid section-compact" aria-labelledby="overview">
+        <div><p class="section-kicker">01 · Overview</p><h2 id="overview">A documented Pacific deployment.</h2></div>
+        <div class="prose">
+          <p>The project reconstructs USS <em>Terror</em>'s wartime and immediate postwar deployment as a 61-event chronology, 57 route legs, an interactive Shiny application, a reproducible spatial pipeline, QGIS exchange files, validation reports, and a publication map series.</p>
+          <p>The current authorized implementation is complete through Phase 5.2. It combines the Phase 1–4 deployment and modern-context foundation with a bounded Kerama Retto evidence batch and a Shiny candidate-review mode that keeps reviewed candidates separate from canonical records.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="evidence">
+        <div><p class="section-kicker">02 · Evidence model</p><h2 id="evidence">Sources and uncertainty stay visible.</h2></div>
+        <div class="prose">
+          <p>Dates may be exact, estimated, or ranges. Coordinates retain their basis—such as a port, anchorage, or island centroid—and their position uncertainty in nautical miles. Low-confidence, excluded, disputed, and overlapping records are flagged for review rather than silently repaired.</p>
+          <p>Connecting lines are geodesic interpolations between documented or modeled endpoints. They are not exact ship tracks, and the project does not invent daily positions between widely spaced records.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="application">
+        <div><p class="section-kicker">03 · Shiny application</p><h2 id="application">One interface for maps, records, and review.</h2></div>
+        <div class="prose">
+          <p>The R/Shiny application brings together a Pacific Theater map, timeline, deployment tables, route metrics, grouped research pages, and historical mine-warfare evidence review. Shared filters keep the map, timeline, tables, counts, and selections synchronized.</p>
+          <p>OpenStreetMap is the normal online base. A generated Natural Earth boundary-and-label layer supports local operation without map tiles, while optional modern seamark and bathymetric layers are clearly separated from wartime evidence.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/stephenlewandowski/uss-terror/blob/main/app.R">View app.R</a>
+            <a class="button button-secondary" href="https://github.com/stephenlewandowski/uss-terror#quick-start-powershell">Local setup instructions</a>
+          </div>
+          <p class="source-note">The application currently runs from the published source. The repository does not yet record a public hosted Shiny URL.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="methods">
+        <div><p class="section-kicker">04 · Methods &amp; outputs</p><h2 id="methods">Reproducible from data to map.</h2></div>
+        <div class="prose">
+          <p>Canonical spatial data use WGS84 (EPSG:4326). Great-circle connections are generated locally and split at the antimeridian so Pacific routes do not wrap across Eurasia or the Atlantic. Position-uncertainty areas are geodesic circles rather than planar latitude-longitude buffers.</p>
+          <p>Outputs include processed event, route, and location tables; GeoPackages for QGIS; conflict and source inventories; validation reports; and map products covering the full deployment, Iwo Jima and Okinawa, the kamikaze attack and repair period, postwar operations, and confidence and uncertainty.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="mine-warfare">
+        <div><p class="section-kicker">05 · Mine-warfare research</p><h2 id="mine-warfare">Candidates remain separate from canonical data.</h2></div>
+        <div class="prose">
+          <p>The canonical mine-warfare tables remain deliberately empty. Phase 5 review resolved ten candidate decisions as accepted and retained one unsupported USS <em>Terror</em> event-level relationship as rejected. Phase 5.2 exposes canonical, accepted-candidate, and rejected-audit views without automatically promoting any candidate.</p>
+          <p>This is an incomplete historical reconstruction. It is not current hazard information and must not be used for navigation, route planning, diving, fishing, salvage, ordnance clearance, or safety decisions.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="next">
+        <div><p class="section-kicker">06 · Next development gate</p><h2 id="next">Verify before canonical promotion.</h2></div>
+        <div class="prose">
+          <p>The next bounded phase is to retrieve the original National Archives LSM(R)-194 deck-log sheet and the complete Mine Squadron Four report, verify the accepted reproductions, and design a separately authorized import step for accepted candidates only.</p>
+          <p>A public Shiny deployment can then be documented here after its hosted URL and runtime behavior are verified.</p>
+        </div>
+      </section>
+
+      <aside class="project-note">
+        <h2>Explore the complete project</h2>
+        <p>Source code, data documentation, reproducible setup, tests, reports, maps, QGIS assets, evidence conventions, and limitations are available in the <a href="https://github.com/stephenlewandowski/uss-terror">USS Terror GitHub repository</a>.</p>
+      </aside>
+    </main><footer><p>© 2026 Stephen A. Lewandowski</p><p>USS Terror map · Updated August 2026</p></footer>
   </body></html>
