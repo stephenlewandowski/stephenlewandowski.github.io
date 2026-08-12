@@ -1,27 +1,29 @@
 # stephenlewandowski.github.io
 
-Professional website and teaching portfolio for Stephen Lewandowski.
+Professional website, public CV, teaching portfolio, and project index for Stephen A. Lewandowski.
 
-## Current structure
+## Structure
 
-- `index.html` — the complete single-page portfolio
-- `assets/styles.css` — responsive design and print styles
-- `assets/favicon.svg` — site icon
-- `CONTENT.md` — checklist for the next content pass
+- `index.html` - professional homepage
+- `cv/index.html` - web-readable public CV
+- `teaching/index.html` - teaching philosophy, experience, and representative materials
+- `projects/index.html` - current projects and selected earlier GitHub work
+- `projects/uss-terror/index.html` - development brief for the USS Terror map
+- `assets/styles.css` - shared responsive and print styles
+- `assets/Stephen-Lewandowski-Public-CV.pdf` - downloadable public CV
+- `CONTENT.md` - resolved content and remaining factual questions
 
-The site intentionally uses plain HTML and CSS. There is no framework, build
-step, package manager, or third-party analytics, which keeps GitHub Pages
-publishing simple and makes future editing straightforward.
+The site intentionally uses plain HTML and CSS. It has no framework, build step, package manager, analytics, or third-party runtime dependency.
 
 ## Publishing
 
-After the site branch is merged into `main`, configure the repository's Pages
-source as **Deploy from a branch**, using `main` and `/ (root)`. The public URL
-will be <https://stephenlewandowski.github.io/>.
+GitHub Pages publishes the `main` branch from the repository root after an approved pull request is merged.
 
-## Earlier work
+## Source boundaries
 
-The earlier public GitHub account and website remain linked as archives:
+Career and teaching content is drawn from the private `career-portfolio` and `teaching-portfolio` repositories. Private contact information, student records, internal evidence maps, source paths, clearance details, and materials without public-release status are excluded.
+
+Earlier public work remains archived at:
 
 - <https://github.com/sal2222>
 - <https://sal2222.github.io/>
