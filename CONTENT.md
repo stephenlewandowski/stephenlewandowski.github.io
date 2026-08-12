@@ -9,7 +9,8 @@ This file records what the content-focused build resolved and what still require
 - Public biography based on the current career portfolio
 - Web-readable and downloadable public CV without private contact or clearance details
 - Teaching profile, philosophy summary, documented instructional roles, and areas of instruction
-- Representative summaries of teaching products explicitly classified as public candidates
+- A six-part public teaching-material collection spanning course, module, lesson, lecture, exercise, report, and slide samples
+- Portable copies of teaching products with completed release review, currentness notices, attribution, and synthetic-data boundaries
 - Selected earlier repositories from the pinned `sal2222` archive
 - Current GitHub profile link
 - Archive warning for outdated contact and affiliation information
@@ -24,12 +25,11 @@ This file records what the content-focused build resolved and what still require
 - Rights and attribution requirements for maps, images, and source material
 - Preferred first release: static narrative map, interactive explorer, or another form
 
-## Teaching materials - next publication pass
+## Teaching-material maintenance
 
-- Decide which public-candidate files should be copied from the private teaching workspace into this public repository
-- Confirm whether to publish downloadable Markdown, PDF, HTML, or a selected combination
-- Confirm whether the Surveillance and GIS public slide sample and Physical Hazards lesson should join the four materials summarized on the teaching page
-- Retain public-release cautions and never expose internal catalogs, evidence maps, student information, answer keys, or local paths
+- Recheck changeable regulatory, guidance, service, and dataset claims before classroom or professional use
+- Preserve source verification dates, authority distinctions, synthetic-data labels, and institutional-status notices when files are refreshed
+- Publish only artifacts with a documented release review; never expose internal catalogs, evidence maps, student information, answer keys, or local paths
 
 ## CV review
 
