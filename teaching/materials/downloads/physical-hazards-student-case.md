@@ -6,11 +6,11 @@ A four-person maintenance team must replace a seized fastener assembly on outdoo
 
 Supervision asks whether the task can proceed as planned and what controls are needed. Your team must recommend immediate action without pretending that incomplete screening information is a full compliance assessment.
 
-**All names and numerical values below are project-generated instructional data. They are not actual Army, Brandeis, OSHA, NIOSH, employer, worker, or community observations.**
+**All names and numerical values below are synthetic instructional data. They do not describe a real workplace or exposure record.**
 
 ## Available Information
 
-| Item | Project-generated information |
+| Item | Synthetic case information |
 | --- | --- |
 | Work window | 09:00-12:00; approximately 150 minutes of work within the three-hour window |
 | Task | Six anticipated 10-minute impact-tool cycles; one worker is currently assigned all tool operation |
@@ -47,4 +47,3 @@ Prepare a three-sentence recommendation:
 10. How would you communicate the recommendation to workers and the supervisor without overstating certainty?
 
 There is no single required answer. Your recommendation must be protective, feasible, explicit about uncertainty, and proportionate to the available evidence.
-

@@ -26,7 +26,7 @@ By the end of the module, learners can:
 
 ## Evidence and currentness
 
-The factual baseline was checked on 2026-08-10 against official CDC and U.S. Census Bureau sources. The scenario, place names, values, classroom suppression rule, and decision prompt are newly project-generated. They are not official data and do not represent a real community. Check current reporting rules, service documentation, data vintages, and privacy policies before adapting the module for operational use.
+The factual baseline was checked on 2026-08-10 against official CDC and U.S. Census Bureau sources. The scenario, place names, values, classroom suppression rule, and decision prompt are synthetic instructional materials. They are not official data and do not represent a real community. Check current reporting rules, service documentation, data vintages, and privacy policies before adapting the module for operational use.
 
 ## Selected official references
 
@@ -35,4 +35,3 @@ The factual baseline was checked on 2026-08-10 against official CDC and U.S. Cen
 - CDC, [About Environmental Public Health Tracking](https://www.cdc.gov/environmental-health-tracking/php/about/index.html).
 - U.S. Census Bureau, [TIGER Data Products Guide](https://www.census.gov/programs-surveys/geography/guidance/tiger-data-products-guide.html).
 - U.S. Census Bureau, [Census Geocoder Documentation](https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html).
-

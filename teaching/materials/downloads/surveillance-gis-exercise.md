@@ -7,7 +7,7 @@
 
 A fictional regional health office receives reports of a respiratory event from clinics serving six fictional areas during one four-week period. The office must decide what to verify first, where to consider additional investigation or outreach, and what level of geographic information can be shared publicly.
 
-**Important:** Every place name and value below is synthetic and project-generated for instruction. These are not official data, do not describe a real population, and must not be cited as evidence about any community. The classroom rule suppresses reported counts below 5; it is not presented as a universal agency threshold.
+**Important:** Every place name and value below is synthetic instructional data. These are not official data, do not describe a real population, and must not be cited as evidence about any community. The classroom rule suppresses reported counts below 5; it is not presented as a universal agency threshold.
 
 ## Synthetic dataset
 
@@ -34,7 +34,7 @@ A fictional regional health office receives reports of a respiratory event from 
 
 ## Deliverable
 
-Submit a one-page decision brief or give a three-minute briefing. Include the rate calculations, a decision-focused evidence table, the proposed map specification, and the three-sentence communication. Credit the dataset as “Teaching Portfolio synthetic instructional data, 2026.”
+Submit a one-page decision brief or give a three-minute briefing. Include the rate calculations, a decision-focused evidence table, the proposed map specification, and the three-sentence communication. Credit the dataset as “Surveillance and GIS synthetic instructional data, 2026.”
 
 ## Self-check before submission
 
@@ -43,4 +43,3 @@ Submit a one-page decision brief or give a three-minute briefing. Include the ra
 - Did you separate pattern, explanation, causation, and action?
 - Did you state the most important data-quality and privacy limitations?
 - Could a decision-maker tell what should happen next?
-

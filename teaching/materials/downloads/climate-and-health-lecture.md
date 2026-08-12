@@ -2,14 +2,13 @@
 
 ## Currentness Notice
 
-Verified on 2026-08-09. Dataset release labels, refresh dates, and component observation periods are not interchangeable; surveillance indicators may not represent complete population incidence.
+Evidence checked on 2026-08-09. Dataset release labels, refresh dates, and component observation periods are not interchangeable; surveillance indicators may not represent complete population incidence.
 
 ## Learning Objectives
 
 - Classify a claim by source authority and effective status.
 - Explain the topic's principal mechanisms and decision framework.
 - Apply current evidence to a bounded professional scenario.
-- Distinguish factual knowledge from archived instructional expression.
 - Identify uncertainty, jurisdiction, and dataset limitations.
 - Communicate a defensible conclusion with appropriate attribution.
 
@@ -63,14 +62,12 @@ Write a two-paragraph recommendation that separates current requirements, propos
 - Treating technical guidance or a recommendation as automatically enforceable.
 - Extending a regional, population-specific, or dataset-specific finding beyond its documented scope.
 - Confusing a publication or release date with an effective date or observation period.
-- Presenting archived instructional context as proof of current validity or authorship.
 
 ## Summary
 
 - Authority and status come before application.
 - Currentness is a dated claim, not a permanent property.
 - Clear attribution strengthens rather than interrupts instruction.
-- Public teaching resources should separate factual synthesis from private archival provenance.
 
 ## References
 
@@ -87,8 +84,3 @@ Write a two-paragraph recommendation that separates current requirements, propos
 - [World Health Organization Regional Office for Europe, *Heat–health action plans: guidance, second edition*](https://www.who.int/europe/publications/i/item/9789289062930) — status: current guidance.
 - [World Health Organization, *Climate change and health fact sheet*](https://www.who.int/news-room/fact-sheets/detail/climate-change-and-health) — status: current guidance.
 - [Centers for Disease Control and Prevention, *Climate and Health Strategic Framework*](https://www.cdc.gov/climate-health/php/about/strategic-framework.html) — status: current guidance.
-
-## Public Provenance Statement
-
-This teaching resource is a project-generated synthesis informed by prior academic and instructional materials and updated using current authoritative sources. External sources are cited where applicable.
-

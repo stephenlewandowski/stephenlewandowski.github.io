@@ -2,14 +2,13 @@
 
 ## Currentness Notice
 
-Current final drinking-water requirements are represented as verified on 2026-08-09. Pending PFAS proposals are identified separately and do not establish final 2031 compliance timing. Check regulatory status before operational use.
+Current final drinking-water requirements reflect sources checked on 2026-08-09. Pending PFAS proposals are identified separately and do not establish final 2031 compliance timing. Check regulatory status before operational use.
 
 ## Learning Objectives
 
 - Classify a claim by source authority and effective status.
 - Explain the topic's principal mechanisms and decision framework.
 - Apply current evidence to a bounded professional scenario.
-- Distinguish factual knowledge from archived instructional expression.
 - Identify uncertainty, jurisdiction, and dataset limitations.
 - Communicate a defensible conclusion with appropriate attribution.
 
@@ -59,14 +58,12 @@ Write a two-paragraph recommendation that separates current requirements, propos
 - Treating technical guidance or a recommendation as automatically enforceable.
 - Extending a regional, population-specific, or dataset-specific finding beyond its documented scope.
 - Confusing a publication or release date with an effective date or observation period.
-- Presenting archived instructional context as proof of current validity or authorship.
 
 ## Summary
 
 - Authority and status come before application.
 - Currentness is a dated claim, not a permanent property.
 - Clear attribution strengthens rather than interrupts instruction.
-- Public teaching resources should separate factual synthesis from private archival provenance.
 
 ## References
 
@@ -82,8 +79,3 @@ Write a two-paragraph recommendation that separates current requirements, propos
 - [U.S. Environmental Protection Agency, *Overview of Drinking Water Treatment Technologies*](https://www.epa.gov/sdwa/overview-drinking-water-treatment-technologies) — status: current guidance.
 - [U.S. Environmental Protection Agency, *SDWIS Federal Reporting Services Data Dictionary*](https://www.epa.gov/DWdata/sdwis-federal-reporting-services-data-dictionary) — status: current dataset.
 - [U.S. Environmental Protection Agency, *ECHO Safe Drinking Water Act download documentation*](https://echo.epa.gov/tools/data-downloads/sdwa-download-summary) — status: current dataset.
-
-## Public Provenance Statement
-
-This teaching resource is a project-generated synthesis informed by prior academic and instructional materials and updated using current authoritative sources. External sources are cited where applicable.
-

@@ -63,7 +63,6 @@ h3 { color: var(--navy); font-size: 1.25rem; line-height: 1.3; }
 .section-compact { padding: clamp(3.5rem, 7vw, 6rem) 0; border-top: 1px solid var(--line); }
 .about, .content-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2.5rem, 8vw, 8rem); }
 .about-copy { padding-top: 1.6rem; color: #485d6d; font-size: 1.05rem; }
-.source-note { padding-left: 1rem; color: #755644; border-left: 3px solid #d19a59; font-size: .86rem; }
 .section-heading { display: grid; grid-template-columns: 1.35fr .65fr; gap: clamp(2rem, 8vw, 8rem); align-items: end; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 .section-heading > p { margin-bottom: 1.25rem; color: var(--muted); }
 .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
@@ -77,23 +76,28 @@ h3 { color: var(--navy); font-size: 1.25rem; line-height: 1.3; }
 
 .featured-project { display: grid; grid-template-columns: minmax(18rem, .95fr) 1.05fr; min-height: 440px; overflow: hidden; background: var(--navy); }
 .project-mark { position: relative; min-height: 380px; overflow: hidden; background-color: #dbe4df; background-image: linear-gradient(rgba(47, 113, 109, .13) 1px, transparent 1px), linear-gradient(90deg, rgba(47, 113, 109, .13) 1px, transparent 1px); background-size: 42px 42px; }
-.project-mark::before, .project-mark::after { position: absolute; content: ""; border: 2px solid rgba(47, 113, 109, .4); border-radius: 48% 52% 38% 62%; }
-.project-mark::before { top: 22%; right: -8%; width: 80%; height: 62%; transform: rotate(-12deg); }
-.project-mark::after { bottom: -12%; left: -12%; width: 62%; height: 52%; transform: rotate(16deg); }
-.project-coordinate { position: absolute; top: 1.2rem; left: 1.2rem; color: var(--teal); font-size: .7rem; font-weight: 780; letter-spacing: .12em; }
-.route { position: absolute; display: block; height: 0; border-top: 2px dashed var(--rust); transform-origin: left center; }
-.route-one { top: 62%; left: 18%; width: 48%; transform: rotate(-28deg); }
-.route-two { top: 39%; left: 59%; width: 30%; transform: rotate(38deg); }
-.route-point { position: absolute; width: .85rem; height: .85rem; background: var(--rust); border: 3px solid #f6f2e9; border-radius: 50%; box-shadow: 0 0 0 1px var(--rust); }
-.point-one { top: 58%; left: 16%; }.point-two { top: 35%; left: 57%; }.point-three { top: 51%; left: 82%; }
+.project-mark::after { position: absolute; inset: 0; content: ""; background: radial-gradient(circle at 55% 46%, rgba(255, 255, 255, .28), transparent 42%), linear-gradient(145deg, transparent 50%, rgba(23, 50, 77, .05)); pointer-events: none; }
+.project-coordinate { position: absolute; z-index: 2; top: 1.2rem; left: 1.2rem; color: var(--teal); font-size: .7rem; font-weight: 780; letter-spacing: .12em; }
+.project-route-map { position: absolute; z-index: 1; inset: 2.7rem 1.15rem 3.5rem; width: calc(100% - 2.3rem); height: calc(100% - 6.2rem); overflow: visible; }
+.map-contour, .map-island { fill: none; stroke: rgba(47, 113, 109, .36); stroke-width: 3; vector-effect: non-scaling-stroke; }
+.map-island { fill: rgba(47, 113, 109, .08); stroke-width: 2; }
+.route-shadow, .route-track { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.route-shadow { stroke: rgba(246, 242, 233, .9); stroke-width: 9; }
+.route-track { stroke: var(--rust); stroke-width: 3.5; }
+.route-node-halo { fill: #f6f2e9; stroke: rgba(169, 79, 48, .35); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.route-node { fill: var(--rust); }
+.route-node-terminal { fill: var(--teal); }
+.route-years text { fill: var(--navy); stroke: #dbe4df; stroke-width: 5; paint-order: stroke; font-family: Inter, sans-serif; font-size: 18px; font-weight: 780; letter-spacing: .08em; text-anchor: middle; }
+.project-map-key { position: absolute; z-index: 2; right: 1.2rem; bottom: 1.05rem; left: 1.2rem; display: flex; justify-content: space-between; gap: 1rem; color: #395e62; font-size: .64rem; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; }
+.project-map-key span { display: inline-flex; align-items: center; gap: .45rem; }
+.project-map-key span::before { width: .48rem; height: .48rem; content: ""; background: var(--rust); border: 2px solid #f6f2e9; border-radius: 50%; box-shadow: 0 0 0 1px rgba(169, 79, 48, .55); }
 .project-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(2rem, 5vw, 4.75rem); color: #d6e0e8; }
 .project-type { color: #a9d3cf; }
 .project-copy h3 { margin-bottom: 1.4rem; color: var(--white); font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 500; }
 .project-copy > p:not(.project-type) { max-width: 580px; font-size: 1.05rem; }
 
 .archive { display: grid; grid-template-columns: 1fr .85fr; gap: clamp(3rem, 10vw, 9rem); }
-.archive-intro > p:not(.section-kicker):not(.archive-note) { max-width: 630px; color: var(--muted); font-size: 1.05rem; }
-.archive-note { max-width: 760px; padding-left: 1rem; color: #755644; border-left: 3px solid #d19a59; font-size: .88rem; }
+.archive-intro > p:not(.section-kicker) { max-width: 630px; color: var(--muted); font-size: 1.05rem; }
 .archive-links { align-self: center; border-top: 1px solid var(--line); }
 .archive-links a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); font-family: Georgia, "Times New Roman", serif; font-size: 1.08rem; text-decoration: none; }
 .archive-links a > span:last-child, .contact-links a span { color: var(--rust); font-family: Inter, sans-serif; transition: transform 160ms ease; }
@@ -126,7 +130,6 @@ summary { padding: 1rem 0; color: var(--navy); cursor: pointer; font-weight: 750
 .material-list article:nth-child(even) { border-right: 0; }
 .material-list p:not(.material-type) { color: var(--muted); }
 .material-list .text-link { margin-top: auto; padding-top: 1rem; }
-.status-tag { display: inline-block; margin-top: .5rem; padding: .35rem .55rem; color: #49625f; background: #e5efeb; font-size: .68rem; font-weight: 760; letter-spacing: .06em; text-transform: uppercase; }
 .materials-cta { margin: 2rem 0 1.5rem; }
 
 /* Teaching materials collection */
@@ -158,8 +161,8 @@ summary { padding: 1rem 0; color: var(--navy); cursor: pointer; font-weight: 750
 .format-list { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0 1.5rem; }
 .format-list span { padding: .34rem .5rem; color: #526676; background: #f1f4f1; border: 1px solid #dbe3de; font-size: .64rem; font-weight: 760; letter-spacing: .05em; text-transform: uppercase; }
 .card-action { margin-top: auto; color: var(--rust); font-size: .82rem; font-weight: 760; }
-.release-standard { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(2rem, 8vw, 8rem); border-top: 1px solid var(--line); }
-.release-standard h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
+.context-standard { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(2rem, 8vw, 8rem); border-top: 1px solid var(--line); }
+.context-standard h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
 
 .artifact-header { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(15rem, .65fr); gap: clamp(2rem, 7vw, 7rem); align-items: end; padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(2.5rem, 5vw, 4rem); }
 .artifact-header h1 { max-width: 940px; font-size: clamp(3.2rem, 6.5vw, 6rem); }
@@ -240,7 +243,7 @@ footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2rem
 footer p { margin: 0; }
 
 @media (max-width: 900px) {
-  .hero, .about, .content-grid, .section-heading, .archive, .contact-band, .split-panel, .cv-section, .release-standard, .artifact-header, .artifact-layout { grid-template-columns: 1fr; }
+  .hero, .about, .content-grid, .section-heading, .archive, .contact-band, .split-panel, .cv-section, .context-standard, .artifact-header, .artifact-layout { grid-template-columns: 1fr; }
   .hero { min-height: auto; gap: 4rem; }
   .field-note { width: min(100%, 520px); }
   .section-heading { gap: 1rem; }
@@ -293,7 +296,6 @@ footer p { margin: 0; }
   .page-intro::after { display: none; }
   .page-intro h1 { font-size: 28pt; }
   .lead { font-size: 11pt; }
-  .source-note { font-size: 8pt; }
   .cv-section { grid-template-columns: 1.45in 1fr; gap: .25in; padding: .25in 0; }
   .cv-section > h2 { font-size: 16pt; }
   .timeline article { padding-bottom: .16in; }

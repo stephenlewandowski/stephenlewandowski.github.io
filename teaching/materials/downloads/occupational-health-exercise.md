@@ -2,11 +2,11 @@
 
 ## Currentness Notice
 
-Verified on 2026-08-09. OSHA's federal heat-specific standard remains proposed; existing enforcement authorities and the 2026 National Emphasis Program are separate from that proposal.
+Evidence checked on 2026-08-09. OSHA's federal heat-specific standard remains proposed; existing enforcement authorities and the 2026 National Emphasis Program are separate from that proposal.
 
 ## Purpose
 
-This project-generated exercise asks learners to build a defensible occupational-health response without reproducing an archived examination, assignment, answer key, or student submission.
+This exercise asks learners to build a defensible occupational-health response from a fictional workplace scenario.
 
 ## Scenario
 
@@ -55,8 +55,3 @@ Submit a two-page decision memo and a one-page evidence map. Every operational c
 - NIOSH's current acclimatization schedule for a new worker starts at 20% of usual heat-work duration on day 1 and increases by no more than 20 percentage points daily. — [National Institute for Occupational Safety and Health, *Acclimatization and PPE heat-burden guidance*](https://www.cdc.gov/niosh/heat-stress/recommendations/acclimatization.html)
 - For a worker with recent heat experience, NIOSH recommends 50%, 60%, 80%, then 100% of usual heat-work duration over four days. — [National Institute for Occupational Safety and Health, *Acclimatization and PPE heat-burden guidance*](https://www.cdc.gov/niosh/heat-stress/recommendations/acclimatization.html)
 - NIOSH Publication 2016-106 provides recommended occupational heat criteria and prevention practices; it is not an OSHA standard. — [National Institute for Occupational Safety and Health, *Criteria for a Recommended Standard: Occupational Exposure to Heat and Hot Environments*](https://www.cdc.gov/niosh/docs/2016-106/default.html)
-
-## Public Provenance Statement
-
-This teaching resource is a project-generated synthesis informed by prior academic and instructional materials and updated using current authoritative sources. External sources are cited where applicable.
-
