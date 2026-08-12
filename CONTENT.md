@@ -13,17 +13,16 @@ This file records what the content-focused build resolved and what still require
 - Portable copies of teaching products with completed release review, currentness notices, attribution, and synthetic-data boundaries
 - Selected earlier repositories from the pinned `sal2222` archive
 - Current GitHub profile link
+- USS Terror repository, R/Shiny application source, reproducible methods, and project status
 - Archive warning for outdated contact and affiliation information
 
-## USS Terror map - required before substantive build
+## USS Terror map
 
-- One-sentence project question or purpose
-- Primary audience and intended use
-- Geographic and temporal scope
-- Candidate historical, geospatial, and interpretive sources
-- Existing notes, sketches, datasets, coordinates, code, or repository
-- Rights and attribution requirements for maps, images, and source material
-- Preferred first release: static narrative map, interactive explorer, or another form
+- Public repository: <https://github.com/stephenlewandowski/uss-terror>
+- Current implementation: Phase 5.2, including the R/Shiny interface, reproducible spatial pipeline, QGIS exchange, validation reports, and static maps
+- Public website copy now reflects the documented 61-event chronology, 57 route legs, evidence conventions, uncertainty, and historical limitations
+- The application currently runs from source; add and verify a public hosted Shiny URL when deployment is available
+- Preserve the separation between canonical records, accepted review candidates, and rejected audit records in future updates
 
 ## Teaching-material maintenance
 
