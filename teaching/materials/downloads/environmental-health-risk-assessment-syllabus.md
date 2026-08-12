@@ -31,7 +31,7 @@ By the end of the course, students will be able to:
 
 Preparation is deliberately manageable: short readings, source checks, concept questions, case background, data previews, or brief written reasoning. Class time is used for application - comparing evidence, drawing conceptual models, checking calculations, testing assumptions, discussing cases, and defending professional judgments.
 
-Four project-generated cases provide a cumulative practice environment:
+Four fictional cases provide a cumulative practice environment:
 
 - **Drinking-water contamination:** A utility must frame a PFAS concern, identify affected populations and exposure pathways, and explain what current requirements do and do not establish.
 - **Workplace solvent use:** A maintenance facility must evaluate inhalation and dermal pathways, compare measurement strategies, and prioritize controls without confusing a limit with a complete risk conclusion.
@@ -42,7 +42,7 @@ Participation can take the form of written reasoning, calculations, source evalu
 
 ## Course Materials and Readings
 
-Readings are selected for the problem at hand and checked for authority, scope, and currency. Students will work with current official guidance, peer-reviewed evidence, transparent models, and small public or project-generated datasets.
+Readings are selected for the problem at hand and checked for authority, scope, and currency. Students will work with current official guidance, peer-reviewed evidence, transparent models, and small public or synthetic datasets.
 
 Students are expected to maintain an evidence ledger recording source, version or access date, claim supported, limitation, and whether the source is regulation, guidance, recommendation, data, or research evidence.
 

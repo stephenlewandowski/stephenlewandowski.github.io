@@ -2,7 +2,7 @@
 
 ## Development Status
 
-This is a project-generated teaching lesson developed for potential senior-undergraduate guest instruction. It is not an official Brandeis University lesson, is not an assigned curriculum, and has not yet been delivered. It can be adapted once the host instructor provides course objectives and instructional context.
+This adaptable lesson is designed for senior-undergraduate, graduate, or professional instruction. Host instructors can tailor its examples and emphasis to course objectives and local context.
 
 ## Intended Audience
 
@@ -46,7 +46,7 @@ Participation is evidence of reasoning rather than speaking frequency. Students 
 
 ## Case Strategy
 
-The opening and integrated cases use a maintenance team working near powered equipment during hot weather. Noise and heat drive the decision; hand-arm vibration provides a contrasting third exposure. All names and values are project-generated instructional data. They do not describe an actual Army unit, Brandeis activity, OSHA inspection, NIOSH study, worker, or exposure record.
+The opening and integrated cases use a maintenance team working near powered equipment during hot weather. Noise and heat drive the decision; hand-arm vibration provides a contrasting third exposure. All names and values are synthetic instructional data. They do not describe a real workplace or exposure record.
 
 The case contains enough information to propose immediate protective action but not enough to certify compliance or calculate a complete dose. More than one recommendation can be defensible when it identifies uncertainty, prioritizes effective controls, and states how performance will be verified.
 
@@ -68,4 +68,3 @@ Complete these fields when host information arrives:
 - **Desired balance among noise, heat, radiation, and vibration:** pending
 - **Whether general military/field examples are useful:** pending
 - **Lecture date and delivery platform:** pending
-
