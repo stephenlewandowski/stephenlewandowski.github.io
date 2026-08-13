@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Stephen A. Lewandowski</title>
+  <description id="description">Environmental health, teaching, and research portfolio.</description>
+  <rect width="1200" height="630" fill="#fbf9f4"/>
+  <rect width="330" height="630" fill="#17324d"/>
+  <circle cx="165" cy="176" r="76" fill="#2f716d"/>
+  <circle cx="165" cy="176" r="58" fill="none" stroke="#fff1d2" stroke-width="2"/>
+  <text x="165" y="194" text-anchor="middle" fill="#ffffff" font-family="Georgia, serif" font-size="52" letter-spacing="4">SL</text>
+  <path d="M76 382 C128 333 204 333 256 382 S310 426 330 390" fill="none" stroke="#a94f30" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="76" cy="382" r="11" fill="#e2a347" stroke="#fbf9f4" stroke-width="4"/>
+  <circle cx="256" cy="382" r="11" fill="#e2a347" stroke="#fbf9f4" stroke-width="4"/>
+  <circle cx="330" cy="390" r="11" fill="#e2a347" stroke="#fbf9f4" stroke-width="4"/>
+  <circle cx="1070" cy="108" r="168" fill="none" stroke="#2f716d" stroke-opacity=".15" stroke-width="2"/>
+  <circle cx="1070" cy="108" r="112" fill="none" stroke="#2f716d" stroke-opacity=".11" stroke-width="24"/>
+  <text x="405" y="198" fill="#152739" font-family="Georgia, serif" font-size="64">Stephen A.</text>
+  <text x="405" y="274" fill="#152739" font-family="Georgia, serif" font-size="64">Lewandowski</text>
+  <line x1="405" y1="319" x2="1080" y2="319" stroke="#cec8bb" stroke-width="2"/>
+  <text x="405" y="376" fill="#2f716d" font-family="Arial, sans-serif" font-size="27" font-weight="700" letter-spacing="1">ENVIRONMENTAL &amp; OCCUPATIONAL HEALTH</text>
+  <text x="405" y="425" fill="#526676" font-family="Arial, sans-serif" font-size="26">Teaching &#8226; Research &#8226; Applied projects</text>
+  <text x="405" y="540" fill="#a94f30" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="1">stephenlewandowski.github.io</text>
+</svg>
