@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Environmental Health Risk Assessment
+description: A complete 14-week environmental-health risk-assessment course design for graduate and professional instruction.
+document_type: Course syllabus
+material_title: Environmental Health Risk Assessment
+material_path: /teaching/materials/risk-assessment-syllabus/
+---
+
 # Environmental Health Risk Assessment
 
 ## Course Format

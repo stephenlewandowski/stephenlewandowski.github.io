@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Surveillance and GIS for Public-Health Decisions
+description: Lecture notes connecting surveillance purpose, data quality, geography, privacy, uncertainty, and action.
+document_type: Lecture notes
+material_title: Surveillance and GIS
+material_path: /teaching/materials/surveillance-gis/
+---
+
 # Surveillance and GIS for Public-Health Decisions
 
 **Audience:** Graduate or professional learners  
@@ -110,4 +119,3 @@ The best response ties action intensity to evidence quality. Surveillance and GI
 - CDC, [CDC WONDER Frequently Asked Questions](https://wonder.cdc.gov/wonder/help/faq.html).
 - U.S. Census Bureau, [2025 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/2025/geo/tiger-line-file.html).
 - U.S. Census Bureau, [Census Geocoder Documentation](https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html).
-

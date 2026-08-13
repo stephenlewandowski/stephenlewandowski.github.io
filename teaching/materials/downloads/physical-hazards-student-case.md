@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Physical Hazards Decision Case
+description: A synthetic workplace case for evaluating noise, heat, vibration, controls, and uncertainty.
+document_type: Student case
+material_title: Physical Hazards
+material_path: /teaching/materials/physical-hazards/
+---
+
 # Physical Hazards Decision Case
 
 ## Scenario

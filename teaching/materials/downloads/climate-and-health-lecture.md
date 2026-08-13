@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Climate and Health
+description: Lecture notes on climate-health pathways, vulnerability, adaptation, surveillance, and dataset interpretation.
+document_type: Lecture notes
+material_title: Climate and Health
+material_path: /teaching/materials/climate-health/
+---
+
 # Climate and Health
 
 ## Currentness Notice

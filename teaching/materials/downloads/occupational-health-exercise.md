@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Occupational Health Workplace Exercise
+description: A fictional workplace exercise in evidence classification, exposure assessment, heat planning, and control selection.
+document_type: Workplace exercise
+material_title: Occupational Health and Industrial Hygiene
+material_path: /teaching/materials/occupational-health/
+---
+
 # Occupational Health and Industrial Hygiene: Workplace Evidence-to-Action Exercise
 
 ## Currentness Notice

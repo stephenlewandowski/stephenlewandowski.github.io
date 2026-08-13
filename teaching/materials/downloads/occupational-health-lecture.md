@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Occupational Health and Industrial Hygiene
+description: Lecture notes on occupational-health evidence, sampling, controls, authority distinctions, and heat.
+document_type: Lecture notes
+material_title: Occupational Health and Industrial Hygiene
+material_path: /teaching/materials/occupational-health/
+---
+
 # Occupational Health and Industrial Hygiene
 
 ## Currentness Notice

@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Surveillance and GIS Module Overview
+description: Purpose, learning objectives, preparation, and teaching sequence for the Surveillance and GIS module.
+document_type: Module overview
+material_title: Surveillance and GIS
+material_path: /teaching/materials/surveillance-gis/
+---
+
 # Surveillance and GIS for Public-Health Decisions
 
 ## Module purpose

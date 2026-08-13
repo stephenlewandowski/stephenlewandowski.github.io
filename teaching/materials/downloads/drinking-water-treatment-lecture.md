@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Drinking Water Treatment
+description: Lecture notes on drinking-water treatment, evidence authority, regulations, proposed changes, and dataset limits.
+document_type: Lecture notes
+material_title: Drinking Water Treatment
+material_path: /teaching/materials/drinking-water/
+---
+
 # Drinking Water Treatment
 
 ## Currentness Notice
