@@ -1,6 +1,6 @@
 # stephenlewandowski.github.io
 
-Professional website, public CV, teaching portfolio, and project index for Stephen A. Lewandowski.
+Professional website, post-service public CV, teaching portfolio, and project index for Stephen A. Lewandowski.
 
 ## Structure
 
@@ -22,7 +22,7 @@ GitHub Pages publishes the `main` branch from the repository root after an appro
 
 ## Content and maintenance
 
-The site presents a concise professional profile, selected teaching materials, and public project work. Teaching materials retain dates, attribution, synthetic-data boundaries, and distinctions among regulations, guidance, recommendations, and scientific evidence. Changeable regulatory and dataset claims should be checked before classroom or professional use.
+The site presents a concise post-service professional profile, selected teaching materials, and public project work. Teaching materials retain dates, attribution, synthetic-data boundaries, and distinctions among regulations, guidance, recommendations, and scientific evidence. Changeable regulatory and dataset claims should be checked before classroom or professional use.
 
 The current USS Terror project is documented at <https://github.com/stephenlewandowski/uss-terror>.
 The hosted Shiny application is available at <https://019ff822-911b-41e4-494c-8ca10f1f35ec.share.connect.posit.cloud>.
