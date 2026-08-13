@@ -9,6 +9,10 @@
     <meta property="og:description" content="{{ page.description | escape }}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://stephenlewandowski.github.io{{ page.url }}">
+    <meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
+    <meta property="og:image:alt" content="Stephen A. Lewandowski — environmental health, teaching, and research.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
     <link rel="canonical" href="https://stephenlewandowski.github.io{{ page.url }}">
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/styles.css">
@@ -25,10 +29,17 @@
       <section class="teaching-document-shell" aria-label="{{ page.document_type }}">
         <header class="teaching-document-header"><p class="eyebrow">{{ page.document_type }}</p><a href="{{ page.material_path }}">Back to material overview</a></header>
         <article class="teaching-document">
+          <p id="table-scroll-instructions" class="visually-hidden">Wide tables can be focused and scrolled horizontally with a keyboard.</p>
           {{ content }}
         </article>
       </section>
     </main>
     <footer><p>© 2026 Stephen A. Lewandowski</p><p>Teaching materials · Updated August 2026</p></footer>
+    <script>
+      document.querySelectorAll(".teaching-document table").forEach((table) => {
+        table.tabIndex = 0;
+        table.setAttribute("aria-describedby", "table-scroll-instructions");
+      });
+    </script>
   </body>
 </html>
