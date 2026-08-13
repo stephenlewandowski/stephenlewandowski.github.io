@@ -8,12 +8,13 @@ Professional website, public CV, teaching portfolio, and project index for Steph
 - `cv/index.html` - web-readable public CV
 - `teaching/index.html` - teaching philosophy, experience, and representative materials
 - `teaching/materials/` - teaching-material collection with six context pages and portable files
+- `_layouts/teaching-document.html` - shared GitHub Pages layout for readable Markdown teaching documents
 - `projects/index.html` - current projects and selected earlier GitHub work
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
 - `assets/styles.css` - shared responsive and print styles
 - `assets/Stephen-Lewandowski-Public-CV.pdf` - downloadable public CV
 
-The site intentionally uses plain HTML and CSS. It has no framework, build step, package manager, analytics, or third-party runtime dependency.
+The site uses plain HTML and CSS. GitHub Pages applies its standard Jekyll pass to render teaching Markdown through the shared document layout; there is no package manager, analytics, or third-party runtime dependency.
 
 ## Publishing
 

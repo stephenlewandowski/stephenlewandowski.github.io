@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Surveillance and GIS Learner Exercise
+description: A synthetic surveillance exercise in data quality, rates, geographic choices, privacy, and proportionate action.
+document_type: Learner exercise
+material_title: Surveillance and GIS
+material_path: /teaching/materials/surveillance-gis/
+---
+
 # Exercise: From a Surveillance Signal to a Spatial Decision
 
 **Estimated time:** 25–35 minutes  

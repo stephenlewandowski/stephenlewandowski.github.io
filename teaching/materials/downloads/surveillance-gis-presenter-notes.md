@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Surveillance and GIS Presenter Notes
+description: Slide-by-slide facilitation notes for the Surveillance and GIS teaching module.
+document_type: Presenter notes
+material_title: Surveillance and GIS
+material_path: /teaching/materials/surveillance-gis/
+---
+
 # Presenter Notes: Surveillance and GIS for Public-Health Decisions
 
 **Target:** 20–30 minutes. Keep the pace conversational and use slides 5 and 21 for active participation.  
@@ -30,4 +39,3 @@
 25. **Sources:** Describe older CDC guidance as foundational, not newly issued; name the 2026 verification date.
 
 The compiled PDF contains 25 pages, matching the numbered instructional sequence.
-

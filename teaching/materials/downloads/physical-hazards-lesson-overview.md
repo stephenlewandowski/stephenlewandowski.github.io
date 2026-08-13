@@ -1,3 +1,12 @@
+---
+layout: teaching-document
+title: Physical Hazards Lesson Overview
+description: Objectives, lesson sequence, participation options, and adaptation guidance for the Physical Hazards lesson.
+document_type: Lesson overview
+material_title: Physical Hazards
+material_path: /teaching/materials/physical-hazards/
+---
+
 # Physical Hazards in Occupational and Environmental Health
 
 ## Development Status
