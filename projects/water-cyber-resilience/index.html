@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#17324d"><meta name="description" content="Static source-linked exhibit tracing drinking-water cyber-resilience from reported access to justified confidence."><meta property="og:title" content="From Cyber Access to Justified Confidence | Stephen A. Lewandowski"><meta property="og:description" content="A static source-linked drinking-water cyber-resilience consequence path with an evidence table and CSV snapshots."><meta property="og:type" content="article"><meta property="og:url" content="https://stephenlewandowski.github.io/projects/water-cyber-resilience/"><meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png"><meta property="og:image:alt" content="Stephen A. Lewandowski — environmental health, teaching, and research."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://stephenlewandowski.github.io/assets/social-preview.png"><link rel="canonical" href="https://stephenlewandowski.github.io/projects/water-cyber-resilience/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><title>From Cyber Access to Justified Confidence | Stephen A. Lewandowski</title></head>
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#17324d"><meta name="description" content="Source-linked drinking-water cyber-resilience exhibit with an evidence-class lens distinguishing incident reports, guidance, synthesis, and open questions."><meta property="og:title" content="From Cyber Access to Justified Confidence | Stephen A. Lewandowski"><meta property="og:description" content="A source-linked drinking-water cyber-resilience consequence path with an evidence-class lens, table, and CSV snapshots."><meta property="og:type" content="article"><meta property="og:url" content="https://stephenlewandowski.github.io/projects/water-cyber-resilience/"><meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png"><meta property="og:image:alt" content="Stephen A. Lewandowski — environmental health, teaching, and research."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://stephenlewandowski.github.io/assets/social-preview.png"><link rel="canonical" href="https://stephenlewandowski.github.io/projects/water-cyber-resilience/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><style>
+    .evidence-lens{border:1px solid #c7d6e1;border-radius:1rem;padding:1rem 1.1rem;margin:1.25rem 0;background:#f5f9fb}
+    .evidence-lens h3{margin:0 0 .35rem;font-size:1rem}
+    .evidence-lens p{margin:.35rem 0}
+    .evidence-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0}
+    .evidence-filter{appearance:none;border:1px solid #7694aa;border-radius:999px;padding:.5rem .75rem;background:#fff;color:#17324d;font:inherit;cursor:pointer}
+    .evidence-filter:hover,.evidence-filter:focus-visible{border-color:#17324d;outline:3px solid #b8d7ea;outline-offset:2px}
+    .evidence-filter.is-active{background:#17324d;color:#fff}
+    .filter-status{font-size:.9rem;color:#425b6d}
+    .evidence-class{display:inline-block;border:1px solid #9bb4c8;border-radius:999px;padding:.2rem .45rem;font-size:.78rem;line-height:1.2;white-space:nowrap}
+    @media (prefers-reduced-motion: reduce){.evidence-filter{scroll-behavior:auto}}
+  </style><title>From Cyber Access to Justified Confidence | Stephen A. Lewandowski</title></head>
   <body><a class="skip-link" href="#main">Skip to main content</a><header class="site-header"><a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a><nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav></header>
     <main id="main" class="document-page">
       <header class="page-intro">
-        <p class="eyebrow">Static release · Water resilience · Decision support</p>
+        <p class="eyebrow">Static release · Water resilience · Evidence lens (draft)</p>
         <h1>From cyber access to justified confidence.</h1>
         <p class="lead">A source-linked consequence path for asking what evidence connects a drinking-water cyber intrusion to operational effects, safe-water assurance, recovery, and justified confidence.</p>
-        <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Released static exhibit v0.3 · 13 August 2026</div>
+        <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Released static exhibit v0.3 · v0.4 evidence-lens draft · 17 August 2026</div>
       </header>
 
       <section class="project-facts project-release-facts" aria-label="Project release facts">
         <p><span>Project record</span>IDEA-0001</p>
         <p><span>Publication record</span>PUB-0001</p>
-        <p><span>Format</span>Diagram, evidence table, and CSV snapshots</p>
-        <p><span>Live output</span>None; static fallback is complete</p>
+        <p><span>Format</span>Diagram, evidence-class table, and CSV snapshots</p>
+        <p><span>Live output</span>None; optional filter; static fallback is complete</p>
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="overview">
@@ -22,6 +33,7 @@
         <div class="prose">
           <p>The exhibit follows a reported path from cyber access and loss of view or control through operational effects, continuity, water-safety assurance, recovery verification, and justified confidence.</p>
           <p>Its central distinction is simple: an intrusion, automation loss, physical consequence, manual continuity, safe-water assurance, recovery, and confidence are not one claim. Each stage has a different evidence requirement.</p>
+          <p>The v0.4 draft adds an evidence-class lens so readers can distinguish documented aggregate reports, a documented municipal case, bounded synthesis, and an analytical question without treating guidance as incident evidence.</p>
           <p>The release is intended for water-sector operators and leaders, public-health and emergency-management professionals, infrastructure-resilience researchers, and advanced students.</p>
         </div>
       </section>
@@ -49,50 +61,99 @@
 
       <section class="section-compact" aria-labelledby="evidence">
         <div class="section-heading"><div><p class="section-kicker">03 · Evidence table</p><h2 id="evidence">What the reviewed record supports.</h2></div><p>The table is the complete text fallback for the diagram and keeps source scope and interpretation limits visible.</p></div>
+        <div class="evidence-lens" aria-labelledby="evidence-lens-title">
+          <div><h3 id="evidence-lens-title">Evidence lens</h3><p>Use the lens to read evidence status, not to score or rank sources. The default view keeps every stage visible.</p></div>
+          <div class="evidence-filters" role="group" aria-label="Filter evidence classes">
+            <button type="button" class="evidence-filter is-active" data-filter="all" aria-pressed="true">All stages</button>
+            <button type="button" class="evidence-filter" data-filter="documented_aggregate" aria-pressed="false">Documented aggregate</button>
+            <button type="button" class="evidence-filter" data-filter="documented_case" aria-pressed="false">Documented case</button>
+            <button type="button" class="evidence-filter" data-filter="bounded_synthesis" aria-pressed="false">Bounded synthesis</button>
+            <button type="button" class="evidence-filter" data-filter="analytic_question" aria-pressed="false">Analytical question</button>
+          </div>
+          <p id="evidence-filter-status" class="filter-status" role="status" aria-live="polite">Showing all 7 stages.</p>
+          <noscript><p class="filter-status">Scripts are optional; all evidence rows remain visible without the lens.</p></noscript>
+        </div>
         <div class="evidence-table-wrap" tabindex="0" aria-describedby="table-instructions">
           <p id="table-instructions" class="visually-hidden">Wide table. Focus this region and scroll horizontally to review all columns.</p>
           <table class="evidence-table">
             <caption class="visually-hidden">Source-linked drinking-water cyber-resilience consequence path</caption>
-            <thead><tr><th scope="col">Stage</th><th scope="col">Decision question</th><th scope="col">What the reviewed record supports</th><th scope="col">Source</th><th scope="col">Evidence scope and limit</th></tr></thead>
+            <thead><tr><th scope="col">Stage</th><th scope="col">Evidence class</th><th scope="col">Decision question</th><th scope="col">What the reviewed record supports</th><th scope="col">Source</th><th scope="col">Evidence scope and limit</th></tr></thead>
             <tbody>
-              <tr><th scope="row">1. Reported cyber access</th><td>What access or configuration change is documented?</td><td>FBI and EPA reported remote access to specified internet-facing PLCs and changes to IP addresses and passwords.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a></td><td>Federal aggregate beginning 27 July 2026; it does not identify every facility or attribute the actors.</td></tr>
-              <tr><th scope="row">2. Loss of view or control</th><td>What operator capability was lost?</td><td>The federal notice reports loss of monitoring or control functionality and, in some cases, loss of function of connected equipment.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a></td><td>Federal aggregate; PLC function and consequence varied, and the same loss is not established at every site.</td></tr>
-              <tr><th scope="row">3A. Reported degradation</th><td>Did automation loss produce a physical-process effect?</td><td>Reported effects across victims included pressure loss and flooding. Pressure loss could create a potential pathway for untreated-groundwater intrusion.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a></td><td>Federal aggregate; the notice does not map each effect to each site and does not report confirmed contamination.</td></tr>
-              <tr><th scope="row">3B. Manual continuity</th><td>Could service continue during communications disruption?</td><td>Plymouth reported communications disruption, continued operation through manual procedures, and no impact to water levels or water quality.</td><td><a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">SRC-0005</a></td><td>One municipal report; it is not independent forensics and does not establish device model, attribution, or sector-wide effectiveness.</td></tr>
-              <tr><th scope="row">4. Service and water-safety assurance</th><td>What evidence supports conclusions about continuity and safe water?</td><td>The sources distinguish potential contamination pathways, reported water-level and water-quality status, and risk-and-resilience planning obligations.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a>; <a href="https://www.epa.gov/enforcement/enforcement-alert-drinking-water-systems-address-cybersecurity-vulnerabilities">SRC-0003</a>; <a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">SRC-0005</a></td><td>Bounded synthesis; operational restoration is not proof of service continuity or water safety, and no common verification dataset is public.</td></tr>
-              <tr><th scope="row">5. Recovery verification</th><td>What was restored, checked, monitored, and communicated?</td><td>Federal recommendations include configuration and known-good-logic review, backup validation, connected-device review, and tested manual capability; Plymouth reported restoration and continued monitoring.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a>; <a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">SRC-0005</a></td><td>Federal recommendations plus one municipal report; public notices do not provide standardized recovery-assurance or full after-action records.</td></tr>
-              <tr><th scope="row">6. Justified confidence</th><td>What evidence would justify confidence among operators, regulators, leaders, and the public?</td><td>Incident, response, planning, monitoring, and communication records are relevant inputs; MNIT documents a coordinated response to more than 30 targeted systems.</td><td><a href="https://www.epa.gov/enforcement/enforcement-alert-drinking-water-systems-address-cybersecurity-vulnerabilities">SRC-0003</a>; <a href="https://mn.gov/mnit/media/blog/?id=38-761869">SRC-0004</a>; <a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">SRC-0005</a></td><td>Analytical question grounded in public records; no reviewed source directly measures trust or proves warranted confidence across systems.</td></tr>
+              <tr data-evidence-class="documented_aggregate"><th scope="row">1. Reported cyber access</th><td><span class="evidence-class">Documented aggregate</span></td><td>What access or configuration change is documented?</td><td>FBI and EPA reported remote access to specified internet-facing PLCs and changes to IP addresses and passwords.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a></td><td>Federal aggregate beginning 27 July 2026; it does not identify every facility or attribute the actors.</td></tr>
+              <tr data-evidence-class="documented_aggregate"><th scope="row">2. Loss of view or control</th><td><span class="evidence-class">Documented aggregate</span></td><td>What operator capability was lost?</td><td>The federal notice reports loss of monitoring or control functionality and, in some cases, loss of function of connected equipment. The April joint advisory adds cross-sector reports of HMI disruption, but does not establish the same effect at every water system.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a>; <a href="https://www.epa.gov/newsreleases/epa-fbi-cisa-nsa-issue-joint-cybersecurity-advisory-water-system-regarding-iranian">SRC-0002</a></td><td>Federal aggregate plus a cross-sector advisory; the advisory does not enumerate water-sector victims for every listed technique, and the same loss is not established at every site.</td></tr>
+              <tr data-evidence-class="documented_aggregate"><th scope="row">3A. Reported degradation</th><td><span class="evidence-class">Documented aggregate</span></td><td>Did automation loss produce a physical-process effect?</td><td>Reported effects across victims included pressure loss and flooding. Pressure loss could create a potential pathway for untreated-groundwater intrusion.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a></td><td>Federal aggregate; the notice does not map each effect to each site and does not report confirmed contamination.</td></tr>
+              <tr data-evidence-class="documented_case"><th scope="row">3B. Manual continuity</th><td><span class="evidence-class">Documented case</span></td><td>Could service continue during communications disruption?</td><td>Plymouth reported communications disruption, continued operation through manual procedures, and no impact to water levels or water quality.</td><td><a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">SRC-0005</a></td><td>One municipal report; it is not independent forensics and does not establish device model, attribution, or sector-wide effectiveness.</td></tr>
+              <tr data-evidence-class="bounded_synthesis"><th scope="row">4. Service and water-safety assurance</th><td><span class="evidence-class">Bounded synthesis</span></td><td>What evidence supports conclusions about continuity and safe water?</td><td>The sources distinguish potential contamination pathways, reported water-level and water-quality status, and risk-and-resilience planning obligations. EPA's assessment page states that cybersecurity belongs in the assessment baseline for covered community water systems.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a>; <a href="https://www.epa.gov/enforcement/enforcement-alert-drinking-water-systems-address-cybersecurity-vulnerabilities">SRC-0003</a>; <a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">SRC-0005</a>; <a href="https://www.epa.gov/cyberwater/cybersecurity-assessments">SRC-0008</a></td><td>Bounded synthesis; operational restoration is not proof of service continuity or water safety, and no common verification dataset is public.</td></tr>
+              <tr data-evidence-class="bounded_synthesis"><th scope="row">5. Recovery verification</th><td><span class="evidence-class">Bounded synthesis</span></td><td>What was restored, checked, monitored, and communicated?</td><td>Federal recommendations include configuration and known-good-logic review, backup validation, connected-device review, and tested manual capability; Plymouth reported restoration and continued monitoring. EPA planning guidance links preparation, response, recovery, incident-action checklists, and OT asset-inventory guidance.</td><td><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">SRC-0001</a>; <a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">SRC-0005</a>; <a href="https://www.epa.gov/cyberwater/cybersecurity-planning">SRC-0009</a></td><td>Federal recommendations and EPA planning guidance plus one municipal report; public notices and guidance do not provide standardized recovery-assurance or full after-action records.</td></tr>
+              <tr data-evidence-class="analytic_question"><th scope="row">6. Justified confidence</th><td><span class="evidence-class">Analytical question</span></td><td>What evidence would justify confidence among operators, regulators, leaders, and the public?</td><td>Incident, response, planning, monitoring, and communication records are relevant inputs; MNIT documents a coordinated response to more than 30 targeted systems, while NIST OT guidance and EPA assessment/planning resources provide framework inputs for reliability, safety, and recovery questions.</td><td><a href="https://www.epa.gov/enforcement/enforcement-alert-drinking-water-systems-address-cybersecurity-vulnerabilities">SRC-0003</a>; <a href="https://mn.gov/mnit/media/blog/?id=38-761869">SRC-0004</a>; <a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">SRC-0005</a>; <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final">SRC-0007</a>; <a href="https://www.epa.gov/cyberwater/cybersecurity-assessments">SRC-0008</a>; <a href="https://www.epa.gov/cyberwater/cybersecurity-planning">SRC-0009</a></td><td>Analytical question grounded in public records and framework guidance; no reviewed source directly measures trust or proves warranted confidence across systems.</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="sources">
-        <div><p class="section-kicker">04 · Source boundary</p><h2 id="sources">Primary government sources only.</h2></div>
+        <div><p class="section-kicker">04 · Source boundary</p><h2 id="sources">Primary and standards-setting sources.</h2></div>
         <div class="prose">
-          <p>The release uses four registered primary government sources: a federal FBI/EPA incident notice, EPA enforcement guidance, a Minnesota response notice, and a Plymouth municipal update. Evidence snapshot date: 13 August 2026.</p>
+          <p>The v0.4 draft uses eight registered primary or standards-setting sources. Evidence snapshot date: 17 August 2026. Guidance and standards are shown as framework inputs, not incident outcomes.</p>
           <ul class="source-list">
             <li><a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">FBI/EPA federal incident notice</a> — aggregate access, reported operational effects, and recovery recommendations.</li>
+            <li><a href="https://www.epa.gov/newsreleases/epa-fbi-cisa-nsa-issue-joint-cybersecurity-advisory-water-system-regarding-iranian">EPA/FBI/CISA/NSA joint advisory</a> — cross-sector OT-disruption categories and resilience recommendations; water-specific scope remains bounded.</li>
             <li><a href="https://www.epa.gov/enforcement/enforcement-alert-drinking-water-systems-address-cybersecurity-vulnerabilities">EPA enforcement alert</a> — domestic risk-and-resilience planning and cybersecurity baseline.</li>
             <li><a href="https://mn.gov/mnit/media/blog/?id=38-761869">Minnesota IT Services response notice</a> — statewide targeting and coordinated response context.</li>
             <li><a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">City of Plymouth municipal update</a> — one municipal continuity, water-status, restoration, and monitoring report.</li>
+            <li><a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final">NIST SP 800-82 Rev. 3</a> — OT reliability, safety, topology, threat, and countermeasure frame.</li>
+            <li><a href="https://www.epa.gov/cyberwater/cybersecurity-assessments">EPA cybersecurity assessments</a> — assessment resources and AWIA/SDWA cybersecurity scope.</li>
+            <li><a href="https://www.epa.gov/cyberwater/cybersecurity-planning">EPA cybersecurity planning</a> — preparation, response, recovery, incident-action, and OT asset-inventory resources.</li>
           </ul>
-          <p class="source-limit">The Plymouth page was directly reviewed on 10 August 2026; official-domain retrieval reconfirmed its title, post date, and displayed claims on 13 August, while automated direct retrieval returned HTTP 403. That known currentness limitation is retained in the release record.</p>
+          <p class="source-limit">Evidence snapshot: 17 August 2026. The Plymouth page was directly reviewed on 10 August 2026; official-domain retrieval reconfirmed its title, post date, and displayed claims on 13 August, while automated direct retrieval returned HTTP 403. That known currentness limitation is retained in the release record. The April advisory, NIST guidance, and EPA assessment/planning pages were directly reviewed on 17 August.</p>
         </div>
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="downloads">
         <div><p class="section-kicker">05 · Static fallback</p><h2 id="downloads">Download the machine-readable snapshots.</h2></div>
         <div class="prose">
-          <p>The complete static fallback remains available as the evidence table and two CSV snapshots. No live application or interactive comparison was added because the reviewed evidence does not support a defensible scenario-selection task.</p>
+          <p>The complete static fallback remains available as the evidence table and two CSV snapshots. The evidence-class lens is optional progressive enhancement; no live application or interactive case comparison was added.</p>
           <div class="download-list">
             <a href="/projects/water-cyber-resilience/data/path-stages.csv"><span>Path stages CSV</span><small>Seven consequence-path stages with evidence classes, sources, scope, limits, and resilience functions.</small></a>
-            <a href="/projects/water-cyber-resilience/data/source-snapshot.csv"><span>Source snapshot CSV</span><small>Four source records with publication dates, roles, scope limits, and verification status.</small></a>
+            <a href="/projects/water-cyber-resilience/data/source-snapshot.csv"><span>Source snapshot CSV</span><small>Eight source records with publication dates, roles, scope limits, and verification status.</small></a>
           </div>
         </div>
       </section>
 
-      <aside class="project-note"><h2>Interpretation limits</h2><p>This exhibit does not attribute an actor, report confirmed contamination, diagnose the water sector, evaluate a specific utility's cybersecurity, or claim that manual operations are universally safe or sustainable. It keeps an aggregated federal pattern separate from one municipal report and treats justified confidence as an evidence question, not a measured result.</p></aside>
-    </main><footer><p>© 2026 Stephen A. Lewandowski</p><p>Water cyber-resilience exhibit · v0.3 · August 2026</p></footer>
+      <aside class="project-note"><h2>Interpretation limits</h2><p>This exhibit does not attribute an actor, report confirmed contamination, diagnose the water sector, evaluate a specific utility's cybersecurity, or claim that manual operations are universally safe or sustainable. Guidance and standards are framework inputs, not proof of implementation or recovery performance. It keeps an aggregated federal pattern separate from one municipal report and treats justified confidence as an evidence question, not a measured result.</p></aside>
+    </main><footer><p>© 2026 Stephen A. Lewandowski</p><p>Water cyber-resilience exhibit · v0.3 · v0.4 draft under review · August 2026</p></footer>
+  <script>
+      (() => {
+        const rows = Array.from(document.querySelectorAll("[data-evidence-class]"));
+        const buttons = Array.from(document.querySelectorAll("[data-filter]"));
+        const status = document.getElementById("evidence-filter-status");
+        const labels = {
+          all: "all",
+          documented_aggregate: "documented aggregate",
+          documented_case: "documented case",
+          bounded_synthesis: "bounded synthesis",
+          analytic_question: "analytical question"
+        };
+        const applyFilter = (filter) => {
+          let visible = 0;
+          rows.forEach((row) => {
+            const show = filter === "all" || row.dataset.evidenceClass === filter;
+            row.hidden = !show;
+            if (show) visible += 1;
+          });
+          buttons.forEach((button) => {
+            const active = button.dataset.filter === filter;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", String(active));
+          });
+          status.textContent = filter === "all"
+            ? `Showing all ${visible} stages.`
+            : `Showing ${visible} ${labels[filter]} stage${visible === 1 ? "" : "s"}.`;
+        };
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => applyFilter(button.dataset.filter));
+        });
+      })();
+    </script>
   </body>
 </html>
