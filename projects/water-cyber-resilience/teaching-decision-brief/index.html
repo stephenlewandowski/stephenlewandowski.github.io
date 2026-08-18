@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17324d">
+    <meta name="description" content="A printable teaching and decision brief using three public drinking-water cyber-resilience case examples.">
+    <meta property="og:title" content="Teaching and Decision Brief | Drinking-Water Cyber Resilience">
+    <meta property="og:description" content="Three public case examples and an evidence-bounded exercise: what can be concluded now, what cannot, and what evidence is needed next.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stephenlewandowski.github.io/projects/water-cyber-resilience/teaching-decision-brief/">
+    <link rel="canonical" href="https://stephenlewandowski.github.io/projects/water-cyber-resilience/teaching-decision-brief/">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <style>
+      .brief-controls { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.2rem; }
+      .case-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+      .case-card { padding: 1.25rem; background: #f7f5ef; border: 1px solid var(--line); border-top: 4px solid var(--teal); }
+      .case-card .case-label { margin: 0 0 .45rem; color: var(--rust); font-size: .72rem; font-weight: 780; letter-spacing: .1em; text-transform: uppercase; }
+      .case-card h2 { margin: 0 0 .8rem; color: var(--navy); font-size: 1.35rem; }
+      .case-card p { margin: .7rem 0 0; color: #41586a; font-size: .95rem; }
+      .case-card a { color: var(--rust); text-underline-offset: .15em; }
+      .case-card .case-limit { padding-top: .75rem; border-top: 1px solid var(--line); }
+      .case-scope-note { margin-top: 1.2rem; color: #41586a; font-size: .96rem; }
+      .prompt-list { margin: 1rem 0 0; padding-left: 1.35rem; color: #41586a; }
+      .prompt-list li { margin-bottom: .85rem; padding-left: .25rem; }
+      .decision-table { width: 100%; margin-top: 1.2rem; border-collapse: collapse; font-size: .92rem; }
+      .decision-table th, .decision-table td { padding: .75rem .8rem; text-align: left; vertical-align: top; border: 1px solid #d8d3c9; }
+      .decision-table th { width: 28%; color: var(--navy); background: #edf2ef; }
+      .decision-table td { color: #41586a; background: #faf8f3; }
+      .brief-callout { margin-top: 2rem; padding: 1.5rem; color: #dce5eb; background: var(--navy); }
+      .brief-callout h2 { margin-top: 0; color: var(--white); font-size: 1.6rem; }
+      .brief-callout ul { margin-bottom: 0; }
+      .brief-callout li { margin-bottom: .5rem; }
+      .brief-callout li:last-child { margin-bottom: 0; }
+      @media (max-width: 900px) {
+        .case-grid { grid-template-columns: 1fr; }
+      }
+      @media print {
+        @page { size: Letter; margin: .55in; }
+        body { color: #1d2d38; background: #fff; }
+        .site-header, .skip-link, footer, .no-print { display: none !important; }
+        .document-page { max-width: none; }
+        .page-intro { padding: 0 0 1rem; }
+        .section-compact { padding: 1.1rem 0; }
+        .case-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; }
+        .case-card { padding: .7rem; }
+        .case-card h2 { font-size: 1rem; }
+        .case-card p, .case-scope-note, .prompt-list, .decision-table { font-size: .78rem; }
+        .project-facts { padding: .8rem; }
+        .project-facts p { padding-bottom: .45rem; margin-bottom: .45rem; }
+        .decision-table th, .decision-table td { padding: .45rem; }
+        .brief-callout { margin-top: 1rem; padding: .9rem; }
+        a { color: inherit; text-decoration: none; }
+      }
+    </style>
+    <title>Teaching and Decision Brief | Drinking-Water Cyber Resilience</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a>
+      <nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav>
+    </header>
+
+    <main id="main" class="document-page">
+      <header class="page-intro">
+        <p class="eyebrow">Teaching / decision brief · Drinking-water resilience</p>
+        <h1>What can be concluded now?</h1>
+        <p class="lead">A short, evidence-bounded exercise using three public records to separate documented facts, bounded synthesis, and evidence still needed.</p>
+        <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Public teaching material · evidence snapshot reviewed 17 August 2026</div>
+        <div class="brief-controls no-print">
+          <button type="button" class="button button-primary" onclick="window.print()">Print / save as PDF</button>
+          <a class="button button-secondary" href="/projects/water-cyber-resilience/">Return to project overview</a>
+        </div>
+      </header>
+
+      <section class="project-facts" aria-label="Brief details">
+        <p><span>Audience</span>Water-sector operators and leaders, public-health and emergency-management professionals, researchers, and advanced students</p>
+        <p><span>Time</span>20–30 minutes</p>
+        <p><span>Primary task</span>Classify evidence and identify the next checks</p>
+        <p><span>Fallback</span>Printable page; no live application required</p>
+      </section>
+
+      <section class="section-compact" aria-labelledby="cases">
+        <div class="section-heading">
+          <div><p class="section-kicker">01 · Three case examples</p><h2 id="cases">Different records, different evidence limits.</h2></div>
+          <p>Read the cases as deliberately different public records. They support related questions, but they are not a common forensic dataset.</p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-card">
+            <p class="case-label">Case 1 · Federal aggregate</p>
+            <h2>Multiple utilities, reported PLC changes</h2>
+            <p>FBI and EPA reported that water and wastewater utilities in at least seven states reported incidents involving internet-facing Rockwell Automation / Allen-Bradley MicroLogix 1100 and 1400 PLCs. Reported changes included IP addresses and passwords; reported effects included loss of monitoring or control, pressure loss, and flooding.</p>
+            <p><strong>Source:</strong> <a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">FBI/EPA federal notice</a></p>
+            <p class="case-limit"><strong>Do not infer:</strong> A facility list, actor attribution, or confirmed contamination.</p>
+          </article>
+
+          <article class="case-card">
+            <p class="case-label">Case 2 · Minnesota response</p>
+            <h2>More than 30 community systems</h2>
+            <p>Minnesota IT Services reported a coordinated cyberattack targeting operational technology at more than 30 Minnesota community water systems on 26–27 July 2026. The state coordinated with public-health, law-enforcement, environmental, federal, local, Tribal, and private-sector partners and reported no active request for residents to modify drinking-water use at publication.</p>
+            <p><strong>Source:</strong> <a href="https://mn.gov/mnit/media/blog/?id=38-761869">Minnesota IT Services response notice</a></p>
+            <p class="case-limit"><strong>Do not infer:</strong> That every targeted system experienced the same operational impact, or that attribution was established.</p>
+          </article>
+
+          <article class="case-card">
+            <p class="case-label">Case 3 · Plymouth continuity</p>
+            <h2>Manual operations during communications outage</h2>
+            <p>Plymouth reported a communications outage affecting two water towers and multiple lift stations connected through cellular communications. Crews continued manual procedures; the city reported no impact to water levels or water quality, later reported restored communications and normal operations, and continued monitoring.</p>
+            <p><strong>Source:</strong> <a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">City of Plymouth municipal update</a></p>
+            <p class="case-limit"><strong>Do not infer:</strong> Independent forensics, a device-model match, or sector-wide effectiveness.</p>
+          </article>
+        </div>
+
+        <p class="case-scope-note"><strong>Scope rule:</strong> Keep the federal aggregate, Minnesota response snapshot, and Plymouth municipal report separate. In particular, do not assign the aggregate pressure-loss or flooding reports to Plymouth or to every Minnesota system.</p>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="prompt">
+        <div><p class="section-kicker">02 · Decision prompt</p><h2 id="prompt">Advise a leader after a reported cyber disruption.</h2></div>
+        <div class="prose">
+          <p>Take the role of a utility leader, public-health official, emergency manager, or commander. Use the three cases to make a bounded assessment, not a confident story.</p>
+          <ol class="prompt-list">
+            <li>What can be concluded now? Name the record and its scope.</li>
+            <li>What cannot be concluded? Identify at least one inference that would overreach the evidence.</li>
+            <li>What evidence is needed next? Separate operational status, water-safety verification, recovery checks, and communication needs.</li>
+            <li>What should be communicated now? State what is known, what is being checked, and what has not been confirmed.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="response-frame">
+        <div><p class="section-kicker">03 · Response frame</p><h2 id="response-frame">Write the answer in four columns of thought.</h2></div>
+        <div class="prose">
+          <table class="decision-table">
+            <thead><tr><th scope="col">Question</th><th scope="col">Bounded response</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">What is documented?</th><td>Name the source, date, record type, observed effect, and geographic or facility scope.</td></tr>
+              <tr><th scope="row">What is not established?</th><td>State the most important limit: attribution, contamination, comparability, implementation, or recovery assurance.</td></tr>
+              <tr><th scope="row">What evidence is needed next?</th><td>Identify checks for control and process status, water quality and public-health protection, recovery, and communication.</td></tr>
+              <tr><th scope="row">What should be communicated now?</th><td>Report what is known, what is under review, and what has not been confirmed; avoid implying more than the record supports.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="brief-callout">
+        <h2>Debrief</h2>
+        <ul>
+          <li>Cyber access is not the same as a physical-process consequence.</li>
+          <li>Restored communications are not, by themselves, proof of water-safety assurance.</li>
+          <li>A municipal continuity report is not sector-wide evidence.</li>
+          <li>Justified confidence requires explicit verification, monitoring, and communication—not a label or score.</li>
+        </ul>
+      </aside>
+
+      <section class="section-compact" aria-labelledby="links">
+        <div class="section-heading"><div><p class="section-kicker">04 · Continue the analysis</p><h2 id="links">Return to the evidence path.</h2></div><p>The full project page provides the source-linked table, evidence-class filter, interpretation limits, and machine-readable snapshots.</p></div>
+        <div class="hero-actions no-print">
+          <a class="button button-primary" href="/projects/water-cyber-resilience/">Project overview</a>
+          <a class="button button-secondary" href="/projects/water-cyber-resilience/data/path-stages.csv">Path stages CSV</a>
+          <a class="button button-secondary" href="/projects/water-cyber-resilience/data/source-snapshot.csv">Source snapshot CSV</a>
+        </div>
+      </section>
+    </main>
+
+    <footer><p>© 2026 Stephen A. Lewandowski</p><p>Drinking-water resilience teaching brief · August 2026</p></footer>
+  </body>
+</html>
