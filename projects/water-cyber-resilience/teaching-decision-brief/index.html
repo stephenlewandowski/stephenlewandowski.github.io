@@ -90,31 +90,31 @@
 
         <div class="case-grid">
           <article class="case-card">
-            <p class="case-label">Case 1 · Federal aggregate</p>
-            <h2>Multiple utilities, reported PLC changes</h2>
-            <p>FBI and EPA reported that water and wastewater utilities in at least seven states reported incidents involving internet-facing Rockwell Automation / Allen-Bradley MicroLogix 1100 and 1400 PLCs. Reported changes included IP addresses and passwords; reported effects included loss of monitoring or control, pressure loss, and flooding.</p>
-            <p><strong>Source:</strong> <a href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions">FBI/EPA federal notice</a></p>
-            <p class="case-limit"><strong>Do not infer:</strong> A facility list, actor attribution, or confirmed contamination.</p>
-          </article>
-
-          <article class="case-card">
-            <p class="case-label">Case 2 · Minnesota response</p>
-            <h2>More than 30 community systems</h2>
-            <p>Minnesota IT Services reported a coordinated cyberattack targeting operational technology at more than 30 Minnesota community water systems on 26–27 July 2026. The state coordinated with public-health, law-enforcement, environmental, federal, local, Tribal, and private-sector partners and reported no active request for residents to modify drinking-water use at publication.</p>
-            <p><strong>Source:</strong> <a href="https://mn.gov/mnit/media/blog/?id=38-761869">Minnesota IT Services response notice</a></p>
-            <p class="case-limit"><strong>Do not infer:</strong> That every targeted system experienced the same operational impact, or that attribution was established.</p>
-          </article>
-
-          <article class="case-card">
-            <p class="case-label">Case 3 · Plymouth continuity</p>
-            <h2>Manual operations during communications outage</h2>
-            <p>Plymouth reported a communications outage affecting two water towers and multiple lift stations connected through cellular communications. Crews continued manual procedures; the city reported no impact to water levels or water quality, later reported restored communications and normal operations, and continued monitoring.</p>
+            <p class="case-label">Case 1 · Plymouth, Minnesota</p>
+            <h2>Manual continuity during a communications outage</h2>
+            <p>Plymouth reported a communications outage affecting two water towers and multiple lift stations connected through cellular communications after a suspected cyberattack. Crews continued manual procedures; the city reported no impact to water levels or water quality, later restored communications and normal operations, and continued monitoring.</p>
             <p><strong>Source:</strong> <a href="https://www.plymouthmn.gov/Home/Components/News/News/8977/542">City of Plymouth municipal update</a></p>
             <p class="case-limit"><strong>Do not infer:</strong> Independent forensics, a device-model match, or sector-wide effectiveness.</p>
           </article>
+
+          <article class="case-card">
+            <p class="case-label">Case 2 · Minot, North Dakota</p>
+            <h2>SCADA ransomware with manual monitoring</h2>
+            <p>City officials said ransomware was detected on 14 March 2026 on a server supporting the Minot Water Treatment Plant’s SCADA system. Operators disconnected the affected server and used more frequent, on-location gauge readings for about 16 hours while a replacement server was prepared; officials reported that the plant remained operational and the water supply stayed safe.</p>
+            <p><strong>Source:</strong> <a href="https://statescoop.com/minot-north-dakota-water-treatment-ransomware/">City account reported by StateScoop</a></p>
+            <p class="case-limit"><strong>Do not infer:</strong> The identity of the actor, a confirmed effect on water quality, or that manual monitoring alone proves resilience.</p>
+          </article>
+
+          <article class="case-card">
+            <p class="case-label">Case 3 · Aliquippa, Pennsylvania</p>
+            <h2>PLC compromise at a pressure-control booster station</h2>
+            <p>In November 2023, the Municipal Water Authority of Aliquippa reported that an Iranian-backed group compromised a PLC at a remote booster station used to monitor and regulate water pressure. The device was disabled and operated manually; the authority reported no known risk to drinking water or water supply.</p>
+            <p><strong>Source:</strong> <a href="https://www.waterisac.org/tlpclear-water-utility-control-system-cyber-incident-advisory-icsscada-incident-municipal">WaterISAC incident advisory</a></p>
+            <p class="case-limit"><strong>Do not infer:</strong> Broader compromise, contamination, attribution beyond the advisory’s account, or sector-wide risk from one device.</p>
+          </article>
         </div>
 
-        <p class="case-scope-note"><strong>Scope rule:</strong> Keep the federal aggregate, Minnesota response snapshot, and Plymouth municipal report separate. In particular, do not assign the aggregate pressure-loss or flooding reports to Plymouth or to every Minnesota system.</p>
+        <p class="case-scope-note"><strong>Scope rule:</strong> These are differently scoped public records, not a directly comparable dataset. Plymouth illustrates manual continuity and restoration; Minot illustrates SCADA ransomware and manual monitoring; Aliquippa illustrates a PLC compromise at a pressure-control station. Do not collapse them into one incident account or infer water-quality effects beyond the cited public statements.</p>
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="prompt">
