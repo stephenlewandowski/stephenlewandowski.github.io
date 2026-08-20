@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17324d">
+    <meta name="description" content="PFAS regulatory tracker spanning U.S. federal action, overseas environmental governance, host-nation requirements, and installation obligations.">
+    <meta property="og:title" content="PFAS regulatory tracker | Stephen A. Lewandowski">
+    <meta property="og:description" content="A provision-level regulatory and obligation crosswalk for PFAS management across U.S. and overseas settings.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stephenlewandowski.github.io/projects/pfas-tracker/">
+    <meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
+    <meta property="og:image:alt" content="Stephen A. Lewandowski — environmental health, teaching, and research.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
+    <link rel="canonical" href="https://stephenlewandowski.github.io/projects/pfas-tracker/">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <title>PFAS regulatory tracker | Stephen A. Lewandowski</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a>
+      <nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav>
+    </header>
+    <main id="main" class="document-page project-log">
+      <header class="page-intro">
+        <p class="eyebrow">Regulatory crosswalk · PFAS · environmental governance</p>
+        <h1>PFAS tracker: from federal designation to installation obligation.</h1>
+        <p class="lead">A source-linked tracker for following how PFAS requirements move across federal law, overseas governance, host-nation rules, and component-level responsibilities.</p>
+        <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Validated scaffold; U.S. federal expansion and Korea/Japan crosswalks in progress</div>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/stephenlewandowski/current-events-km">Source project</a>
+          <a class="button button-secondary" href="https://www.epa.gov/superfund/designation-perfluorooctanoic-acid-pfoa-and-perfluorooctanesulfonic-acid-pfos-cercla">EPA CERCLA designation</a>
+          <a class="button button-secondary" href="https://law.justia.com/cases/federal/appellate-courts/cadc/24-1193/24-1193-2026-08-18.html">D.C. Circuit decision</a>
+        </div>
+      </header>
+
+      <section class="project-release-facts" aria-label="Project facts">
+        <p><span>Validation</span>PASS · 6 layers · 6 jurisdictions</p>
+        <p><span>Registers</span>16 sources · 10 events · 8 relationships · 7 obligations</p>
+        <p><span>Legal anchor</span>PFOA/PFOS CERCLA designation remains in place</p>
+        <p><span>Next build</span>Federal expansion, Korea EGS, then Japan crosswalk</p>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="overview">
+        <div><p class="section-kicker">01 · Overview</p><h2 id="overview">Trace requirements without assuming equivalence.</h2></div>
+        <div class="prose">
+          <p>The tracker asks which source creates a requirement, who or what it reaches, how it is implemented or recognized overseas, and what evidence would show that an installation, component, or contractor has an obligation.</p>
+          <p>The immediate legal context is EPA's designation of PFOA and PFOS as CERCLA hazardous substances. On August 18, 2026, the D.C. Circuit denied petitions challenging that rule in <em>Chamber of Commerce v. EPA</em>, No. 24-1193. The tracker records that federal event as a source-linked development; it does not treat the court decision as a complete overseas or installation-level compliance answer.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="layers">
+        <div><p class="section-kicker">02 · Project outline</p><h2 id="layers">Six linked layers of obligation.</h2></div>
+        <div class="prose">
+          <ol class="steps">
+            <li><strong>U.S. federal law and EPA action.</strong> Statutes, regulations, final rules, enforcement material, and court decisions.</li>
+            <li><strong>Overseas environmental governance.</strong> DoD policy and environmental requirements that frame overseas implementation.</li>
+            <li><strong>Country governing standards.</strong> Final Governing Standards and related country-specific provisions.</li>
+            <li><strong>SOFA and international instruments.</strong> Status, jurisdiction, and host-nation coordination context.</li>
+            <li><strong>Host-nation law and guidance.</strong> Initial South Korea, Japan, and Germany crosswalks.</li>
+            <li><strong>Installation, component, and contractor obligations.</strong> The operationally useful endpoint, tied to a specific provision and actor.</li>
+          </ol>
+          <p>The layers preserve differences among legally binding requirements, policy, guidance, standards, recommendations, and analytical inferences.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="current-work">
+        <div><p class="section-kicker">03 · Current work</p><h2 id="current-work">Build outward from the federal source base.</h2></div>
+        <div class="prose">
+          <ul class="feature-list">
+            <li><strong>U.S. federal expansion:</strong> complete the federal rule, release-reporting, liability, drinking-water, cleanup, and agency-guidance source set.</li>
+            <li><strong>Korea:</strong> perform the provision-level EGS crosswalk and identify where SOFA, host-nation requirements, and installation practice intersect.</li>
+            <li><strong>Japan:</strong> add the corresponding country crosswalk while keeping legal status and guidance distinct.</li>
+            <li><strong>Germany:</strong> retain the initial jurisdiction in the architecture for later source verification and comparison.</li>
+          </ul>
+          <p>Current status is deliberately a build status, not a conclusion that overseas requirements are equivalent, weaker, or more protective than U.S. requirements.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="code">
+        <div><p class="section-kicker">04 · Data and code</p><h2 id="code">A small, auditable register system.</h2></div>
+        <div class="prose">
+          <pre><code>layers.csv
+jurisdictions.csv
+sources.csv
+events.csv
+relationships.csv
+obligations.csv
+scripts/validate_project.py</code></pre>
+          <p>The current validation contract checks the six-layer architecture, jurisdiction coverage, source metadata, event and relationship links, obligation records, and controlled field values. The detailed crosswalk remains in the private Current Events KM working repository while the source base and release boundary are reviewed.</p>
+        </div>
+      </section>
+
+      <aside class="project-note">
+        <h2>Interpretation boundary</h2>
+        <p>A federal designation, a court decision, a host-nation rule, an EGS provision, an installation practice, and a contractor obligation are not interchangeable. Each claim needs its own provision, source, date, scope, actor, and implementation evidence.</p>
+      </aside>
+    </main>
+    <footer><p>© 2026 Stephen A. Lewandowski</p><p>PFAS regulatory tracker · Updated August 2026</p></footer>
+  </body>
+</html>

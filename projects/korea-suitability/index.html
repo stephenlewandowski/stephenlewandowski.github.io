@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17324d">
+    <meta name="description" content="Korea-first Climademic Aedes suitability analysis for North Korea and South Korea, 1975–2024.">
+    <meta property="og:title" content="Korean Peninsula suitability | Stephen A. Lewandowski">
+    <meta property="og:description" content="A reproducible Korea-first analysis of modeled Aedes aegypti and Aedes albopictus environmental suitability.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stephenlewandowski.github.io/projects/korea-suitability/">
+    <meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
+    <meta property="og:image:alt" content="Stephen A. Lewandowski — environmental health, teaching, and research.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
+    <link rel="canonical" href="https://stephenlewandowski.github.io/projects/korea-suitability/">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <title>Korean Peninsula suitability | Stephen A. Lewandowski</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a>
+      <nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav>
+    </header>
+    <main id="main" class="document-page project-log">
+      <header class="page-intro">
+        <p class="eyebrow">Spatial analysis · environmental health · Korean Peninsula</p>
+        <h1>Korean Peninsula Aedes suitability, 1975–2024.</h1>
+        <p class="lead">A Korea-first static analysis of modeled monthly environmental suitability for <em>Aedes aegypti</em> and <em>Aedes albopictus</em>, with extraction, aggregation, missingness, and interpretation boundaries kept visible.</p>
+        <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Draft static prototype · Korea-first analysis under review</div>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/stephenlewandowski/current-events-km/tree/main/projects/IDEA-0006-climademic-korea">Source project</a>
+          <a class="button button-secondary" href="https://github.com/stephenlewandowski/current-events-km/blob/main/projects/IDEA-0006-climademic-korea/scripts/analyze_korea.py">Analysis code</a>
+          <a class="button button-secondary" href="https://github.com/stephenlewandowski/current-events-km/blob/main/projects/IDEA-0006-climademic-korea/scripts/validate_outputs.py">Validation code</a>
+        </div>
+      </header>
+
+      <section class="project-release-facts" aria-label="Project facts">
+        <p><span>Source</span>Climademic v2.0 · 0.25° monthly grid</p>
+        <p><span>Geography</span>North Korea, South Korea, combined peninsula</p>
+        <p><span>Coverage</span>1975–2024 · 370 selected cells</p>
+        <p><span>Current work</span>Population, observations, drivers, and evaluation gates</p>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="overview">
+        <div><p class="section-kicker">01 · Overview</p><h2 id="overview">A bounded model-derived comparison.</h2></div>
+        <div class="prose">
+          <p>The initial product uses area-weighted regional summaries for North Korea, South Korea, and the combined Korean Peninsula. It compares early (1975–1984), middle (1995–2004), and recent (2015–2024) periods and retains cell-year extracts, monthly profiles, missingness diagnostics, and static maps.</p>
+          <p>The selected 370 cells include 215 North Korea cells and 155 South Korea cells. In the current v2.0 extraction, no missing or undefined suitability values were encountered in the selected target cells for the three comparison decades. North Korea interpretation remains modeled extrapolation where direct observations are unavailable.</p>
+        </div>
+      </section>
+
+      <section class="section-compact" aria-labelledby="results">
+        <p class="section-kicker">02 · Initial result</p>
+        <h2 id="results">Area-weighted mean suitable-month count</h2>
+        <div class="evidence-table-wrap" tabindex="0">
+          <table class="evidence-table">
+            <thead><tr><th>Species</th><th>1975–1984</th><th>2015–2024</th><th>Change</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td><em>Ae. aegypti</em></td><td>2.67 months</td><td>3.24 months</td><td>+0.57</td><td>Modeled environmental suitability</td></tr>
+              <tr><td><em>Ae. albopictus</em></td><td>4.21 months</td><td>4.71 months</td><td>+0.50</td><td>Modeled environmental suitability</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="path-caption">Suitable-month counts use a score threshold of 0.5. They are not observations of vector presence, abundance, infection, human exposure, or disease transmission.</p>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="methods">
+        <div><p class="section-kicker">03 · Methods and code</p><h2 id="methods">Reproducible from source archive to static figure.</h2></div>
+        <div class="prose">
+          <ul class="feature-list">
+            <li><a href="https://github.com/stephenlewandowski/current-events-km/blob/main/projects/IDEA-0006-climademic-korea/scripts/analyze_korea.py"><code>analyze_korea.py</code></a> — extracts monthly rasters, applies the country mask, aggregates results, and renders static maps.</li>
+            <li><a href="https://github.com/stephenlewandowski/current-events-km/blob/main/projects/IDEA-0006-climademic-korea/scripts/analyze_korea_japan.py"><code>analyze_korea_japan.py</code></a> — keeps the Korea scope explicit and maintains Japan as a separate comparator.</li>
+            <li><a href="https://github.com/stephenlewandowski/current-events-km/blob/main/projects/IDEA-0006-climademic-korea/scripts/validate_outputs.py"><code>validate_outputs.py</code></a> — checks row counts, ranges, missingness, cell counts, and expected map outputs.</li>
+            <li><a href="https://github.com/stephenlewandowski/current-events-km/tree/main/projects/IDEA-0006-climademic-korea/reports">Methods and protocol reports</a> — document aggregation, uncertainty, population exposure, surveillance, drivers, and early-warning gates.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="next">
+        <div><p class="section-kicker">04 · Next sequence</p><h2 id="next">Add evidence only when the input contract is met.</h2></div>
+        <div class="prose">
+          <ol class="steps">
+            <li>Complete the Korea-only LandScan population-exposure join and alignment checks.</li>
+            <li>Add ROK <em>Aedes</em> observations as a separate validation input with spatial and temporal holdouts.</li>
+            <li>Describe heat, humidity, land-use, and population drivers while retaining correlated-predictor diagnostics.</li>
+            <li>Evaluate any early-warning use only with out-of-sample performance, calibration, uncertainty, and an explicitly non-operational threshold.</li>
+          </ol>
+          <p>Japan is maintained as a separate comparator, and <em>Anopheles</em>/malaria surveillance is a separate feasibility project rather than validation of this Aedes product.</p>
+        </div>
+      </section>
+
+      <aside class="project-note">
+        <h2>Interpretation boundary</h2>
+        <p>This is a regional model comparison, not an installation-level or operational early-warning product. Changes in suitability do not by themselves establish vector presence, disease incidence, transmission, or individual risk.</p>
+      </aside>
+    </main>
+    <footer><p>© 2026 Stephen A. Lewandowski</p><p>Korean Peninsula suitability · Updated August 2026</p></footer>
+  </body>
+</html>
