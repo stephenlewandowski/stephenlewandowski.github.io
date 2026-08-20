@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17324d">
+    <meta name="description" content="GeoAI and geospatial foundation-model observatory: project outline for measuring spatial explicitness, evidence, methods, and applications.">
+    <meta property="og:title" content="GeoAI and geospatial foundation models | Stephen A. Lewandowski">
+    <meta property="og:description" content="A project outline for examining how spatially explicit GeoAI and geospatial foundation-model research actually is.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stephenlewandowski.github.io/projects/geo-ai/">
+    <meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
+    <meta property="og:image:alt" content="Stephen A. Lewandowski — environmental health, teaching, and research.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
+    <link rel="canonical" href="https://stephenlewandowski.github.io/projects/geo-ai/">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <title>GeoAI and geospatial foundation models | Stephen A. Lewandowski</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a>
+      <nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav>
+    </header>
+    <main id="main" class="document-page project-log">
+      <header class="page-intro">
+        <p class="eyebrow">Project outline · GeoAI · geospatial foundation models</p>
+        <h1>How “geo” is GeoAI?</h1>
+        <p class="lead">A planned evidence observatory for examining the spatial explicitness, data, methods, tasks, and evaluation practices of GeoAI and geospatial foundation-model research.</p>
+        <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Project outline in development · public code and results not yet released</div>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://www.sciencedirect.com/science/article/pii/S0924271626003904">Review article</a>
+          <a class="button button-secondary" href="https://github.com/stephenlewandowski/current-events-km">Source project</a>
+        </div>
+      </header>
+
+      <section class="project-release-facts" aria-label="Project facts">
+        <p><span>Review base</span>5,694 papers screened</p>
+        <p><span>Analytic corpus</span>1,122 studies examined</p>
+        <p><span>Focus</span>Spatial explicitness, data, methods, tasks, evaluation</p>
+        <p><span>Planned form</span>Evidence matrix and exploratory observatory</p>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="overview">
+        <div><p class="section-kicker">01 · Overview</p><h2 id="overview">Make the spatial claim inspectable.</h2></div>
+        <div class="prose">
+          <p>GeoAI and geospatial foundation-model work often uses geographic data, but “geospatial” can describe very different relationships among location, scale, geometry, spatial dependence, transfer, and decision context. The project will turn that distinction into an evidence-centered coding and comparison problem.</p>
+          <p>The starting point is the systematic review <em>Measuring the spatial explicitness of GeoAI and geospatial foundation models</em>, which screened 5,694 papers and analyzed 1,122 studies across topics, data types, AI methods, task categories, and methodological innovations.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="outline">
+        <div><p class="section-kicker">02 · Project outline</p><h2 id="outline">Four work packages.</h2></div>
+        <div class="prose">
+          <ol class="steps">
+            <li><strong>Evidence matrix.</strong> Record study, task, data, geographic object, spatial relation, scale, and evaluation information with source-level provenance.</li>
+            <li><strong>Spatial-explicitness taxonomy.</strong> Distinguish geographic labeling from true spatial structure, spatial dependence, geospatial transfer, and decision-relevant spatial reasoning.</li>
+            <li><strong>Reproducible synthesis.</strong> Produce transparent counts, cross-tabs, uncertainty notes, and reviewable coding decisions rather than a single maturity score.</li>
+            <li><strong>Exploratory observatory.</strong> Add a small interactive or static explorer only if it makes a defensible comparison easier to understand than the evidence table alone.</li>
+          </ol>
+          <p>The project will retain a static table and methods note as the fallback. It will not treat model branding, benchmark popularity, or geographic nouns in an abstract as evidence of spatial explicitness.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="code">
+        <div><p class="section-kicker">03 · Code and data plan</p><h2 id="code">Begin with a maintainable review scaffold.</h2></div>
+        <div class="prose">
+          <pre><code>data/
+  studies.csv
+  coding-schema.csv
+  sources.csv
+  coding-decisions.csv
+reports/
+  methods.md
+  spatial-explicitness-brief.md
+scripts/
+  validate_project.py
+  summarize_corpus.py
+  render_tables.py</code></pre>
+          <p>This is a planned public-project structure derived from the Current Events KM evidence, provenance, validation, and static-fallback conventions. No public coded corpus or empirical finding is claimed on this page yet.</p>
+        </div>
+      </section>
+
+      <section class="content-grid section-compact" aria-labelledby="questions">
+        <div><p class="section-kicker">04 · Questions to test</p><h2 id="questions">What should count as spatial?</h2></div>
+        <div class="prose">
+          <ul class="feature-list">
+            <li>Does the method use explicit geometry, spatial topology, distance, neighborhood structure, or spatial dependence?</li>
+            <li>Is geographic context part of the prediction or merely a label attached after modeling?</li>
+            <li>What spatial scale, transfer problem, or geographic shift is evaluated?</li>
+            <li>Can a reader distinguish benchmark performance from evidence of spatial generalization?</li>
+            <li>Which claims are documented in the paper, which are coded judgments, and which are synthesis?</li>
+          </ul>
+        </div>
+      </section>
+
+      <aside class="project-note">
+        <h2>Current boundary</h2>
+        <p>This page is an outline and research handoff, not a completed review database, benchmark, or claim that one field-wide spatial-explicitness score is valid. The next release should begin with a bounded coding protocol and a small, human-reviewed sample.</p>
+      </aside>
+    </main>
+    <footer><p>© 2026 Stephen A. Lewandowski</p><p>GeoAI project outline · Updated August 2026</p></footer>
+  </body>
+</html>
