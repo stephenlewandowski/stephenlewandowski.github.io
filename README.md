@@ -11,6 +11,7 @@ Professional website, post-service public CV, teaching portfolio, and project in
 - `_layouts/teaching-document.html` - shared GitHub Pages layout for readable Markdown teaching documents
 - `projects/index.html` - current projects and selected earlier GitHub work
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
+- `projects/korean-peninsula-aedes-suitability/index.html` - portfolio overview of the audited Korean Peninsula Aedes suitability publication
 - `assets/styles.css` - shared responsive and print styles
 - `assets/Stephen-Lewandowski-Public-CV.pdf` - downloadable public CV
 
@@ -26,6 +27,9 @@ The site presents a concise post-service professional profile, selected teaching
 
 The current USS Terror project is documented at <https://github.com/stephenlewandowski/uss-terror>.
 The hosted Shiny application is available at <https://019ff822-911b-41e4-494c-8ca10f1f35ec.share.connect.posit.cloud>.
+
+The Korean Peninsula Aedes suitability project is documented at <https://github.com/stephenlewandowski/korean-peninsula-aedes-suitability>.
+The full results, methods, and downloadable products are available at <https://stephenlewandowski.github.io/korean-peninsula-aedes-suitability/>.
 
 Earlier public work remains archived at:
 
