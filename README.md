@@ -13,6 +13,8 @@ Professional website, post-service public CV, teaching portfolio, and project in
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
 - `projects/korean-peninsula-aedes-suitability/index.html` - portfolio overview of the audited Korean Peninsula Aedes suitability publication
 - `assets/styles.css` - shared responsive and print styles
+- `404.html` - missing-page recovery with links to projects, teaching materials, and CV
+- `scripts/check_site.py` - dependency-free source and local-link checks
 - `assets/Stephen-Lewandowski-Public-CV.pdf` - downloadable public CV
 
 The site uses plain HTML and CSS. GitHub Pages applies its standard Jekyll pass to render teaching Markdown through the shared document layout; there is no package manager, analytics, or third-party runtime dependency.
@@ -20,6 +22,28 @@ The site uses plain HTML and CSS. GitHub Pages applies its standard Jekyll pass 
 ## Publishing
 
 GitHub Pages publishes the `main` branch from the repository root after an approved pull request is merged.
+
+## Check changes
+
+Run from the repository root with Python 3:
+
+```sh
+python scripts/check_site.py
+git diff --check
+```
+
+The checker verifies page landmarks, unique HTML IDs, image alternative-text attributes,
+local assets and links, HTML fragment targets, and sitemap destinations. Teaching
+`.html` links resolve to their Jekyll Markdown sources. External sites and generated
+Markdown heading IDs require separate checks; this command does not render pages.
+
+When adding a public page, update `sitemap.xml` and link it from the relevant landing
+page. Keep redirects and the 404 page out of the sitemap. The portfolio overview at
+`/projects/korean-peninsula-aedes-suitability/` and the separate analytical publication
+at `/korean-peninsula-aedes-suitability/` serve different purposes; preserve both routes.
+
+Keep the homepage summaries brief, with methods and detailed evidence on project pages.
+Retain the plain HTML/CSS structure and the shared teaching-document layout.
 
 ## Content and maintenance
 

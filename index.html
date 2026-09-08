@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/assets/styles.css">
     <title>Stephen A. Lewandowski | Environmental Health, Teaching &amp; Research</title>
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#main">Skip to main content</a>
     <header class="site-header">
       <a class="wordmark" href="/" aria-label="Stephen Lewandowski, home"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a>
@@ -34,9 +34,10 @@
         <div class="hero-copy">
           <p class="eyebrow">Environmental &amp; occupational health</p>
           <h1 id="hero-title">Evidence for decisions that affect people and place.</h1>
-          <p class="hero-intro">I am a retired U.S. Army environmental health officer, educator, researcher, and senior program leader. My work connects environmental and occupational health, data-informed decision support, force health protection, safety, water systems, climate and health, applied research, and professional education.</p>
+          <p class="hero-intro">I am an environmental health scientist, educator, and retired U.S. Army officer. I work on water systems, climate and health, and spatial analysis, turning evidence into practical decisions and teaching materials.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="/cv/">Read my CV</a>
+            <a class="button button-primary" href="/projects/">Explore projects</a>
+            <a class="button button-secondary" href="/cv/">Read my CV</a>
             <a class="button button-secondary" href="/teaching/">Explore teaching</a>
           </div>
         </div>
@@ -52,31 +53,8 @@
         </aside>
       </section>
 
-      <section class="section about" aria-labelledby="about-title">
-        <div>
-          <p class="section-kicker">About</p>
-          <h2 id="about-title">Science, leadership, and education in applied public health.</h2>
-        </div>
-        <div class="about-copy">
-          <p>Stephen A. Lewandowski, PhD, MS, CPH, has more than 20 years of experience across military public health, environmental and occupational health, water systems, safety, environmental compliance, data-informed decision support, program leadership, university teaching, and applied research.</p>
-          <p>Following a 24-year Army career, he is based in the Republic of Korea and develops teaching materials, applied research, and public project work. Earlier academic appointments include the Uniformed Services University and the United States Military Academy.</p>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="work-title">
-        <div class="section-heading">
-          <div><p class="section-kicker">Portfolio</p><h2 id="work-title">Work organized for use.</h2></div>
-          <p>Each section offers a concise professional overview while preserving links to fuller evidence and earlier project history.</p>
-        </div>
-        <div class="card-grid">
-          <article class="card"><p class="card-number">01</p><h3>Curriculum vitae</h3><p>Education, professional experience, academic appointments, research, publications, and technical expertise.</p><a class="text-link" href="/cv/">View CV <span aria-hidden="true">→</span></a></article>
-          <article class="card"><p class="card-number">02</p><h3>Teaching portfolio</h3><p>Teaching philosophy, course leadership, areas of instruction, and selected teaching materials.</p><a class="text-link" href="/teaching/">View teaching <span aria-hidden="true">→</span></a></article>
-          <article class="card"><p class="card-number">03</p><h3>Projects</h3><p>Research code, climate and heat work, mapping projects, and an archive of earlier GitHub repositories.</p><a class="text-link" href="/projects/">View projects <span aria-hidden="true">→</span></a></article>
-        </div>
-      </section>
-
       <section class="section projects" aria-labelledby="project-title">
-        <div class="section-heading"><div><p class="section-kicker">Featured projects</p><h2 id="project-title">Evidence-aware spatial work.</h2></div><p>Two public projects organize documented sources, modeled outputs, uncertainty, and reproducible code for inspection and reuse.</p></div>
+        <div class="section-heading"><div><p class="section-kicker">Featured projects</p><h2 id="project-title">Environmental health and spatial history.</h2></div><p>Explore climate suitability across the Korean Peninsula and a wartime deployment reconstructed from historical sources.</p></div>
         <article class="featured-project">
           <figure class="project-mark project-map-preview">
             <img src="/assets/uss-terror-pacific-deployment.png" alt="Pacific-centered map of USS Terror's reconstructed 1943–1946 deployment, with route evidence and historical confidence distinguished by line and point styles." width="1800" height="1093" loading="lazy" decoding="async">
@@ -85,7 +63,7 @@
           <div class="project-copy">
             <p class="project-type">R/Shiny · Spatial history · Reproducible research</p>
             <h3>USS Terror, 1943–1946</h3>
-            <p>The project connects 61 documented deployment events and 57 route legs while keeping source provenance, confidence, date precision, position uncertainty, and the limits of reconstructed routes visible. It also provides mine-warfare evidence review, validation reports, static maps, and QGIS-ready outputs.</p>
+            <p>My grandfather served aboard USS <em>Terror</em>. Unable to find a campaign map specific to the ship, I reconstructed its Pacific deployment from documented events. Explore the interactive map, historical sources, and the uncertainties in the route.</p>
             <div class="hero-actions">
               <a class="button button-light" href="/projects/uss-terror/">Project overview</a>
               <a class="button button-light" href="https://github.com/stephenlewandowski/uss-terror">GitHub repository</a>
@@ -99,9 +77,9 @@
             <figcaption>1975–1984 to 2015–2024 change · 370 public grid cells · North Korea results remain modeled extrapolation.</figcaption>
           </figure>
           <div class="project-copy">
-            <p class="project-type">Python · Spatial environmental health · Audited publication</p>
+            <p class="project-type">Python · Climate &amp; mosquito ecology</p>
             <h3>Korean Peninsula Aedes suitability</h3>
-            <p>The project connects 1975–2024 modeled seasonal suitability, audited LandScan ambient-population exposure, and separate reviewed ROK observations across 370 grid cells. It publishes transparent methods, downloadable products, and clear interpretation limits without presenting suitability as vector presence or disease risk.</p>
+            <p>How has the season suitable for <em>Aedes</em> mosquitoes changed across the Korean Peninsula? Explore 50 years of modeled climate suitability across 370 grid cells, population overlays, and observations from South Korea. Suitability does not establish mosquito presence or disease risk.</p>
             <div class="hero-actions">
               <a class="button button-light" href="/projects/korean-peninsula-aedes-suitability/">Project overview</a>
               <a class="button button-light" href="https://stephenlewandowski.github.io/korean-peninsula-aedes-suitability/">Explore project results</a>
@@ -111,8 +89,20 @@
         </article>
       </section>
 
+      <section class="section about" aria-labelledby="about-title">
+        <div>
+          <p class="section-kicker">About</p>
+          <h2 id="about-title">Science, leadership, and education in applied public health.</h2>
+        </div>
+        <div class="about-copy">
+          <p>My 24-year Army career combined environmental and occupational health, force health protection, water systems, safety, and program leadership. I hold a PhD in Environmental Health Sciences from Columbia, an MS in Environmental Health from Harvard, and a BS in Environmental Science from West Point.</p>
+          <p>Based in the Republic of Korea, I continue applied research and teaching as adjunct faculty at the Uniformed Services University and Embry-Riddle Aeronautical University Worldwide. Earlier full-time teaching appointments include the Uniformed Services University and the United States Military Academy.</p>
+        </div>
+      </section>
+
+
       <section class="section archive" aria-labelledby="archive-title">
-        <div class="archive-intro"><p class="section-kicker">Earlier work</p><h2 id="archive-title">A public record dating to 2017.</h2><p>The earlier <code>sal2222</code> account preserves 39 repositories, including climate-data processing, heat-stress research, and the original professional website.</p></div>
+        <div class="archive-intro"><p class="section-kicker">Earlier work</p><h2 id="archive-title">A public record dating to 2017.</h2><p>The earlier <code>sal2222</code> account preserves my doctoral research and earlier repositories, including climate-data processing, heat-stress research, and the original professional website.</p></div>
         <div class="archive-links">
           <a href="https://github.com/sal2222"><span><small>Complete archive</small>github.com/sal2222</span><span aria-hidden="true">↗</span></a>
           <a href="https://github.com/sal2222/heat_stress"><span><small>Research workspace</small>Heat stress</span><span aria-hidden="true">↗</span></a>
@@ -123,6 +113,6 @@
 
       <section class="contact-band" aria-labelledby="contact-title"><div><p class="section-kicker">Connect</p><h2 id="contact-title">Professional profile and project history.</h2></div><div class="contact-links"><a href="https://github.com/stephenlewandowski" rel="me">Current GitHub <span aria-hidden="true">↗</span></a></div></section>
     </main>
-    <footer><p>© 2026 Stephen A. Lewandowski</p><p>Professional portfolio · Updated August 2026</p></footer>
+    <footer><p>© 2026 Stephen A. Lewandowski</p><p>Professional portfolio · Updated September 2026</p></footer>
   </body>
 </html>
