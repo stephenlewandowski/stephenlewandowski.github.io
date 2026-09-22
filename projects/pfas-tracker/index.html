@@ -30,26 +30,27 @@
         <p class="eyebrow">Regulatory crosswalk · PFAS · environmental governance</p>
         <h1>PFAS tracker: from federal designation to installation obligation.</h1>
         <p class="lead">A source-linked tracker for following how PFAS requirements move across federal law, overseas governance, host-nation rules, and component-level responsibilities.</p>
-        <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Validated scaffold; U.S. federal expansion and Korea/Japan crosswalks in progress</div>
+        <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Public evidence register · country crosswalks in development</div>
         <div class="hero-actions">
-          <a class="button button-primary" href="https://github.com/stephenlewandowski/current-events-km/blob/main/scripts/validate_registers.py" target="_blank" rel="noopener noreferrer">Validation script</a>
+          <a class="button button-primary" href="https://github.com/stephenlewandowski/pfas-regulatory-tracker">GitHub repository</a>
+          <a class="button button-secondary" href="https://github.com/stephenlewandowski/pfas-regulatory-tracker/blob/main/data/events.json">Browse event register</a>
           <a class="button button-secondary" href="https://www.epa.gov/superfund/designation-perfluorooctanoic-acid-pfoa-and-perfluorooctanesulfonic-acid-pfos-cercla">EPA CERCLA designation</a>
-          <a class="button button-secondary" href="https://law.justia.com/cases/federal/appellate-courts/cadc/24-1193/24-1193-2026-08-18.html">D.C. Circuit decision</a>
         </div>
       </header>
 
       <section class="project-release-facts" aria-label="Project facts">
-        <p><span>Validation</span>PASS · 6 layers · 6 jurisdictions</p>
-        <p><span>Registers</span>16 sources · 10 events · 8 relationships · 7 obligations</p>
-        <p><span>Legal anchor</span>PFOA/PFOS CERCLA designation remains in place</p>
-        <p><span>Next build</span>Federal expansion, Korea EGS, then Japan crosswalk</p>
+        <p><span>Structure</span>6 layers · 6 jurisdictions</p>
+        <p><span>Public snapshot</span>19 sources · 11 events · 9 relationships · 8 obligations</p>
+        <p><span>Latest source review</span>Japan/Yokosuka · recorded 21 September 2026</p>
+        <p><span>Next build</span>Provision-level country crosswalks and applicability review</p>
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="overview">
         <div><p class="section-kicker">01 · Overview</p><h2 id="overview">Trace requirements without assuming equivalence.</h2></div>
         <div class="prose">
           <p>The tracker asks which source creates a requirement, who or what it reaches, how it is implemented or recognized overseas, and what evidence would show that an installation, component, or contractor has an obligation.</p>
-          <p>The immediate legal context is EPA's designation of PFOA and PFOS as CERCLA hazardous substances. On August 18, 2026, the D.C. Circuit denied petitions challenging that rule in <em>Chamber of Commerce v. EPA</em>, No. 24-1193. The tracker records that federal event as a source-linked development; it does not treat the court decision as a complete overseas or installation-level compliance answer.</p>
+          <p>The public repository contains structured JSON registers, source-review dates, relationship rules, and a validation script. Its federal starting point is the PFOA/PFOS CERCLA designation; country records then identify the governing documents, relevant developments, and questions that still need a provision-level applicability review.</p>
+          <p>The counts above describe the public register reviewed on 22 September 2026. They measure the scope of the register, not completeness of legal coverage or a finding of installation compliance.</p>
         </div>
       </section>
 
@@ -69,29 +70,30 @@
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="current-work">
-        <div><p class="section-kicker">03 · Current work</p><h2 id="current-work">Build outward from the federal source base.</h2></div>
+        <div><p class="section-kicker">03 · Current work</p><h2 id="current-work">Country sources and unresolved applicability.</h2></div>
         <div class="prose">
           <ul class="feature-list">
-            <li><strong>U.S. federal expansion:</strong> complete the federal rule, release-reporting, liability, drinking-water, cleanup, and agency-guidance source set.</li>
-            <li><strong>Korea:</strong> perform the provision-level EGS crosswalk and identify where SOFA, host-nation requirements, and installation practice intersect.</li>
-            <li><strong>Japan:</strong> add the corresponding country crosswalk while keeping legal status and guidance distinct.</li>
-            <li><strong>Germany:</strong> retain the initial jurisdiction in the architecture for later source verification and comparison.</li>
+            <li><strong>U.S. federal:</strong> expand rule, reporting, liability, drinking-water, and cleanup records while keeping court posture tied to current primary sources.</li>
+            <li><strong>Korea:</strong> extend the registered Korea Environmental Governing Standards source into a provision-level crosswalk.</li>
+            <li><strong>Japan/Yokosuka:</strong> the 21 September update records a targeted review of the public JEGS page, Yokosuka City monitoring, and Navy water-quality resources. It keeps receiving-water observations separate from installation drinking-water evidence and source attribution.</li>
+            <li><strong>Germany/EU:</strong> retain the initial records while confirming the current approved country governing standards.</li>
           </ul>
-          <p>Current status is deliberately a build status, not a conclusion that overseas requirements are equivalent, weaker, or more protective than U.S. requirements.</p>
+          <p>These are evidence-register and development updates. Complete country crosswalks and installation-specific determinations remain open work. Review dates and unresolved questions are retained in the <a href="https://github.com/stephenlewandowski/pfas-regulatory-tracker/blob/main/data/sources.json">source register</a> and <a href="https://github.com/stephenlewandowski/pfas-regulatory-tracker/blob/main/data/events.json">event register</a>.</p>
         </div>
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="code">
         <div><p class="section-kicker">04 · Data and code</p><h2 id="code">A small, auditable register system.</h2></div>
         <div class="prose">
-          <pre><code>layers.csv
-jurisdictions.csv
-sources.csv
-events.csv
-relationships.csv
-obligations.csv
+          <pre><code>data/layers.json
+data/jurisdictions.json
+data/sources.json
+data/events.json
+data/relationships.json
+data/obligations.json
+schema/record-schema.json
 scripts/validate_project.py</code></pre>
-          <p><a href="https://github.com/stephenlewandowski/current-events-km/blob/main/scripts/validate_registers.py" target="_blank" rel="noopener noreferrer">Public register-validation script</a> — the detailed crosswalk, source records, and other project subfolders remain private while the public release boundary is reviewed.</p>
+          <p>The <a href="https://github.com/stephenlewandowski/pfas-regulatory-tracker/blob/main/scripts/validate_project.py">project validator</a> checks register structure and relationships using the Python standard library. The <a href="https://github.com/stephenlewandowski/pfas-regulatory-tracker/blob/main/docs/source-protocol.md">source protocol</a> explains source selection, translation, and review. Structural validation does not establish legal applicability.</p>
         </div>
       </section>
 
@@ -100,6 +102,6 @@ scripts/validate_project.py</code></pre>
         <p>A federal designation, a court decision, a host-nation rule, an EGS provision, an installation practice, and a contractor obligation are not interchangeable. Each claim needs its own provision, source, date, scope, actor, and implementation evidence.</p>
       </aside>
     </main>
-    <footer><p>© 2026 Stephen A. Lewandowski</p><p>PFAS regulatory tracker · Updated August 2026</p></footer>
+    <footer><p>© 2026 Stephen A. Lewandowski</p><p>PFAS regulatory tracker · Updated September 2026</p></footer>
   </body>
 </html>
