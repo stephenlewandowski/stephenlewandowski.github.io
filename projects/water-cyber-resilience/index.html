@@ -13,7 +13,8 @@
     @media (prefers-reduced-motion: reduce){.evidence-filter{scroll-behavior:auto}}
   </style><title>From Cyber Access to Justified Confidence | Stephen A. Lewandowski</title></head>
   <body><a class="skip-link" href="#main">Skip to main content</a><header class="site-header"><a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a><nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav></header>
-    <main id="main" class="document-page">
+    <main id="main" class="document-page project-log">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/projects/">Projects</a><span aria-hidden="true">/</span><a href="/projects/drinking-water-cyber/">Drinking-water cyber resilience</a></nav>
       <header class="page-intro">
         <p class="eyebrow">Source-linked exhibit · Water resilience · Evidence lens</p>
         <h1>From cyber access to justified confidence.</h1>
@@ -25,7 +26,7 @@
         <p><span>Project record</span>IDEA-0001</p>
         <p><span>Publication record</span>PUB-0001</p>
         <p><span>Format</span>Diagram, evidence-class table, and CSV snapshots</p>
-        <p><span>Live output</span>None; optional filter; static fallback is complete</p>
+        <p><span>Reading options</span>Filter by evidence class, read the full table, or download CSVs</p>
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="overview">
@@ -40,29 +41,31 @@
 
       <section class="section-compact" aria-labelledby="path">
         <div class="section-heading"><div><p class="section-kicker">02 · Static consequence path</p><h2 id="path">From a reported access event to an evidence question.</h2></div><p>The core path preserves the difference between an aggregated federal pattern and one municipal continuity report; the linked teaching brief adds two further public cases with their own evidence limits.</p></div>
-        <div class="consequence-diagram" role="img" aria-label="Consequence path from reported cyber access to loss of view or control, then branching to reported operational degradation or manual continuity, followed by service and water-safety assurance, recovery verification, and justified confidence, which is not measured.">
+        <div class="consequence-diagram" role="img" aria-label="Consequence path from reported cyber access to loss of view or control, then branching to reported operational degradation or manual continuity. Service and water-safety assurance and recovery verification are parallel evidence questions that both inform justified confidence, which is not measured.">
           <div class="path-node"><span>1</span><div><strong>Reported cyber access</strong><small>Federal incident notice</small></div></div>
           <div class="path-arrow" aria-hidden="true">↓</div>
           <div class="path-node"><span>2</span><div><strong>Loss of view or control</strong><small>Operator capability becomes the next evidence question</small></div></div>
           <div class="path-arrow" aria-hidden="true">↓</div>
           <div class="path-branches">
-            <article><span>3A</span><strong>Reported operational degradation</strong><small>Aggregate reported pressure loss and flooding</small></article>
-            <article><span>3B</span><strong>Manual continuity</strong><small>One municipal report of continued operation</small></article>
+            <article><span>3A</span><div><strong>Reported operational degradation</strong><small>Aggregate reported pressure loss and flooding</small></div></article>
+            <article><span>3B</span><div><strong>Manual continuity</strong><small>One municipal report of continued operation</small></div></article>
           </div>
           <div class="path-merge" aria-hidden="true"><span>↓</span></div>
-          <div class="path-node"><span>4</span><div><strong>Service and water-safety assurance</strong><small>What evidence supports continuity and safe water?</small></div></div>
-          <div class="path-arrow" aria-hidden="true">↓</div>
-          <div class="path-node"><span>5</span><div><strong>Recovery verification</strong><small>What was restored, checked, monitored, and communicated?</small></div></div>
+          <p class="path-question-label">Parallel evidence questions</p>
+          <div class="path-branches path-assurance">
+            <article><span>4</span><div><strong>Service and water-safety assurance</strong><small>What evidence supports continuity and safe water?</small></div></article>
+            <article><span>5</span><div><strong>Recovery verification</strong><small>What was restored, checked, monitored, and communicated?</small></div></article>
+          </div>
           <div class="path-arrow" aria-hidden="true">↓</div>
           <div class="path-node path-node-final"><span>6</span><div><strong>Justified confidence</strong><small>Not measured by the reviewed public record</small></div></div>
         </div>
-        <p class="path-caption">The branches are analytical, not a universal incident chronology. The federal notice supplies an aggregated multi-state pattern; the municipal report supplies one continuity example. Neither establishes the other.</p>
+        <p class="path-caption">The branches are analytical, not a universal incident chronology. The federal notice supplies an aggregated multi-state pattern; the municipal report supplies one continuity example. Safety assurance and recovery verification are parallel questions: restoring automation does not itself establish safe water.</p>
       </section>
 
       <section class="section-compact" aria-labelledby="evidence">
         <div class="section-heading"><div><p class="section-kicker">03 · Evidence table</p><h2 id="evidence">What the reviewed record supports.</h2></div><p>The table is the complete text fallback for the diagram and keeps source scope and interpretation limits visible.</p></div>
-        <div class="evidence-lens" aria-labelledby="evidence-lens-title">
-          <div><h3 id="evidence-lens-title">Evidence lens</h3><p>Use the lens to read evidence status, not to score or rank sources. The default view keeps every stage visible.</p></div>
+        <div class="evidence-lens" aria-labelledby="evidence-lens-title" hidden>
+          <div><h3 id="evidence-lens-title">Evidence lens</h3><p>Use the lens to read evidence status, not to score or rank sources. The default view keeps every stage visible. Printing includes the complete table.</p></div>
           <div class="evidence-filters" role="group" aria-label="Filter evidence classes">
             <button type="button" class="evidence-filter is-active" data-filter="all" aria-pressed="true">All stages</button>
             <button type="button" class="evidence-filter" data-filter="documented_aggregate" aria-pressed="false">Documented aggregate</button>
@@ -71,8 +74,8 @@
             <button type="button" class="evidence-filter" data-filter="analytic_question" aria-pressed="false">Analytical question</button>
           </div>
           <p id="evidence-filter-status" class="filter-status" role="status" aria-live="polite">Showing all 7 stages.</p>
-          <noscript><p class="filter-status">Scripts are optional; all evidence rows remain visible without the lens.</p></noscript>
         </div>
+        <noscript><p>All seven evidence stages are shown below. Filtering is available when JavaScript is enabled.</p></noscript>
         <div class="evidence-table-wrap" tabindex="0" aria-describedby="table-instructions">
           <p id="table-instructions" class="visually-hidden">Wide table. Focus this region and scroll horizontally to review all columns.</p>
           <table class="evidence-table">
@@ -160,7 +163,7 @@
       </section>
 
       <aside class="project-note"><h2>Interpretation limits</h2><p>This exhibit does not attribute an actor, report confirmed contamination, diagnose the water sector, evaluate a specific utility's cybersecurity, or claim that manual operations are universally safe or sustainable. Guidance and standards are framework inputs, not proof of implementation or recovery performance. It keeps an aggregated federal pattern separate from one municipal report and treats justified confidence as an evidence question, not a measured result.</p></aside>
-    </main><footer><p>© 2026 Stephen A. Lewandowski</p><p>Water cyber-resilience exhibit · August 2026</p></footer>
+    </main><footer><p>© 2026 Stephen A. Lewandowski</p><p>Exhibit updated September 2026 · Evidence snapshot August 2026</p></footer>
   <script>
       (() => {
         const rows = Array.from(document.querySelectorAll("[data-evidence-class]"));
@@ -192,6 +195,8 @@
         buttons.forEach((button) => {
           button.addEventListener("click", () => applyFilter(button.dataset.filter));
         });
+        applyFilter("all");
+        document.querySelector(".evidence-lens").hidden = false;
       })();
     </script>
   </body>
