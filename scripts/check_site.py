@@ -14,7 +14,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://stephenlewandowski.github.io'
 # Separate GitHub Pages publications are not files in this repository.
-EXTERNAL_PROJECTS = {'korean-peninsula-aedes-suitability'}
+EXTERNAL_PROJECTS = {'korean-peninsula-aedes-suitability', 'western-basin-worldbuilding'}
 errors = []
 
 
@@ -54,7 +54,7 @@ def check_url(source, href):
         target /= 'index.html'
     if not target.is_file() and target.suffix == '.html':
         markdown = target.with_suffix('.md')
-        if markdown.is_file() and markdown.read_text().startswith('---\n'):
+        if markdown.is_file() and markdown.read_text(encoding='utf-8').startswith('---\n'):
             return  # Heading IDs are produced by Jekyll, not inferred here.
     if not target.is_file():
         errors.append(f'{source.relative_to(ROOT)}: missing target {href}')
