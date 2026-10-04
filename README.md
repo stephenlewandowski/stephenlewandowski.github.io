@@ -12,6 +12,8 @@ Professional website, post-service public CV, teaching portfolio, and project in
 - `projects/index.html` - current projects and selected earlier GitHub work
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
 - `projects/korean-peninsula-aedes-suitability/index.html` - portfolio overview of the audited Korean Peninsula Aedes suitability publication
+- `projects/western-basin-worldbuilding/index.html` - illustrated Western Basin Atlas overview, with routes into maps, stories, and the scientific track
+- `assets/western-basin-previews.json` - provenance for the Atlas artwork reproduced in this portfolio
 - `assets/styles.css` - shared responsive and print styles
 - `404.html` - missing-page recovery with links to projects, teaching materials, and CV
 - `scripts/check_site.py` - dependency-free source and local-link checks
@@ -54,6 +56,16 @@ The hosted Shiny application is available at <https://019ff822-911b-41e4-494c-8c
 
 The Korean Peninsula Aedes suitability project is documented at <https://github.com/stephenlewandowski/korean-peninsula-aedes-suitability>.
 The full results, methods, and downloadable products are available at <https://stephenlewandowski.github.io/korean-peninsula-aedes-suitability/>.
+
+The Western Basin Atlas is featured on the homepage and Projects page:
+<https://stephenlewandowski.github.io/western-basin-worldbuilding/>.
+Its portfolio overview introduces illustrated regions, interactive encounters, and
+the distinction between observed river flow, synthetic Model Lab cases, and future
+design concepts. The existing project route and `#western-basin` index anchor are
+retained. The portfolio reproduces two accepted WebP illustrations without changes;
+a smaller JPEG map supports social previews. Their source paths, commit, hashes, and
+image-generation records are recorded in `assets/western-basin-previews.json`.
+Full source imagery remains in the worldbuilding repository.
 
 Earlier public work remains archived at:
 

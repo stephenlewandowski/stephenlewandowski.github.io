@@ -319,6 +319,18 @@ footer p { margin: 0; }
 .project-index a:hover { color: var(--rust); border-color: var(--rust); }
 .home-page .hero h1 { font-size: clamp(2.5rem, 5vw, 4.6rem); }
 
+/* Western Basin portfolio features retain the artwork's full proportions. */
+.hero-project-link { max-width: 38rem; margin: 1.6rem 0 0; color: var(--muted); font-size: .92rem; }
+.hero-project-link > span { display: block; margin-bottom: .25rem; color: var(--rust); font-size: .75rem; font-weight: 780; letter-spacing: .1em; text-transform: uppercase; }
+.hero-project-link a { color: var(--navy); text-underline-offset: .2em; }
+.basin-feature .project-map-preview, .basin-map-figure { background: #eee4cf; border-color: #d2c2a4; }
+.basin-feature .project-map-preview a, .basin-map-figure > a { display: block; }
+.basin-feature .project-map-preview figcaption { color: #62523d; }
+.basin-feature .project-copy h2 { margin-bottom: 1.4rem; color: var(--white); font-size: clamp(2rem, 4vw, 3.3rem); }
+.basin-feature .project-copy .hero-actions { margin-top: .25rem; }
+.basin-feature .button-light { margin-top: 0; }
+.basin-overview .basin-map-figure { margin-bottom: 0; }
+
 @media (max-width: 900px) {
   .hero, .about, .content-grid, .section-heading, .archive, .contact-band, .split-panel, .cv-section, .context-standard, .artifact-header, .artifact-layout { grid-template-columns: 1fr; }
   .hero { min-height: auto; gap: 4rem; }
