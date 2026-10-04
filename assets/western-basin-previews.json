@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-04",
+  "source_repository": "https://github.com/stephenlewandowski/western-basin-worldbuilding",
+  "source_commit": "b6e429a",
+  "classification": "Imagined regional character and architectural design concepts",
+  "credit": "Western Basin Worldbuilding project; generated illustrations with source references and prompts retained in source manifests.",
+  "limits": "No measured geometry, engineering dimensions, scientific forecast, or new fictional canon. Original source imagery remains in the source repository.",
+  "assets": [
+    {
+      "file": "western-basin-regions.webp",
+      "sha256": "540dc5834c9e2ae5a6119b85d32386a11a062a6c7ca2efc3a2965e43d1252d8b",
+      "bytes": 693706,
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source": "assets/atlas/visual-refresh/illustrated_regions_2075.webp",
+      "source_sha256": "540dc5834c9e2ae5a6119b85d32386a11a062a6c7ca2efc3a2965e43d1252d8b",
+      "source_record": "assets/atlas/visual-refresh/manifest.json",
+      "source_url": "https://github.com/stephenlewandowski/western-basin-worldbuilding/blob/b6e429a/assets/atlas/visual-refresh/illustrated_regions_2075.webp",
+      "treatment": "Unchanged copy of accepted WebP"
+    },
+    {
+      "file": "western-basin-reading-hall.webp",
+      "sha256": "d39f42ceef62ddb989fed59beb753cc45c5b1e56c9e998acbee79abe93f638f5",
+      "bytes": 439180,
+      "dimensions": [
+        1672,
+        941
+      ],
+      "source": "assets/phase17d/hf05/hf05_composition_a.webp",
+      "source_sha256": "d39f42ceef62ddb989fed59beb753cc45c5b1e56c9e998acbee79abe93f638f5",
+      "source_record": "assets/phase17d/hf05/hf05_composition_manifest.json",
+      "source_url": "https://github.com/stephenlewandowski/western-basin-worldbuilding/blob/b6e429a/assets/phase17d/hf05/hf05_composition_a.webp",
+      "treatment": "Unchanged copy of Composition A WebP"
+    },
+    {
+      "file": "western-basin-social.jpg",
+      "sha256": "df23487dcbb6ed410c61494e57f4ae341ceb89eb7b20f0d4bb887de73f60b6ad",
+      "bytes": 342566,
+      "dimensions": [
+        1200,
+        800
+      ],
+      "source": "assets/atlas/visual-refresh/illustrated_regions_2075.webp",
+      "source_sha256": "540dc5834c9e2ae5a6119b85d32386a11a062a6c7ca2efc3a2965e43d1252d8b",
+      "source_record": "assets/atlas/visual-refresh/manifest.json",
+      "source_url": "https://github.com/stephenlewandowski/western-basin-worldbuilding/blob/b6e429a/assets/atlas/visual-refresh/illustrated_regions_2075.webp",
+      "treatment": "Resized to 1200px width, JPEG quality 88; no crop or repaint"
+    }
+  ]
+}
