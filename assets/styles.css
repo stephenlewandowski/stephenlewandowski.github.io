@@ -410,3 +410,7 @@ footer p { margin: 0; }
   .project-log .page-intro h1 { font-size: 28pt; }
   a { text-decoration: none; }
 }
+
+/* Four ways into the Basin: maps, story, game and measured river record. */
+.basin-overview .project-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:700px){.basin-overview .project-shortcuts{grid-template-columns:1fr}}
