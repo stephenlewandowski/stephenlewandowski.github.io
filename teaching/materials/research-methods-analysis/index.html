@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17324d">
+    <meta name="description" content="RSCH650 teaching resources connecting research design, statistical reasoning, and reproducible analysis: a t-test animation, interactive simulation, and SPSS worked examples.">
+    <meta property="og:title" content="Research Methods and Analysis | Stephen A. Lewandowski">
+    <meta property="og:description" content="From a research question to a defensible interpretation: an airport-ramp lesson, Welch t-test simulation, and independent and paired SPSS analyses.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stephenlewandowski.github.io/teaching/materials/research-methods-analysis/">
+    <meta property="og:image" content="https://stephenlewandowski.github.io/teaching/materials/research-methods-analysis/lesson-poster.png">
+    <meta property="og:image:alt" content="The t-test on the airport ramp: a synthetic safety-training teaching example.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://stephenlewandowski.github.io/teaching/materials/research-methods-analysis/lesson-poster.png">
+    <link rel="canonical" href="https://stephenlewandowski.github.io/teaching/materials/research-methods-analysis/">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <title>Research Methods and Analysis | Stephen A. Lewandowski</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a>
+      <nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a aria-current="page" href="/teaching/">Teaching</a><a href="/projects/">Projects</a></nav>
+    </header>
+    <main id="main" class="document-page research-methods-page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/teaching/">Teaching</a><span aria-hidden="true">/</span><a href="/teaching/materials/">Materials</a><span aria-hidden="true">/</span><span>Research methods</span></nav>
+      <header class="artifact-header">
+        <div><p class="eyebrow">RSCH650 · Research design + statistical reasoning</p><h1>Research Methods and Analysis</h1><p class="lead">Connect the research question, study design, analysis, and interpretation. A synthetic airport-ramp case makes the reasoning behind a t-test visible, then invites learners to explore and reproduce it.</p></div>
+        <div class="artifact-actions"><a class="button button-primary" href="#lesson">Watch the 2-minute lesson</a><a class="button button-secondary" href="welch-simulation.html">Explore the simulation</a><a class="text-link" href="https://github.com/stephenlewandowski/research-methods-analysis">View the source project →</a></div>
+      </header>
+      <section class="artifact-facts" aria-label="Project details">
+        <div><span>Teaching context</span><strong>RSCH650 research methods · aviation and safety examples</strong></div>
+        <div><span>Learning sequence</span><strong>Watch → explore → reproduce → interpret</strong></div>
+        <div><span>Evidence boundary</span><strong>Synthetic teaching data throughout</strong></div>
+      </section>
+
+      <section class="section" id="lesson" aria-labelledby="lesson-title">
+        <div class="section-heading"><div><p class="section-kicker">01 / Watch</p><h2 id="lesson-title">The t-test on the airport ramp.</h2></div><p>Does scenario practice change the time needed to correctly report a simulated hazard? Compare two independent groups, then ask what the result can support.</p></div>
+        <figure class="research-lesson">
+          <video controls playsinline preload="metadata" poster="lesson-poster.png" aria-label="The t-test on the airport ramp: 2 minutes 6 seconds, captioned, no audio" aria-describedby="lesson-caption">
+            <source src="t-test-animation.mp4" type="video/mp4">
+            <track kind="captions" src="t-test-captions.vtt" srclang="en" label="English">
+            <p><a href="t-test-animation.mp4">Download the animation</a> or <a href="classroom.html#transcript">read the transcript</a>.</p>
+          </video>
+          <figcaption id="lesson-caption">2:06 · On-screen captions · No audio · All observations are invented for instruction. <a href="classroom.html#transcript">Read the full transcript</a>.</figcaption>
+        </figure>
+        <div class="hero-actions"><a class="button button-primary" href="classroom.html">Open chapter-by-chapter player</a><a class="button button-secondary" href="instructor-notes.html">Read instructor notes</a><a class="text-link" href="classroom.html" download="RSCH650_T_Test_Classroom.html">Download the offline player →</a></div>
+      </section>
+
+      <section class="artifact-layout section-compact" aria-labelledby="reasoning-title">
+        <article class="artifact-body">
+          <p class="section-kicker">Teaching purpose</p><h2 id="reasoning-title">Make the reasoning visible.</h2>
+          <p>The lesson starts with a measurable outcome: seconds until a correct report, with lower values indicating faster reporting. Learners distinguish variation among workers from uncertainty in the estimated difference between group means.</p>
+          <ol class="steps"><li><strong>Choose the design.</strong> Identify the worker as the unit of analysis and distinguish different workers in independent groups from repeated measurements on the same worker.</li><li><strong>Explain the uncertainty.</strong> Relate the mean difference, standard error, t statistic, two-sided p-value, and confidence interval.</li><li><strong>Defend the interpretation.</strong> Report the difference in seconds and its interval, consider practical importance, and state what the study cannot establish.</li></ol>
+          <p>The numerical demonstration separates a larger mean gap, greater variability, and a larger planned sample. These are distinct constructed examples, not a procedure for adding observations until a result becomes significant.</p>
+        </article>
+        <aside class="artifact-note"><p class="note-label">A result worth discussing</p><p>The baseline has 20 workers per group: mean times of 48 and 42 seconds, each with a sample SD of 8 seconds.</p><p>The difference is <strong>6.00 seconds</strong>, with a 95% confidence interval of <strong>0.88 to 11.12 seconds</strong>; two-sided <em>p</em> ≈ .023.</p><p class="artifact-caution">If 5 seconds were a prespecified minimum worthwhile improvement, this interval would still include smaller effects. Statistical significance alone does not settle practical importance.</p></aside>
+      </section>
+
+      <section class="section" aria-labelledby="simulation-title">
+        <div class="section-heading"><div><p class="section-kicker">02 / Explore</p><h2 id="simulation-title">Change one assumption. Follow the result.</h2></div><p>The interactive Welch t-test simulation connects sample observations to the reference distribution, both tails of the test, and a 95% confidence interval.</p></div>
+        <div class="case-grid"><div><strong>One experiment</strong><p>Adjust the true mean difference, sample size per group, and shared population SD. Draw new samples and compare the effect estimate with its uncertainty.</p></div><div><strong>200 experiments</strong><p>Set the true difference to zero to explore false positives. Choose a nonzero difference to estimate power. Batch percentages vary because the samples vary.</p></div></div>
+        <div class="hero-actions"><a class="button button-primary" href="welch-simulation.html">Launch interactive simulation</a><a class="text-link" href="https://github.com/stephenlewandowski/research-methods-analysis/tree/main/code/welch-t-test">Simulation methods and source →</a></div>
+        <p class="research-resource-note">The simulation loads D3 from jsDelivr and requires an internet connection. It generates synthetic independent normal samples in your browser; it does not load student data. Its contrast is B minus A; the airport-ramp lesson uses briefing minus practice.</p>
+      </section>
+
+      <section class="section-compact" aria-labelledby="spss-title">
+        <div class="section-heading"><div><p class="section-kicker">03 / Reproduce</p><h2 id="spss-title">Two designs. Two appropriate analyses.</h2></div><p>A 25–35 minute SPSS lab carries the lesson into software, diagnostics, interpretation, and reproducibility.</p></div>
+        <div class="case-grid">
+          <div><strong>Independent groups · 40 workers</strong><p>Reproduce the baseline Welch analysis with 20 workers in each training group. Read the “Equal variances not assumed” row and preserve the briefing-minus-practice contrast.</p><p><a href="ramp_hazard_training.csv" download>Download CSV data</a> · <a href="ramp_hazard_training.sps" download>Download SPSS syntax</a></p></div>
+          <div><strong>Paired measurements · 20 different workers</strong><p>Analyze before-minus-after differences in a separate synthetic study. Inspect the distribution of differences and show why the paired t-test matches a one-sample test on those differences.</p><p><a href="ramp_hazard_paired.csv" download>Download CSV data</a> · <a href="ramp_hazard_paired.sps" download>Download SPSS syntax</a></p></div>
+        </div>
+        <div class="hero-actions"><a class="button button-primary" href="spss-worked-examples.html">Open the SPSS worked examples</a><a class="button button-secondary" href="https://github.com/stephenlewandowski/research-methods-analysis/tree/87c593ba3e9240b1f4ec4d4fa290daa1d3da9e54/projects/t-test-teaching-package/spss-worked-example/native-output">Inspect native SPSS output</a></div>
+        <p class="research-resource-note">Both syntax files include their data and were executed in IBM SPSS Statistics 29.0.2.0 on October 16, 2026. Native results agree with independent calculations. SPSS is needed to run the syntax; the walkthrough and CSVs are available without it.</p>
+      </section>
+
+      <section class="section evidence-callout" aria-labelledby="interpret-title"><p class="section-kicker">04 / Interpret</p><h2 id="interpret-title">A defensible conclusion includes its limits.</h2><p>Ask learners to report the design, unit of analysis, difference direction, estimated effect, interval, and one limitation. A p-value is not the probability that the null hypothesis is true. A result that does not reject the null does not establish equivalence.</p><p>The paired example uses new workers; the independent groups must never be reinterpreted as matched pairs. An uncontrolled before/after comparison cannot establish that practice caused a change. None of these invented observations establishes aviation-training effectiveness or an operational benchmark.</p></section>
+
+      <section class="section-compact context-standard" aria-labelledby="source-title"><div><p class="section-kicker">Project context</p><h2 id="source-title">Teaching materials with a reproducible source.</h2></div><div class="prose"><p>This project brings together original course-preparation materials for RSCH650: an animation, classroom player, simulation, instructor notes, synthetic datasets, and software exercises. It demonstrates instructional design and transparent analysis; it does not report student learning outcomes.</p><p>The website edition draws from <a href="https://github.com/stephenlewandowski/research-methods-analysis/tree/87c593ba3e9240b1f4ec4d4fa290daa1d3da9e54">the source project at revision 87c593b</a>. <a href="provenance.json">File provenance</a> records the copied resources and website adaptations. The repository retains production scripts, numerical verification, and the review history.</p></div></section>
+      <nav class="artifact-pagination" aria-label="Teaching material navigation"><a href="/teaching/materials/physical-hazards/">← Physical Hazards</a><a href="/teaching/materials/">All teaching materials →</a></nav>
+    </main>
+    <footer><p>© 2026 Stephen A. Lewandowski</p><p>Teaching project · October 2026</p></footer>
+  </body>
+</html>

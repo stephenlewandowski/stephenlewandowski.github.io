@@ -7,7 +7,8 @@ Professional website, post-service public CV, teaching portfolio, and project in
 - `index.html` - professional homepage
 - `cv/index.html` - web-readable public CV
 - `teaching/index.html` - teaching philosophy, experience, and representative materials
-- `teaching/materials/` - teaching-material collection with six context pages and portable files
+- `teaching/materials/` - teaching-material collection with seven context pages and portable files
+- `teaching/materials/research-methods-analysis/` - RSCH650 project overview, playable lesson, interactive simulation, synthetic data, SPSS syntax, and readable teaching notes
 - `_layouts/teaching-document.html` - shared GitHub Pages layout for readable Markdown teaching documents
 - `projects/index.html` - current projects and selected earlier GitHub work
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
@@ -71,3 +72,16 @@ Earlier public work remains archived at:
 
 - <https://github.com/sal2222>
 - <https://sal2222.github.io/>
+
+## Research Methods and Analysis teaching project
+
+The overview at `/teaching/materials/research-methods-analysis/` connects the RSCH650
+teaching resources to the teaching portfolio and project index. The animation,
+captions, synthetic datasets, and SPSS syntax are copied from the public
+`stephenlewandowski/research-methods-analysis` project at revision
+`87c593ba3e9240b1f4ec4d4fa290daa1d3da9e54`. The classroom player retains its embedded
+video for offline use. The simulation retains its sandbox and requires internet
+access for D3. Instructor notes and the SPSS lab use the shared Jekyll document
+layout. `provenance.json` records source paths, source and published-file hashes,
+and presentation-only adaptations. Refresh deliberately from a reviewed source
+revision and update the manifest; do not silently replace the numerical examples.
