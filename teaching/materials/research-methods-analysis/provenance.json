@@ -56,28 +56,28 @@
       "file": "classroom.html",
       "source": "projects/t-test-teaching-package/RSCH650_T_Test_Classroom.html",
       "source_sha256": "0d7bd96441f104fd0ddaec2e358ff5ff3725fa9c9cd5d1ed75ef53d366ea5f08",
-      "website_sha256": "070d88800ce02c98a5739b4d857d9aac971e574812689e55ff8390567efab9aa",
+      "website_sha256": "e8bebae4968487b89adee24e9705c00bf5e6cbc6ef7f20641f84a978dcd3a5eb",
       "adaptation": "Added main landmark ID, overview return link, and transcript anchor; embedded video, poster, chapter logic, and transcript unchanged"
     },
     {
       "file": "welch-simulation.html",
       "source": "code/welch-t-test/index.html",
       "source_sha256": "0dcefa58294a7a2acabe92f7792cb4b3a3246ff21f75673ccd1ee2195897ca27",
-      "website_sha256": "07e4237fa89212ccfc2afa29e73a863e6ce7ccf452e4e3f97329c4c1d9a8dad8",
+      "website_sha256": "4db2ce391a7307f65290b37733dba53eba2194f7b1351f7fab04bc9270c5e647",
       "adaptation": "Added overview return link, visible heading, main landmark, and source context outside the unchanged sandboxed simulation"
     },
     {
       "file": "instructor-notes.md",
       "source": "projects/t-test-teaching-package/Instructor_Notes.md",
       "source_sha256": "5e81da967950136f82e19c1663aebbfd69b901db47bfe97b58ea560ddb9f0f0e",
-      "website_sha256": "aaf2a61f5a430f2ccdac4ad636aeb5d782c4ec384947c43ff26f0cd9c267bba7",
+      "website_sha256": "b51baef379d9bf14ae162ede89cc7643017fce45596a301415139213c6933c38",
       "adaptation": "Added Jekyll teaching-document metadata; rewrote resource links to local copies or the pinned source revision; instructional text unchanged"
     },
     {
       "file": "spss-worked-examples.md",
       "source": "projects/t-test-teaching-package/spss-worked-example/README.md",
       "source_sha256": "ad095ee1f3e04dd962546075e2bafb65039ec8f1dc026c5e5040781578a2d14d",
-      "website_sha256": "09303a5d3bf7b785faac2a9183daac73d9000851e1af4ee6f7715022c12952fa",
+      "website_sha256": "5f4cb292569a8721a626fa5861816bfaea80c163e28d90ea55b035753dfbb8ed",
       "adaptation": "Added Jekyll teaching-document metadata; rewrote resource links to local copies or the pinned source revision; instructional text unchanged"
     }
   ]
