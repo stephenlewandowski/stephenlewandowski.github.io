@@ -34,7 +34,7 @@
         </article>
       </section>
     </main>
-    <footer><p>© 2026 Stephen A. Lewandowski</p><p>Teaching materials · Updated August 2026</p></footer>
+    <footer><p>© 2026 Stephen A. Lewandowski</p><p>Teaching materials · Updated {{ page.updated | default: "August 2026" }}</p></footer>
     <script>
       document.querySelectorAll(".teaching-document table").forEach((table) => {
         table.tabIndex = 0;

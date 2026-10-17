@@ -1,0 +1,29 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:14.000
+Randomly assign 40 workers to two training methods. Each worker completes one identical simulator task: correctly report a ramp hazard.
+
+00:00:14.000 --> 00:00:27.000
+The practice group averages 42 seconds; the briefing group averages 48. The observed difference is 6 seconds, but individual results overlap.
+
+00:00:27.000 --> 00:00:42.000
+The standard error of the difference is 2.53 seconds. A 6-second gap is 2.37 standard errors from zero. Individual SD and standard error are different.
+
+00:00:42.000 --> 00:00:59.000
+If equal population means and the model assumptions hold, about 2.3% of t values are this far from zero or farther, in either direction.
+
+00:00:59.000 --> 00:01:10.000
+Double the mean difference from 6 to 12 seconds, keeping the same sample size and spread. The t value doubles, and the p-value becomes smaller.
+
+00:01:10.000 --> 00:01:23.000
+Now increase the individual SD from 8 to 14 seconds. The same 6-second gap is less precise: p = .183. This does not establish that the methods are equal.
+
+00:01:23.000 --> 00:01:36.000
+Compare a planned study of 80 workers per group with 20. The individual spread stays the same, but the standard error of the difference is halved.
+
+00:01:36.000 --> 00:01:52.000
+The estimated advantage is 6 seconds, with a 95% confidence interval from 0.9 to 11.1 seconds. Decide whether that range matters operationally.
+
+00:01:52.000 --> 00:02:06.000
+Different workers in each group: use a two-sample t-test. The same workers before and after training: consider a paired t-test. Check assumptions first.
+
