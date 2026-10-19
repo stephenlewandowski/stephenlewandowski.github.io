@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17324d">
+  <meta name="description" content="Compare measured hourly PM2.5 in Seoul and selected city monitoring stations across all seasons of 2024. Explore averaging windows, missing data and monthly patterns.">
+  <meta property="og:title" content="Hourly PM₂.₅ in 2024 | Stephen Lewandowski">
+  <meta property="og:description" content="A comparison of observed air pollution across all seasons, with Seoul's district monitors and selected city stations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stephenlewandowski.github.io/projects/air-quality/">
+  <meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
+  <meta property="og:image:alt" content="Stephen Lewandowski — environmental health research and teaching.">
+  <link rel="canonical" href="https://stephenlewandowski.github.io/projects/air-quality/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="air-quality.css">
+  <title>Hourly PM₂.₅ in 2024 | Stephen Lewandowski</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a>
+    <nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav>
+  </header>
+  <main id="main" class="air-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/projects/">Projects</a><span aria-hidden="true">/</span><span>Air quality</span></nav>
+    <header class="air-intro">
+      <p class="eyebrow">Measured air pollution · January–December 2024</p>
+      <h1>Hourly PM₂.₅ in 2024</h1>
+      <p class="lead">Compare Seoul’s district monitors with selected monitoring stations in other cities. Change the averaging window to see how short pollution events and seasonal patterns appear in the same measurements.</p>
+      <p>PM₂.₅ is fine particulate matter, reported here in micrograms per cubic meter (µg/m³). This first comparison spans all twelve months. The chart shows concentrations; it does not convert them to an air-quality index.</p>
+    </header>
+
+    <section class="air-explorer" aria-labelledby="explore-title">
+      <div class="air-section-title"><h2 id="explore-title">Compare the records</h2><a href="#methods">Data and methods ↓</a></div>
+      <p id="load-status" role="status">Loading the archived measurements…</p>
+      <div id="explorer" hidden>
+        <fieldset class="air-cities"><legend>Records to show</legend><div id="city-options"></div></fieldset>
+        <div class="air-controls">
+          <label>Averaging window<select id="average"><option value="daily">Daily mean (UTC)</option><option value="hourly">Hourly measurements</option><option value="rolling8">Trailing 8-hour mean</option><option value="rolling24">Trailing 24-hour mean</option></select></label>
+          <label>From<input id="from" type="date" min="2024-01-01" max="2024-12-31" value="2024-01-01"></label>
+          <label>Through<input id="through" type="date" min="2024-01-01" max="2024-12-31" value="2024-12-31"></label>
+          <button id="reset-range" type="button">Show all 2024</button>
+        </div>
+        <div class="air-presets" aria-label="Date shortcuts"><span>Look at a month:</span><button type="button" data-month="0">January</button><button type="button" data-month="3">April</button><button type="button" data-month="6">July</button><button type="button" data-month="9">October</button></div>
+        <p class="air-chart-help" id="chart-help">Move over the chart to inspect values. Drag across it to select a shorter period, or use the date fields. All chart dates use UTC.</p>
+        <div class="air-chart-wrap" id="chart-wrap">
+          <svg id="chart" viewBox="0 0 1120 400" role="img" aria-label="PM₂.₅ concentrations during 2024" aria-describedby="chart-desc"><desc id="chart-desc">Lines compare selected records. Gaps indicate missing or insufficient data. The summary and monthly tables below provide numerical alternatives.</desc></svg>
+          <div id="chart-tooltip" class="air-tooltip" hidden></div>
+        </div>
+        <p id="chart-note" class="air-note"></p>
+        <p id="selection-note" class="air-selection" aria-live="polite"></p>
+        <div class="air-table-scroll"><table id="summary"><caption>Summary of hourly records in the selected period</caption><thead><tr><th scope="col">Record</th><th scope="col">Hours present</th><th scope="col">Mean</th><th scope="col">Median</th><th scope="col">95th percentile</th><th scope="col">Maximum</th></tr></thead><tbody></tbody></table></div>
+        <p class="air-note">Summary concentrations are calculated from available hourly values, regardless of the chart’s averaging window. Missing hours can affect comparisons. The 95th percentile is a value exceeded by about 5% of recorded hours.</p>
+        <button id="download" type="button" class="button button-secondary">Download selected hourly data (CSV)</button>
+        <details class="air-months"><summary>Monthly means and data coverage</summary><div class="air-table-scroll"><table id="monthly"><caption>All twelve months of 2024 · mean µg/m³ and percentage of hours present</caption><thead></thead><tbody></tbody></table></div><p class="air-note">Monthly means use available hours. Coverage is shown alongside each mean so an incomplete record remains visible.</p></details>
+      </div>
+      <noscript><p>The interactive chart needs JavaScript. The <a href="data/manifest.json">data manifest</a> links the downloadable measurements and source information.</p></noscript>
+    </section>
+
+    <section id="methods" class="air-methods" aria-labelledby="methods-title">
+      <h2 id="methods-title">Data and methods</h2>
+      <div class="air-method-grid">
+        <div><h3>What a city label means</h3><p>Seoul uses an equal-weight average of its 25 district monitoring stations, calculated only when at least 20 report a valid value for that hour. It describes that monitoring network; it is not weighted by population.</p><p>Other records identify a single monitoring location in each city. Their location and surroundings affect the comparison. The source notes below name each station.</p></div>
+        <div><h3>Averaging and missing hours</h3><p>A daily mean requires at least 18 of 24 hourly values. Rolling means require a complete time window and at least 75% of its values: six of eight hours, or eighteen of twenty-four. Calculations use the available values within an eligible window.</p><p>Missing values remain gaps. No model estimates or interpolated concentrations are added. Zero readings remain zero. The chart starts a new line segment after a missing plotted value.</p></div>
+        <div><h3>Dates and units</h3><p>The common grid is the UTC calendar year 2024: 8,784 hours, including 29 February. Daily means use UTC days so all records share the same boundaries. A trailing average includes the displayed hour and preceding hours.</p><p>Seoul’s source describes hourly means without specifying whether its hour labels mark the start or end of the interval. Those labels are preserved. Nine unavailable UTC hours at the end of the year remain missing. UTC daily means may differ from the local-day means used by an official reporting agency.</p></div>
+        <div><h3>Using the comparison</h3><p>Start with Seoul and London, then add another station. Compare a whole year with a single month, or switch between hourly and daily values. An average can reduce the appearance of a brief peak without changing the underlying measurements.</p><p>Differences also reflect geography, monitor siting and data capture. This figure is a teaching and historical comparison, not a current air-quality forecast.</p></div>
+      </div>
+      <h3>Source records</h3>
+      <div id="sources"><p>Source details are included with each downloaded dataset.</p></div>
+      <p><a href="data/manifest.json">Data manifest (JSON)</a> · <a href="data/README.md">Acquisition and quality notes</a></p>
+    </section>
+  </main>
+  <footer><p>© 2026 Stephen A. Lewandowski</p><p>Historical measurements · 2024</p></footer>
+  <script type="module" src="air-quality.mjs"></script>
+</body>
+</html>
