@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "year": 2024,
+  "pollutant": "PM2.5",
+  "selectionRule": "At least 75% of UTC hours in 2024 and in each meteorological season; Seoul required.",
+  "records": [
+    {
+      "id": "seoul",
+      "city": "Seoul",
+      "file": "data/seoul-2024.json",
+      "sha256": "49df2a7bb42a7d22b89df0ebb162c6beff0bb44e1e34393ba9417e4d77fd7dad",
+      "annualCapturePercent": 99.852,
+      "seasonCapturePercent": {
+        "Winter (Jan–Feb, Dec)": 99.588,
+        "Spring (Mar–May)": 99.955,
+        "Summer (Jun–Aug)": 100.0,
+        "Autumn (Sep–Nov)": 99.863
+      },
+      "included": true
+    },
+    {
+      "id": "london",
+      "city": "London",
+      "file": "data/london-2024.json",
+      "sha256": "9acf5ee3de96b773d7e3905404f2c2d3cb439169b4fcde5c3219f54f8861cd3a",
+      "annualCapturePercent": 99.898,
+      "seasonCapturePercent": {
+        "Winter (Jan–Feb, Dec)": 100.0,
+        "Spring (Mar–May)": 99.955,
+        "Summer (Jun–Aug)": 99.864,
+        "Autumn (Sep–Nov)": 99.771
+      },
+      "included": true
+    },
+    {
+      "id": "beijing",
+      "city": "Beijing",
+      "file": "data/beijing-2024.json",
+      "sha256": "49bf6fb9e920493f58abe4ab0dcf575c49b88d1bbd4d39e7e64ccb2f5270af9c",
+      "annualCapturePercent": 96.118,
+      "seasonCapturePercent": {
+        "Winter (Jan–Feb, Dec)": 90.064,
+        "Spring (Mar–May)": 95.109,
+        "Summer (Jun–Aug)": 99.592,
+        "Autumn (Sep–Nov)": 99.679
+      },
+      "included": true
+    }
+  ],
+  "excluded": [
+    {
+      "id": "delhi",
+      "reason": "Insufficient capture in at least one season.",
+      "annualCapturePercent": 83.857,
+      "seasonCapturePercent": {
+        "Winter (Jan–Feb, Dec)": 96.016,
+        "Spring (Mar–May)": 54.891,
+        "Summer (Jun–Aug)": 86.458,
+        "Autumn (Sep–Nov)": 98.352
+      },
+      "included": false
+    }
+  ]
+}

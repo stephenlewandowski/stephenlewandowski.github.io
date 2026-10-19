@@ -11,6 +11,7 @@ Professional website, post-service public CV, teaching portfolio, and project in
 - `teaching/materials/research-methods-analysis/` - RSCH650 project overview, playable lesson, interactive simulation, synthetic data, SPSS syntax, and readable teaching notes
 - `_layouts/teaching-document.html` - shared GitHub Pages layout for readable Markdown teaching documents
 - `projects/index.html` - current projects and selected earlier GitHub work
+- `projects/air-quality/` - observed hourly PM2.5 comparison for 2024, with Seoul's district network and London/Beijing stations, averaging controls and source data
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
 - `projects/korean-peninsula-aedes-suitability/index.html` - portfolio overview of the audited Korean Peninsula Aedes suitability publication
 - `projects/western-basin-worldbuilding/index.html` - illustrated Western Basin Atlas overview, with routes into maps, stories, and the scientific track
@@ -47,6 +48,13 @@ at `/korean-peninsula-aedes-suitability/` serve different purposes; preserve bot
 
 Keep the homepage summaries brief, with methods and detailed evidence on project pages.
 Retain the plain HTML/CSS structure and the shared teaching-document layout.
+
+The air-quality page serves retained measured data directly, without an external
+API call from the visitor's browser. Source provenance, seasonal coverage and
+reproduction instructions are in `projects/air-quality/data/README.md`. Seoul is
+required; other records must cover all four seasons. Run
+`node --test scripts/test_air_quality.mjs` when changing its calculations and
+`python scripts/check_air_quality_data.py` when refreshing its datasets.
 
 ## Content and maintenance
 
