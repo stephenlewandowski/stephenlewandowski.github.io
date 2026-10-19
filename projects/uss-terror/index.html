@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#17324d"><meta name="description" content="Evidence-aware R/Shiny reconstruction of USS Terror's Pacific deployment, 1943–1946."><meta property="og:title" content="USS Terror Map | Stephen A. Lewandowski"><meta property="og:description" content="Interactive chronology, spatial reconstruction, uncertainty, maps, reports, and QGIS outputs for USS Terror (CM-5)."><meta property="og:type" content="article"><meta property="og:url" content="https://stephenlewandowski.github.io/projects/uss-terror/"><meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png"><meta property="og:image:alt" content="Stephen A. Lewandowski — environmental health, teaching, and research."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://stephenlewandowski.github.io/assets/social-preview.png"><link rel="canonical" href="https://stephenlewandowski.github.io/projects/uss-terror/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><title>USS Terror Map | Stephen A. Lewandowski</title></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#17324d"><meta name="description" content="An interactive R/Shiny map reconstructing USS Terror's Pacific deployment from historical records, 1943–1946."><meta property="og:title" content="USS Terror Map | Stephen A. Lewandowski"><meta property="og:description" content="Interactive chronology, spatial reconstruction, uncertainty, maps, reports, and QGIS outputs for USS Terror (CM-5)."><meta property="og:type" content="article"><meta property="og:url" content="https://stephenlewandowski.github.io/projects/uss-terror/"><meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png"><meta property="og:image:alt" content="Stephen A. Lewandowski — environmental health, teaching, and research."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://stephenlewandowski.github.io/assets/social-preview.png"><link rel="canonical" href="https://stephenlewandowski.github.io/projects/uss-terror/"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/styles.css"><title>USS Terror Map | Stephen A. Lewandowski</title></head>
   <body><a class="skip-link" href="#main">Skip to main content</a><header class="site-header"><a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a><nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav></header>
     <main id="main" class="document-page project-log">
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/projects/">Projects</a></nav>
       <header class="page-intro">
         <p class="eyebrow">R/Shiny · Spatial history · Reproducible research</p>
         <h1>USS Terror (CM-5): Pacific deployment, 1943–1946</h1>
-        <p class="lead">An evidence-aware chronology and spatial reconstruction that distinguishes documented locations, modeled connections, disputed evidence, and uncertainty.</p>
+        <p class="lead">An interactive map and chronology of USS <em>Terror</em>’s Pacific deployment, reconstructed from historical records. Documented locations, modeled connections, and disputed records are identified throughout.</p>
         <div class="status-line"><span aria-hidden="true"></span><strong>Status:</strong> Live on Posit Connect Cloud</div>
         <div class="hero-actions">
           <a class="button button-primary" href="https://019ff822-911b-41e4-494c-8ca10f1f35ec.share.connect.posit.cloud">Launch live Shiny app</a>
@@ -29,7 +29,7 @@
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="evidence">
-        <div><p class="section-kicker">02 · Evidence model</p><h2 id="evidence">Sources and uncertainty stay visible.</h2></div>
+        <div><p class="section-kicker">02 · Evidence model</p><h2 id="evidence">Dates, locations, and uncertainty</h2></div>
         <div class="prose">
           <p>Dates may be exact, estimated, or ranges. Coordinates retain their basis—such as a port, anchorage, or island centroid—and their position uncertainty in nautical miles. Low-confidence, excluded, disputed, and overlapping records are flagged for review rather than silently repaired.</p>
           <p>Connecting lines are geodesic interpolations between documented or modeled endpoints. They are not exact ship tracks, and the project does not invent daily positions between widely spaced records.</p>
@@ -37,7 +37,7 @@
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="application">
-        <div><p class="section-kicker">03 · Shiny application</p><h2 id="application">One interface for maps, records, and review.</h2></div>
+        <div><p class="section-kicker">03 · Shiny application</p><h2 id="application">Using the interactive map</h2></div>
         <div class="prose">
           <p>The R/Shiny application brings together a Pacific Theater map, timeline, deployment tables, route metrics, grouped research pages, and historical mine-warfare evidence review. Shared filters keep the map, timeline, tables, counts, and selections synchronized.</p>
           <p>OpenStreetMap is the normal online base. A generated Natural Earth boundary-and-label layer supports local operation without map tiles, while optional modern seamark and bathymetric layers are clearly separated from wartime evidence.</p>
@@ -50,7 +50,7 @@
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="methods">
-        <div><p class="section-kicker">04 · Methods &amp; outputs</p><h2 id="methods">Reproducible from data to map.</h2></div>
+        <div><p class="section-kicker">04 · Methods &amp; outputs</p><h2 id="methods">Spatial methods and downloadable files</h2></div>
         <div class="prose">
           <p>Canonical spatial data use WGS84 (EPSG:4326). Great-circle connections are generated locally and split at the antimeridian so Pacific routes do not wrap across Eurasia or the Atlantic. Position-uncertainty areas are geodesic circles rather than planar latitude-longitude buffers.</p>
           <p>Outputs include processed event, route, and location tables; GeoPackages for QGIS; conflict and source inventories; validation reports; and map products covering the full deployment, Iwo Jima and Okinawa, the kamikaze attack and repair period, postwar operations, and confidence and uncertainty.</p>
@@ -58,7 +58,7 @@
       </section>
 
       <section class="content-grid section-compact" aria-labelledby="mine-warfare">
-        <div><p class="section-kicker">05 · Mine-warfare research</p><h2 id="mine-warfare">Candidates remain separate from canonical data.</h2></div>
+        <div><p class="section-kicker">05 · Mine-warfare research</p><h2 id="mine-warfare">Mine-warfare records under review</h2></div>
         <div class="prose">
           <p>The canonical mine-warfare tables remain deliberately empty. The evidence review resolved ten candidate decisions as accepted and retained one unsupported USS <em>Terror</em> event-level relationship as rejected. The app exposes canonical, accepted-candidate, and rejected-audit views without automatically promoting any candidate.</p>
           <p>This is an incomplete historical reconstruction. It is not current hazard information and must not be used for navigation, route planning, diving, fishing, salvage, ordnance clearance, or safety decisions.</p>

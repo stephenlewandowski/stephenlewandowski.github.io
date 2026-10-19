@@ -50,6 +50,12 @@ Retain the plain HTML/CSS structure and the shared teaching-document layout.
 
 ## Content and maintenance
 
+Use plain, specific headings that name the subject or the reader’s task. Avoid
+invented slogans, forced three-part phrases, and abstract promises about evidence
+or decisions. Write introductions in natural prose, using concrete examples from
+the work. Keep technical terms where they add precision, preserve factual limits
+and source attribution, and retain the character of personal stories and fiction.
+
 The site presents a concise post-service professional profile, selected teaching materials, and public project work. Teaching materials retain dates, attribution, synthetic-data boundaries, and distinctions among regulations, guidance, recommendations, and scientific evidence. Changeable regulatory and dataset claims should be checked before classroom or professional use.
 
 The current USS Terror project is documented at <https://github.com/stephenlewandowski/uss-terror>.
