@@ -1,0 +1,4 @@
+# Offline build only; the published application has no Python dependencies.
+numpy==2.3.5
+thermofeel==2.3.0
+earthkit-meteo==1.2.1

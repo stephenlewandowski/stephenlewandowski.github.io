@@ -16,6 +16,18 @@ levels, with the limits of that comparison stated alongside the results. See the
 [project README](projects/air-quality/README.md) for an overview and the
 [data notes](projects/air-quality/data/README.md) for sources and calculation rules.
 
+## Heat stress comparison
+
+[Compare hourly heat and humidity in 2024](https://stephenlewandowski.github.io/projects/heat-stress/)
+for the same five cities. The tool uses consistent ERA5 gridded weather data,
+with air temperature, relative humidity, a stated UTCI radiation scenario and
+Liljegren WBGT estimates. Compare means, daily peaks and minima, threshold hours
+and days, seasonal frequencies and time-of-day patterns. Each heat index is
+calculated hourly before aggregation. These are reanalysis estimates and model
+scenarios, with assumptions and calculation coverage shown alongside the data.
+See the [project README](projects/heat-stress/README.md) and
+[data methods](projects/heat-stress/data/README.md).
+
 ## Structure
 
 - `index.html` - professional homepage
@@ -26,6 +38,7 @@ levels, with the limits of that comparison stated alongside the results. See the
 - `_layouts/teaching-document.html` - shared GitHub Pages layout for readable Markdown teaching documents
 - `projects/index.html` - current projects and selected earlier GitHub work
 - `projects/air-quality/` - measured hourly PM2.5 comparison for 2024, with Seoul's district monitors and stations in Pyeongtaek, Beijing, London and Los Angeles; averaging controls, threshold counts, distribution plots and U.S. reference statistics
+- `projects/heat-stress/` - matching-city weather and heat-index comparison for 2024, using archived ERA5 inputs and explicitly stated UTCI and WBGT scenarios
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
 - `projects/korean-peninsula-aedes-suitability/index.html` - portfolio overview of the audited Korean Peninsula Aedes suitability publication
 - `projects/western-basin-worldbuilding/index.html` - illustrated Western Basin Atlas overview, with routes into maps, stories, and the scientific track
