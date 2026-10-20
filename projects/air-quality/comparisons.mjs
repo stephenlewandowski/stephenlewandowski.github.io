@@ -1,5 +1,5 @@
 import {summarize, START_2024} from './analysis.mjs';
-import {pm25Benchmark, thresholdCounts, PM25_STANDARDS} from './benchmarks.mjs';
+import {pm25Benchmark, thresholdCounts, PM25_STANDARDS, standardOffset} from './benchmarks.mjs?v=20261020-cities';
 
 const $ = selector => document.querySelector(selector);
 const NS = 'http://www.w3.org/2000/svg';
@@ -136,7 +136,7 @@ function renderDistribution(series, options) {
       if (!Number.isFinite(value)) return false;
       if (options.basis !== 'local-standard') return true;
       // Match the local-calendar-year restriction used by thresholdCounts.
-      const offset = record.id === 'seoul' ? 9 : record.id === 'beijing' ? 8 : 0;
+      const offset = standardOffset(record) / 60;
       return new Date(START_2024 + (options.first + index + offset) * 3600000).getUTCFullYear() === 2024;
     })}));
   const maximum = Math.max(10, ...distribution.map(item => summarize(item.values).max || 0));

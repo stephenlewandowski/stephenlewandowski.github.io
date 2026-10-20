@@ -86,6 +86,7 @@ for item in manifest['records']:
     records[item['id']] = record
     assert record['id'] == item['id'] and record['year'] == 2024
     assert record['startUtc'] == '2024-01-01T00:00:00Z' and record['intervalMinutes'] == 60
+    assert record['pollutant'] == 'PM2.5' and record['units'] == 'µg/m³'
     values = record['values']
     assert len(values) == 8784
     assert all(value is None or isinstance(value, (float, int)) and math.isfinite(value) and value >= 0 for value in values)
@@ -101,6 +102,20 @@ for item in manifest['records']:
         assert month['expectedHours'] == len(selected)
         assert month['validHours'] == sum(value is not None for value in selected)
     assert record['sources'] and all(source.get('url') and len(source.get('sha256', '')) == 64 for source in record['sources'])
+    if 'localYear' in record:
+        local = record['localYear']
+        offset = record['standardOffsetMinutes']
+        assert type(offset) is int and offset % 60 == 0
+        assert local['intervalMinutes'] == 60 and len(local['values']) == 8784
+        local_start = datetime.fromisoformat(local['startUtc'].replace('Z', '+00:00'))
+        assert local_start + timedelta(minutes=offset) == start
+        assert all(value is None or type(value) in (float, int) and math.isfinite(value) and value >= 0 for value in local['values'])
+        shift = (start - local_start).total_seconds() / 3600
+        assert shift == int(shift)
+        for hour, value in enumerate(values):
+            local_hour = hour + int(shift)
+            if 0 <= local_hour < 8784:
+                assert value == local['values'][local_hour], f'{record["city"]}: local/UTC mismatch at {hour}'
     if item['id'] == 'seoul':
         assert len(record['stationCounts']) == 8784
         assert all((value is not None) == (count >= 20) for value, count in zip(values, record['stationCounts']))

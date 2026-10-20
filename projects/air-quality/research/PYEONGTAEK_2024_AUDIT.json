@@ -1,0 +1,675 @@
+{
+  "station": {
+    "id": "131344",
+    "name": "Songbuk-dong",
+    "sourceName": "송북동",
+    "provider": "Gyeonggi Institute of Health and Environment",
+    "type": "Urban-air monitoring station (도시대기)",
+    "url": "https://air.gg.go.kr/default/esData.do?mCode=A010010000"
+  },
+  "sourceUniqueHourLabels": 8784,
+  "firstSourceLabel": "2024010100",
+  "lastSourceLabel": "2024123123",
+  "monthlySourceFiles": [
+    {
+      "month": 1,
+      "observations": 744,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024010100",
+      "lastSourceLabel": "2024013123",
+      "bytes": 114616,
+      "sha256": "f5d551cc28c84aabc9f4433b25bb72fee1d70aa2efa34f73332cb0f33b826528"
+    },
+    {
+      "month": 2,
+      "observations": 696,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024020100",
+      "lastSourceLabel": "2024022923",
+      "bytes": 107057,
+      "sha256": "e0a6e9e67db43376d02b15048373ec2c78ca2bf5e545d3e9a7cba53562e85502"
+    },
+    {
+      "month": 3,
+      "observations": 744,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024030100",
+      "lastSourceLabel": "2024033123",
+      "bytes": 114718,
+      "sha256": "4994ad89d7626a68431cfe029a894be713de8ff4da09c88d6404a2cd23a7f107"
+    },
+    {
+      "month": 4,
+      "observations": 720,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024040100",
+      "lastSourceLabel": "2024043023",
+      "bytes": 110136,
+      "sha256": "424643b85b08eca452e6da4655127cc6e003fc428c14b82ab8f50d2a60fbac15"
+    },
+    {
+      "month": 5,
+      "observations": 744,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024050100",
+      "lastSourceLabel": "2024053123",
+      "bytes": 112480,
+      "sha256": "63b37077c45667b8a15b0c9fe0c1d066f81a40789ea0e1bff950aaa5be998970"
+    },
+    {
+      "month": 6,
+      "observations": 720,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024060100",
+      "lastSourceLabel": "2024063023",
+      "bytes": 109301,
+      "sha256": "1605366db7ebc12ac6a6dc71716409618f3407ee697113b4eab8606244892de9"
+    },
+    {
+      "month": 7,
+      "observations": 744,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024070100",
+      "lastSourceLabel": "2024073123",
+      "bytes": 112545,
+      "sha256": "40d16f9d304495d737c37a241de9ed90ddc9b1d3bd8404b4e37e58b08d5a624f"
+    },
+    {
+      "month": 8,
+      "observations": 744,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024080100",
+      "lastSourceLabel": "2024083123",
+      "bytes": 106079,
+      "sha256": "8a22c5dfa5a27b4116e74fbf87b5777fa742b364a3b699d282cd95c2c894251a"
+    },
+    {
+      "month": 9,
+      "observations": 720,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024090100",
+      "lastSourceLabel": "2024093023",
+      "bytes": 106497,
+      "sha256": "75afa2a8e6430fb12259803d905ba174c8858f49beb9c9be86ff350752c16475"
+    },
+    {
+      "month": 10,
+      "observations": 744,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024100100",
+      "lastSourceLabel": "2024103123",
+      "bytes": 111614,
+      "sha256": "b2ff1083771f714f2de927c1cef51bde0e5ed43ad78e022e1e1ff3b869a0e21e"
+    },
+    {
+      "month": 11,
+      "observations": 720,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024110100",
+      "lastSourceLabel": "2024113023",
+      "bytes": 110153,
+      "sha256": "99e0fcaa8646136c5329c96e2dccdeac3c8cc9cb8c4a64ca2557aaf982556c6a"
+    },
+    {
+      "month": 12,
+      "observations": 744,
+      "summaryRowsExcluded": 3,
+      "firstSourceLabel": "2024120100",
+      "lastSourceLabel": "2024123123",
+      "bytes": 114901,
+      "sha256": "a7bb51a9720279238b2ece17a659975ecd1b3e4cfd4c6935a5aed1f634b1d277"
+    }
+  ],
+  "localCalendarYear": {
+    "expectedHours": 8784,
+    "validHours": 8128,
+    "capturePercent": 92.532,
+    "minimum": 0,
+    "maximum": 103,
+    "mean": 17.060778,
+    "allMonthsPresent": true,
+    "longestMissingRunHours": 341,
+    "zeroValuesRetained": 644,
+    "longestZeroRunHours": 39,
+    "monthlyCapture": [
+      {
+        "month": 1,
+        "expectedHours": 744,
+        "validHours": 694,
+        "capturePercent": 93.28
+      },
+      {
+        "month": 2,
+        "expectedHours": 696,
+        "validHours": 684,
+        "capturePercent": 98.276
+      },
+      {
+        "month": 3,
+        "expectedHours": 744,
+        "validHours": 735,
+        "capturePercent": 98.79
+      },
+      {
+        "month": 4,
+        "expectedHours": 720,
+        "validHours": 702,
+        "capturePercent": 97.5
+      },
+      {
+        "month": 5,
+        "expectedHours": 744,
+        "validHours": 733,
+        "capturePercent": 98.522
+      },
+      {
+        "month": 6,
+        "expectedHours": 720,
+        "validHours": 702,
+        "capturePercent": 97.5
+      },
+      {
+        "month": 7,
+        "expectedHours": 744,
+        "validHours": 683,
+        "capturePercent": 91.801
+      },
+      {
+        "month": 8,
+        "expectedHours": 744,
+        "validHours": 383,
+        "capturePercent": 51.478
+      },
+      {
+        "month": 9,
+        "expectedHours": 720,
+        "validHours": 702,
+        "capturePercent": 97.5
+      },
+      {
+        "month": 10,
+        "expectedHours": 744,
+        "validHours": 686,
+        "capturePercent": 92.204
+      },
+      {
+        "month": 11,
+        "expectedHours": 720,
+        "validHours": 694,
+        "capturePercent": 96.389
+      },
+      {
+        "month": 12,
+        "expectedHours": 744,
+        "validHours": 730,
+        "capturePercent": 98.118
+      }
+    ],
+    "seasonCapture": {
+      "Winter (Jan–Feb, Dec)": {
+        "expectedHours": 2184,
+        "validHours": 2108,
+        "capturePercent": 96.52
+      },
+      "Spring (Mar–May)": {
+        "expectedHours": 2208,
+        "validHours": 2170,
+        "capturePercent": 98.279
+      },
+      "Summer (Jun–Aug)": {
+        "expectedHours": 2208,
+        "validHours": 1768,
+        "capturePercent": 80.072
+      },
+      "Autumn (Sep–Nov)": {
+        "expectedHours": 2184,
+        "validHours": 2082,
+        "capturePercent": 95.33
+      }
+    },
+    "eligibleForSeasonalComparison": true
+  },
+  "commonUtcCalendarYear": {
+    "expectedHours": 8784,
+    "validHours": 8119,
+    "capturePercent": 92.429,
+    "minimum": 0,
+    "maximum": 103,
+    "mean": 17.052593,
+    "allMonthsPresent": true,
+    "longestMissingRunHours": 341,
+    "zeroValuesRetained": 644,
+    "longestZeroRunHours": 39,
+    "monthlyCapture": [
+      {
+        "month": 1,
+        "expectedHours": 744,
+        "validHours": 694,
+        "capturePercent": 93.28
+      },
+      {
+        "month": 2,
+        "expectedHours": 696,
+        "validHours": 684,
+        "capturePercent": 98.276
+      },
+      {
+        "month": 3,
+        "expectedHours": 744,
+        "validHours": 735,
+        "capturePercent": 98.79
+      },
+      {
+        "month": 4,
+        "expectedHours": 720,
+        "validHours": 702,
+        "capturePercent": 97.5
+      },
+      {
+        "month": 5,
+        "expectedHours": 744,
+        "validHours": 733,
+        "capturePercent": 98.522
+      },
+      {
+        "month": 6,
+        "expectedHours": 720,
+        "validHours": 702,
+        "capturePercent": 97.5
+      },
+      {
+        "month": 7,
+        "expectedHours": 744,
+        "validHours": 683,
+        "capturePercent": 91.801
+      },
+      {
+        "month": 8,
+        "expectedHours": 744,
+        "validHours": 383,
+        "capturePercent": 51.478
+      },
+      {
+        "month": 9,
+        "expectedHours": 720,
+        "validHours": 702,
+        "capturePercent": 97.5
+      },
+      {
+        "month": 10,
+        "expectedHours": 744,
+        "validHours": 686,
+        "capturePercent": 92.204
+      },
+      {
+        "month": 11,
+        "expectedHours": 720,
+        "validHours": 694,
+        "capturePercent": 96.389
+      },
+      {
+        "month": 12,
+        "expectedHours": 744,
+        "validHours": 721,
+        "capturePercent": 96.909
+      }
+    ],
+    "seasonCapture": {
+      "Winter (Jan–Feb, Dec)": {
+        "expectedHours": 2184,
+        "validHours": 2099,
+        "capturePercent": 96.108
+      },
+      "Spring (Mar–May)": {
+        "expectedHours": 2208,
+        "validHours": 2170,
+        "capturePercent": 98.279
+      },
+      "Summer (Jun–Aug)": {
+        "expectedHours": 2208,
+        "validHours": 1768,
+        "capturePercent": 80.072
+      },
+      "Autumn (Sep–Nov)": {
+        "expectedHours": 2184,
+        "validHours": 2082,
+        "capturePercent": 95.33
+      }
+    },
+    "eligibleForSeasonalComparison": true
+  },
+  "quality": {
+    "expectedHours": 8784,
+    "validHours": 8119,
+    "capturePercent": 92.429,
+    "minimum": 0,
+    "maximum": 103,
+    "mean": 17.052593,
+    "allMonthsPresent": true,
+    "longestMissingRunHours": 341,
+    "zeroValuesRetained": 644,
+    "longestZeroRunHours": 39,
+    "eligibleForSeasonalComparison": true,
+    "qaStatus": "Provincial raw hourly observations; may differ from national final-confirmed data. Original dataDt labels 00–23 are preserved; the provincial page displays them as 01–24. August capture is 51.478%, with a 341-hour missing run; summer still passes the 75% seasonal rule. The source reports 644 numeric zeros, including a 39-hour run; these are retained and have no per-reading QA flags or detection-limit metadata.",
+    "qualityFlagsAvailable": false,
+    "ratificationStatus": "Raw provincial measurements; no NIER final-ratification claim.",
+    "missingTreatment": "Missing source tokens, nonfinite/nonnumeric/negative readings and unavailable UTC boundary hours are null. Numeric zero retained; no interpolation or imputation.",
+    "negativeReadingsExcluded": 0,
+    "nonFiniteReadingsExcluded": 0,
+    "nonnumericReadingsExcluded": 0,
+    "sourceRows": 8784,
+    "sourceSummaryRowsExcluded": 36,
+    "sourceMissingTokens": {
+      "-": 656
+    },
+    "outOfPeriodReadings": 9,
+    "utcBoundaryMissingHours": 9,
+    "duplicateHours": 0,
+    "conflictingDuplicateHours": 0,
+    "nonHourlyReadingsExcluded": 0,
+    "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+    "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+    "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer.",
+    "spatialScope": "One urban-air monitor, Songbuk-dong, Pyeongtaek; not a citywide average.",
+    "documentedMaintenance": {
+      "fromSourceDate": "2024-08-16",
+      "throughSourceDate": "2024-08-30",
+      "reason": "Station operation stopped after cooling-system failure",
+      "source": "https://www.airkorea.or.kr/web/board/1/956/?pMENU_NO=197&page=11"
+    },
+    "selectionReason": "Identified Pyeongtaek urban monitor with at least 75% valid hours in the year and each meteorological season; no concentration-based selection."
+  },
+  "timeConvention": {
+    "source_timezone": "Asia/Seoul",
+    "source_utc_offset_minutes": 540,
+    "source_label_field": "dataDt",
+    "source_label_format": "YYYYMMDDHH (00–23)",
+    "source_first_label": "2024010100",
+    "source_last_label": "2024123123",
+    "hour_interval_semantics": "Original provincial JSON dataDt labels 00–23 are preserved without a one-hour shift. The province's public page adds one to display those observations as hours 01–24.",
+    "utc_conversion": "Subtract nine hours from each original dataDt local label. No daylight-saving time in Seoul/Pyeongtaek in 2024.",
+    "interpretation_limit": "The public page exposes the display's +1-hour convention, but a separate physical interval-start/end dictionary was not located. Data are grouped using the source's original 00–23 day labels, preserving each source day's 24 observations.",
+    "evidence": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+    "utc_boundary": "Original local-year first nine hours precede UTC2024; the final nine UTC2024 hours need the following local year's data and remain null."
+  },
+  "sources": [
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-01-01",
+        "toDt": "2024-01-31",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 114616,
+      "sha256": "f5d551cc28c84aabc9f4433b25bb72fee1d70aa2efa34f73332cb0f33b826528",
+      "downloadedAtUtc": "2026-10-20T01:09:54.027667+00:00",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-02-01",
+        "toDt": "2024-02-29",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 107057,
+      "sha256": "e0a6e9e67db43376d02b15048373ec2c78ca2bf5e545d3e9a7cba53562e85502",
+      "downloadedAtUtc": "2026-10-20T01:12:08.823216+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:09 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-03-01",
+        "toDt": "2024-03-31",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 114718,
+      "sha256": "4994ad89d7626a68431cfe029a894be713de8ff4da09c88d6404a2cd23a7f107",
+      "downloadedAtUtc": "2026-10-20T01:12:10.219768+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:11 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-04-01",
+        "toDt": "2024-04-30",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 110136,
+      "sha256": "424643b85b08eca452e6da4655127cc6e003fc428c14b82ab8f50d2a60fbac15",
+      "downloadedAtUtc": "2026-10-20T01:12:11.720583+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:12 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-05-01",
+        "toDt": "2024-05-31",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 112480,
+      "sha256": "63b37077c45667b8a15b0c9fe0c1d066f81a40789ea0e1bff950aaa5be998970",
+      "downloadedAtUtc": "2026-10-20T01:12:13.336218+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:14 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-06-01",
+        "toDt": "2024-06-30",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 109301,
+      "sha256": "1605366db7ebc12ac6a6dc71716409618f3407ee697113b4eab8606244892de9",
+      "downloadedAtUtc": "2026-10-20T01:12:14.902999+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:15 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-07-01",
+        "toDt": "2024-07-31",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 112545,
+      "sha256": "40d16f9d304495d737c37a241de9ed90ddc9b1d3bd8404b4e37e58b08d5a624f",
+      "downloadedAtUtc": "2026-10-20T01:12:16.392517+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:17 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-08-01",
+        "toDt": "2024-08-31",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 106079,
+      "sha256": "8a22c5dfa5a27b4116e74fbf87b5777fa742b364a3b699d282cd95c2c894251a",
+      "downloadedAtUtc": "2026-10-20T01:12:18.019668+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:18 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-09-01",
+        "toDt": "2024-09-30",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 106497,
+      "sha256": "75afa2a8e6430fb12259803d905ba174c8858f49beb9c9be86ff350752c16475",
+      "downloadedAtUtc": "2026-10-20T01:12:19.497816+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:20 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-10-01",
+        "toDt": "2024-10-31",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 111614,
+      "sha256": "b2ff1083771f714f2de927c1cef51bde0e5ed43ad78e022e1e1ff3b869a0e21e",
+      "downloadedAtUtc": "2026-10-20T01:12:21.256113+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:22 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-11-01",
+        "toDt": "2024-11-30",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 110153,
+      "sha256": "99e0fcaa8646136c5329c96e2dccdeac3c8cc9cb8c4a64ca2557aaf982556c6a",
+      "downloadedAtUtc": "2026-10-20T01:12:22.781358+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:23 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    },
+    {
+      "url": "https://air.gg.go.kr/default/tms.do",
+      "pageUrl": "https://air.gg.go.kr/default/esData.do?mCode=A010010000",
+      "method": "POST",
+      "postFields": {
+        "op": "getByLoc",
+        "fromDt": "2024-12-01",
+        "toDt": "2024-12-31",
+        "locCd": "131344",
+        "typeCd": "1"
+      },
+      "bytes": 114901,
+      "sha256": "a7bb51a9720279238b2ece17a659975ecd1b3e4cfd4c6935a5aed1f634b1d277",
+      "downloadedAtUtc": "2026-10-20T01:12:24.237365+00:00",
+      "responseDate": "Tue, 20 Oct 2026 01:12:25 GMT",
+      "contentType": "text/plain;charset=ISO-8859-1",
+      "provider": "Gyeonggi Institute of Health and Environment",
+      "attribution": "Source: Gyeonggi Institute of Health and Environment, Gyeonggi Air Quality Information Service; raw hourly PM2.5 observations, Songbuk-dong (송북동), Pyeongtaek, station 131344, 2024.",
+      "license": "Unrestricted reuse (이용허락범위 제한 없음), specified for Gyeonggi's 1-hour concentration product in official DATA.GO.KR catalog 15122939.",
+      "licenseEvidence": "https://www.data.go.kr/data/15122939/fileData.do",
+      "catalogUrl": "https://data.gg.go.kr/portal/data/service/selectServicePage.do?infId=E20A4WR0UKVQFVTXNT7D33593740&infSeq=1",
+      "licenseBasis": "The official catalog identifies Gyeonggi Institute of Health and Environment as producer of the province's raw 1-hour station-concentration product and explicitly permits unrestricted reuse. These responses are independently acquired from that institute's public station-query interface for the same hourly concentration product. This is a product-level catalog attribution, not a blanket license inferred from the website footer."
+    }
+  ],
+  "output": {
+    "path": "data/comparisons/pyeongtaek-2024.json",
+    "bytes": 72738,
+    "sha256": "9ab28087e7712aa74b70ed4590112ee55e1dabea61b7102d0a172d77dde753ac"
+  }
+}

@@ -28,9 +28,42 @@ interactive comparison. The number of cities is secondary to covering the year.
   [documentation](https://api.erg.ic.ac.uk/AirQuality/Information/Documentation/pdf)
   specifies Open Government Licence v2; the RData file embeds no separate license
   or per-reading ratification status. Measurements may be revised by the provider.
+- **Pyeongtaek, Songbuk-dong (송북동), station 131344.** The Gyeonggi Institute of
+  Health and Environment supplies provincial hourly concentrations. Its
+  [government catalog](https://www.data.go.kr/data/15122939/fileData.do) permits
+  unrestricted reuse and warns that these raw observations may differ from
+  final nationally validated data. The original provincial 00–23 timestamps
+  are preserved. The full local-year source is retained for the standards panel.
+  It has 8,119 valid UTC hours (92.429%); each meteorological season exceeds
+  80%. August has only 51.478% capture and a 341-hour gap; an
+  [official notice](https://www.airkorea.or.kr/web/board/1/956/?pMENU_NO=197&page=11)
+  identifies an air-conditioning failure from 16–30 August. Gaps remain missing.
+  The source reports 644 zero values, including a 39-hour run; these are retained
+  as reported, with no per-reading quality flags or detection-limit explanation
+  supplied. The separately examined final AirKorea archive carries
+  a no-derivatives condition and is not the source of the published extract.
+  [Acquisition and quality notes](../research/PYEONGTAEK_2024.md) and
+  [audit](../research/PYEONGTAEK_2024_AUDIT.json) document the provincial source.
+- **Los Angeles–North Main Street, EPA AQS 06-037-1103, parameter 88101, POC 3.**
+  [EPA AirData](https://aqs.epa.gov/aqsweb/airdata/download_files.html) supplies the
+  hourly archive and site/monitor metadata. This is one continuous FEM method 170
+  monitor, with 8,598 retained UTC hours (97.883%) and all seasons above 93%.
+  Its annual hourly summary is marked Certified. Under the figure's common
+  nonnegative rule, 18 reported negative readings are excluded; their original
+  values remain in the audit metadata. Informational fireworks and wildfire
+  readings remain included. The separate daily FRM POC 1 is the site's primary
+  monitor, so this hourly extract does not reproduce the official combined site
+  design value. EPA permits free reuse of its public-domain AirData observations.
+  [Acquisition and method notes](../research/EPA_LOS_ANGELES_2024.md),
+  [audit](../research/EPA_LOS_ANGELES_2024_AUDIT.json) and
+  [original selected rows (CSV.gz)](../research/EPA_LOS_ANGELES_2024_SELECTED.csv.gz)
+  retain the source evidence.
 
 Source-specific provenance, download dates, quality decisions and source hashes
 are retained within each JSON. No API key is embedded or required by visitors.
+Prepared data files use LF line endings so their manifest hashes match the
+version-controlled and published bytes on every platform; source-response hashes
+continue to identify the original downloaded files.
 
 ## Calculation and time conventions
 
@@ -66,7 +99,8 @@ percentiles. No federal 1-hour or 8-hour PM2.5 standard exists.
 
 The standards table always uses the full local calendar year, independently of
 the chart's date selection. Days use fixed local standard time (Seoul UTC+9,
-Beijing UTC+8, London GMT without daylight saving). Hourly values and daily
+Pyeongtaek UTC+9, Beijing UTC+8, London GMT and Los Angeles PST (UTC−8), all
+without daylight saving). Hourly values and daily
 means are truncated to tenths. A normal day requires at least 18 hours. With
 fewer hours, the day is retained only when the sum of reported truncated values
 divided by 24 reaches 35.5; this application uses that conservative zero-filled
@@ -83,7 +117,7 @@ summary tables. No final three-year design-value rounding is applied. Displayed
 annual components use two decimals, while computations retain full precision.
 Quarterly daily capture is reported descriptively, without rounding to integers.
 
-One year of foreign monitoring observations does not establish U.S. attainment.
+These one-year monitoring extracts do not establish U.S. attainment.
 The application does not certify monitor suitability, reproduce an AQS combined
 site record, apply exceptional-event exclusions or regulatory data-substitution
 tests, or account for prior-standard implementation obligations. Seoul's network
@@ -115,7 +149,7 @@ equal decimal inputs into false exceedances through binary summation error.
 Custom counts use the selected UTC period and common UTC-grid source. UTC or
 fixed local standard-time days can be selected. Full-year local counts retain
 boundary days only if they meet the ordinary 18-hour rule; the supplemental
-local Seoul hours and sparse-day exception apply only to the standards table.
+local-year observations and sparse-day exception apply only to the standards table.
 For shorter selections a calendar day must fall wholly inside the selected UTC
 range. Local counts exclude instants outside local 2024. Rolling counts include
 window ends in the selected range and may use earlier source hours; overlapping
@@ -133,6 +167,8 @@ under the ignored `projects/air-quality/data/seoul/` and `data/comparisons/` fol
 ```powershell
 python projects/air-quality/research/acquire_seoul_2024.py
 python projects/air-quality/research/acquire_comparisons_2024.py beijing london
+python projects/air-quality/research/acquire_pyeongtaek_2024.py
+python projects/air-quality/research/acquire_us_city_2024.py
 python scripts/build_air_quality_data.py --source-root projects/air-quality
 python scripts/build_seoul_station_data.py --source-root projects/air-quality
 node --test scripts/test_air_quality.mjs scripts/test_pm25_benchmarks.mjs

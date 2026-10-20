@@ -29,15 +29,15 @@
       <p class="eyebrow">Measured air pollution · January–December 2024</p>
       <h1>Hourly PM₂.₅ in 2024</h1>
       <p class="lead">Compare Seoul’s district monitors with selected monitoring stations in other cities. Explore annual means, daily peaks and the number of hours at higher concentrations.</p>
-      <p>PM₂.₅ is fine particulate matter, reported here in micrograms per cubic meter (µg/m³). This first comparison spans all twelve months. The chart shows concentrations; it does not convert them to an air-quality index.</p>
+      <p>PM₂.₅ is fine particulate matter, reported here in micrograms per cubic meter (µg/m³). The records span all twelve months of 2024. The chart shows concentrations; it does not convert them to an air-quality index.</p>
       <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Time series</a><a href="#standards-title">U.S. standards</a><a href="#counts-title">Hours and days above a threshold</a><a href="#patterns-title">Monthly patterns</a></nav>
     </header>
 
     <section class="air-explorer" aria-labelledby="explore-title">
-      <div class="air-section-title"><h2 id="explore-title">Compare the records</h2><a href="#methods">Data and methods ↓</a></div>
-      <p id="load-status" role="status">Loading the archived measurements…</p>
+      <div class="air-section-title"><h2 id="explore-title">PM₂.₅ by city</h2><a href="#methods">Data and methods ↓</a></div>
+      <p id="load-status" role="status">Loading measurements…</p>
       <div id="explorer" hidden>
-        <fieldset class="air-cities"><legend>Records to show</legend><div id="city-options"></div></fieldset>
+        <fieldset class="air-cities"><legend>Cities to show</legend><div id="city-options"></div></fieldset>
         <div class="air-station-control"><label for="seoul-record">Seoul record</label><select id="seoul-record"><option value="network">Mean of 25 district monitors</option></select><p id="seoul-scope" class="air-note"></p></div>
         <div class="air-controls">
           <label>Averaging window<select id="average"><option value="daily">Daily mean (UTC)</option><option value="hourly">Hourly measurements</option><option value="rolling8">Trailing 8-hour mean</option><option value="rolling24">Trailing 24-hour mean</option></select></label>
@@ -69,7 +69,7 @@
           <p class="air-context">These are one-year comparisons with the current U.S. standards, not attainment determinations. A regulatory assessment needs three years of suitable site measurements and additional quality checks. Seoul’s network mean is context only; choose a district monitor above for a site comparison.</p>
           <div class="air-table-scroll"><table id="standards"><caption>2024 components of the U.S. calculation · µg/m³ · local standard-time days</caption><thead><tr><th scope="col">Record</th><th scope="col">Annual component<br><small>quarter-weighted</small></th><th scope="col">Daily 98th percentile</th><th scope="col">Days above 35</th><th scope="col">Lowest quarterly<br>daily capture</th></tr></thead><tbody></tbody></table></div>
           <p id="standards-note" class="air-note"></p>
-          <details class="air-calculation"><summary>How these statistics are calculated</summary><p>The annual component gives each of the four quarterly means equal weight. The daily 98th percentile is a ranked daily value: the eighth-highest when 351–366 days are valid, or the seventh-highest with 301–350. It is not an interpolated percentile. Only a completed three-year design value would receive EPA’s final rounding.</p><p>Hourly inputs and daily means are truncated to one decimal place for this table. A day normally requires 18 hours. A day with fewer hours is retained only if its sum divided by 24 reaches 35.5 µg/m³; that conservative lower-bound mean is used and flagged below. This exception is not the threshold for counting days above 35.</p><p>Days run midnight to midnight in fixed local standard time: Seoul UTC+9, Beijing UTC+8, London GMT throughout the year. Full local-year Seoul observations are available here; missing boundary hours in the other records remain missing. Source hour labels are preserved, including Seoul’s unresolved start/end convention.</p></details>
+          <details class="air-calculation"><summary>How these statistics are calculated</summary><p>The annual component gives each of the four quarterly means equal weight. The daily 98th percentile is a ranked daily value: the eighth-highest when 351–366 days are valid, or the seventh-highest with 301–350. It is not an interpolated percentile. Only a completed three-year design value would receive EPA’s final rounding.</p><p>Hourly inputs and daily means are truncated to one decimal place for this table. A day normally requires 18 hours. A day with fewer hours is retained only if its sum divided by 24 reaches 35.5 µg/m³; that conservative lower-bound mean is used and flagged below. This exception is not the threshold for counting days above 35.</p><p>Days run midnight to midnight in fixed local standard time: Seoul and Pyeongtaek UTC+9, Beijing UTC+8, London GMT and Los Angeles PST (UTC−8) throughout the year. Full local-year observations are available for Seoul, Pyeongtaek and Los Angeles; other missing boundary hours remain missing. Pyeongtaek’s original provincial 00–23 timestamps are preserved. Seoul’s unresolved start/end convention is documented in its source notes.</p></details>
           <p class="air-note">Primary standards protect public health; secondary standards protect public welfare. Levels and calculation rules checked 19 October 2026: <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">EPA NAAQS table</a> · <a href="https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-50/appendix-Appendix%20N%20to%20Part%2050">40 CFR part 50, Appendix N</a>.</p>
         </section>
 
@@ -110,7 +110,7 @@
       <div class="air-method-grid">
         <div><h3>What a city label means</h3><p>Seoul defaults to an equal-weight average of its 25 district monitoring stations, calculated only when at least 20 report a valid value for that hour. It describes that monitoring network; it is not weighted by population. The selector also offers each district monitor.</p><p>Other records identify a single monitoring location in each city. Their location and surroundings affect the comparison. The source notes below name each station. Network averages should not be treated as site-level regulatory records.</p></div>
         <div><h3>Averaging and missing hours</h3><p>A daily mean requires at least 18 of 24 hourly values. Rolling means require a complete time window and at least 75% of its values: six of eight hours, or eighteen of twenty-four. Calculations use the available values within an eligible window.</p><p>Missing values remain gaps. No model estimates or interpolated concentrations are added. Zero readings remain zero. The chart starts a new line segment after a missing plotted value.</p></div>
-        <div><h3>Dates and units</h3><p>The time series uses the UTC calendar year 2024: 8,784 hours, including 29 February. Its daily means use UTC days. Threshold counts can use UTC or local standard-time days; the U.S. standards table always uses local standard time. PM₂.₅ is measured in µg/m³, not ppm.</p><p>Seoul’s source describes hourly means without specifying whether its hour labels mark the start or end of the interval. Those labels are preserved. Nine unavailable UTC hours at the end of the year remain missing. The standards table uses the full Korean calendar-year file, including its first nine hours before UTC 2024.</p></div>
+        <div><h3>Dates and units</h3><p>The time series uses the UTC calendar year 2024: 8,784 hours, including 29 February. Its daily means use UTC days. Threshold counts can use UTC or local standard-time days; the U.S. standards table always uses local standard time. PM₂.₅ is measured in µg/m³, not ppm.</p><p>Seoul’s source hour labels are preserved because their start/end convention is unspecified. Pyeongtaek’s provincial timestamps use 00–23 and are preserved directly. Los Angeles’s source explicitly uses sampling start times. The standards table uses full local-year files where available; unavailable boundary hours on the UTC grid remain missing.</p></div>
         <div><h3>Using the comparison</h3><p>Start with Seoul and London, then add another station. Compare a whole year with a single month, or switch between hourly and daily values. An average can reduce the appearance of a brief peak without changing the underlying measurements.</p><p>Differences also reflect geography, monitor siting and data capture. This figure is a teaching and historical comparison, not a current air-quality forecast.</p></div>
       </div>
       <h3>Source records</h3>
@@ -119,6 +119,6 @@
     </section>
   </main>
   <footer><p>© 2026 Stephen A. Lewandowski</p><p>Historical measurements · 2024</p></footer>
-  <script type="module" src="air-quality.mjs?v=20261020"></script>
+  <script type="module" src="air-quality.mjs?v=20261020-cities-2"></script>
 </body>
 </html>

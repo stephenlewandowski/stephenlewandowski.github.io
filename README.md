@@ -58,6 +58,9 @@ required; other records must cover all four seasons. Run
 The PM2.5 standards panel uses full-year local standard-time statistics; custom
 threshold counts use the selected UTC range. Preserve that distinction and the
 explicit three-year/site-suitability limitations when changing the interface.
+When releasing changes, refresh the page-specific module, changed module imports
+and manifest version URLs together so returning visitors receive consistent data
+and calculation code.
 
 ## Content and maintenance
 

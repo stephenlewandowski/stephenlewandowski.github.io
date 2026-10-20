@@ -8,7 +8,7 @@
       "id": "seoul",
       "city": "Seoul",
       "file": "data/seoul-2024.json",
-      "sha256": "49df2a7bb42a7d22b89df0ebb162c6beff0bb44e1e34393ba9417e4d77fd7dad",
+      "sha256": "5988edf73eef71e225b5e6eb97867a75a43ca72cc85852d3bfbf6a7281388a45",
       "annualCapturePercent": 99.852,
       "seasonCapturePercent": {
         "Winter (Jan–Feb, Dec)": 99.588,
@@ -19,10 +19,24 @@
       "included": true
     },
     {
+      "id": "pyeongtaek",
+      "city": "Pyeongtaek",
+      "file": "data/pyeongtaek-2024.json",
+      "sha256": "74b8389f0071c99ebca98366b1195ffe4cdd0847f231a177cd677fe737c8b7cc",
+      "annualCapturePercent": 92.429,
+      "seasonCapturePercent": {
+        "Winter (Jan–Feb, Dec)": 96.108,
+        "Spring (Mar–May)": 98.279,
+        "Summer (Jun–Aug)": 80.072,
+        "Autumn (Sep–Nov)": 95.33
+      },
+      "included": true
+    },
+    {
       "id": "london",
       "city": "London",
       "file": "data/london-2024.json",
-      "sha256": "9acf5ee3de96b773d7e3905404f2c2d3cb439169b4fcde5c3219f54f8861cd3a",
+      "sha256": "85f8caaf75a5002685523f49d1498d11206c2debcf27c9ef96525f0316239ffe",
       "annualCapturePercent": 99.898,
       "seasonCapturePercent": {
         "Winter (Jan–Feb, Dec)": 100.0,
@@ -36,13 +50,27 @@
       "id": "beijing",
       "city": "Beijing",
       "file": "data/beijing-2024.json",
-      "sha256": "49bf6fb9e920493f58abe4ab0dcf575c49b88d1bbd4d39e7e64ccb2f5270af9c",
+      "sha256": "d2a89836c7498f9dc86548ac2ee930494d8732a5066d10d2871722c7e8addccc",
       "annualCapturePercent": 96.118,
       "seasonCapturePercent": {
         "Winter (Jan–Feb, Dec)": 90.064,
         "Spring (Mar–May)": 95.109,
         "Summer (Jun–Aug)": 99.592,
         "Autumn (Sep–Nov)": 99.679
+      },
+      "included": true
+    },
+    {
+      "id": "los-angeles",
+      "city": "Los Angeles",
+      "file": "data/los-angeles-2024.json",
+      "sha256": "7e76f44ed9b97763274e1d7e2c434167f7407bc36f7978c04287133a39721d39",
+      "annualCapturePercent": 97.883,
+      "seasonCapturePercent": {
+        "Winter (Jan–Feb, Dec)": 98.993,
+        "Spring (Mar–May)": 93.659,
+        "Summer (Jun–Aug)": 99.592,
+        "Autumn (Sep–Nov)": 99.313
       },
       "included": true
     }
