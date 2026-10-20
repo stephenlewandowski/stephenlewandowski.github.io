@@ -1,4 +1,5 @@
 import {HOURS_2024, START_2024, aggregate, summarize, monthlySummary} from './analysis.mjs';
+import {renderComparisons, comparisonCsv} from './comparisons.mjs';
 
 const $ = selector => document.querySelector(selector);
 const NS = 'http://www.w3.org/2000/svg';
@@ -19,7 +20,7 @@ const svgNode = (tag, attributes = {}, text = '') => {
   return node;
 };
 const swatch = color => element('span', '', {class: 'air-swatch', style: `--series:${color}`});
-const state = {records: [], selected: new Set(), mode: 'daily', first: 0, last: HOURS_2024 - 1};
+const state = {records: [], selected: new Set(), mode: 'daily', first: 0, last: HOURS_2024 - 1, threshold: 35, basis: 'utc', distributionMode: 'hourly'};
 const box = {left: 66, right: 1090, top: 28, bottom: 344};
 let plot = null;
 let dragStart = null;
@@ -68,6 +69,10 @@ function drawChart(records) {
     group.append(svgNode('text', {x: box.left - 12, y: y(tick) + 4, 'text-anchor': 'end'}, String(tick)));
   }
   group.append(svgNode('text', {x: box.left, y: 17, class: 'axis-label'}, 'PM₂.₅ · µg/m³'));
+  if (state.threshold <= ceiling) {
+    group.append(svgNode('line', {x1: box.left, x2: box.right, y1: y(state.threshold), y2: y(state.threshold), class: 'air-threshold-line'}));
+    group.append(svgNode('text', {x: box.right - 4, y: y(state.threshold) - 6, 'text-anchor': 'end', class: 'air-threshold-label'}, `Chosen threshold: ${number(state.threshold)}`));
+  }
   if (span > 24 * 90) {
     for (let month = 0; month < 12; month += width < 600 ? 2 : 1) {
       const hour = (Date.UTC(2024, month, 1) - START_2024) / 3600000;
@@ -108,14 +113,14 @@ function tables(records) {
     const stats = summarize(values);
     const row = element('tr', null);
     const name = element('th', null, {scope: 'row'});
-    name.append(swatch(record.color), document.createTextNode(record.city));
+    name.append(swatch(record.color), document.createTextNode(record.label || record.city));
     row.append(name, element('td', `${stats.count.toLocaleString()} / ${expected.toLocaleString()} (${(100 * stats.count / expected).toFixed(1)}%)`));
     for (const key of ['mean', 'median', 'p95', 'max']) row.append(element('td', number(stats[key])));
     body.append(row);
   }
   const header = element('tr', null);
   header.append(element('th', 'Month', {scope: 'col'}));
-  for (const record of records) header.append(element('th', record.city, {scope: 'col'}));
+  for (const record of records) header.append(element('th', record.label || record.city, {scope: 'col'}));
   $('#monthly thead').replaceChildren(header);
   const monthlyBody = $('#monthly tbody');
   monthlyBody.replaceChildren();
@@ -137,11 +142,13 @@ function render() {
   $('#chart-tooltip').hidden = true;
   drawChart(records);
   tables(records);
-  $('#selection-note').textContent = records.length ? `${dateLabel(state.first)}–${dateLabel(state.last)} 2024 · ${records.map(record => record.city).join(', ')} · UTC` : 'Select at least one record to draw the chart.';
+  renderComparisons(records, state);
+  $('#selection-note').textContent = records.length ? `${dateLabel(state.first)}–${dateLabel(state.last)} 2024 · ${records.map(record => record.label || record.city).join(', ')} · UTC` : 'Select at least one record to draw the chart.';
   $('#download').disabled = !records.length;
   $('#chart-note').textContent = state.mode === 'hourly'
     ? 'Hourly values preserve individual events. The vertical axis adjusts to the selected records and dates; compare the axis labels when changing the view.'
     : `${$('#average').selectedOptions[0].textContent}: at least 75% of the hours must be present. Gaps are not filled. The vertical axis adjusts to the selected records and dates.`;
+  $('#chart-note').textContent += ` The dashed line uses the chosen concentration threshold (${number(state.threshold)} µg/m³), when within the plotted range. It is not a regulatory limit for the displayed averaging window.`;
 }
 
 function pointerHour(event) {
@@ -170,10 +177,17 @@ function inspect(event) {
     const point = points[index];
     const time = state.mode === 'daily' ? '' : ` · ${new Date(START_2024 + (point.hour + record.offset) * 3600000).toISOString().slice(11, 16)}`;
     const row = element('div', null);
-    row.append(swatch(record.color), document.createTextNode(`${record.city}: ${number(point.value)}${point.value === null ? '' : ' µg/m³'}${time}`));
+    row.append(swatch(record.color), document.createTextNode(`${record.label || record.city}: ${number(point.value)}${point.value === null ? '' : ' µg/m³'}${time}`));
     tooltip.append(row);
   }
   tooltip.hidden = false;
+}
+
+function downloadText(text, filename) {
+  const url = URL.createObjectURL(new Blob([text], {type: 'text/csv;charset=utf-8'}));
+  const link = element('a', '', {href: url, download: filename});
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function exportCsv() {
@@ -184,10 +198,7 @@ function exportCsv() {
       lines.push([timestamp, record.city, record.station.id, record.values[hour] ?? '', record.stationCounts?.[hour] ?? ''].join(','));
     }
   }
-  const url = URL.createObjectURL(new Blob([lines.join('\r\n') + '\r\n'], {type: 'text/csv;charset=utf-8'}));
-  const link = element('a', '', {href: url, download: `pm25-${isoDate(state.first)}-to-${isoDate(state.last)}.csv`});
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  downloadText(lines.join('\r\n') + '\r\n', `pm25-${isoDate(state.first)}-to-${isoDate(state.last)}.csv`);
 }
 
 function sourceCards(records, manifest) {
@@ -206,7 +217,7 @@ function sourceCards(records, manifest) {
     const links = element('p', null);
     const sourceUrl = record.station.url || record.sources?.[0]?.url || listing.sourceUrl;
     if (sourceUrl) links.append(element('a', 'Original source', {href: sourceUrl}), document.createTextNode(' · '));
-    links.append(element('a', 'Hourly data and provenance (JSON)', {href: listing.file}));
+    links.append(element('a', 'Hourly data and provenance (JSON)', {href: record.dataFile || listing.file}));
     article.append(links);
     container.append(article);
   }
@@ -221,6 +232,38 @@ async function start() {
     if (!result.ok) throw new Error(`The ${item.id} record could not be loaded.`);
     return validateRecord(await result.json());
   }));
+  const seoulResponse = await fetch('data/seoul-stations-2024.json');
+  if (!seoulResponse.ok) throw new Error('The Seoul district measurements could not be loaded.');
+  const seoulData = await seoulResponse.json();
+  if (seoulData.year !== 2024 || seoulData.intervalMinutes !== 60 || seoulData.stations.length !== 25) throw new Error('Unexpected Seoul district data.');
+  const networkRecord = state.records.find(record => record.id === 'seoul');
+  networkRecord.networkMean = true;
+  networkRecord.label = 'Seoul · network mean';
+  networkRecord.dataFile = 'data/seoul-stations-2024.json';
+  networkRecord.localYear = {startUtc: seoulData.startUtc, intervalMinutes: 60, values: seoulData.network.values};
+  for (const station of seoulData.stations) $('#seoul-record').append(element('option', station.name, {value: station.id}));
+  const updateSeoulScope = record => {
+    $('#seoul-scope').textContent = record.networkMean
+      ? 'The network mean combines 25 district monitors (at least 20 reporting per hour). Choose a district for a site-level comparison with the U.S. reference levels.'
+      : `${record.station.name}: one district monitor. Its measurements describe this location, not the whole city.`;
+  };
+  updateSeoulScope(networkRecord);
+  $('#seoul-record').addEventListener('change', event => {
+    let record = networkRecord;
+    if (event.target.value !== 'network') {
+      const station = seoulData.stations.find(item => item.id === event.target.value);
+      record = validateRecord({...networkRecord, label: `Seoul · ${station.name}`, networkMean: false,
+        values: station.values.slice(9).concat(Array(9).fill(null)), stationCounts: undefined,
+        localYear: {startUtc: seoulData.startUtc, intervalMinutes: 60, values: station.values},
+        station: {...networkRecord.station, id: station.sourceStationId, name: station.name, type: 'District monitoring station',
+          aggregation: 'Hourly readings from one Seoul district monitor, supplied by Seoul Metropolitan Government.'},
+        dataFile: 'data/seoul-stations-2024.json'});
+    }
+    state.records[state.records.findIndex(item => item.id === 'seoul')] = record;
+    updateSeoulScope(record);
+    sourceCards(state.records, manifest);
+    render();
+  });
   for (const [index, record] of state.records.entries()) {
     if (record.id === 'seoul' || index === 1) state.selected.add(record.id);
     const label = element('label', null, {class: 'air-city'});
@@ -232,6 +275,20 @@ async function start() {
   }
   sourceCards(state.records, manifest);
   $('#average').addEventListener('change', event => { state.mode = event.target.value; render(); });
+  const updateThreshold = event => {
+    if (!event.target.validity.valid || event.target.value === '') {
+      if (event.type === 'change') event.target.reportValidity();
+      return;
+    }
+    if (state.threshold === Number(event.target.value)) return;
+    state.threshold = Number(event.target.value);
+    render();
+  };
+  $('#threshold').addEventListener('input', updateThreshold);
+  $('#threshold').addEventListener('change', updateThreshold);
+  $('#threshold-reset').addEventListener('click', () => { state.threshold = 35; $('#threshold').value = '35'; render(); });
+  $('#day-basis').addEventListener('change', event => { state.basis = event.target.value; render(); });
+  $('#distribution').addEventListener('change', event => { state.distributionMode = event.target.value; render(); });
   for (const id of ['from', 'through']) $(`#${id}`).addEventListener('change', () => {
     const first = (Date.parse($('#from').value + 'T00:00:00Z') - START_2024) / 3600000;
     const last = (Date.parse($('#through').value + 'T23:00:00Z') - START_2024) / 3600000;
@@ -243,6 +300,7 @@ async function start() {
     setRange((Date.UTC(2024, month, 1) - START_2024) / 3600000, (Date.UTC(2024, month + 1, 1) - START_2024) / 3600000 - 1);
   });
   $('#download').addEventListener('click', exportCsv);
+  $('#download-comparison').addEventListener('click', () => downloadText(comparisonCsv(selectedRecords(), state), `pm25-comparison-${isoDate(state.first)}-to-${isoDate(state.last)}.csv`));
   $('#chart').addEventListener('pointermove', inspect);
   $('#chart').addEventListener('pointerleave', () => { if (dragStart === null) { $('#chart-tooltip').hidden = true; plot.cursor.setAttribute('visibility', 'hidden'); } });
   $('#chart').addEventListener('pointerdown', event => { if (event.pointerType !== 'touch') { dragStart = pointerHour(event); $('#chart').setPointerCapture(event.pointerId); } });

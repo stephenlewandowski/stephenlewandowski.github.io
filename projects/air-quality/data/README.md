@@ -54,6 +54,77 @@ Summary percentiles use linear interpolation between sorted valid observations
 (position `(n - 1) × p`). Daily and rolling values are teaching summaries, not an
 official reported AQI. The live chart may be exported to long-format hourly CSV.
 
+## Comparisons with U.S. PM2.5 standards
+
+The application applies the current reference levels to 2024 as a historical,
+hypothetical comparison. The [EPA NAAQS table](https://www.epa.gov/criteria-air-pollutants/naaqs-table)
+and [40 CFR part 50, Appendix N](https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-50/appendix-Appendix%20N%20to%20Part%2050)
+were checked on 19 October 2026. The annual primary level is 9.0 µg/m³ and
+secondary level 15.0 µg/m³, each assessed using three annual means. The 24-hour
+primary/secondary level is 35 µg/m³, assessed using three annual daily 98th
+percentiles. No federal 1-hour or 8-hour PM2.5 standard exists.
+
+The standards table always uses the full local calendar year, independently of
+the chart's date selection. Days use fixed local standard time (Seoul UTC+9,
+Beijing UTC+8, London GMT without daylight saving). Hourly values and daily
+means are truncated to tenths. A normal day requires at least 18 hours. With
+fewer hours, the day is retained only when the sum of reported truncated values
+divided by 24 reaches 35.5; this application uses that conservative zero-filled
+lower-bound daily mean and discloses the sparse-day exception. It creates no
+hourly observations. The 35.5 test is only a validity exception; literal days
+above 35 are counted with a strict `>` comparison.
+
+Each quarterly mean averages its valid daily values. The annual component gives
+the four quarterly means equal weight. A quarter without daily data makes this
+application's annual component unavailable. For continuous daily sampling the
+98th percentile is the `ceil(N/50)`th highest valid day, following Appendix N
+Table 1; this differs from the interpolated percentiles in the exploratory
+summary tables. No final three-year design-value rounding is applied. Displayed
+annual components use two decimals, while computations retain full precision.
+Quarterly daily capture is reported descriptively, without rounding to integers.
+
+One year of foreign monitoring observations does not establish U.S. attainment.
+The application does not certify monitor suitability, reproduce an AQS combined
+site record, apply exceptional-event exclusions or regulatory data-substitution
+tests, or account for prior-standard implementation obligations. Seoul's network
+average is explicitly context only: Appendix N calculations apply at site level.
+
+### Seoul district records
+
+`seoul-stations-2024.json` retains all 25 district records and the network mean
+from the same audited municipal archive, on the original Korean calendar-year
+grid starting `2023-12-31T15:00:00Z`. No observations are changed. It provides the
+genuine first nine local-year hours needed by the standards comparison. The
+network has 8,780 valid local-year hours; individual districts have 95.879–98.736%
+capture and all four seasons at least 75%. For the time series and custom counts,
+the browser maps the selected district onto the existing UTC grid, leaving the
+final nine unavailable hours null. The original ambiguous hour-label convention
+remains a limit on exact day boundaries. Attribution and source/archive hashes
+are embedded in the supplemental JSON.
+
+### Threshold counts and distribution views
+
+These use original precision and a customizable strict `>` concentration
+threshold. Hourly, calendar-day, trailing 8-hour and trailing 24-hour counts
+include their valid denominators; missing values are never assumed below the
+threshold. Percentages divide by valid observations. Consecutive-hour runs stop
+at a missing value. The default threshold is 35 µg/m³ for comparison, not an
+hourly or rolling-window regulatory limit. Decimal accumulation avoids turning
+equal decimal inputs into false exceedances through binary summation error.
+
+Custom counts use the selected UTC period and common UTC-grid source. UTC or
+fixed local standard-time days can be selected. Full-year local counts retain
+boundary days only if they meet the ordinary 18-hour rule; the supplemental
+local Seoul hours and sparse-day exception apply only to the standards table.
+For shorter selections a calendar day must fall wholly inside the selected UTC
+range. Local counts exclude instants outside local 2024. Rolling counts include
+window ends in the selected range and may use earlier source hours; overlapping
+windows are not separate events. Monthly bars show the percentage of valid days
+above the threshold. Descending concentration curves show strict exceedance
+frequency for valid hours or days. Their tables use interpolated percentiles.
+The comparison CSV exports the counts, full-year components, quarterly capture
+denominators, monthly counts, units and calculation bases.
+
 ## Reproduce
 
 From the website repository root, acquisition scripts write intermediate files
@@ -63,7 +134,9 @@ under the ignored `projects/air-quality/data/seoul/` and `data/comparisons/` fol
 python projects/air-quality/research/acquire_seoul_2024.py
 python projects/air-quality/research/acquire_comparisons_2024.py beijing london
 python scripts/build_air_quality_data.py --source-root projects/air-quality
-node --test scripts/test_air_quality.mjs
+python scripts/build_seoul_station_data.py --source-root projects/air-quality
+node --test scripts/test_air_quality.mjs scripts/test_pm25_benchmarks.mjs
+python scripts/check_air_quality_data.py
 python scripts/check_site.py
 ```
 

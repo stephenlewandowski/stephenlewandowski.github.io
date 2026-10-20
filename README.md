@@ -53,8 +53,11 @@ The air-quality page serves retained measured data directly, without an external
 API call from the visitor's browser. Source provenance, seasonal coverage and
 reproduction instructions are in `projects/air-quality/data/README.md`. Seoul is
 required; other records must cover all four seasons. Run
-`node --test scripts/test_air_quality.mjs` when changing its calculations and
+`node --test scripts/test_air_quality.mjs scripts/test_pm25_benchmarks.mjs` when changing its calculations and
 `python scripts/check_air_quality_data.py` when refreshing its datasets.
+The PM2.5 standards panel uses full-year local standard-time statistics; custom
+threshold counts use the selected UTC range. Preserve that distinction and the
+explicit three-year/site-suitability limitations when changing the interface.
 
 ## Content and maintenance
 
