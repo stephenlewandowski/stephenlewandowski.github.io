@@ -87,11 +87,12 @@ h3 { color: var(--navy); font-size: 1.25rem; line-height: 1.3; }
 .featured-project-reverse .project-copy { grid-column: 1; grid-row: 1; }
 .project-mark { min-height: 380px; overflow: hidden; }
 .project-map-preview { display: flex; margin: 0; padding: clamp(.9rem, 2vw, 1.4rem); flex-direction: column; justify-content: center; background: #e9eeec; }
+.project-map-preview > a { display: block; }
 .project-map-preview img { display: block; width: 100%; height: auto; background: var(--white); box-shadow: 0 12px 30px rgba(23, 50, 77, .12); }
 .project-map-preview figcaption { margin: .8rem .15rem 0; color: #395e62; font-size: .875rem; font-weight: 680; line-height: 1.45; }
 .project-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 3vw, 3rem); color: #d6e0e8; }
 .project-type { color: #a9d3cf; }
-.project-copy h3 { margin-bottom: 1.4rem; color: var(--white); font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 500; }
+.project-copy h2, .project-copy h3 { margin-bottom: 1.4rem; color: var(--white); font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 500; }
 .project-copy > p:not(.project-type) { max-width: 580px; font-size: 1.05rem; }
 .project-shortcuts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.25rem; }
 .project-shortcuts a { display: flex; flex-direction: column; gap: .65rem; padding: 1.4rem; text-decoration: none; background: var(--white); border: 1px solid var(--line); }

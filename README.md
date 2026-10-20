@@ -2,6 +2,20 @@
 
 Professional website, post-service public CV, teaching portfolio, and project index for Stephen A. Lewandowski.
 
+## Hourly PM2.5 comparison
+
+[Explore measured PM2.5 across 2024](https://stephenlewandowski.github.io/projects/air-quality/)
+in Seoul, Pyeongtaek, Beijing, London and Los Angeles. The interactive project
+compares hourly measurements, daily and rolling means, and time above a chosen
+concentration. Monthly patterns and concentration distributions show differences
+that a single annual average can hide. Seoul's 25 district monitors can be
+selected individually.
+
+The page also compares one-year statistics with U.S. annual and daily reference
+levels, with the limits of that comparison stated alongside the results. See the
+[project README](projects/air-quality/README.md) for an overview and the
+[data notes](projects/air-quality/data/README.md) for sources and calculation rules.
+
 ## Structure
 
 - `index.html` - professional homepage
@@ -11,11 +25,12 @@ Professional website, post-service public CV, teaching portfolio, and project in
 - `teaching/materials/research-methods-analysis/` - RSCH650 project overview, playable lesson, interactive simulation, synthetic data, SPSS syntax, and readable teaching notes
 - `_layouts/teaching-document.html` - shared GitHub Pages layout for readable Markdown teaching documents
 - `projects/index.html` - current projects and selected earlier GitHub work
-- `projects/air-quality/` - observed hourly PM2.5 comparison for 2024, with Seoul's district network and London/Beijing stations, averaging controls and source data
+- `projects/air-quality/` - measured hourly PM2.5 comparison for 2024, with Seoul's district monitors and stations in Pyeongtaek, Beijing, London and Los Angeles; averaging controls, threshold counts, distribution plots and U.S. reference statistics
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
 - `projects/korean-peninsula-aedes-suitability/index.html` - portfolio overview of the audited Korean Peninsula Aedes suitability publication
 - `projects/western-basin-worldbuilding/index.html` - illustrated Western Basin Atlas overview, with routes into maps, stories, and the scientific track
 - `assets/western-basin-previews.json` - provenance for the Atlas artwork reproduced in this portfolio
+- `assets/air-quality-preview.json` - source configuration and file hashes for the air-quality project preview
 - `assets/styles.css` - shared responsive and print styles
 - `404.html` - missing-page recovery with links to projects, teaching materials, and CV
 - `scripts/check_site.py` - dependency-free source and local-link checks
