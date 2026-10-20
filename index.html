@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#17324d">
-    <meta name="description" content="Stephen A. Lewandowski, PhD, MS, CPH: environmental health, teaching, regional research, interactive maps, and the Western Basin Atlas of imagined futures.">
+    <meta name="description" content="Stephen A. Lewandowski, PhD, MS, CPH: environmental health research, teaching, interactive air-quality comparisons, maps and the Western Basin Atlas.">
     <meta property="og:title" content="Stephen A. Lewandowski, PhD, MS, CPH">
     <meta property="og:description" content="Environmental health research, teaching materials, and public projects by Stephen A. Lewandowski.">
     <meta property="og:type" content="website">
@@ -15,7 +15,7 @@
     <meta name="twitter:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
     <link rel="canonical" href="https://stephenlewandowski.github.io/">
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/assets/styles.css?v=20261020-air-feature">
     <title>Stephen A. Lewandowski | Environmental Health, Teaching &amp; Research</title>
   </head>
   <body class="home-page">
@@ -40,7 +40,7 @@
             <a class="button button-secondary" href="/cv/">Read my CV</a>
             <a class="button button-secondary" href="/teaching/">Explore teaching</a>
           </div>
-          <p class="hero-project-link"><span>Now exploring</span> <a href="#western-basin">Western Basin Atlas — life around Lake Erie in 2075 <span aria-hidden="true">↓</span></a></p>
+          <p class="hero-project-link"><span>Current project</span> <a href="#air-quality">Air quality across five cities <span aria-hidden="true">↓</span></a></p>
         </div>
         <aside class="field-note" aria-label="Professional overview">
           <p class="note-label">Current focus</p>
@@ -55,7 +55,26 @@
       </section>
 
       <section class="section projects" aria-labelledby="project-title">
-        <div class="section-heading"><div><p class="section-kicker">Featured projects</p><h2 id="project-title">Current work</h2></div><p>Explore a possible future around Lake Erie, changes in mosquito climate suitability across the Korean Peninsula, and a reconstruction of my grandfather’s wartime deployment.</p></div>
+        <div class="section-heading"><div><p class="section-kicker">Featured projects</p><h2 id="project-title">Current work</h2></div><p>The air-quality comparison examines how averaging changes what we see in pollution data. Explore that tool and the other projects below.</p></div>
+        <article class="featured-project" id="air-quality">
+          <figure class="project-mark project-map-preview">
+            <a href="/projects/air-quality/" aria-label="Explore the hourly PM₂.₅ comparison">
+              <img src="/assets/air-quality-comparison.svg" alt="Daily PM₂.₅ distributions for Seoul–Jung-gu, Pyeongtaek–Songbuk-dong and Los Angeles–North Main Street in 2024." width="760" height="440" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Daily means from three monitoring locations · 2024.</figcaption>
+          </figure>
+          <div class="project-copy">
+            <p class="project-type">Interactive comparison · Measured air pollution</p>
+            <h3>Hourly PM₂.₅ in 2024</h3>
+            <p>Compare measured PM₂.₅ in Seoul, Pyeongtaek, London, Beijing and Los Angeles. See how daily means, short peaks and seasonal patterns change the comparison.</p>
+            <p>Choose a Seoul district monitor, count hours and days above a concentration, or compare 2024 statistics with U.S. EPA reference levels. Source notes show station coverage and data gaps.</p>
+            <div class="hero-actions">
+              <a class="button button-light" href="/projects/air-quality/">Explore the comparison</a>
+              <a class="button button-light" href="/projects/air-quality/#methods">Data and methods</a>
+              <a class="button button-light" href="https://github.com/stephenlewandowski/stephenlewandowski.github.io/tree/main/projects/air-quality">GitHub source</a>
+            </div>
+          </div>
+        </article>
         <article class="featured-project basin-feature" id="western-basin">
           <figure class="project-mark project-map-preview">
             <a href="https://stephenlewandowski.github.io/western-basin-worldbuilding/maps/" aria-label="Explore the Western Basin maps and regions">

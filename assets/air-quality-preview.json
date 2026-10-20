@@ -1,0 +1,27 @@
+{
+  "asset": "air-quality-comparison.svg",
+  "sourceUrl": "https://stephenlewandowski.github.io/projects/air-quality/",
+  "sourceRevision": "1d7933676849a74ab8f4c713bed363a3de97aafa",
+  "configuration": {
+    "period": [
+      "2024-01-01",
+      "2024-12-31"
+    ],
+    "calendarBasis": "UTC",
+    "distribution": "Calendar-day means",
+    "minimumHoursPerDay": 18,
+    "threshold_ug_m3": 35,
+    "locations": [
+      "Seoul: Jung-gu (111121)",
+      "Pyeongtaek: Songbuk-dong (131344)",
+      "Los Angeles: North Main Street (06-037-1103, POC 3)"
+    ]
+  },
+  "rendering": "Actual SVG curves exported from the application; static title and legend added. Concentrations and paths are unchanged.",
+  "dataFileSha256": {
+    "seoul-stations-2024.json": "44ceddfc0a261836434c398385d761c13a9adf9d72e8bc7bc8eadf81db502b14",
+    "pyeongtaek-2024.json": "74b8389f0071c99ebca98366b1195ffe4cdd0847f231a177cd677fe737c8b7cc",
+    "los-angeles-2024.json": "7e76f44ed9b97763274e1d7e2c434167f7407bc36f7978c04287133a39721d39"
+  },
+  "assetSha256": "3aee8eef692f68c45d66bb786ea01f417b4503e3944072a9dbd123441dac6d3b"
+}
