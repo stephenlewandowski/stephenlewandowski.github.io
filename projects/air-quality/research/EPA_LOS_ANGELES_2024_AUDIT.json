@@ -1,0 +1,767 @@
+{
+  "selectedSite": "06-037-1103",
+  "parameterCode": "88101",
+  "poc": 3,
+  "methodCode": "170",
+  "rows": 8624,
+  "sourceFileHashes": {
+    "hourly_88101_2024.zip": {
+      "url": "https://aqs.epa.gov/aqsweb/airdata/hourly_88101_2024.zip",
+      "sha256": "d5cae2dc878c6b97c2d80e7583bc6c930562012ff129df9db604262fda465c38",
+      "bytes": 66347589,
+      "downloadedAtUtc": "2026-10-20T00:59:26.431970+00:00"
+    },
+    "annual_conc_by_monitor_2024.zip": {
+      "url": "https://aqs.epa.gov/aqsweb/airdata/annual_conc_by_monitor_2024.zip",
+      "sha256": "8af92d1ec8ac9271babc84e3512cb2068e6a8849af438448c4170fd9e99ea5bb",
+      "bytes": 3979542,
+      "downloadedAtUtc": "2026-10-20T00:57:12.314263+00:00"
+    },
+    "aqs_sites.zip": {
+      "url": "https://aqs.epa.gov/aqsweb/airdata/aqs_sites.zip",
+      "sha256": "56b322f6a3d5368d055bce53d0988275c0b27fbcced3d57a6ce8f2e2b539e15a",
+      "bytes": 1018314,
+      "downloadedAtUtc": "2026-10-20T00:57:04.905523+00:00"
+    },
+    "aqs_monitors.zip": {
+      "url": "https://aqs.epa.gov/aqsweb/airdata/aqs_monitors.zip",
+      "sha256": "e8325216d4ec5df462a23c201e6ffa1176b2fce363c9f6b0e3f18ce6ad958525",
+      "bytes": 6919360,
+      "downloadedAtUtc": "2026-10-20T00:57:12.374032+00:00"
+    }
+  },
+  "outputSha256": "b852d63c572599cfff9b6f5b78d9dc16ec6a42a44a424090bc233f5bd8d8a01a",
+  "rawExtractSha256": "c768a4264ee7c4b7d78064ee0926e1132e22bc6f563dc4e83b9793477a0c79bb",
+  "quality": {
+    "expectedHours": 8784,
+    "validHours": 8598,
+    "capturePercent": 97.883,
+    "minimum": 0.0,
+    "maximum": 268.7,
+    "allMonthsPresent": true,
+    "minimumMonthlyCapturePercent": 85.694,
+    "longestMissingRunHours": 99,
+    "eligibleForSeasonalComparison": true,
+    "seasonalEligibilityRule": "At least 75% valid hourly observations annually and in every UTC meteorological season",
+    "exclusionReason": null,
+    "missingTreatment": "null; no interpolation, imputation or averaging of collocated monitors",
+    "negativeReadingsExcluded": 18,
+    "negativeTreatment": "The app consistently excludes negative concentrations. All 18 original negative readings are retained in the source audit; EPA's own statistics may retain negatives and consequently differ.",
+    "nonFiniteReadingsExcluded": 0,
+    "nonHourlyReadingsExcluded": 0,
+    "duplicateHours": 0,
+    "conflictingDuplicateHours": 0,
+    "outOfPeriodReadings": 8,
+    "utcBoundaryMissingHours": 8,
+    "boundaryNote": "The public 2024 file is indexed by local standard year. Its last eight local-year hours occur in UTC 2025; the first eight UTC-2024 hours would require the 2023 local archive and remain null. LocalYear retains all genuine 2024 local timestamps.",
+    "qaStatus": "EPA's 2024 annual summary marks this hourly POC 3 series Certified. The comparison excludes 18 reported negative hourly values under its consistent nonnegative rule and retains informational fireworks/wildfire observations. The site's daily FRM POC 1 is primary; these hourly FEM benchmarks are educational comparisons, not official site design values.",
+    "certificationStatus": "Certified",
+    "certificationEvidence": "annual_conc_by_monitor_2024.zip, parameter88101/POC3/sample-duration1HOUR; not an independent certification audit",
+    "sourceQualityFlagsAvailable": true,
+    "sourceQualifiers": {
+      "(none)": 8575,
+      "IH": 48,
+      "IT": 1
+    },
+    "eventTreatment": "Retain 48 IH fireworks hours and one IT U.S. wildfire hour: EPA classifies both codes as informational. No request-exclusion, null-data or QA qualifier appears in the selected hourly records. The annual hourly summary reports Event Type 'No Events'; this denotes no exclusion-event partition, not an absence of informational source flags. No EPA event-exclusion claim is made.",
+    "regulatoryInterpretation": "The site's daily FRM POC 1 is its NAAQS primary monitor. The current South Coast AQMD survey permits use of hourly POC 3 for annual comparisons when manual observations are missing. The current July 2026 comparability appendix requests exclusion of POC 3's 2025 data after a 2023–2025 bias assessment; it does not establish an exclusion of this 2024 series. This extract neither combines collocated monitors nor reproduces official site design values.",
+    "sourcePrecisionNote": "Original reported decimal concentrations retained; EPA truncation is applied only by the separate benchmark calculation.",
+    "sampleDuration": "1 HOUR",
+    "sampleDurationEvidence": "EPA hourly-file specification and matching annual 1 HOUR monitor summary",
+    "spatialScope": "One monitoring location; not a citywide or population-weighted exposure estimate",
+    "selectionReason": "Single POC 3, parameter88101, FEMmethod170; high hourly capture across all four seasons",
+    "license": "Public domain US EPA AQS monitoring data",
+    "licenseDocumentation": "https://www.epa.gov/outdoor-air-quality-data/do-i-need-request-permission-use-monitoring-data-and-graphics-airdata"
+  },
+  "monthlyCapture": [
+    {
+      "month": 1,
+      "expectedHours": 744,
+      "validHours": 731,
+      "capturePercent": 98.253
+    },
+    {
+      "month": 2,
+      "expectedHours": 696,
+      "validHours": 691,
+      "capturePercent": 99.282
+    },
+    {
+      "month": 3,
+      "expectedHours": 744,
+      "validHours": 729,
+      "capturePercent": 97.984
+    },
+    {
+      "month": 4,
+      "expectedHours": 720,
+      "validHours": 617,
+      "capturePercent": 85.694
+    },
+    {
+      "month": 5,
+      "expectedHours": 744,
+      "validHours": 722,
+      "capturePercent": 97.043
+    },
+    {
+      "month": 6,
+      "expectedHours": 720,
+      "validHours": 717,
+      "capturePercent": 99.583
+    },
+    {
+      "month": 7,
+      "expectedHours": 744,
+      "validHours": 741,
+      "capturePercent": 99.597
+    },
+    {
+      "month": 8,
+      "expectedHours": 744,
+      "validHours": 741,
+      "capturePercent": 99.597
+    },
+    {
+      "month": 9,
+      "expectedHours": 720,
+      "validHours": 713,
+      "capturePercent": 99.028
+    },
+    {
+      "month": 10,
+      "expectedHours": 744,
+      "validHours": 741,
+      "capturePercent": 99.597
+    },
+    {
+      "month": 11,
+      "expectedHours": 720,
+      "validHours": 715,
+      "capturePercent": 99.306
+    },
+    {
+      "month": 12,
+      "expectedHours": 744,
+      "validHours": 740,
+      "capturePercent": 99.462
+    }
+  ],
+  "seasonalCapture": {
+    "Winter (Jan–Feb, Dec)": {
+      "expectedHours": 2184,
+      "validHours": 2162,
+      "capturePercent": 98.993
+    },
+    "Spring (Mar–May)": {
+      "expectedHours": 2208,
+      "validHours": 2068,
+      "capturePercent": 93.659
+    },
+    "Summer (Jun–Aug)": {
+      "expectedHours": 2208,
+      "validHours": 2199,
+      "capturePercent": 99.592
+    },
+    "Autumn (Sep–Nov)": {
+      "expectedHours": 2184,
+      "validHours": 2169,
+      "capturePercent": 99.313
+    }
+  },
+  "localYearValidHours": 8606,
+  "flaggedObservations": [
+    {
+      "utc": "2024-07-04T08:00:00Z",
+      "local": "2024-07-04T00:00",
+      "value": 10.5,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T09:00:00Z",
+      "local": "2024-07-04T01:00",
+      "value": 10.5,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T10:00:00Z",
+      "local": "2024-07-04T02:00",
+      "value": 10.7,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T11:00:00Z",
+      "local": "2024-07-04T03:00",
+      "value": 8.3,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T12:00:00Z",
+      "local": "2024-07-04T04:00",
+      "value": 10.0,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T13:00:00Z",
+      "local": "2024-07-04T05:00",
+      "value": 13.3,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T14:00:00Z",
+      "local": "2024-07-04T06:00",
+      "value": 11.2,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T15:00:00Z",
+      "local": "2024-07-04T07:00",
+      "value": 14.6,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T16:00:00Z",
+      "local": "2024-07-04T08:00",
+      "value": 11.9,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T17:00:00Z",
+      "local": "2024-07-04T09:00",
+      "value": 17.0,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T18:00:00Z",
+      "local": "2024-07-04T10:00",
+      "value": 18.8,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T19:00:00Z",
+      "local": "2024-07-04T11:00",
+      "value": 21.2,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T20:00:00Z",
+      "local": "2024-07-04T12:00",
+      "value": 16.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T21:00:00Z",
+      "local": "2024-07-04T13:00",
+      "value": 15.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T22:00:00Z",
+      "local": "2024-07-04T14:00",
+      "value": 14.6,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-04T23:00:00Z",
+      "local": "2024-07-04T15:00",
+      "value": 13.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T00:00:00Z",
+      "local": "2024-07-04T16:00",
+      "value": 11.9,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T01:00:00Z",
+      "local": "2024-07-04T17:00",
+      "value": 14.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T02:00:00Z",
+      "local": "2024-07-04T18:00",
+      "value": 13.6,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T03:00:00Z",
+      "local": "2024-07-04T19:00",
+      "value": 14.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T04:00:00Z",
+      "local": "2024-07-04T20:00",
+      "value": 109.7,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T05:00:00Z",
+      "local": "2024-07-04T21:00",
+      "value": 239.5,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T06:00:00Z",
+      "local": "2024-07-04T22:00",
+      "value": 268.7,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T07:00:00Z",
+      "local": "2024-07-04T23:00",
+      "value": 171.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T08:00:00Z",
+      "local": "2024-07-05T00:00",
+      "value": 109.2,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T09:00:00Z",
+      "local": "2024-07-05T01:00",
+      "value": 203.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T10:00:00Z",
+      "local": "2024-07-05T02:00",
+      "value": 130.7,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T11:00:00Z",
+      "local": "2024-07-05T03:00",
+      "value": 150.6,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T12:00:00Z",
+      "local": "2024-07-05T04:00",
+      "value": 149.8,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T13:00:00Z",
+      "local": "2024-07-05T05:00",
+      "value": 104.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T14:00:00Z",
+      "local": "2024-07-05T06:00",
+      "value": 81.4,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T15:00:00Z",
+      "local": "2024-07-05T07:00",
+      "value": 77.2,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T16:00:00Z",
+      "local": "2024-07-05T08:00",
+      "value": 58.7,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T17:00:00Z",
+      "local": "2024-07-05T09:00",
+      "value": 64.9,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T18:00:00Z",
+      "local": "2024-07-05T10:00",
+      "value": 58.7,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T19:00:00Z",
+      "local": "2024-07-05T11:00",
+      "value": 47.4,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T20:00:00Z",
+      "local": "2024-07-05T12:00",
+      "value": 33.7,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T21:00:00Z",
+      "local": "2024-07-05T13:00",
+      "value": 21.7,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T22:00:00Z",
+      "local": "2024-07-05T14:00",
+      "value": 25.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-05T23:00:00Z",
+      "local": "2024-07-05T15:00",
+      "value": 17.3,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-06T00:00:00Z",
+      "local": "2024-07-05T16:00",
+      "value": 28.1,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-06T01:00:00Z",
+      "local": "2024-07-05T17:00",
+      "value": 26.6,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-06T02:00:00Z",
+      "local": "2024-07-05T18:00",
+      "value": 19.3,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-06T03:00:00Z",
+      "local": "2024-07-05T19:00",
+      "value": 20.7,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-06T04:00:00Z",
+      "local": "2024-07-05T20:00",
+      "value": 19.5,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-06T05:00:00Z",
+      "local": "2024-07-05T21:00",
+      "value": 19.9,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-06T06:00:00Z",
+      "local": "2024-07-05T22:00",
+      "value": 13.6,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-06T07:00:00Z",
+      "local": "2024-07-05T23:00",
+      "value": 15.6,
+      "qualifier": "IH",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-07-19T17:00:00Z",
+      "local": "2024-07-19T09:00",
+      "value": 147.9,
+      "qualifier": "IT",
+      "methodCode": "170"
+    }
+  ],
+  "excludedNegativeObservations": [
+    {
+      "utc": "2024-01-22T21:00:00Z",
+      "local": "2024-01-22T13:00",
+      "value": -1.6,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-02-19T18:00:00Z",
+      "local": "2024-02-19T10:00",
+      "value": -1.3,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-02-19T19:00:00Z",
+      "local": "2024-02-19T11:00",
+      "value": -0.8,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-03-02T03:00:00Z",
+      "local": "2024-03-01T19:00",
+      "value": -0.6,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-03-02T14:00:00Z",
+      "local": "2024-03-02T06:00",
+      "value": -0.6,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-03-02T19:00:00Z",
+      "local": "2024-03-02T11:00",
+      "value": -0.1,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-03-23T16:00:00Z",
+      "local": "2024-03-23T08:00",
+      "value": -0.1,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-03-23T17:00:00Z",
+      "local": "2024-03-23T09:00",
+      "value": -2.5,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-03-25T08:00:00Z",
+      "local": "2024-03-25T00:00",
+      "value": -0.1,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-03-25T09:00:00Z",
+      "local": "2024-03-25T01:00",
+      "value": -0.8,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-03-30T16:00:00Z",
+      "local": "2024-03-30T08:00",
+      "value": -0.6,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-03-31T19:00:00Z",
+      "local": "2024-03-31T11:00",
+      "value": -0.1,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-04-01T02:00:00Z",
+      "local": "2024-03-31T18:00",
+      "value": -0.1,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-05-06T02:00:00Z",
+      "local": "2024-05-05T18:00",
+      "value": -3.8,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-05-06T03:00:00Z",
+      "local": "2024-05-05T19:00",
+      "value": -3.5,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-05-06T04:00:00Z",
+      "local": "2024-05-05T20:00",
+      "value": -1.8,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-05-06T05:00:00Z",
+      "local": "2024-05-05T21:00",
+      "value": -0.3,
+      "qualifier": "",
+      "methodCode": "170"
+    },
+    {
+      "utc": "2024-05-06T06:00:00Z",
+      "local": "2024-05-05T22:00",
+      "value": -2.1,
+      "qualifier": "",
+      "methodCode": "170"
+    }
+  ],
+  "annualHourlySummary": {
+    "State Code": "06",
+    "County Code": "037",
+    "Site Num": "1103",
+    "Parameter Code": "88101",
+    "POC": "3",
+    "Latitude": "34.06659",
+    "Longitude": "-118.22688",
+    "Datum": "WGS84",
+    "Parameter Name": "PM2.5 - Local Conditions",
+    "Sample Duration": "1 HOUR",
+    "Pollutant Standard": "",
+    "Metric Used": "Observed Values",
+    "Method Name": "Met One BAM-1020 Mass Monitor w/VSCC - Beta Attenuation",
+    "Year": "2024",
+    "Units of Measure": "Micrograms/cubic meter (LC)",
+    "Event Type": "No Events",
+    "Observation Count": "8624",
+    "Observation Percent": "98",
+    "Completeness Indicator": "Y",
+    "Valid Day Count": "363",
+    "Required Day Count": "366",
+    "Exceptional Data Count": "0",
+    "Null Data Count": "160",
+    "Primary Exceedance Count": "",
+    "Secondary Exceedance Count": "",
+    "Certification Indicator": "Certified",
+    "Num Obs Below MDL": "0",
+    "Arithmetic Mean": "13.512454",
+    "Arithmetic Standard Dev": "9.512112",
+    "1st Max Value": "268.7",
+    "1st Max DateTime": "2024-07-04 22:00",
+    "2nd Max Value": "239.5",
+    "2nd Max DateTime": "2024-07-04 21:00",
+    "3rd Max Value": "203.1",
+    "3rd Max DateTime": "2024-07-05 01:00",
+    "4th Max Value": "171.1",
+    "4th Max DateTime": "2024-07-04 23:00",
+    "1st Max Non Overlapping Value": "",
+    "1st NO Max DateTime": "",
+    "2nd Max Non Overlapping Value": "",
+    "2nd NO Max DateTime": "",
+    "99th Percentile": "42.5",
+    "98th Percentile": "34.9",
+    "95th Percentile": "27.8",
+    "90th Percentile": "22.7",
+    "75th Percentile": "16.8",
+    "50th Percentile": "11.9",
+    "10th Percentile": "5.5",
+    "Local Site Name": "Los Angeles-North Main Street",
+    "Address": "1630 N MAIN ST, LOS ANGELES",
+    "State Name": "California",
+    "County Name": "Los Angeles",
+    "City Name": "Los Angeles",
+    "CBSA Name": "Los Angeles-Long Beach-Anaheim, CA",
+    "Date of Last Change": "2026-06-11"
+  },
+  "sourceFields": [
+    "State Code",
+    "County Code",
+    "Site Num",
+    "Parameter Code",
+    "POC",
+    "Latitude",
+    "Longitude",
+    "Datum",
+    "Parameter Name",
+    "Date Local",
+    "Time Local",
+    "Date GMT",
+    "Time GMT",
+    "Sample Measurement",
+    "Units of Measure",
+    "MDL",
+    "Uncertainty",
+    "Qualifier",
+    "Method Type",
+    "Method Code",
+    "Method Name",
+    "State Name",
+    "County Name",
+    "Date of Last Change"
+  ],
+  "documentation": {
+    "fileFormats": "https://aqs.epa.gov/aqsweb/airdata/FileFormats.html",
+    "qualifiers": "https://aqs.epa.gov/aqsweb/documents/codetables/qualifiers.html",
+    "methodAdvisory": "https://aqs.epa.gov/aqsweb/airdata/Data_Advisory_PM25_88101_Pregen_Files.pdf",
+    "siteSurvey": "https://www.aqmd.gov/docs/default-source/clean-air-plans/air-quality-monitoring-network-plan/aaqmnp-losangeles.pdf?sfvrsn=16",
+    "comparability": "https://www.aqmd.gov/docs/default-source/clean-air-plans/air-quality-monitoring-network-plan/aaqmnp-appendix-cA4ED7731453B.pdf",
+    "reuse": "https://www.epa.gov/outdoor-air-quality-data/do-i-need-request-permission-use-monitoring-data-and-graphics-airdata"
+  },
+  "independentDecimalAudit": {
+    "validLocalDays": 360,
+    "annualQuarterWeightedMean": "13.46881418453669093055282314",
+    "dailyP98Rank": 8,
+    "dailyP98": "31.4",
+    "localDailyMeansAbove35": 5,
+    "localRawHourlyMean": "13.54313269811759237741110853",
+    "above35LocalDates": [
+      {
+        "date": "2024-07-04",
+        "value": "44.1"
+      },
+      {
+        "date": "2024-07-05",
+        "value": "62.3"
+      },
+      {
+        "date": "2024-12-04",
+        "value": "37.7"
+      },
+      {
+        "date": "2024-12-05",
+        "value": "45.1"
+      },
+      {
+        "date": "2024-12-23",
+        "value": "37.9"
+      }
+    ]
+  }
+}

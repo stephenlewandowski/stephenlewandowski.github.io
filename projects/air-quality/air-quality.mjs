@@ -1,9 +1,9 @@
 import {HOURS_2024, START_2024, aggregate, summarize, monthlySummary} from './analysis.mjs';
-import {renderComparisons, comparisonCsv} from './comparisons.mjs';
+import {renderComparisons, comparisonCsv} from './comparisons.mjs?v=20261020-cities';
 
 const $ = selector => document.querySelector(selector);
 const NS = 'http://www.w3.org/2000/svg';
-const colors = {seoul: '#16766a', london: '#3463ad', beijing: '#a94f30'};
+const colors = {seoul: '#16766a', pyeongtaek: '#7c4897', london: '#3463ad', beijing: '#a94f30', 'los-angeles': '#87701b'};
 const number = value => value === null || !Number.isFinite(value) ? '—' : value.toLocaleString('en', {maximumFractionDigits: 1, minimumFractionDigits: 1});
 const dateLabel = (hour, options = {}) => new Intl.DateTimeFormat('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC', ...options}).format(START_2024 + hour * 3600000);
 const isoDate = hour => new Date(START_2024 + hour * 3600000).toISOString().slice(0, 10);
@@ -224,11 +224,11 @@ function sourceCards(records, manifest) {
 }
 
 async function start() {
-  const response = await fetch('data/manifest.json');
+  const response = await fetch('data/manifest.json?v=20261020-cities', {cache: 'no-cache'});
   if (!response.ok) throw new Error('The data manifest could not be loaded.');
   const manifest = await response.json();
   state.records = await Promise.all(manifest.records.map(async item => {
-    const result = await fetch(item.file);
+    const result = await fetch(`${item.file}?v=${item.sha256}`);
     if (!result.ok) throw new Error(`The ${item.id} record could not be loaded.`);
     return validateRecord(await result.json());
   }));
@@ -264,8 +264,8 @@ async function start() {
     sourceCards(state.records, manifest);
     render();
   });
-  for (const [index, record] of state.records.entries()) {
-    if (record.id === 'seoul' || index === 1) state.selected.add(record.id);
+  for (const record of state.records) {
+    if (record.id === 'seoul' || record.id === 'london') state.selected.add(record.id);
     const label = element('label', null, {class: 'air-city'});
     const input = element('input', null, {type: 'checkbox', value: record.id});
     input.checked = state.selected.has(record.id);
@@ -313,14 +313,15 @@ async function start() {
     else plot.brush.setAttribute('width', 0);
   });
   $('#chart').addEventListener('pointercancel', () => { dragStart = null; plot.brush.setAttribute('width', 0); });
-  $('#load-status').textContent = `${state.records.length} archived records loaded. Seoul is selected.`;
   $('#explorer').hidden = false;
   let resizeTimer;
   window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 100); });
   render();
+  $('#load-status').hidden = true;
 }
 
 start().catch(error => {
+  $('#load-status').hidden = false;
   $('#load-status').textContent = `${error.message} Please reload the page or use the data downloads below.`;
   $('#load-status').className = 'air-error';
 });

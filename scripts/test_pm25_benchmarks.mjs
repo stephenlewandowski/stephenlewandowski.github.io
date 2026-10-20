@@ -228,3 +228,25 @@ test('empty selections and invalid options do not manufacture data', () => {
   assert.throws(() => thresholdCounts(record(), 10, {basis: 'daylight-saving'}), /basis/);
   assert.throws(() => localDays(record(), {precision: 'rounded'}), /precision/);
 });
+
+test('an explicit U.S. standard-time offset keeps summer days fixed and matches count denominators', () => {
+  const nyc = record(Array(HOURS_2024).fill(20), {id: 'nyc', timeZone: 'America/New_York', standardOffsetMinutes: -300});
+  const days = localDays(nyc);
+  assert.equal(days[0].firstHour, 5);
+  assert.equal(days.find(day => day.date === '2024-07-01').firstHour % 24, 5);
+  assert.equal(days.at(-1).validHours, 19);
+  const counts = thresholdCounts(nyc, 10, {basis: 'local-standard'});
+  assert.equal(counts.hourly.valid, HOURS_2024 - 5);
+  assert.equal(counts.daily.valid, 366);
+  assert.equal(counts.monthly.at(-1).valid, 31 * 24 - 5);
+  assert.equal(counts.dailyValues.at(-1).date, '2024-12-31');
+});
+
+test('a new Korean city uses explicit time metadata and preserves missing boundary hours', () => {
+  const city = record(Array(HOURS_2024).fill(20), {id: 'pyeongtaek', timeZone: 'Asia/Seoul', standardOffsetMinutes: 540});
+  const days = localDays(city);
+  assert.equal(days[0].firstHour, -9);
+  assert.equal(days[0].valid, false);
+  assert.equal(days.find(day => day.date === '2024-07-01').firstHour % 24, 15);
+  assert.equal(thresholdCounts(city, 10, {basis: 'local-standard'}).hourly.valid, HOURS_2024 - 9);
+});

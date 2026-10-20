@@ -11,7 +11,8 @@ const OFFSETS = Object.freeze({seoul: 540, beijing: 480, london: 0,
 const validConcentration = value => Number.isFinite(value) && value >= 0;
 const mean = values => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
 
-function standardOffset(record) {
+// Fixed minutes east of UTC, independent of daylight saving or the visitor's zone.
+export function standardOffset(record) {
   const offset = record.standardOffsetMinutes ?? OFFSETS[record.id] ?? OFFSETS[record.timeZone]
     ?? record.timeConvention?.source_utc_offset_minutes;
   if (!Number.isFinite(offset) || !Number.isInteger(offset / 60)) {

@@ -8,6 +8,7 @@ import argparse
 from datetime import datetime, timedelta, timezone
 import hashlib
 import json
+import math
 from pathlib import Path
 import shutil
 
@@ -25,7 +26,7 @@ def capture(values):
 def audit(record):
     values = record['values']
     assert len(values) == 8784 and record['year'] == 2024 and record['intervalMinutes'] == 60
-    assert all(value is None or isinstance(value, (float, int)) and value >= 0 for value in values)
+    assert all(value is None or type(value) in (float, int) and math.isfinite(value) and value >= 0 for value in values)
     months = [(START + timedelta(hours=hour)).month for hour in range(8784)]
     seasons = {name: round(capture([value for value, month in zip(values, months) if month in included]), 3)
                for name, included in SEASONS.items()}
@@ -42,7 +43,7 @@ if __name__ == '__main__':
     manifest = {'schemaVersion': 1, 'year': 2024, 'pollutant': 'PM2.5',
                 'selectionRule': 'At least 75% of UTC hours in 2024 and in each meteorological season; Seoul required.',
                 'records': [], 'excluded': []}
-    for city in ['seoul', 'london', 'beijing', 'delhi']:
+    for city in ['seoul', 'pyeongtaek', 'london', 'beijing', 'los-angeles', 'delhi']:
         folder = 'seoul' if city == 'seoul' else 'comparisons'
         source = args.source_root / 'data' / folder / f'{city}-2024.json'
         if not source.exists():
@@ -53,17 +54,20 @@ if __name__ == '__main__':
         if not eligibility['included']:
             manifest['excluded'].append({'id': city, 'reason': 'Insufficient capture in at least one season.', **eligibility})
             continue
+        assert record['startUtc'] == '2024-01-01T00:00:00Z', f'{city}: retained series must use the common UTC hour grid'
         name = f'{city}-2024.json'
-        raw = source.read_bytes()
+        # Match GitHub's retained bytes on Windows and Unix, so manifest hashes
+        # remain valid after Git checkout and on the published static site.
+        raw = source.read_bytes().replace(b'\r\n', b'\n')
         (DESTINATION / name).write_bytes(raw)
         manifest['records'].append({'id': city, 'city': record['city'], 'file': f'data/{name}',
                                     'sha256': hashlib.sha256(raw).hexdigest(), **eligibility})
     assert any(record['id'] == 'seoul' for record in manifest['records']), 'Seoul must be present.'
-    (DESTINATION / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    (DESTINATION / 'manifest.json').write_bytes((json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
     research = ROOT / 'projects' / 'air-quality' / 'research'
     research.mkdir(exist_ok=True)
-    for name in ['acquire_seoul_2024.py', 'acquire_comparisons_2024.py']:
+    for name in ['acquire_seoul_2024.py', 'acquire_comparisons_2024.py', 'acquire_pyeongtaek_2024.py', 'acquire_us_city_2024.py']:
         source_script = args.source_root / 'research' / name
-        if source_script.resolve() != (research / name).resolve():
+        if source_script.exists() and source_script.resolve() != (research / name).resolve():
             shutil.copyfile(source_script, research / name)
     print(json.dumps(manifest, ensure_ascii=True, indent=2))
