@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "year": 2024,
+  "startUtc": "2024-01-01T00:00:00Z",
+  "intervalMinutes": 60,
+  "hours": 8784,
+  "dataset": "ERA5 reanalysis accessed via Open-Meteo Historical Weather API",
+  "dataKind": "Gridded reanalysis estimates; not city monitoring-station observations.",
+  "spatialSelection": "Nearest native ERA5 grid point; elevation adjustment disabled (elevation=nan).",
+  "calendar": "Full UTC year. Fixed local standard-time offsets are available for aggregation; daylight saving time is not applied.",
+  "precision": "Stored values rounded to 0.1 C, 0.1 percentage point or 0.1 input unit; app summaries and counts use these retained hourly values.",
+  "software": {
+    "numpy": "2.3.5",
+    "thermofeel": "2.3.0",
+    "earthkit-meteo": "1.2.1"
+  },
+  "validation": {
+    "passed": true,
+    "utciExampleCelsius": 24.61212626,
+    "utciUpstreamKelvin": 306.59248679,
+    "wbgtUpstreamKelvin": 298.43408335,
+    "source": "https://github.com/ecmwf/thermofeel/tree/2.3.0/tests",
+    "utciExampleSource": "https://pythermalcomfort.readthedocs.io/en/stable/_modules/pythermalcomfort/models/utci.html"
+  },
+  "metrics": {
+    "temperature": {
+      "label": "Air temperature",
+      "unit": "°C",
+      "method": "ERA5 2 m air temperature."
+    },
+    "humidity": {
+      "label": "Relative humidity",
+      "unit": "%",
+      "method": "Open-Meteo relative humidity at 2 m from ERA5."
+    },
+    "utci": {
+      "label": "UTCI · no added radiant heat",
+      "unit": "°C",
+      "method": "Bröde sixth-order polynomial through thermofeel. Mean radiant temperature equals air temperature: a no-added-radiant-heat scenario, not observed urban shade or full-sun UTCI. Humidity converted to vapour pressure with thermofeel Hardy saturation pressure.",
+      "wind": "ERA5 10 m wind; values below 0.5 m/s raised to 0.5 m/s and counted in diagnostics.",
+      "domain": "Air -50 to 50 C; 10 m wind no more than 17 m/s; vapour pressure no more than 50 hPa; RH 0 to 100%. Out-of-domain values are null.",
+      "heatThresholdsCelsius": [
+        26,
+        32,
+        38,
+        46
+      ]
+    },
+    "wbgt": {
+      "label": "WBGT · exposed outdoors",
+      "unit": "°C",
+      "method": "Physically based Liljegren energy-balance model through thermofeel.calculate_wbgt_liljegren. WBGT = 0.7 natural wet-bulb + 0.2 globe + 0.1 air temperature. Solar radiation uses Open-Meteo instantaneous-time estimates; cosine of solar zenith uses earthkit-meteo at the returned grid point and UTC timestamp.",
+      "wind": "KNMI/Liljegren stability-dependent 10 m to 2 m conversion; 10 m floor 0.62 m/s, internal 2 m floor 0.13 m/s.",
+      "radiation": "Direct-horizontal/global-horizontal fraction; package caps fraction at 0.9 and removes direct beam at zenith above 89.5 degrees. Default Liljegren clear-sky atmospheric emissivity, surface temperature equal to air temperature, surface albedo 0.45 and emissivity 0.999 retained. No measured street-scale radiative environment.",
+      "propertyFitFilter": "Conservative application filter, not a published whole-model validity range: omit hours when the converged mean of air and natural-wet-bulb temperature is outside 283 to 313 K, the documented fit range of the latent-heat property helper. Each WBGT scenario is filtered separately. Summary averages are conditional on retained hours; omitted hours are not zero or known below threshold.",
+      "interpretation": "Historical screening estimate, not a measured workplace WBGT, work/rest prescription or compliance determination. Interpretation depends on workload, clothing and acclimatization. WBGT is not a cold-stress measure."
+    },
+    "wbgtShade": {
+      "label": "WBGT · no shortwave radiation",
+      "unit": "°C",
+      "method": "Same Liljegren sensor energy-balance solvers and ambient wind profile, with all shortwave radiation at the sensors removed. No-solar-load WBGT = 0.7 natural wet-bulb + 0.3 globe temperature. Longwave model assumptions remain; this does not reconstruct actual shade at a site. The same 283 to 313 K property-fit application filter is applied using this scenario's natural-wet-bulb temperature."
+    }
+  },
+  "references": [
+    {
+      "title": "Open-Meteo Historical Weather API",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api"
+    },
+    {
+      "title": "Open-Meteo attribution and licence",
+      "url": "https://open-meteo.com/en/licence"
+    },
+    {
+      "title": "thermofeel UTCI and WBGT implementation",
+      "url": "https://github.com/ecmwf/thermofeel/blob/2.3.0/thermofeel/thermofeel.py"
+    },
+    {
+      "title": "Bröde et al. UTCI operational procedure",
+      "url": "https://doi.org/10.1007/s00484-011-0454-1"
+    },
+    {
+      "title": "Liljegren et al. WBGT model",
+      "url": "https://doi.org/10.1080/15459620802310770"
+    },
+    {
+      "title": "pythermalcomfort WBGT solar/no-solar weighting",
+      "url": "https://pythermalcomfort.readthedocs.io/en/stable/_modules/pythermalcomfort/models/wbgt.html"
+    },
+    {
+      "title": "earthkit-meteo solar geometry",
+      "url": "https://earthkit-meteo.readthedocs.io/en/stable/autoapi/earthkit/meteo/solar/index.html"
+    },
+    {
+      "title": "NWS comparison of WBGT and heat index",
+      "url": "https://www.weather.gov/sgf/wbgt"
+    }
+  ],
+  "records": [
+    {
+      "id": "seoul",
+      "city": "Seoul",
+      "file": "data/seoul-2024.json",
+      "sha256": "0b5703f3099ee1358b5e48df343563a92fe57b84e51ee5faadb64efde5f23d57",
+      "sourceSha256": "254ed1c242952b789dcb40e423f08f33fd313b5d1d38525aa909277ba7a56ba2",
+      "hours": 8784,
+      "gridLatitude": 37.5,
+      "gridLongitude": 127.0,
+      "utcOffsetHours": 9,
+      "diagnostics": {
+        "utciWindFloorHours": 188,
+        "utciOutsideDomainHours": 0,
+        "utciMissingHours": 0,
+        "wbgtWindFloorHours": 324,
+        "wbgtDirectFractionCappedHours": 0,
+        "wbgtNonconvergentHours": 0,
+        "wbgtShadeNonconvergentHours": 0,
+        "wbgtOutsidePropertyFitHours": 3426,
+        "wbgtShadeOutsidePropertyFitHours": 3492,
+        "wbgtMissingHours": 3426,
+        "wbgtShadeMissingHours": 3492,
+        "subfreezingAirHours": 1138
+      }
+    },
+    {
+      "id": "pyeongtaek",
+      "city": "Pyeongtaek",
+      "file": "data/pyeongtaek-2024.json",
+      "sha256": "0095d8272f2c201f519acc2e59bb844e151a86fd23ffd7c6ab964802b0afd27f",
+      "sourceSha256": "54d2ecf8ff1c47b01f3adab5c3caafb31e8b91846c21266f6c66dad0ec4cfb58",
+      "hours": 8784,
+      "gridLatitude": 37.0,
+      "gridLongitude": 127.0,
+      "utcOffsetHours": 9,
+      "diagnostics": {
+        "utciWindFloorHours": 202,
+        "utciOutsideDomainHours": 0,
+        "utciMissingHours": 0,
+        "wbgtWindFloorHours": 331,
+        "wbgtDirectFractionCappedHours": 0,
+        "wbgtNonconvergentHours": 0,
+        "wbgtShadeNonconvergentHours": 0,
+        "wbgtOutsidePropertyFitHours": 3305,
+        "wbgtShadeOutsidePropertyFitHours": 3390,
+        "wbgtMissingHours": 3305,
+        "wbgtShadeMissingHours": 3390,
+        "subfreezingAirHours": 860
+      }
+    },
+    {
+      "id": "london",
+      "city": "London",
+      "file": "data/london-2024.json",
+      "sha256": "a42ee8e5bee4d7cde72d65cbaca64c24ffb3a4a568b9c5f66ba1c7ad5642d0ee",
+      "sourceSha256": "bb90ed8b4900d0b0d0ded8de766b4529998f25ba3fdf0cc22fd67408c05018a4",
+      "hours": 8784,
+      "gridLatitude": 51.5,
+      "gridLongitude": -0.25,
+      "utcOffsetHours": 0,
+      "diagnostics": {
+        "utciWindFloorHours": 51,
+        "utciOutsideDomainHours": 0,
+        "utciMissingHours": 0,
+        "wbgtWindFloorHours": 86,
+        "wbgtDirectFractionCappedHours": 0,
+        "wbgtNonconvergentHours": 0,
+        "wbgtShadeNonconvergentHours": 0,
+        "wbgtOutsidePropertyFitHours": 3707,
+        "wbgtShadeOutsidePropertyFitHours": 3844,
+        "wbgtMissingHours": 3707,
+        "wbgtShadeMissingHours": 3844,
+        "subfreezingAirHours": 124
+      }
+    },
+    {
+      "id": "beijing",
+      "city": "Beijing",
+      "file": "data/beijing-2024.json",
+      "sha256": "262039802696a8f6cf8f6dc713e2ad15251c8e5c74684f014deda6315218d2da",
+      "sourceSha256": "4dcc08e76facccf69903ddffa245353ed507ed6c2663043e7e4bfaf0bb6b926c",
+      "hours": 8784,
+      "gridLatitude": 40.0,
+      "gridLongitude": 116.5,
+      "utcOffsetHours": 8,
+      "diagnostics": {
+        "utciWindFloorHours": 378,
+        "utciOutsideDomainHours": 0,
+        "utciMissingHours": 0,
+        "wbgtWindFloorHours": 594,
+        "wbgtDirectFractionCappedHours": 0,
+        "wbgtNonconvergentHours": 0,
+        "wbgtShadeNonconvergentHours": 0,
+        "wbgtOutsidePropertyFitHours": 3672,
+        "wbgtShadeOutsidePropertyFitHours": 3787,
+        "wbgtMissingHours": 3672,
+        "wbgtShadeMissingHours": 3787,
+        "subfreezingAirHours": 1696
+      }
+    },
+    {
+      "id": "los-angeles",
+      "city": "Los Angeles",
+      "file": "data/los-angeles-2024.json",
+      "sha256": "01a7cf4268b1e7fa16d16fed7e5a633d7eeb58ccd63f04462547271152432f55",
+      "sourceSha256": "dec8560a5567e9bd424e332de08619ca3ef4b405db53a8c77adeba9ded94ff75",
+      "hours": 8784,
+      "gridLatitude": 34.0,
+      "gridLongitude": -118.25,
+      "utcOffsetHours": -8,
+      "diagnostics": {
+        "utciWindFloorHours": 581,
+        "utciOutsideDomainHours": 0,
+        "utciMissingHours": 0,
+        "wbgtWindFloorHours": 928,
+        "wbgtDirectFractionCappedHours": 0,
+        "wbgtNonconvergentHours": 0,
+        "wbgtShadeNonconvergentHours": 0,
+        "wbgtOutsidePropertyFitHours": 1172,
+        "wbgtShadeOutsidePropertyFitHours": 1226,
+        "wbgtMissingHours": 1172,
+        "wbgtShadeMissingHours": 1226,
+        "subfreezingAirHours": 0
+      }
+    }
+  ]
+}

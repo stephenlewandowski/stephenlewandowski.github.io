@@ -4,6 +4,7 @@
     <main id="main" class="document-page"><header class="page-intro"><p class="eyebrow">Projects</p><h1>Projects</h1><p class="lead">My projects include interactive air-quality comparisons, environmental research, historical mapping and worldbuilding. Explore the tools and data, or read how each project was developed.</p></header>
       <nav class="project-index" aria-label="Project sections">
         <a href="#air-quality">Air quality</a>
+        <a href="#heat-stress">Heat stress</a>
         <a href="#western-basin">Western Basin Atlas</a>
         <a href="#current">USS Terror</a>
         <a href="#aedes-suitability">Aedes suitability</a>
@@ -34,6 +35,10 @@
             </div>
           </div>
         </article>
+      </section>
+      <section class="section" aria-labelledby="heat-stress">
+        <div class="section-heading"><div><p class="section-kicker">Hourly weather · Heat indices</p><h2 id="heat-stress">Heat stress in 2024</h2></div><p>Compare heat and humidity in the same five cities as the air-quality project.</p></div>
+        <div class="split-panel"><div><p>Explore air temperature, relative humidity, a UTCI radiation scenario and modeled WBGT in Seoul, Pyeongtaek, London, Beijing and Los Angeles. Compare an annual average with daily peaks, sustained hot periods and the number of hours and days above a chosen value.</p><p>Monthly and time-of-day patterns show when higher values occurred. The consistent ERA5 source spans all seasons; source notes identify the grid cells and explain the index assumptions.</p><div class="hero-actions"><a class="button button-primary" href="/projects/heat-stress/">Explore the heat comparison</a><a class="button button-secondary" href="/projects/heat-stress/#methods">Data and methods</a><a class="button button-secondary" href="https://github.com/stephenlewandowski/stephenlewandowski.github.io/tree/main/projects/heat-stress">GitHub source</a></div></div><div class="project-facts"><p><span>Period</span>January–December 2024 · 8,784 UTC hours per city</p><p><span>Weather source</span>ERA5 reanalysis through Open-Meteo · native nearest grid cells</p><p><span>Comparison</span>Hourly values, daily means, maxima and minima, rolling averages and threshold counts</p><p><span>Index scope</span>UTCI with radiant temperature equal to air temperature; exposed-outdoor and no-shortwave WBGT estimates</p></div></div>
       </section>
       <section class="section-compact" aria-labelledby="western-basin">
         <p class="section-kicker">Worldbuilding project</p>
