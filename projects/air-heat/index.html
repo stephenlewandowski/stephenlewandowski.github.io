@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17324d">
+  <meta name="description" content="Explore paired daily PM2.5 and temperature or heat indices in five cities during 2024. Compare scatterplots, linear and curved associations, seasonality and co-occurring higher values.">
+  <meta property="og:title" content="Temperature and air pollution in 2024 | Stephen Lewandowski">
+  <meta property="og:description" content="Paired daily pollution and weather data, with city-specific regression models and seasonal comparisons.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stephenlewandowski.github.io/projects/air-heat/">
+  <meta property="og:image" content="https://stephenlewandowski.github.io/assets/social-preview.png">
+  <meta property="og:image:alt" content="Stephen Lewandowski — environmental health research and teaching.">
+  <link rel="canonical" href="https://stephenlewandowski.github.io/projects/air-heat/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="../air-quality/air-quality.css?v=20261020">
+  <link rel="stylesheet" href="air-heat.css?v=20261020">
+  <title>Temperature and air pollution in 2024 | Stephen Lewandowski</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header"><a class="wordmark" href="/"><span class="monogram" aria-hidden="true">SL</span><span>Stephen Lewandowski</span></a><nav aria-label="Primary navigation"><a href="/">About</a><a href="/cv/">CV</a><a href="/teaching/">Teaching</a><a aria-current="page" href="/projects/">Projects</a></nav></header>
+  <main id="main" class="air-page joint-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/projects/">Projects</a><span aria-hidden="true">/</span><span>Temperature and air pollution</span></nav>
+    <header class="air-intro">
+      <p class="eyebrow">Paired daily exposures · January–December 2024</p>
+      <h1>Temperature and air pollution in 2024</h1>
+      <p class="lead">When were higher particle concentrations accompanied by hot or cold conditions? Compare daily PM₂.₅ with temperature, humidity and heat indices in Seoul, Pyeongtaek, London, Beijing and Los Angeles.</p>
+      <p>The scatterplot pairs measured pollution with gridded weather estimates. Explore each city’s association, then see what changes when the comparison accounts for month-to-month differences.</p>
+      <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Daily pairs</a><a href="#models-title">Regression models</a><a href="#cities-title">Compare cities</a><a href="#joint-title">Higher values together</a><a href="#methods">Data and methods</a></nav>
+    </header>
+
+    <section class="air-explorer" aria-labelledby="explore-title">
+      <div class="air-section-title"><h2 id="explore-title">Daily PM₂.₅ and thermal conditions</h2><a href="#methods">Data and methods ↓</a></div>
+      <p id="load-status" role="status">Loading paired records…</p>
+      <noscript><p>The plots need JavaScript. Read the <a href="data/README.md">data and pairing notes</a> or download the <a href="data/manifest.json">source manifest</a>.</p></noscript>
+      <div id="explorer" hidden>
+        <div class="air-controls joint-primary-controls">
+          <label>City<select id="city"><option value="seoul">Seoul</option><option value="pyeongtaek">Pyeongtaek</option><option value="london">London</option><option value="beijing">Beijing</option><option value="los-angeles">Los Angeles</option></select></label>
+          <label>Thermal measure (x-axis)<select id="metric"><option value="temperature">Air temperature</option><option value="humidity">Relative humidity</option><option value="utci">UTCI · no added radiant heat</option><option value="wbgt">WBGT · exposed outdoors</option><option value="wbgtShade">WBGT · no shortwave radiation</option></select></label>
+          <label>Calendar days<select id="basis"><option value="local">Local standard time</option><option value="utc">UTC</option></select></label>
+        </div>
+        <div id="seoul-control" class="air-station-control"><label for="seoul-record">Seoul PM₂.₅ record</label><select id="seoul-record"><option value="network">Mean of 25 district monitors</option></select></div>
+        <p id="record-note" class="air-note"></p>
+        <p id="metric-note" class="heat-assumption"></p>
+        <div class="air-controls joint-date-controls">
+          <label>From<input id="from" type="date" min="2024-01-01" max="2024-12-31" value="2024-01-01"></label>
+          <label>Through<input id="through" type="date" min="2024-01-01" max="2024-12-31" value="2024-12-31"></label>
+          <label>Season<select id="season"><option value="all">All seasons</option><option value="DJF">Winter · Jan–Feb, Dec</option><option value="MAM">Spring · Mar–May</option><option value="JJA">Summer · Jun–Aug</option><option value="SON">Autumn · Sep–Nov</option></select></label>
+          <label>Model<select id="model"><option value="linear">Linear</option><option value="quadratic">Quadratic curve</option><option value="monthAdjusted">Within-month linear</option></select></label>
+        </div>
+        <p class="air-chart-help">Dates follow the selected calendar. Each point is a daily pair averaged over at least 18 matching hours. Move over or select a point to inspect its date and values. Keyboard: tab into the plot, then use the left and right arrows to move between days.</p>
+        <div id="legend" class="air-plot-legend" aria-label="Season legend"></div>
+        <div class="air-chart-wrap joint-scatter-wrap"><svg id="scatter" role="img" aria-label="Paired daily PM₂.₅ and thermal values" aria-describedby="scatter-desc"><desc id="scatter-desc">Each point is one paired day, colored by season. Daily values and model statistics are also available as tables and CSV.</desc></svg><div id="scatter-tooltip" class="air-tooltip" hidden></div></div>
+        <p id="plot-note" class="air-note"></p>
+        <p id="selection-note" class="air-selection" aria-live="polite"></p>
+        <div id="coverage" class="joint-coverage"></div>
+        <div id="associations" class="air-table-scroll"></div>
+        <div class="hero-actions"><button id="download" type="button" class="button button-secondary">Download paired days (CSV)</button><button id="download-model" type="button" class="button button-secondary">Download models (CSV)</button><button id="copy-link" type="button" class="button button-secondary">Copy link to this view</button></div>
+        <p id="download-status" class="air-note" role="status"></p>
+
+        <section class="air-comparison" aria-labelledby="models-title">
+          <h2 id="models-title">Compare regression models</h2>
+          <p>A straight line summarizes one direction of association. A quadratic can bend. The within-month model asks whether warmer or cooler days also had different PM₂.₅ within the same month, reducing the influence of the annual cycle.</p>
+          <div id="models" class="air-table-scroll"></div>
+          <p id="model-note" class="air-note"></p>
+          <h3>What the selected model leaves unexplained</h3>
+          <p class="air-note">Residuals are observed PM₂.₅ minus fitted PM₂.₅. Runs of positive or negative values can show patterns that a single curve misses.</p>
+          <svg id="residual-chart" class="air-comparison-chart" role="img" aria-label="Model residuals by date"></svg>
+          <div id="diagnostics" class="air-note"></div>
+          <p class="joint-context">These fits describe associations between environmental records. The data contain no health outcomes, individual exposures or military cohort records, so the tool cannot estimate the health effects of simultaneous pollution and thermal stress. Successive days can be correlated, and the app does not present ordinary independent-day p-values or confidence bands.</p>
+        </section>
+
+        <section class="air-comparison" aria-labelledby="cities-title">
+          <h2 id="cities-title">Compare city-specific associations</h2>
+          <p>Apply the same measure, calendar and date filters to each city. Each row is fitted separately; there is no pooled line that mixes differences among cities with changes within them.</p>
+          <div id="comparison" class="air-table-scroll"></div>
+          <p class="air-note">Seoul uses the chosen PM₂.₅ record above; its weather grid cell stays the same for all districts. Other city labels refer to one pollution monitoring location. Coverage and the spatial match differ among cities.</p>
+        </section>
+
+        <section class="air-comparison" aria-labelledby="joint-title">
+          <h2 id="joint-title">How often did the conditions occur together?</h2>
+          <p>Choose daily thresholds to count pollution alongside higher or lower thermal values. These counts use the eligible paired days in the selection.</p>
+          <div class="air-controls joint-threshold-controls"><label>PM₂.₅ threshold (µg/m³)<input id="pm-threshold" type="number" min="0" max="1000" step="0.1" value="35"></label><label>Thermal condition<select id="thermal-direction"><option value="above">At or above</option><option value="below">At or below</option></select></label><label><span id="heat-threshold-label">Thermal threshold (°C)</span><input id="heat-threshold" type="number" min="-100" max="100" step="0.1" value="30"></label></div>
+          <div id="joint-counts" class="air-table-scroll"></div>
+          <p class="air-note">Counts include equality and describe co-occurrence. For a cold-weather comparison, choose “at or below” and a lower temperature or UTCI threshold. A low relative-humidity threshold with the winter filter explores dry winter days. These are comparison settings, not health-risk boundaries or a test of physiological interaction. Matching-hour means and a single year do not establish PM₂.₅ regulatory attainment.</p>
+        </section>
+        <details class="air-months"><summary>Paired daily values and fitted values</summary><div id="daily-table" class="air-table-scroll"></div></details>
+      </div>
+    </section>
+
+    <section id="methods" class="air-methods" aria-labelledby="methods-title">
+      <h2 id="methods-title">Data and methods</h2>
+      <div class="air-method-grid">
+        <div><h3>Pairing daily records</h3><p>The project reuses the measured hourly PM₂.₅ from the <a href="/projects/air-quality/">air-quality comparison</a> and archived ERA5 weather from the <a href="/projects/heat-stress/">heat-stress comparison</a>. Hours are joined by UTC timestamp. Each daily pair uses identical valid hours for its pollution and thermal means, with at least 18 matches in a complete calendar day. The file’s actual start time is respected, including Seoul’s district records.</p></div>
+        <div><h3>Calendar and coverage</h3><p>Local standard time uses fixed offsets: Seoul and Pyeongtaek UTC+9, Beijing UTC+8, London GMT and Los Angeles PST. Daylight saving time is not applied. Partial boundary days and days with insufficient matching hours are excluded. Date and season filters select daily dates in the chosen calendar. Missing values are not filled; reported pollution zeros remain zero.</p></div>
+        <div><h3>What the records represent</h3><p>Pollution monitors and weather grid cells describe different spatial areas. Seoul’s network mean requires at least 20 of 25 district monitors per hour, and individual districts are selectable. A district’s weather remains the city’s nearest ERA5 grid cell. Pyeongtaek has an August outage and long reported-zero runs without per-reading quality flags; those limitations carry into its fits.</p></div>
+        <div><h3>UTCI and ERA5-HEAT</h3><p>This release uses the existing UTCI scenario with mean radiant temperature equal to air temperature. It does not use published ERA5-HEAT values. <a href="https://cds.climate.copernicus.eu/datasets/derived-utci-historical?tab=overview">ERA5-HEAT</a> provides hourly UTCI and radiant temperature for 2024, but its documented download route requires a <a href="https://cds.climate.copernicus.eu/how-to-api">CDS account, token and accepted dataset terms</a>. Its radiation-aware UTCI would be a useful next data source.</p></div>
+        <div><h3>WBGT and averaging</h3><p>WBGT uses the Liljegren model, with exposed-outdoor and no-shortwave scenarios. The heat project’s evaporation-property filter leaves some hours unavailable. Paired days can therefore represent a smaller, warmer subset of the year. Each heat index is calculated hourly before daily averaging; coverage is specific to the selected measure.</p></div>
+        <div><h3>Interpreting regression</h3><p>Linear and quadratic ordinary least squares describe the selected daily pairs. The month-adjusted slope uses deviations from each month’s paired-day means. Its within-month R² measures variation explained after removing monthly means. It is not directly comparable to the raw-data R². See <a href="https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc443.htm">NIST on seasonality</a> and <a href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda35c.htm">autocorrelation</a>.</p></div>
+      </div>
+      <p class="joint-context">The motivation is to explore pollution alongside both heat and cold. This page examines exposure patterns and meteorological associations. Testing whether temperature modifies pollution’s effects on health requires outcome data, a suitable study design and additional control for confounding.</p>
+      <h3>Source records</h3>
+      <div id="sources"></div>
+      <p>Weather data: <a href="https://open-meteo.com/en/docs/historical-weather-api">Open-Meteo</a> and Copernicus/ECMWF ERA5, under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. This project joins, filters and averages the retained inputs; original data and calculation credits remain in their source notes.</p>
+      <p><a href="data/manifest.json">Pairing manifest (JSON)</a> · <a href="data/README.md">Source alignment, limitations and reproduction</a> · <a href="https://github.com/stephenlewandowski/stephenlewandowski.github.io/tree/main/projects/air-heat">GitHub source</a></p>
+    </section>
+  </main>
+  <footer class="site-footer"><p>© 2026 Stephen A. Lewandowski</p><p>Paired pollution and weather · 2024</p></footer>
+  <script type="module" src="air-heat.mjs?v=20261020"></script>
+</body>
+</html>

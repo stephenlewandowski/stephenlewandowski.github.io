@@ -1,0 +1,35 @@
+.joint-primary-controls { grid-template-columns: 1fr 1.6fr 1fr; }
+.joint-date-controls { grid-template-columns: 1fr 1fr 1.25fr 1.25fr; margin: 1.5rem 0; }
+.joint-page .heat-assumption { padding: 1rem 1.2rem; border-left: 3px solid #a35830; background: #f4eee6; font-size: .93rem; max-width: 100%; }
+.joint-page .air-station-control { margin-top: 1.2rem; }
+.joint-page .air-station-control[hidden] { display: none; }
+.joint-scatter-wrap { position: relative; }
+#scatter { display: block; width: 100%; min-height: 320px; }
+#scatter text, .joint-page .air-comparison-chart text { font-family: Inter,ui-sans-serif,system-ui,sans-serif; fill: #526676; font-size: 12px; }
+#scatter .axis-label { font-size: 12px; font-weight: 650; }
+#scatter circle { cursor: crosshair; }
+#scatter circle:focus { outline: none; stroke: #17324d; stroke-width: 3px; }
+.joint-context { border-left: 3px solid var(--rust); padding: .5rem 0 .5rem 1rem; font-size: .93rem; max-width: 960px; }
+.joint-coverage { font-size: .9rem; color: var(--muted); margin: 1rem 0; }
+.joint-coverage p { margin: .4rem 0; }
+dl.joint-coverage { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+dl.joint-coverage > div { padding: .9rem 1rem; border-top: 2px solid #adc6c2; background: #f0f3ef; }
+dl.joint-coverage > div:last-child { grid-column: 1 / -1; }
+dl.joint-coverage dt { font-size: .8rem; line-height: 1.5; }
+dl.joint-coverage dd { margin: .35rem 0 0; color: var(--navy); font-weight: 650; }
+.joint-page .air-comparison-chart { width: 100%; background: white; border: 1px solid var(--line); }
+.joint-threshold-controls { grid-template-columns: 1fr 1fr 1fr; margin: 1.3rem 0; }
+.joint-page button { cursor: pointer; }
+.joint-page button:disabled { opacity: .5; cursor: default; }
+.joint-page button:focus-visible, .joint-page select:focus-visible, .joint-page input:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.joint-page #download-status:empty { display: none; }
+.joint-page #sources p { overflow-wrap: anywhere; }
+.joint-page #daily-table table { min-width: 650px; }
+.joint-page .fit-line { fill: none; stroke: #17324d; stroke-width: 2.3px; }
+@media(max-width: 760px) {
+  .joint-primary-controls, .joint-date-controls, .joint-threshold-controls { grid-template-columns: 1fr; }
+  .joint-page .air-controls label { grid-column: 1; }
+  .joint-page .hero-actions button { width: 100%; }
+  .joint-page .air-tooltip { max-width: 265px; }
+  dl.joint-coverage { grid-template-columns: 1fr; }
+}

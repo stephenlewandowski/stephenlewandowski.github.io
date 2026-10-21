@@ -28,6 +28,17 @@ scenarios, with assumptions and calculation coverage shown alongside the data.
 See the [project README](projects/heat-stress/README.md) and
 [data methods](projects/heat-stress/data/README.md).
 
+## Temperature and air pollution
+
+[Explore paired daily pollution and thermal conditions](https://stephenlewandowski.github.io/projects/air-heat/)
+in the same cities. Daily PM2.5 and weather means use identical valid hours.
+The scatterplot compares linear, quadratic and within-month associations, with
+season colors, residual diagnostics, separate city fits and co-occurrence
+counts. These are descriptive environmental associations; the project contains
+no health outcomes or individual military exposure records. See the
+[project README](projects/air-heat/README.md) and
+[pairing notes](projects/air-heat/data/README.md).
+
 ## Structure
 
 - `index.html` - professional homepage
@@ -39,6 +50,7 @@ See the [project README](projects/heat-stress/README.md) and
 - `projects/index.html` - current projects and selected earlier GitHub work
 - `projects/air-quality/` - measured hourly PM2.5 comparison for 2024, with Seoul's district monitors and stations in Pyeongtaek, Beijing, London and Los Angeles; averaging controls, threshold counts, distribution plots and U.S. reference statistics
 - `projects/heat-stress/` - matching-city weather and heat-index comparison for 2024, using archived ERA5 inputs and explicitly stated UTCI and WBGT scenarios
+- `projects/air-heat/` - paired daily PM2.5 and thermal records, with scatterplots, city-specific descriptive regressions and seasonal comparisons
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
 - `projects/korean-peninsula-aedes-suitability/index.html` - portfolio overview of the audited Korean Peninsula Aedes suitability publication
 - `projects/western-basin-worldbuilding/index.html` - illustrated Western Basin Atlas overview, with routes into maps, stories, and the scientific track

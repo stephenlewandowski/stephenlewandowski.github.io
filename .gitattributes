@@ -1,2 +1,3 @@
 # Preserve checksummed heat-comparison JSON bytes on every checkout.
 projects/heat-stress/data/*.json text eol=lf
+projects/air-heat/data/*.json text eol=lf
