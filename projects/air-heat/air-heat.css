@@ -26,10 +26,25 @@ dl.joint-coverage dd { margin: .35rem 0 0; color: var(--navy); font-weight: 650;
 .joint-page #sources p { overflow-wrap: anywhere; }
 .joint-page #daily-table table { min-width: 650px; }
 .joint-page .fit-line { fill: none; stroke: #17324d; stroke-width: 2.3px; }
+.joint-two-plots, .joint-season-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin: 1.4rem 0; }
+.joint-two-plots figure, .joint-season-grid figure { margin: 0; min-width: 0; padding: 1rem; background: #fff; border: 1px solid var(--line); }
+.joint-two-plots figcaption, .joint-season-grid figcaption { font-weight: 650; color: var(--navy); margin-bottom: .6rem; }
+.joint-small-chart { width: 100%; display: block; }
+.joint-small-chart text, #lag-chart text { font-family: Inter,ui-sans-serif,system-ui,sans-serif; fill: #526676; font-size: 12px; }
+.joint-further h3 { margin-top: 2.2rem; }
+.joint-further h4 { margin: 1.4rem 0 .8rem; }
+.joint-findings-controls { grid-template-columns: 1fr 1.6fr; max-width: 750px; margin: 1.3rem 0; }
+.joint-findings-summary { padding: 1rem 1.2rem; border-left: 3px solid #16766a; background: #f0f3ef; }
+.joint-findings-summary p { margin: .5rem 0; }
+.joint-further .air-table-scroll { margin: 1.1rem 0; }
+.joint-further .air-table-scroll table { min-width: 650px; }
+.joint-season-grid .air-note { margin: .5rem 0 0; font-size: .8rem; }
+.joint-page #download-hourly { margin-top: 1rem; }
 @media(max-width: 760px) {
   .joint-primary-controls, .joint-date-controls, .joint-threshold-controls { grid-template-columns: 1fr; }
   .joint-page .air-controls label { grid-column: 1; }
   .joint-page .hero-actions button { width: 100%; }
   .joint-page .air-tooltip { max-width: 265px; }
   dl.joint-coverage { grid-template-columns: 1fr; }
+  .joint-two-plots, .joint-season-grid, .joint-findings-controls { grid-template-columns: 1fr; }
 }

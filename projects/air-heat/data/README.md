@@ -7,6 +7,11 @@ links to those existing files, identifies their checksums and records independen
 expected daily-pair counts. File paths in the manifest are relative to the
 `projects/air-heat/` directory.
 
+The [follow-up analysis](ANALYSIS.md) adds archived ERA5 precipitation for
+weather adjustment, seasonal smooths, thermal lag models and hourly overlap
+durations. Its results and methods are described separately from the original
+pairing audit below.
+
 ## What is being paired
 
 The vertical axis is measured PM₂.₅ in µg/m³. The horizontal axis uses ERA5 weather
@@ -126,6 +131,46 @@ versus temperature regression does not estimate whether the joint exposures
 interact in their effects on health. Seasonal patterns, meteorology, emissions,
 transport and other unmeasured processes may contribute to the association.
 
+## Follow-up analysis files
+
+[findings.json](findings.json) contains fixed full-year local-standard-time
+results for temperature and UTCI in all five cities, using Seoul's network
+mean. The file records its source hashes and methods. It supplies separate
+seasonal LOESS curves with smoothing-span sensitivity and five model
+specifications: month differences, weather adjustment, simultaneous thermal
+lags 0–3, prior-day PM sensitivity and squared-weather sensitivity. All models
+within a city/measure use the same dates with eligible pairs on today and each
+of the previous three calendar days. The model results do not change with the
+interactive scatterplot's date or Seoul-monitor controls.
+
+[weather-2024.json](weather-2024.json) adds precipitation from the same ERA5
+grid cells through Open-Meteo, retaining URLs, response metadata and hashes.
+The archive extends through 1 January 2025 UTC so the final interval is
+available. Precipitation is a preceding-hour sum labeled by its interval end;
+a full local-day total therefore sums interval-end labels from 01:00 through
+the next 00:00. Wind and relative-humidity means use the shared PM/thermal
+hours, while rainfall uses all 24 intervals. Weather adjustment uses current
+wind, humidity and `log(1 + daily rain)`; a sensitivity adds squared wind and
+humidity terms.
+
+Approximate 95% coefficient intervals use calendar-aware Newey–West covariance
+with a seven-day bandwidth, with three- and fourteen-day sensitivity checks.
+Missing dates are not treated as adjacent. The lag-sum interval includes
+cross-lag covariance. These intervals account for serial dependence but do not
+remove omitted-variable bias or turn associations into causal effects. UTCI
+adjustment holds wind and humidity components of that index fixed. See the
+[complete findings and methods](ANALYSIS.md) for model equations, partial R²,
+coverage and interpretation.
+
+Hourly overlap is calculated in the browser from the original records rather
+than from these fixed models. It follows the chosen monitor, metric, dates,
+season, calendar and thresholds. Unlike daily pairing, it retains partial
+boundary dates and does not require 18 hours per day. Missing hours interrupt
+observed runs, and boundary flags identify unknown continuation. Counts are
+based on reported hourly labels, whose physical interval alignment remains
+uncertain. A PM2.5 reference used for hourly counts is not an hourly regulatory
+standard.
+
 ## Reproduce the pairing audit
 
 From the website repository root:
@@ -147,3 +192,20 @@ To save the full coverage report outside the website, append `--report PATH`.
 After a deliberate companion-data update, review the changes before rebuilding
 the provenance with `--update-manifest`. Checksums normalize CRLF to LF so Windows
 checkouts agree with the source JSON bytes in Git and on the published website.
+
+The separate follow-up builder and numerical tests require NumPy. The ordinary
+build reads retained inputs offline; `--download-weather` deliberately
+refreshes precipitation before rebuilding.
+
+```sh
+python -m pip install numpy==2.3.5
+python scripts/build_air_heat_findings.py
+python scripts/test_air_heat_findings.py
+node --test scripts/test_air_heat.mjs scripts/test_air_heat_hourly.mjs
+```
+
+The numerical tests check regression coefficients independently through
+residual projection, calendar-aware covariance, rainfall interval boundaries
+and LOESS fixtures. Hourly tests check missing observations, timestamp offsets,
+seasonal and partial boundaries, and runs crossing midnight. The browser
+requires no Python or statistical package and makes no external data requests.

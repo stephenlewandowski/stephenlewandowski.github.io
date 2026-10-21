@@ -1,4 +1,6 @@
 import {dailyPairs, fitAssociation, predict, pearson, spearman} from './analysis.mjs';
+import {hourlyJoint} from './hourly.mjs';
+import {mountFindings} from './findings.mjs';
 
 const $ = id => document.getElementById(id);
 const NS = 'http://www.w3.org/2000/svg';
@@ -288,7 +290,7 @@ function renderComparison() {
 function renderCounts(days) {
   const thermalSymbol = state.direction === 'below' ? '≤' : '≥';
   $('heat-threshold-label').textContent = `${metricLabel()} daily mean ${thermalSymbol} (${thermalUnit()})`;
-  if (!finite(state.pm) || !finite(state.heat)) { $('joint-counts').replaceChildren(node('p', 'Enter two numeric thresholds to count days.')); return; }
+  if (!finite(state.pm) || state.pm < 0 || !finite(state.heat)) { $('joint-counts').replaceChildren(node('p', 'Enter a nonnegative PM₂.₅ threshold and a numeric thermal threshold.')); return; }
   const counts = [0, 0, 0, 0];
   for (const day of days) counts[(day.pmMean >= state.pm ? 2 : 0) + ((state.direction === 'below' ? day.heatMean <= state.heat : day.heatMean >= state.heat) ? 1 : 0)]++;
   table('joint-counts', ['Conditions met', 'Days', 'Share of eligible paired days'], [
@@ -297,6 +299,65 @@ function renderCounts(days) {
     ['Thermal condition only', integer(counts[1]), days.length ? `${fmt(counts[1] / days.length * 100, 1)}%` : '—'],
     ['Neither condition', integer(counts[0]), days.length ? `${fmt(counts[0] / days.length * 100, 1)}%` : '—']
   ], `${integer(days.length)} eligible paired days · PM₂.₅ ≥ ${fmt(state.pm, 1)} µg/m³ and ${metricLabel()} ${thermalSymbol} ${fmt(state.heat, 1)} ${thermalUnit()}. Equality is included.`);
+}
+
+function drawHourlyBars(id, items, label) {
+  const chart = $(id), width = Math.max(310, chart.clientWidth || 500), height = 280;
+  const left = 48, right = width - 15, top = 30, bottom = 225;
+  const max = Math.max(1, ...items.map(item => item.value));
+  chart.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  chart.replaceChildren(svg('title', {}, label));
+  chart.append(svg('text', {x: left, y: 15}, label));
+  for (let tick = 0; tick <= 4; tick++) {
+    const value = max * tick / 4, y = bottom - (bottom - top) * tick / 4;
+    chart.append(svg('line', {x1: left, x2: right, y1: y, y2: y, stroke: '#dce4e5'}),
+      svg('text', {x: left - 8, y: y + 4, 'text-anchor': 'end'}, fmt(value, max < 4 ? 1 : 0)));
+  }
+  const step = (right - left) / Math.max(1, items.length);
+  items.forEach((item, i) => {
+    const x = left + step * i + step * .16, y = bottom - (bottom - top) * item.value / max;
+    const bar = svg('rect', {x, y, width: step * .68, height: bottom - y, fill: '#16766a'});
+    bar.append(svg('title', {}, `${item.label}: ${integer(item.value)} ${label.toLowerCase()}`));
+    chart.append(bar, svg('text', {x: x + step * .34, y: bottom + 20, 'text-anchor': 'middle', 'font-size': items.length > 10 ? 10 : 12}, item.label));
+  });
+  if (items.every(item => !item.value)) chart.append(svg('text', {x: (left + right) / 2, y: 120, 'text-anchor': 'middle'}, 'No overlapping hours in this selection.'));
+}
+
+function renderHourly() {
+  if (!finite(state.pm) || state.pm < 0 || !finite(state.heat)) {
+    for (const id of ['hourly-summary', 'hourly-cities', 'hourly-events']) $(id).replaceChildren();
+    $('hourly-note').textContent = 'Enter two numeric thresholds above.';
+    for (const id of ['hourly-months', 'hourly-runs']) emptyChart(id, 'Enter numeric thresholds.');
+    $('download-hourly').disabled = true; state.hourly = null; return;
+  }
+  const calculate = record => hourlyJoint(pmSelection(record), record.heatData, {
+    basis: state.basis, utcOffsetMinutes: record.utcOffsetHours * 60, heatMetric: state.metric,
+    from: state.from, through: state.through, season: state.season,
+    pmThreshold: state.pm, heatThreshold: state.heat, direction: state.direction
+  });
+  const results = state.records.map(record => ({record, result: calculate(record)}));
+  const current = results.find(item => item.record.id === state.city).result;
+  state.hourly = current; $('download-hourly').disabled = false;
+  const symbol = state.direction === 'below' ? '≤' : '≥';
+  $('hourly-summary').replaceChildren(node('p', `${integer(current.bothHours)} hours met both thresholds, across ${integer(current.daysWithBoth)} calendar days. The longest observed run lasted ${integer(current.longestRunHours)} hours.`),
+    node('p', `${integer(current.pairedHours)} valid hourly pairs out of ${integer(current.expectedHours)} selected hours in the overlapping archive. ${integer(current.missingHours)} hours lacked a valid pair. ${integer(current.partialBoundaryDays.length)} partial boundary dates are included.`));
+  table('hourly-cities', ['City', 'Paired hours', 'PM₂.₅ threshold hours', 'Thermal threshold hours', 'Both · hours', 'Both · % paired', 'Days with overlap', 'Longest run · h'],
+    results.map(({record, result: r}) => [record.city, integer(r.pairedHours), integer(r.pmHoursAbove), integer(r.thermalHoursMeeting), integer(r.bothHours), finite(r.fractionOfPaired) ? `${fmt(r.fractionOfPaired * 100, 2)}%` : '—', integer(r.daysWithBoth), integer(r.longestRunHours)]),
+    `Hourly comparison · PM₂.₅ ≥ ${fmt(state.pm, 1)} µg/m³; ${metricLabel()} ${symbol} ${fmt(state.heat, 1)} ${thermalUnit()} · ${state.from} through ${state.through}`);
+  const monthValues = Array.from({length: 12}, (_, index) => ({label: new Date(Date.UTC(2024, index, 1)).toLocaleString('en', {month: 'short', timeZone: 'UTC'}), value: 0}));
+  for (const event of current.events) {
+    for (let timestamp = Date.parse(event.startUtc); timestamp <= Date.parse(event.endUtc); timestamp += 3600000) {
+      const local = new Date(timestamp + current.utcOffsetMinutes * 60000);
+      monthValues[local.getUTCMonth()].value++;
+    }
+  }
+  drawHourlyBars('hourly-months', monthValues, 'Hours meeting both thresholds');
+  const limits = [[1, 1, '1 h'], [2, 3, '2–3'], [4, 7, '4–7'], [8, 11, '8–11'], [12, 23, '12–23'], [24, Infinity, '24+']];
+  drawHourlyBars('hourly-runs', limits.map(([low, high, label]) => ({label, value: current.events.filter(event => event.durationHours >= low && event.durationHours <= high).length})), 'Number of runs');
+  $('hourly-note').textContent = 'Missing hours and gaps in the selection interrupt runs; midnight does not. A run touching missing data or an archive/selection boundary may continue beyond its observed length. Counts use hourly labels, with no 18-hour daily completeness requirement. The monthly plot assigns every hour to its own month, including runs that cross a month boundary.';
+  table('hourly-events', ['First hourly label (selected calendar)', 'Last hourly label (selected calendar)', 'Observed hours', 'Start boundary', 'End boundary'],
+    [...current.events].sort((a, b) => b.durationHours - a.durationHours || a.startUtc.localeCompare(b.startUtc)).map(event => [event.startLabel, event.endLabel, event.durationHours, event.leftCensorReason || 'Joint condition not met', event.rightCensorReason || 'Joint condition not met']),
+    'Observed consecutive runs, longest first · boundary flags indicate possible truncation');
 }
 
 function renderSources(record, pm) {
@@ -329,6 +390,7 @@ function readControls() {
 
 function query() {
   const params = new URLSearchParams();
+  for (const key of ['fCity', 'fMetric']) if (new URLSearchParams(location.search).has(key)) params.set(key, new URLSearchParams(location.search).get(key));
   for (const key of Object.keys(defaults)) if (finite(state[key]) || typeof state[key] === 'string') params.set(key, String(state[key]));
   return params;
 }
@@ -343,10 +405,12 @@ function render() {
   $('plot-note').textContent = state.model === 'monthAdjusted' ? 'Each point is one eligible day after subtracting its month’s mean from both exposures. Colours show meteorological seasons; the line is the within-month association.' : 'Each point is one eligible day. Colours show meteorological seasons. The fitted line or curve stays inside the observed temperature or humidity range.';
   if (state.from > state.through || !/^2024-\d{2}-\d{2}$/.test(state.from) || !/^2024-\d{2}-\d{2}$/.test(state.through)) {
     $('load-status').textContent = 'Choose a valid date range within 2024, with the start date before the end date.';
-    for (const id of ['coverage', 'associations', 'models', 'diagnostics', 'comparison', 'joint-counts', 'daily-table']) $(id).replaceChildren();
+    for (const id of ['coverage', 'associations', 'models', 'diagnostics', 'comparison', 'joint-counts', 'daily-table', 'hourly-summary', 'hourly-cities', 'hourly-events']) $(id).replaceChildren();
     for (const id of ['model-note', 'selection-note']) $(id).textContent = '';
     $('scatter-tooltip').hidden = true;
-    for (const id of ['download', 'download-model', 'copy-link']) $(id).disabled = true;
+    for (const id of ['download', 'download-model', 'copy-link', 'download-hourly']) $(id).disabled = true;
+    for (const id of ['hourly-months', 'hourly-runs']) emptyChart(id, 'Choose a valid date range.');
+    $('hourly-note').textContent = ''; state.hourly = null;
     emptyChart('scatter', 'Choose a valid 2024 date range.'); emptyChart('residual-chart', 'Choose a valid 2024 date range.');
     state.current = null; return;
   }
@@ -355,7 +419,7 @@ function render() {
   const result = getPairs(record), days = result.days;
   const fits = Object.fromEntries(Object.keys(models).map(model => [model, fitAssociation(days, {model})]));
   state.current = {record, pm, result, fits};
-  renderCoverage(result); drawScatter(days, fits[state.model]); renderAssociations(days, fits); drawResiduals(fits[state.model]); renderComparison(); renderCounts(days); renderSources(record, pm);
+  renderCoverage(result); drawScatter(days, fits[state.model]); renderAssociations(days, fits); drawResiduals(fits[state.model]); renderComparison(); renderCounts(days); renderHourly(); renderSources(record, pm);
   const predictions = new Map(fits[state.model].predictions.map(row => [row.date, row]));
   table('daily-table', ['Date', 'PM₂.₅ · µg/m³', `${metricLabel()} · ${thermalUnit()}`, 'PM hours', 'Thermal hours', 'Paired hours', 'Included', 'Fitted PM₂.₅', 'Residual'], result.allDays.map(day => [day.date, fmt(day.pmMean, 2), fmt(day.heatMean, 2), day.pmHours, day.heatHours, day.pairedHours, day.eligible ? 'Yes' : 'No · fewer than 18 paired hours', fmt(predictions.get(day.date)?.fitted, 2), fmt(predictions.get(day.date)?.residual, 2)]), 'Daily pairing and completeness');
   history.replaceState(null, '', `${location.pathname}?${query()}${location.hash}`);
@@ -389,6 +453,13 @@ function downloadModels() {
   saveCsv(rows, `air-heat-models-${state.city}-${state.metric}-${state.from}-${state.through}.csv`);
 }
 
+function downloadHourly() {
+  if (!state.hourly) return;
+  const rows = [['city', 'pm_record', 'metric', 'basis', 'fixed_utc_offset_minutes', 'from', 'through', 'season', 'pm_threshold_ug_m3', 'thermal_direction', 'thermal_threshold', 'start_utc_hour_label', 'end_utc_hour_label', 'first_selected_calendar_label', 'last_selected_calendar_label', 'observed_consecutive_hours', 'start_boundary', 'end_boundary']];
+  for (const event of state.hourly.events) rows.push([state.city, state.current.pm.station?.name, state.metric, state.basis, state.hourly.utcOffsetMinutes, state.from, state.through, state.season, state.pm, state.direction, state.heat, event.startUtc, event.endUtc, event.startLabel, event.endLabel, event.durationHours, event.leftCensorReason, event.rightCensorReason]);
+  saveCsv(rows, `air-heat-hourly-runs-${state.city}-${state.metric}-${state.from}-${state.through}.csv`);
+}
+
 async function fetchJson(path) {
   const response = await fetch(new URL(path, import.meta.url));
   if (!response.ok) throw new Error(`Could not load ${path} (${response.status}).`);
@@ -404,6 +475,7 @@ async function start() {
       manifest.seoulStations ? fetchJson(manifest.seoulStations.file) : null
     ]);
     state.records = records; state.supplement = supplement;
+    mountFindings(records).catch(error => { $('findings-status').textContent = `The full-year analysis could not be loaded: ${error.message}`; });
     for (const record of records) {
       if (!Array.isArray(record.pmData.values) || !Object.keys(manifest.metrics).every(metric => Array.isArray(record.heatData.values[metric]))) throw new Error(`The archived data for ${record.city} have an unexpected format.`);
     }
@@ -436,12 +508,12 @@ async function start() {
     for (const id of ['pm-threshold', 'heat-threshold']) $(id).addEventListener('input', () => {
       try { render(); } catch (error) { $('load-status').textContent = `The selection could not be analysed: ${error.message}`; }
     });
-    $('download').addEventListener('click', downloadDays); $('download-model').addEventListener('click', downloadModels);
+    $('download').addEventListener('click', downloadDays); $('download-model').addEventListener('click', downloadModels); $('download-hourly').addEventListener('click', downloadHourly);
     $('copy-link').addEventListener('click', async () => {
       try { await navigator.clipboard.writeText(location.href); $('download-status').textContent = 'Link copied with the current selections.'; }
       catch { $('download-status').textContent = 'Copy the address from your browser to share these selections.'; }
     });
-    window.addEventListener('resize', () => { cancelAnimationFrame(resizeFrame); resizeFrame = requestAnimationFrame(() => { if (state.current) { drawScatter(state.current.result.days, state.current.fits[state.model]); drawResiduals(state.current.fits[state.model]); } }); });
+    window.addEventListener('resize', () => { cancelAnimationFrame(resizeFrame); resizeFrame = requestAnimationFrame(() => { if (state.current) { drawScatter(state.current.result.days, state.current.fits[state.model]); drawResiduals(state.current.fits[state.model]); renderHourly(); } }); });
     render();
   } catch (error) {
     $('load-status').textContent = `The archived data could not be loaded. ${error.message} Please reload the page.`;

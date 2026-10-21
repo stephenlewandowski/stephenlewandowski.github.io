@@ -34,10 +34,14 @@ See the [project README](projects/heat-stress/README.md) and
 in the same cities. Daily PM2.5 and weather means use identical valid hours.
 The scatterplot compares linear, quadratic and within-month associations, with
 season colors, residual diagnostics, separate city fits and co-occurrence
-counts. These are descriptive environmental associations; the project contains
-no health outcomes or individual military exposure records. See the
+counts. A follow-up analysis adds separate seasonal smooths, weather-adjusted
+models and thermal lags over the previous three days, with intervals that
+account for serial dependence. Interactive hourly counts show when pollution
+and thermal thresholds overlap and how long the observed runs last. These are
+descriptive environmental associations; the project contains no health
+outcomes or individual military exposure records. See the
 [project README](projects/air-heat/README.md) and
-[pairing notes](projects/air-heat/data/README.md).
+[analysis findings and methods](projects/air-heat/data/ANALYSIS.md).
 
 ## Structure
 
@@ -50,7 +54,7 @@ no health outcomes or individual military exposure records. See the
 - `projects/index.html` - current projects and selected earlier GitHub work
 - `projects/air-quality/` - measured hourly PM2.5 comparison for 2024, with Seoul's district monitors and stations in Pyeongtaek, Beijing, London and Los Angeles; averaging controls, threshold counts, distribution plots and U.S. reference statistics
 - `projects/heat-stress/` - matching-city weather and heat-index comparison for 2024, using archived ERA5 inputs and explicitly stated UTCI and WBGT scenarios
-- `projects/air-heat/` - paired daily PM2.5 and thermal records, with scatterplots, city-specific descriptive regressions and seasonal comparisons
+- `projects/air-heat/` - paired PM2.5 and thermal records, with daily scatterplots, seasonal smooths, weather and lag models, and hourly joint-exposure counts and runs
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
 - `projects/korean-peninsula-aedes-suitability/index.html` - portfolio overview of the audited Korean Peninsula Aedes suitability publication
 - `projects/western-basin-worldbuilding/index.html` - illustrated Western Basin Atlas overview, with routes into maps, stories, and the scientific track

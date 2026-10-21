@@ -15,7 +15,7 @@
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="stylesheet" href="../air-quality/air-quality.css?v=20261020">
-  <link rel="stylesheet" href="air-heat.css?v=20261020">
+  <link rel="stylesheet" href="air-heat.css?v=20261021">
   <title>Temperature and air pollution in 2024 | Stephen Lewandowski</title>
 </head>
 <body>
@@ -28,7 +28,7 @@
       <h1>Temperature and air pollution in 2024</h1>
       <p class="lead">When were higher particle concentrations accompanied by hot or cold conditions? Compare daily PM₂.₅ with temperature, humidity and heat indices in Seoul, Pyeongtaek, London, Beijing and Los Angeles.</p>
       <p>The scatterplot pairs measured pollution with gridded weather estimates. Explore each city’s association, then see what changes when the comparison accounts for month-to-month differences.</p>
-      <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Daily pairs</a><a href="#models-title">Regression models</a><a href="#cities-title">Compare cities</a><a href="#joint-title">Higher values together</a><a href="#methods">Data and methods</a></nav>
+      <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Daily pairs</a><a href="#models-title">Regression models</a><a href="#joint-title">Daily counts</a><a href="#hourly-title">Hourly overlap</a><a href="#seasonal-title">Seasonal curves</a><a href="#adjustment-title">Weather and lags</a><a href="#methods">Data and methods</a></nav>
     </header>
 
     <section class="air-explorer" aria-labelledby="explore-title">
@@ -86,7 +86,52 @@
           <div id="joint-counts" class="air-table-scroll"></div>
           <p class="air-note">Counts include equality and describe co-occurrence. For a cold-weather comparison, choose “at or below” and a lower temperature or UTCI threshold. A low relative-humidity threshold with the winter filter explores dry winter days. These are comparison settings, not health-risk boundaries or a test of physiological interaction. Matching-hour means and a single year do not establish PM₂.₅ regulatory attainment.</p>
         </section>
+        <section class="air-comparison" aria-labelledby="hourly-title">
+          <h2 id="hourly-title">How long did the conditions overlap?</h2>
+          <p>Apply the thresholds above to individual hours. Count overlapping hours and consecutive runs, including runs that cross midnight. This view follows the city, monitor, measure, dates, season and calendar selected above.</p>
+          <p class="joint-context">An hourly PM₂.₅ threshold is a comparison setting, not the U.S. daily standard. Hours are joined by their reported timestamps; source differences in hour-start and hour-end labels limit the precision of physical overlap.</p>
+          <div id="hourly-summary" class="joint-coverage"></div>
+          <div id="hourly-cities" class="air-table-scroll"></div>
+          <div class="joint-two-plots">
+            <figure><figcaption>Overlapping hours by month</figcaption><svg id="hourly-months" class="joint-small-chart" role="img" aria-label="Hours meeting both thresholds by month"></svg></figure>
+            <figure><figcaption>Length of consecutive runs</figcaption><svg id="hourly-runs" class="joint-small-chart" role="img" aria-label="Number of runs by observed duration"></svg></figure>
+          </div>
+          <p id="hourly-note" class="air-note"></p>
+          <details class="air-months"><summary>Consecutive runs and boundary flags</summary><div id="hourly-events" class="air-table-scroll"></div></details>
+          <button id="download-hourly" type="button" class="button button-secondary">Download hourly runs (CSV)</button>
+        </section>
         <details class="air-months"><summary>Paired daily values and fitted values</summary><div id="daily-table" class="air-table-scroll"></div></details>
+      </div>
+    </section>
+
+    <section class="air-methods joint-further" aria-labelledby="further-title">
+      <h2 id="further-title">Seasonal patterns, weather and previous days</h2>
+      <p>These analyses use the full 2024 local standard-time record. Choose a city and measure here. The date, season and district controls above do not change these results; Seoul uses the network mean.</p>
+      <p id="findings-status" role="status">Loading the full-year analysis…</p>
+      <div id="findings-content" hidden>
+        <div class="air-controls joint-findings-controls"><label>City<select id="findings-city"></select></label><label>Thermal measure<select id="findings-metric"><option value="temperature">Air temperature</option><option value="utci">UTCI · no added radiant heat</option></select></label></div>
+        <div id="findings-summary" class="joint-findings-summary"></div>
+        <section aria-labelledby="seasonal-title">
+          <h3 id="seasonal-title">Season-specific curves</h3>
+          <p>Each panel fits a separate local linear smooth to one season. Dots show daily pairs; the solid curve uses 65% of the season’s observations near each point. Dashed curves use 50% and 80% to show sensitivity to smoothing. They are not confidence limits. Curves stop at the season’s 10th and 90th percentiles, where observations provide better support.</p>
+          <div id="seasonal-curves" class="joint-season-grid"></div>
+          <div id="seasonal-summary" class="air-table-scroll"></div>
+          <p id="seasonal-finding" class="air-note"></p>
+        </section>
+        <section aria-labelledby="adjustment-title">
+          <h3 id="adjustment-title">Weather adjustment and lagged associations</h3>
+          <p>Compare models on the same eligible dates. Weather adjustment includes wind, relative humidity and precipitation. The lag model includes today’s thermal measure and the previous three calendar days together. A separate sensitivity model also conditions on yesterday’s PM₂.₅.</p>
+          <div id="adjusted-models" class="air-table-scroll"></div>
+          <p id="adjustment-finding" class="air-note"></p>
+          <h4>Thermal coefficients by lag</h4>
+          <svg id="lag-chart" class="air-comparison-chart" role="img" aria-label="Thermal coefficients for the current and three previous days"></svg>
+          <div id="lag-table" class="air-table-scroll"></div>
+          <p id="lag-finding" class="air-note"></p>
+          <details class="air-months"><summary>Model specifications and sensitivity checks</summary><div id="extended-methods"></div><div id="model-sensitivity" class="air-table-scroll"></div></details>
+          <div class="hero-actions"><a class="button button-secondary" href="data/findings.json" download="air-heat-2024-findings.json">Download full analysis (JSON)</a><button id="download-findings" class="button button-secondary" type="button">Download model estimates (CSV)</button></div>
+          <p id="findings-download-status" role="status" class="air-note"></p>
+        </section>
+        <p class="joint-context">These models describe exposure associations. Weather adjustment changes the question being asked, particularly for UTCI, which already incorporates wind and humidity. The records contain no health outcomes. Health-effect interaction and causal feedback cannot be inferred from these fits.</p>
       </div>
     </section>
 
@@ -99,6 +144,8 @@
         <div><h3>UTCI and ERA5-HEAT</h3><p>This release uses the existing UTCI scenario with mean radiant temperature equal to air temperature. It does not use published ERA5-HEAT values. <a href="https://cds.climate.copernicus.eu/datasets/derived-utci-historical?tab=overview">ERA5-HEAT</a> provides hourly UTCI and radiant temperature for 2024, but its documented download route requires a <a href="https://cds.climate.copernicus.eu/how-to-api">CDS account, token and accepted dataset terms</a>. Its radiation-aware UTCI would be a useful next data source.</p></div>
         <div><h3>WBGT and averaging</h3><p>WBGT uses the Liljegren model, with exposed-outdoor and no-shortwave scenarios. The heat project’s evaporation-property filter leaves some hours unavailable. Paired days can therefore represent a smaller, warmer subset of the year. Each heat index is calculated hourly before daily averaging; coverage is specific to the selected measure.</p></div>
         <div><h3>Interpreting regression</h3><p>Linear and quadratic ordinary least squares describe the selected daily pairs. The month-adjusted slope uses deviations from each month’s paired-day means. Its within-month R² measures variation explained after removing monthly means. It is not directly comparable to the raw-data R². See <a href="https://www.itl.nist.gov/div898/handbook/pmc/section4/pmc443.htm">NIST on seasonality</a> and <a href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda35c.htm">autocorrelation</a>.</p></div>
+        <div><h3>Seasonal and weather models</h3><p>The full-year analysis retains the source pairing rules and adds archived ERA5 precipitation. Seasonal curves use <a href="https://www.itl.nist.gov/div898/handbook/pmd/section1/pmd144.htm">LOESS</a>. Adjusted models report calendar-aware Newey–West intervals, with lag-bandwidth sensitivity checks. The <a href="data/ANALYSIS.md">analysis notes</a> give model equations, precipitation timing, lag definitions, uncertainty assumptions and findings.</p></div>
+        <div><h3>Hourly duration</h3><p>Hourly counts use every valid pair in the selected overlapping archive, including partial boundary dates. They do not require 18 hours per day. An unobserved hour interrupts a run; it is not treated as below threshold. Reported run lengths count consecutive hourly labels and are flagged when a record, missing observation or selection boundary may truncate them.</p></div>
       </div>
       <p class="joint-context">The motivation is to explore pollution alongside both heat and cold. This page examines exposure patterns and meteorological associations. Testing whether temperature modifies pollution’s effects on health requires outcome data, a suitable study design and additional control for confounding.</p>
       <h3>Source records</h3>
@@ -108,6 +155,6 @@
     </section>
   </main>
   <footer class="site-footer"><p>© 2026 Stephen A. Lewandowski</p><p>Paired pollution and weather · 2024</p></footer>
-  <script type="module" src="air-heat.mjs?v=20261020"></script>
+  <script type="module" src="air-heat.mjs?v=20261021"></script>
 </body>
 </html>
