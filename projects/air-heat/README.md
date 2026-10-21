@@ -30,8 +30,42 @@ The scatterplot is colored by season. The application offers:
 The quadratic slope varies with the thermal measure; the table reports its
 local slope at the selected sample's mean. Raw-model R² and within-month R²
 have different denominators and are labeled separately. No independent-day
-p-values or confidence bands are presented because daily records can be
-serially correlated.
+p-values or confidence bands accompany these interactive fits because daily
+records can be serially correlated. The separate follow-up models below use
+approximate intervals that account for that dependence.
+
+## Seasonal, weather and hourly analysis
+
+The [follow-up findings](data/ANALYSIS.md) examine temperature and UTCI for the
+full 2024 local-standard-time records, using Seoul's network mean. These fixed
+results are separate from the upper scatterplot's date and monitor selections.
+
+Separate seasonal LOESS curves show how the association changes within winter,
+spring, summer and autumn. The curves are unadjusted descriptive smooths, with
+three smoothing spans to show how that choice affects the shape. Their plotted
+range runs from each season's observed thermal 10th to 90th percentiles;
+sensitivity curves are not confidence bands.
+
+Models compare month differences, current-day wind/humidity/precipitation
+adjustment, simultaneous thermal lags from today through three days earlier,
+and sensitivities to weather form and prior-day PM2.5. Each comparison uses the
+same dates. Approximate Newey–West intervals use actual calendar-day gaps;
+missing dates do not become adjacent days. The methods distinguish partial R²
+from total R² and a lag-coefficient sum from pollution accumulated over time.
+UTCI adjustment holds wind and humidity components of that index fixed.
+
+Seoul's positive within-month UTCI association becomes much smaller after
+weather adjustment. Beijing and Los Angeles retain positive adjusted
+associations, while London and Pyeongtaek are more sensitive to specification.
+The seasonal curves differ within and between cities. These results describe
+how concentrations co-vary; they do not identify a causal thermal effect.
+
+The hourly analysis follows the interactive city, monitor, date, season and
+threshold controls. It reports paired-hour coverage, hours and days with
+overlap, monthly counts and consecutive observed runs. Missing or unselected
+hours interrupt runs; midnight alone does not. Boundary flags indicate unknown
+continuation. Hourly counts can reveal overlap hidden by daily averages, but
+an hourly PM2.5 threshold is not a U.S. hourly regulatory standard.
 
 ## Scope
 
@@ -55,15 +89,16 @@ use each variable's own valid hours.
 
 See the [pairing and source notes](data/README.md) and
 [manifest](data/manifest.json) for source hashes, coverage, timing conventions
-and reproduction. Inputs are reused from the two existing projects and are
-served locally; there is no visitor API key or external data request.
+and reproduction. The [follow-up methods](data/ANALYSIS.md) document the added
+precipitation archive and model assumptions. All retained inputs and results
+are served locally; there is no visitor API key or external data request.
 
 ## Checks
 
 From the repository root:
 
 ```sh
-node --test scripts/test_air_heat.mjs
+node --test scripts/test_air_heat.mjs scripts/test_air_heat_hourly.mjs
 python scripts/check_air_heat_data.py
 python scripts/check_site.py
 git diff --check
@@ -73,3 +108,20 @@ The tests include timestamp offsets, overlapping missing hours, minimum daily
 capture, tied ranks, known regression fixtures, seasonal confounding and
 singular designs. The Python audit independently supplies paired counts and
 correlation expectations across all city/metric/calendar combinations.
+
+The follow-up builder and its numerical tests require NumPy; the original
+pairing audit uses only Python's standard library. To reproduce the retained
+analysis offline:
+
+```sh
+python -m pip install numpy==2.3.5
+python scripts/build_air_heat_findings.py
+python scripts/test_air_heat_findings.py
+```
+
+Use `python scripts/build_air_heat_findings.py --download-weather` only when
+deliberately refreshing precipitation. Review its source metadata and resulting
+changes before publishing. The numerical checks include independent regression
+projection and calendar-aware covariance calculations, rainfall interval
+boundaries and smoother fixtures. Hourly tests cover gaps, offsets, partial
+endpoints and runs crossing midnight.
