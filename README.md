@@ -4,7 +4,7 @@ Professional website, post-service public CV, teaching portfolio, and project in
 
 ## Hourly PM2.5 comparison
 
-[Explore measured PM2.5 across 2024](https://stephenlewandowski.github.io/projects/air-quality/)
+[Explore measured PM2.5 across 2023–2025](https://stephenlewandowski.github.io/projects/air-quality/)
 in Seoul, Pyeongtaek, Beijing, London and Los Angeles. The interactive project
 compares hourly measurements, daily and rolling means, and time above a chosen
 concentration. Monthly patterns and concentration distributions show differences
@@ -18,7 +18,7 @@ levels, with the limits of that comparison stated alongside the results. See the
 
 ## Heat stress comparison
 
-[Compare hourly heat and humidity in 2024](https://stephenlewandowski.github.io/projects/heat-stress/)
+[Compare hourly heat and humidity across 2023–2025](https://stephenlewandowski.github.io/projects/heat-stress/)
 for the same five cities. The tool uses consistent ERA5 gridded weather data,
 with air temperature, relative humidity, a stated UTCI radiation scenario and
 Liljegren WBGT estimates. Compare means, daily peaks and minima, threshold hours
@@ -31,7 +31,7 @@ See the [project README](projects/heat-stress/README.md) and
 ## Temperature and air pollution
 
 [Explore paired daily pollution and thermal conditions](https://stephenlewandowski.github.io/projects/air-heat/)
-in the same cities. Daily PM2.5 and weather means use identical valid hours.
+in the same cities across 2023–2025. Select a year or compare yearly associations and coverage. Daily PM2.5 and weather means use identical valid hours.
 The scatterplot compares linear, quadratic and within-month associations, with
 season colors, residual diagnostics, separate city fits and co-occurrence
 counts. A follow-up analysis adds separate seasonal smooths, weather-adjusted
@@ -43,6 +43,8 @@ outcomes or individual military exposure records. See the
 [project README](projects/air-heat/README.md) and
 [analysis findings and methods](projects/air-heat/data/ANALYSIS.md).
 
+Beijing has incomplete 2023 seasonal coverage and only January–early March in 2025. Partial records remain visible, with full-year advanced models restricted to adequate seasonal coverage. The three projects default to 2024 so existing links retain their meaning.
+
 ## Structure
 
 - `index.html` - professional homepage
@@ -52,8 +54,8 @@ outcomes or individual military exposure records. See the
 - `teaching/materials/research-methods-analysis/` - RSCH650 project overview, playable lesson, interactive simulation, synthetic data, SPSS syntax, and readable teaching notes
 - `_layouts/teaching-document.html` - shared GitHub Pages layout for readable Markdown teaching documents
 - `projects/index.html` - current projects and selected earlier GitHub work
-- `projects/air-quality/` - measured hourly PM2.5 comparison for 2024, with Seoul's district monitors and stations in Pyeongtaek, Beijing, London and Los Angeles; averaging controls, threshold counts, distribution plots and U.S. reference statistics
-- `projects/heat-stress/` - matching-city weather and heat-index comparison for 2024, using archived ERA5 inputs and explicitly stated UTCI and WBGT scenarios
+- `projects/air-quality/` - measured hourly PM2.5 comparison for 2023–2025, with Seoul's district monitors and stations in Pyeongtaek, Beijing, London and Los Angeles; averaging controls, threshold counts, distribution plots and U.S. reference statistics
+- `projects/heat-stress/` - matching-city weather and heat-index comparison for 2023–2025, using archived ERA5 inputs and explicitly stated UTCI and WBGT scenarios
 - `projects/air-heat/` - paired PM2.5 and thermal records, with daily scatterplots, seasonal smooths, weather and lag models, and hourly joint-exposure counts and runs
 - `projects/uss-terror/index.html` - documented overview of the USS Terror R/Shiny spatial reconstruction
 - `projects/korean-peninsula-aedes-suitability/index.html` - portfolio overview of the audited Korean Peninsula Aedes suitability publication

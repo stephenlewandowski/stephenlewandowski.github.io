@@ -1,0 +1,50 @@
+[
+  {
+    "file": "london-2023.json",
+    "validHours": 8753,
+    "sourcesVerified": 1,
+    "rawValuesMatched": true,
+    "allMonthsCountsMatched": true,
+    "outputAuditHashMatched": true
+  },
+  {
+    "file": "london-2025.json",
+    "validHours": 8653,
+    "sourcesVerified": 1,
+    "rawValuesMatched": true,
+    "allMonthsCountsMatched": true,
+    "outputAuditHashMatched": true
+  },
+  {
+    "file": "beijing-2023.json",
+    "validHours": 7019,
+    "sourcesVerified": 307,
+    "rawValuesMatched": true,
+    "allMonthsCountsMatched": true,
+    "outputAuditHashMatched": true
+  },
+  {
+    "file": "beijing-2025.json",
+    "validHours": 1470,
+    "sourcesVerified": 67,
+    "rawValuesMatched": true,
+    "allMonthsCountsMatched": true,
+    "outputAuditHashMatched": true
+  },
+  {
+    "file": "los-angeles-2023.json",
+    "validHours": 8591,
+    "sourcesVerified": 2,
+    "rawValuesMatched": true,
+    "allMonthsCountsMatched": true,
+    "outputAuditHashMatched": true
+  },
+  {
+    "file": "los-angeles-2025.json",
+    "validHours": 8376,
+    "sourcesVerified": 2,
+    "rawValuesMatched": true,
+    "allMonthsCountsMatched": true,
+    "outputAuditHashMatched": true
+  }
+]

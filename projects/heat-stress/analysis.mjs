@@ -1,6 +1,12 @@
-/** Metric-independent summaries of hourly values, indexed from 2024-01-01 00:00 UTC. */
+/** Metric-independent summaries of hourly values indexed from January 1 UTC. */
 export const HOURS_2024 = 8784;
 export const START_2024 = Date.UTC(2024, 0, 1);
+
+export function yearGrid(year = 2024) {
+  if (!Number.isInteger(year) || year < 1940 || year > 9998) throw new RangeError('Expected a valid ERA5 calendar year.');
+  const startUtc = Date.UTC(year, 0, 1);
+  return {year, startUtc, hours: (Date.UTC(year + 1, 0, 1) - startUtc) / 3600000};
+}
 
 const HOUR_MS = 3600000;
 const valid = value => Number.isFinite(value);
@@ -207,13 +213,14 @@ export function counts(values, threshold, offsetHours = 0, first = 0, last = val
  * call signature but does not move UTC month boundaries. expected counts only
  * selected hourly indices; missing observations do not reduce that denominator.
  */
-export function monthly(values, threshold, offsetHours = 0, first = 0, last = values.length - 1) {
+export function monthly(values, threshold, offsetHours = 0, first = 0, last = values.length - 1, year = 2024) {
   checkThreshold(threshold);
   checkOffset(offsetHours);
   ({first, last} = selectedRange(values, first, last));
+  const {startUtc} = yearGrid(year);
   return Array.from({length: 12}, (_, month) => {
-    const start = Math.max(first, (Date.UTC(2024, month, 1) - START_2024) / HOUR_MS);
-    const end = Math.min(last, (Date.UTC(2024, month + 1, 1) - START_2024) / HOUR_MS - 1);
+    const start = Math.max(first, (Date.UTC(year, month, 1) - startUtc) / HOUR_MS);
+    const end = Math.min(last, (Date.UTC(year, month + 1, 1) - startUtc) / HOUR_MS - 1);
     let count = 0;
     let sum = 0;
     let max = -Infinity;

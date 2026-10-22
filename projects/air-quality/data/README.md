@@ -1,15 +1,24 @@
-# Hourly PM2.5 comparison, 2024
+# Hourly PM2.5 comparison, 2023–2025
 
-This page uses archived measurements on a UTC calendar-year grid of 8,784 hours.
-The manifest identifies the included records, file hashes, annual capture and
-capture in all four meteorological seasons. At least 75% of the expected hours
-must be present in the year and in each season. The threshold is a documented
-selection rule for this teaching figure, not a claim of regulatory certification.
+This page uses archived measurements on a UTC calendar-year grid: 8,760 hours in
+2023 and 2025, and 8,784 in leap-year 2024. The manifest identifies each year and
+record, file hashes, annual capture and capture in all four meteorological
+seasons. A record meets the full-season comparison screen when at least 75% of
+expected hours are present annually and in every season. This is a documented
+screen for the comparison, not a claim of regulatory certification.
 
-Seoul is required. Cities with an incomplete seasonal record are omitted from the
-interactive comparison. The number of cities is secondary to covering the year.
+The 2024 comparison remains the original five-city baseline. Additional 2023 and
+2025 records extend the same monitoring locations where available. Incomplete
+Beijing records remain accessible with coverage flags; a gap is not treated as
+clean air. The [timeline and coverage notes](TIMELINE.md) document all additional
+records and comparability limits. Seoul remains the priority, with the same fixed
+25-district membership and at least 20 valid monitors required per network hour.
+Some district-years have lower seasonal capture even when the network is complete.
 
-## Records and attribution
+## Original 2024 records and attribution
+
+The numerical coverage counts in this section refer to 2024. See
+[2023 and 2025 coverage](TIMELINE.md) for the additional years.
 
 - **Seoul Metropolitan Government, Seoul Open Data Plaza, OA-2221.**
   [2024 hourly archive](https://data.seoul.go.kr/dataList/OA-2221/S/1/datasetView.do),
@@ -89,7 +98,7 @@ official reported AQI. The live chart may be exported to long-format hourly CSV.
 
 ## Comparisons with U.S. PM2.5 standards
 
-The application applies the current reference levels to 2024 as a historical,
+The application applies the reference levels to the selected year as a historical,
 hypothetical comparison. The [EPA NAAQS table](https://www.epa.gov/criteria-air-pollutants/naaqs-table)
 and [40 CFR part 50, Appendix N](https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-50/appendix-Appendix%20N%20to%20Part%2050)
 were checked on 19 October 2026. The annual primary level is 9.0 µg/m³ and
@@ -123,7 +132,7 @@ site record, apply exceptional-event exclusions or regulatory data-substitution
 tests, or account for prior-standard implementation obligations. Seoul's network
 average is explicitly context only: Appendix N calculations apply at site level.
 
-### Seoul district records
+### Original 2024 Seoul district records
 
 `seoul-stations-2024.json` retains all 25 district records and the network mean
 from the same audited municipal archive, on the original Korean calendar-year
@@ -151,7 +160,7 @@ fixed local standard-time days can be selected. Full-year local counts retain
 boundary days only if they meet the ordinary 18-hour rule; the supplemental
 local-year observations and sparse-day exception apply only to the standards table.
 For shorter selections a calendar day must fall wholly inside the selected UTC
-range. Local counts exclude instants outside local 2024. Rolling counts include
+range. Local counts exclude instants outside the selected local year. Rolling counts include
 window ends in the selected range and may use earlier source hours; overlapping
 windows are not separate events. Monthly bars show the percentage of valid days
 above the threshold. Descending concentration curves show strict exceedance
@@ -160,6 +169,23 @@ The comparison CSV exports the counts, full-year components, quarterly capture
 denominators, monthly counts, units and calculation bases.
 
 ## Reproduce
+
+For the Korea extension, the standard-library acquisition script writes the
+2023 and 2025 deployed records directly, verifies cached response hashes, and
+retains raw downloads in the sibling `air-quality-comparison/research/extended`
+directory. It also writes a compact [multi-year audit](../research/korea-multiyear-audit.json).
+See the [Korea acquisition notes](../research/KOREA_MULTIYEAR.md) for source
+licenses, district gaps, reported zeros and command options.
+
+```powershell
+python projects/air-quality/research/acquire_korea_multiyear.py
+python projects/air-quality/research/acquire_global_multiyear.py
+```
+
+The [global source notes](../research/GLOBAL_PM_2023_2025.md) document London,
+Beijing and Los Angeles acquisition, original EPA rows and city/year audits.
+
+### Rebuild the original 2024 baseline
 
 From the website repository root, acquisition scripts write intermediate files
 under the ignored `projects/air-quality/data/seoul/` and `data/comparisons/` folders:

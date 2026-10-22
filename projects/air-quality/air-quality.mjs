@@ -1,12 +1,13 @@
-import {HOURS_2024, START_2024, aggregate, summarize, monthlySummary} from './analysis.mjs';
-import {renderComparisons, comparisonCsv} from './comparisons.mjs?v=20261020-cities';
+import {HOURS_2024, START_2024, aggregate, summarize, monthlySummary, yearGrid} from './analysis.mjs?v=20261023';
+import {renderComparisons, comparisonCsv} from './comparisons.mjs?v=20261023';
 
+let YEAR = 2024, START = START_2024, HOURS = HOURS_2024;
 const $ = selector => document.querySelector(selector);
 const NS = 'http://www.w3.org/2000/svg';
 const colors = {seoul: '#16766a', pyeongtaek: '#7c4897', london: '#3463ad', beijing: '#a94f30', 'los-angeles': '#87701b'};
 const number = value => value === null || !Number.isFinite(value) ? '—' : value.toLocaleString('en', {maximumFractionDigits: 1, minimumFractionDigits: 1});
-const dateLabel = (hour, options = {}) => new Intl.DateTimeFormat('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC', ...options}).format(START_2024 + hour * 3600000);
-const isoDate = hour => new Date(START_2024 + hour * 3600000).toISOString().slice(0, 10);
+const dateLabel = (hour, options = {}) => new Intl.DateTimeFormat('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC', ...options}).format(START + hour * 3600000);
+const isoDate = hour => new Date(START + hour * 3600000).toISOString().slice(0, 10);
 const element = (tag, text, attributes = {}) => {
   const node = document.createElement(tag);
   if (text !== null) node.textContent = text;
@@ -20,26 +21,26 @@ const svgNode = (tag, attributes = {}, text = '') => {
   return node;
 };
 const swatch = color => element('span', '', {class: 'air-swatch', style: `--series:${color}`});
-const state = {records: [], selected: new Set(), mode: 'daily', first: 0, last: HOURS_2024 - 1, threshold: 35, basis: 'utc', distributionMode: 'hourly'};
+const state = {year: 2024, records: [], selected: new Set(), mode: 'daily', first: 0, last: HOURS - 1, threshold: 35, basis: 'utc', distributionMode: 'hourly'};
 const box = {left: 66, right: 1090, top: 28, bottom: 344};
 let plot = null;
 let dragStart = null;
 
 function validateRecord(record) {
-  if (record.year !== 2024 || record.intervalMinutes !== 60 || record.values.length !== HOURS_2024) throw new Error(`Unexpected time grid for ${record.city}`);
+  if (record.year !== YEAR || record.intervalMinutes !== 60 || record.values.length !== HOURS) throw new Error(`Unexpected time grid for ${record.city}`);
   if (!record.values.every(value => value === null || Number.isFinite(value) && value >= 0)) throw new Error(`Invalid concentration in ${record.city}`);
   record.color = colors[record.id] || '#654d82';
-  record.offset = (Date.parse(record.startUtc) - START_2024) / 3600000;
+  record.offset = (Date.parse(record.startUtc) - START) / 3600000;
   record.aggregates = Object.fromEntries(['hourly', 'daily', 'rolling8', 'rolling24'].map(mode => [mode, aggregate(record.values, mode)]));
-  record.months = monthlySummary(record.values);
+  record.months = monthlySummary(record.values, YEAR);
   return record;
 }
 
 function selectedRecords() { return state.records.filter(record => state.selected.has(record.id)); }
 
 function setRange(first, last) {
-  state.first = Math.max(0, Math.min(HOURS_2024 - 24, Math.floor(first / 24) * 24));
-  state.last = Math.max(state.first + 23, Math.min(HOURS_2024 - 1, Math.floor(last / 24) * 24 + 23));
+  state.first = Math.max(0, Math.min(HOURS - 24, Math.floor(first / 24) * 24));
+  state.last = Math.max(state.first + 23, Math.min(HOURS - 1, Math.floor(last / 24) * 24 + 23));
   $('#from').value = isoDate(state.first);
   $('#through').value = isoDate(state.last);
   render();
@@ -75,7 +76,7 @@ function drawChart(records) {
   }
   if (span > 24 * 90) {
     for (let month = 0; month < 12; month += width < 600 ? 2 : 1) {
-      const hour = (Date.UTC(2024, month, 1) - START_2024) / 3600000;
+      const hour = (Date.UTC(YEAR, month, 1) - START) / 3600000;
       if (hour >= state.first && hour <= state.last) group.append(svgNode('text', {x: x(hour), y: height - 20, 'text-anchor': 'start'}, dateLabel(hour, {day: undefined})));
     }
   } else {
@@ -101,7 +102,7 @@ function drawChart(records) {
   const brush = svgNode('rect', {x: 0, y: box.top, width: 0, height: box.bottom - box.top, fill: '#17324d', opacity: .1});
   group.append(brush, cursor);
   plot = {x, span, cursor, brush, records, width};
-  chart.setAttribute('aria-label', `PM₂.₅ from ${dateLabel(state.first)} through ${dateLabel(state.last)} 2024, ${$('#average').selectedOptions[0].textContent}`);
+  chart.setAttribute('aria-label', `PM₂.₅ from ${dateLabel(state.first)} through ${dateLabel(state.last)} ${YEAR}, ${$('#average').selectedOptions[0].textContent}`);
 }
 
 function tables(records) {
@@ -126,7 +127,7 @@ function tables(records) {
   monthlyBody.replaceChildren();
   for (let month = 0; month < 12; month++) {
     const row = element('tr', null);
-    row.append(element('th', new Intl.DateTimeFormat('en', {month: 'long', timeZone: 'UTC'}).format(Date.UTC(2024, month, 1)), {scope: 'row'}));
+    row.append(element('th', new Intl.DateTimeFormat('en', {month: 'long', timeZone: 'UTC'}).format(Date.UTC(YEAR, month, 1)), {scope: 'row'}));
     for (const record of records) {
       const data = record.months[month];
       const cell = element('td', number(data.mean));
@@ -143,7 +144,7 @@ function render() {
   drawChart(records);
   tables(records);
   renderComparisons(records, state);
-  $('#selection-note').textContent = records.length ? `${dateLabel(state.first)}–${dateLabel(state.last)} 2024 · ${records.map(record => record.label || record.city).join(', ')} · UTC` : 'Select at least one record to draw the chart.';
+  $('#selection-note').textContent = records.length ? `${dateLabel(state.first)}–${dateLabel(state.last)} ${YEAR} · ${records.map(record => record.label || record.city).join(', ')} · UTC` : 'Select at least one record to draw the chart.';
   $('#download').disabled = !records.length;
   $('#chart-note').textContent = state.mode === 'hourly'
     ? 'Hourly values preserve individual events. The vertical axis adjusts to the selected records and dates; compare the axis labels when changing the view.'
@@ -170,12 +171,12 @@ function inspect(event) {
   }
   const tooltip = $('#chart-tooltip');
   const displayHour = state.mode === 'daily' ? Math.floor(hour / 24) * 24 : Math.round(hour);
-  tooltip.replaceChildren(element('strong', state.mode === 'daily' ? `${dateLabel(displayHour)} 2024 · UTC day` : `${dateLabel(displayHour)} 2024 · UTC`));
+  tooltip.replaceChildren(element('strong', state.mode === 'daily' ? `${dateLabel(displayHour)} ${YEAR} · UTC day` : `${dateLabel(displayHour)} ${YEAR} · UTC`));
   for (const record of plot.records) {
     const points = record.aggregates[state.mode];
     const index = state.mode === 'daily' ? Math.floor(hour / 24) : Math.max(0, Math.min(points.length - 1, Math.round(hour - record.offset)));
     const point = points[index];
-    const time = state.mode === 'daily' ? '' : ` · ${new Date(START_2024 + (point.hour + record.offset) * 3600000).toISOString().slice(11, 16)}`;
+    const time = state.mode === 'daily' ? '' : ` · ${new Date(START + (point.hour + record.offset) * 3600000).toISOString().slice(11, 16)}`;
     const row = element('div', null);
     row.append(swatch(record.color), document.createTextNode(`${record.label || record.city}: ${number(point.value)}${point.value === null ? '' : ' µg/m³'}${time}`));
     tooltip.append(row);
@@ -194,7 +195,7 @@ function exportCsv() {
   const lines = ['timestamp_utc,city,record_id,pm25_ug_m3,monitors_reporting'];
   for (const record of selectedRecords()) {
     for (let hour = state.first; hour <= state.last; hour++) {
-      const timestamp = new Date(START_2024 + (hour + record.offset) * 3600000).toISOString();
+      const timestamp = new Date(START + (hour + record.offset) * 3600000).toISOString();
       lines.push([timestamp, record.city, record.station.id, record.values[hour] ?? '', record.stationCounts?.[hour] ?? ''].join(','));
     }
   }
@@ -208,11 +209,12 @@ function sourceCards(records, manifest) {
     const article = element('article', null);
     article.append(element('h4', `${record.city} · ${record.station.name}`));
     article.append(element('p', record.station.aggregation || `${record.station.type}. Provider: ${record.station.provider}.`));
-    const capture = summarize(record.values).count / HOURS_2024 * 100;
-    article.append(element('p', `${capture.toFixed(2)}% of the 2024 UTC hourly grid has values. All four seasons meet the 75% capture threshold used for inclusion.`));
+    const capture = summarize(record.values).count / HOURS * 100;
+    article.append(element('p', `${capture.toFixed(2)}% of the ${YEAR} UTC hourly grid has values. Coverage is shown for each season in the archive index; incomplete years are not annual trend estimates.`));
     const status = record.quality?.qaStatus || (record.quality?.ratificationStatus
       ? 'The archive does not supply a ratification status for these readings.' : null);
     if (status) article.append(element('p', status));
+    for (const key of ['partialYearNote', 'regulatoryInterpretation']) if (record.quality?.[key]) article.append(element('p', record.quality[key]));
     const listing = manifest.records.find(item => item.id === record.id);
     const links = element('p', null);
     const sourceUrl = record.station.url || record.sources?.[0]?.url || listing.sourceUrl;
@@ -224,22 +226,34 @@ function sourceCards(records, manifest) {
 }
 
 async function start() {
-  const response = await fetch('data/manifest.json?v=20261020-cities', {cache: 'no-cache'});
+  const periods = await (await fetch('data/periods.json')).json();
+  const requested = Number(new URLSearchParams(location.search).get('year') || periods.defaultYear);
+  YEAR = periods.periods.some(period => period.year === requested) ? requested : periods.defaultYear;
+  ({start: START, hours: HOURS} = yearGrid(YEAR)); state.year = YEAR; state.last = HOURS - 1;
+  $('#year').replaceChildren(...periods.periods.map(period => element('option', String(period.year), {value: period.year})));
+  $('#year').value = YEAR;
+  $('#year').addEventListener('change', () => { const url = new URL(location.href); url.searchParams.set('year', $('#year').value); location.assign(url); });
+  for (const id of ['from', 'through']) { $(`#${id}`).min = `${YEAR}-01-01`; $(`#${id}`).max = `${YEAR}-12-31`; }
+  $('#from').value = `${YEAR}-01-01`; $('#through').value = `${YEAR}-12-31`;
+  $('#reset-range').textContent = `Show all ${YEAR}`;
+  const response = await fetch(periods.periods.find(period => period.year === YEAR).manifest, {cache: 'no-cache'});
   if (!response.ok) throw new Error('The data manifest could not be loaded.');
   const manifest = await response.json();
+  $('#period-note').textContent = `${YEAR} · ${manifest.records.length} city records. ${manifest.records.filter(record => record.seasonallyComplete === false).map(record => `${record.city}: partial coverage; inspect the source and seasonal counts.`).join(' ')}`;
   state.records = await Promise.all(manifest.records.map(async item => {
     const result = await fetch(`${item.file}?v=${item.sha256}`);
     if (!result.ok) throw new Error(`The ${item.id} record could not be loaded.`);
     return validateRecord(await result.json());
   }));
-  const seoulResponse = await fetch('data/seoul-stations-2024.json');
+  const seoulFile = manifest.seoulStations?.file || `data/seoul-stations-${YEAR}.json`;
+  const seoulResponse = await fetch(seoulFile);
   if (!seoulResponse.ok) throw new Error('The Seoul district measurements could not be loaded.');
   const seoulData = await seoulResponse.json();
-  if (seoulData.year !== 2024 || seoulData.intervalMinutes !== 60 || seoulData.stations.length !== 25) throw new Error('Unexpected Seoul district data.');
+  if (seoulData.year !== YEAR || seoulData.intervalMinutes !== 60 || seoulData.stations.length !== 25) throw new Error('Unexpected Seoul district data.');
   const networkRecord = state.records.find(record => record.id === 'seoul');
   networkRecord.networkMean = true;
   networkRecord.label = 'Seoul · network mean';
-  networkRecord.dataFile = 'data/seoul-stations-2024.json';
+  networkRecord.dataFile = seoulFile;
   networkRecord.localYear = {startUtc: seoulData.startUtc, intervalMinutes: 60, values: seoulData.network.values};
   for (const station of seoulData.stations) $('#seoul-record').append(element('option', station.name, {value: station.id}));
   const updateSeoulScope = record => {
@@ -257,7 +271,7 @@ async function start() {
         localYear: {startUtc: seoulData.startUtc, intervalMinutes: 60, values: station.values},
         station: {...networkRecord.station, id: station.sourceStationId, name: station.name, type: 'District monitoring station',
           aggregation: 'Hourly readings from one Seoul district monitor, supplied by Seoul Metropolitan Government.'},
-        dataFile: 'data/seoul-stations-2024.json'});
+        dataFile: seoulFile});
     }
     state.records[state.records.findIndex(item => item.id === 'seoul')] = record;
     updateSeoulScope(record);
@@ -274,6 +288,13 @@ async function start() {
     $('#city-options').append(label);
   }
   sourceCards(state.records, manifest);
+  const timeline = await (await fetch('data/timeline-summary.json')).json();
+  const timelineBody = $('#year-comparison tbody');
+  for (const row of timeline.records) {
+    const tr = element('tr', null);
+    for (const value of [row.city, row.year, row.seasonallyComplete ? 'All seasons ≥75% capture' : 'Partial coverage', `${row.validHours.toLocaleString()} / ${row.expectedHours.toLocaleString()}`, number(row.mean), ...row.seasonMeans.map(number)]) tr.append(element('td', String(value)));
+    timelineBody.append(tr);
+  }
   $('#average').addEventListener('change', event => { state.mode = event.target.value; render(); });
   const updateThreshold = event => {
     if (!event.target.validity.valid || event.target.value === '') {
@@ -290,14 +311,14 @@ async function start() {
   $('#day-basis').addEventListener('change', event => { state.basis = event.target.value; render(); });
   $('#distribution').addEventListener('change', event => { state.distributionMode = event.target.value; render(); });
   for (const id of ['from', 'through']) $(`#${id}`).addEventListener('change', () => {
-    const first = (Date.parse($('#from').value + 'T00:00:00Z') - START_2024) / 3600000;
-    const last = (Date.parse($('#through').value + 'T23:00:00Z') - START_2024) / 3600000;
+    const first = (Date.parse($('#from').value + 'T00:00:00Z') - START) / 3600000;
+    const last = (Date.parse($('#through').value + 'T23:00:00Z') - START) / 3600000;
     if (Number.isFinite(first) && Number.isFinite(last)) setRange(Math.min(first, last), Math.max(first, last));
   });
-  $('#reset-range').addEventListener('click', () => setRange(0, HOURS_2024 - 1));
+  $('#reset-range').addEventListener('click', () => setRange(0, HOURS - 1));
   for (const button of document.querySelectorAll('[data-month]')) button.addEventListener('click', () => {
     const month = Number(button.dataset.month);
-    setRange((Date.UTC(2024, month, 1) - START_2024) / 3600000, (Date.UTC(2024, month + 1, 1) - START_2024) / 3600000 - 1);
+    setRange((Date.UTC(YEAR, month, 1) - START) / 3600000, (Date.UTC(YEAR, month + 1, 1) - START) / 3600000 - 1);
   });
   $('#download').addEventListener('click', exportCsv);
   $('#download-comparison').addEventListener('click', () => downloadText(comparisonCsv(selectedRecords(), state), `pm25-comparison-${isoDate(state.first)}-to-${isoDate(state.last)}.csv`));

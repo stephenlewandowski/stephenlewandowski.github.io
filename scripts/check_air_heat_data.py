@@ -41,10 +41,11 @@ def daily_pairs(pm, heat, metric, offset_hours):
     """Independent calendar join; both means use the same >=18 valid hours.
 
     Source array extents, not their first/last nonmissing value, determine full
-    calendar days. Local days outside 2024 and incomplete archive boundary days
+    calendar days. Local days outside the record year and incomplete archive boundary days
     are omitted. No interpolation or threshold-based sparse-day exception.
     """
     pm_start, heat_start = parse_time(pm['startUtc']), parse_time(heat['startUtc'])
+    year = pm.get('year', 2024)
     assert pm['intervalMinutes'] == heat['intervalMinutes'] == 60
     assert pm_start.minute == heat_start.minute == 0
     pm_values, heat_values = pm['values'], heat['values'][metric]
@@ -58,7 +59,7 @@ def daily_pairs(pm, heat, metric, offset_hours):
         day += timedelta(days=1)
     rows = []
     while day + timedelta(days=1) <= end + offset:
-        if day.year == 2024:
+        if day.year == year:
             utc_begin = day - offset
             pm_index = int((utc_begin - pm_start).total_seconds() / 3600)
             heat_index = int((utc_begin - heat_start).total_seconds() / 3600)

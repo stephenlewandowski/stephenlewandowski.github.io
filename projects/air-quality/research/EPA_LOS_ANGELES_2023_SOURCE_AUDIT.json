@@ -1,0 +1,234 @@
+{
+  "annualHourlySummary": {
+    "State Code": "06",
+    "County Code": "037",
+    "Site Num": "1103",
+    "Parameter Code": "88101",
+    "POC": "3",
+    "Latitude": "34.06659",
+    "Longitude": "-118.22688",
+    "Datum": "WGS84",
+    "Parameter Name": "PM2.5 - Local Conditions",
+    "Sample Duration": "1 HOUR",
+    "Pollutant Standard": "",
+    "Metric Used": "Observed Values",
+    "Method Name": "Met One BAM-1020 Mass Monitor w/VSCC - Beta Attenuation",
+    "Year": "2023",
+    "Units of Measure": "Micrograms/cubic meter (LC)",
+    "Event Type": "No Events",
+    "Observation Count": "8631",
+    "Observation Percent": "99",
+    "Completeness Indicator": "Y",
+    "Valid Day Count": "363",
+    "Required Day Count": "365",
+    "Exceptional Data Count": "0",
+    "Null Data Count": "129",
+    "Primary Exceedance Count": "",
+    "Secondary Exceedance Count": "",
+    "Certification Indicator": "Certified",
+    "Num Obs Below MDL": "0",
+    "Arithmetic Mean": "11.792423",
+    "Arithmetic Standard Dev": "6.760199",
+    "1st Max Value": "110",
+    "1st Max DateTime": "2023-07-04 20:00",
+    "2nd Max Value": "105.4",
+    "2nd Max DateTime": "2023-07-04 21:00",
+    "3rd Max Value": "98.8",
+    "3rd Max DateTime": "2023-07-04 22:00",
+    "4th Max Value": "80.7",
+    "4th Max DateTime": "2023-07-05 10:00",
+    "1st Max Non Overlapping Value": "",
+    "1st NO Max DateTime": "",
+    "2nd Max Non Overlapping Value": "",
+    "2nd NO Max DateTime": "",
+    "99th Percentile": "32.2",
+    "98th Percentile": "28.1",
+    "95th Percentile": "23.7",
+    "90th Percentile": "20",
+    "75th Percentile": "15.2",
+    "50th Percentile": "10.6",
+    "10th Percentile": "4.8",
+    "Local Site Name": "Los Angeles-North Main Street",
+    "Address": "1630 N MAIN ST, LOS ANGELES",
+    "State Name": "California",
+    "County Name": "Los Angeles",
+    "City Name": "Los Angeles",
+    "CBSA Name": "Los Angeles-Long Beach-Anaheim, CA",
+    "Date of Last Change": "2024-05-17"
+  },
+  "flaggedObservations": [
+    {
+      "utc": "2023-07-05T04:00:00Z",
+      "value": 110.0,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2023-07-05T05:00:00Z",
+      "value": 105.4,
+      "qualifier": "IH"
+    }
+  ],
+  "excludedNegativeObservations": [
+    {
+      "utc": "2023-01-10T10:00:00Z",
+      "value": -0.8,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-01-10T11:00:00Z",
+      "value": -1.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-01-16T10:00:00Z",
+      "value": -0.8,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-01-16T11:00:00Z",
+      "value": -0.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-02-06T11:00:00Z",
+      "value": -0.2,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-05-03T00:00:00Z",
+      "value": -0.5,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-20T18:00:00Z",
+      "value": -0.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-20T19:00:00Z",
+      "value": -2.5,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-20T20:00:00Z",
+      "value": -2.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-20T21:00:00Z",
+      "value": -1.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-20T22:00:00Z",
+      "value": -1.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-20T23:00:00Z",
+      "value": -2.9,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-21T00:00:00Z",
+      "value": -3.2,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-21T01:00:00Z",
+      "value": -1.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-21T02:00:00Z",
+      "value": -0.8,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-21T03:00:00Z",
+      "value": -1.0,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-21T04:00:00Z",
+      "value": -0.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-21T11:00:00Z",
+      "value": -2.0,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-08-21T17:00:00Z",
+      "value": -1.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-09-03T08:00:00Z",
+      "value": -1.0,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-09-03T09:00:00Z",
+      "value": -1.5,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-09-30T22:00:00Z",
+      "value": -1.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-10-23T00:00:00Z",
+      "value": -1.8,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-10-23T01:00:00Z",
+      "value": -1.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-10-23T02:00:00Z",
+      "value": -0.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-11-09T01:00:00Z",
+      "value": -0.5,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-11-12T21:00:00Z",
+      "value": -0.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-11-22T22:00:00Z",
+      "value": -0.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-11-23T00:00:00Z",
+      "value": -0.8,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-11-30T03:00:00Z",
+      "value": -1.0,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-12-01T23:00:00Z",
+      "value": -0.5,
+      "qualifier": ""
+    },
+    {
+      "utc": "2023-12-10T22:00:00Z",
+      "value": -1.8,
+      "qualifier": ""
+    }
+  ],
+  "rawExtractSha256": "d085e8953266cded3a23e056e0f948058d6951f03ccacabe76330577d2256ebc"
+}

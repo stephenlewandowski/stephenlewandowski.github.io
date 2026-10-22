@@ -46,17 +46,18 @@ def save(path, value, compact=False):
 
 def download_weather(manifest):
     """Store hourly ERA5 preceding-hour precipitation and response provenance."""
+    year = manifest['year']
     output = {'schemaVersion': 1, 'dataset': 'ERA5 via Open-Meteo archive',
               'variable': 'precipitation', 'unit': 'mm', 'intervalMinutes': 60,
-              'startUtc': '2024-01-01T00:00:00Z',
+              'startUtc': f'{year}-01-01T00:00:00Z',
               'intervalMeaning': 'Sum during the preceding hour; timestamp is the interval end.',
-              'extraDay': '2025-01-01 supplies the final midnight interval for 2024 local-day totals.',
+              'extraDay': f'{year+1}-01-01 supplies the final midnight interval for local-day totals.',
               'records': []}
     for city in manifest['records']:
         h, _ = read((PROJECT / city['heat']['file']).resolve())
         query = urllib.parse.urlencode({
             'latitude': h['gridLatitude'], 'longitude': h['gridLongitude'],
-            'start_date': '2024-01-01', 'end_date': '2025-01-01',
+            'start_date': f'{year}-01-01', 'end_date': f'{year+1}-01-01',
             'hourly': 'precipitation', 'models': 'era5', 'timezone': 'GMT',
             'elevation': 'nan', 'cell_selection': 'nearest'})
         url = 'https://archive-api.open-meteo.com/v1/archive?' + query
@@ -66,8 +67,9 @@ def download_weather(manifest):
         assert body['latitude'] == h['gridLatitude']
         assert body['longitude'] == h['gridLongitude']
         times, values = body['hourly']['time'], body['hourly']['precipitation']
-        assert len(times) == len(values) == 8808
-        start = datetime(2024, 1, 1)
+        start = datetime(year, 1, 1)
+        expected_hours = int((datetime(year+1, 1, 2) - start).total_seconds() / 3600)
+        assert len(times) == len(values) == expected_hours
         assert all(t == (start + index * HOUR).isoformat(timespec='minutes')
                    for index, t in enumerate(times))
         assert all(finite(x) and x >= 0 for x in values)
@@ -138,7 +140,7 @@ def augment_days(pm, heat, rain, metric, offset_hours):
     """Use audited pairs; add matching-hour RH/wind and full-day rainfall."""
     rows = [r for r in daily_pairs(pm, heat, metric, offset_hours) if r['eligible']]
     pm_start, heat_start = parse_time(pm['startUtc']), parse_time(heat['startUtc'])
-    rain_start = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    rain_start = parse_time(rain.get('startUtc', f"{pm.get('year', 2024)}-01-01T00:00:00Z"))
     for row in rows:
         day = parse_time(row['date'] + 'T00:00:00Z')
         begin = day - timedelta(hours=offset_hours)
@@ -259,12 +261,14 @@ def fit_models(rows):
     return output
 
 
-def build():
-    manifest, manifest_hash = read(DATA / 'manifest.json')
-    weather, weather_hash = read(WEATHER)
+def build(year=2024):
+    manifest, manifest_hash = read(DATA / ('manifest.json' if year == 2024 else f'manifest-{year}.json'))
+    weather_path = DATA / f'weather-{year}.json'
+    findings_path = DATA / ('findings.json' if year == 2024 else f'findings-{year}.json')
+    weather, weather_hash = read(weather_path)
     rain_by_city = {r['id']: r for r in weather['records']}
     result = {
-        'schemaVersion': 1, 'year': 2024, 'calendarBasis': 'local-standard',
+        'schemaVersion': 1, 'year': year, 'calendarBasis': 'local-standard',
         'methods': {
             'pairing': 'Exact UTC join; complete local-standard days with >=18 shared finite, nonnegative PM and thermal hours; both means use the same hours. No imputation; reported PM zeros retained.',
             'smoother': 'Local linear LOESS, tricube distance weights, span 0.65; 0.50 and 0.80 sensitivity. No robust residual downweighting. Display only observed x 10th–90th percentiles, 41 grid points. Descriptive curves; no confidence bands.',
@@ -281,13 +285,15 @@ def build():
                 'UTCI assumes mean radiant temperature equals air temperature, not ERA5-HEAT; conditioning on wind/RH holds components of UTCI fixed.',
                 'Lagged thermal predictors are correlated; individual lag coefficients can be unstable. The cumulative coefficient is a model contrast, not a health risk.',
                 'HAC addresses coefficient uncertainty under serial dependence, not omitted-variable bias or exposure error; residual autocorrelation may remain.',
-                'Pyeongtaek has only 15 eligible August days and retained reported zero concentrations; summer curves have incomplete coverage.',
+                'Pyeongtaek has only 15 eligible August days and retained reported zero concentrations; summer curves have incomplete coverage.' if year == 2024 else 'Pyeongtaek reported zeros remain retained. Check selected-year monthly coverage before interpreting seasonal curves.',
                 'PM hour-start/end conventions are not uniformly documented. Reported timestamps are retained; rainfall has explicit preceding-hour intervals.',
                 'Spans, controls, lags and HAC bandwidths were fixed for this descriptive follow-up; exploratory estimates are not confirmatory inference.']},
         'provenance': {'manifestSha256': manifest_hash,
-                       'weatherFile': 'weather-2024.json', 'weatherSha256': weather_hash,
+                       'weatherFile': weather_path.name, 'weatherSha256': weather_hash,
                        'builder': 'scripts/build_air_heat_findings.py', 'numpyVersion': np.__version__,
                        'sourceFiles': []}, 'cities': []}
+    if year != 2024:
+        result['excluded'] = []
     for city in manifest['records']:
         pm_path = (PROJECT / city['pm']['file']).resolve()
         heat_path = (PROJECT / city['heat']['file']).resolve()
@@ -298,6 +304,10 @@ def build():
             {'file': city['pm']['file'], 'sha256': pm_hash},
             {'file': city['heat']['file'], 'sha256': heat_hash}])
         record = {'id': city['id'], 'city': city['city'], 'seasonal': {}, 'models': {}}
+        eligible = city.get('seasonallyComplete', True)
+        if not eligible and year != 2024:
+            result['excluded'].append({'id': city['id'], 'reason': 'Below 75% paired-day coverage in at least one season; explorer remains available.'})
+            continue
         for metric in METRICS:
             rows = augment_days(pm, heat, rain_by_city[city['id']], metric, city['utcOffsetHours'])
             assert len(rows) == city['expectedDailyPairs']['local'][metric]['pairedEligibleDays']
@@ -306,15 +316,18 @@ def build():
         result['cities'].append(record)
         print('Analyzed:', city['id'], 'daily', record['models']['temperature']['dailyN'],
               'lag-complete', record['models']['temperature']['matchedN'])
-    save(FINDINGS, result, compact=True)
-    print('Wrote', FINDINGS.relative_to(ROOT))
+    save(findings_path, result, compact=True)
+    print('Wrote', findings_path.relative_to(ROOT))
     return result
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--download-weather', action='store_true')
+    parser.add_argument('--year', type=int, default=2024)
     args = parser.parse_args()
+    WEATHER = DATA / f'weather-{args.year}.json'
+    FINDINGS = DATA / ('findings.json' if args.year == 2024 else f'findings-{args.year}.json')
     if args.download_weather:
-        download_weather(read(DATA / 'manifest.json')[0])
-    build()
+        download_weather(read(DATA / ('manifest.json' if args.year == 2024 else f'manifest-{args.year}.json'))[0])
+    build(args.year)

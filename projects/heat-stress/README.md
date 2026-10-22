@@ -1,9 +1,9 @@
-# Heat stress in 2024
+# Heat stress by city, 2023–2025
 
 [Open the interactive comparison](https://stephenlewandowski.github.io/projects/heat-stress/).
 
 Compare heat and humidity in Seoul, Pyeongtaek, London, Beijing and Los Angeles
-through all seasons of 2024. The city set matches the
+through all seasons of 2023, 2024 and 2025. The city set matches the
 [air-quality project](../air-quality/README.md), while using a consistent weather
 reanalysis source for the heat comparison.
 
@@ -18,6 +18,8 @@ reanalysis source for the heat comparison.
   24-hour means.
 - Hours and days at or above a chosen threshold, consecutive hot hours, and the
   differences between a high daily peak, mean and minimum.
+- Full-year comparisons of means, percentiles, counts and shares above a threshold,
+  with a year selector for exploring each archive and yearly CSV downloads.
 - Seasonal and time-of-day frequencies, exceedance curves,
   and a table comparing the measures for one city.
 
@@ -28,7 +30,8 @@ are exploratory thresholds, not universal work/rest limits.
 
 ## Data and scope
 
-The project archives 8,784 UTC hours per city from ERA5, retrieved through the
+The project archives 26,304 UTC hours per city from ERA5: 8,760 in each of
+2023 and 2025, and 8,784 in leap year 2024. Data are retrieved through the
 Open-Meteo Historical Weather API. These are **gridded reanalysis estimates**,
 not observations from the air-quality monitoring stations. Native nearest grid
 cells are used without elevation adjustment. Visitors download local JSON and
@@ -51,7 +54,7 @@ rather than the full calendar year. This project filter is documented separately
 from the UTCI validity limits.
 
 See [data sources, assumptions and reproduction](data/README.md) and the
-[manifest](data/manifest.json) for input provenance, calculation versions,
+[year index](data/periods.json) and per-year manifests for input provenance, calculation versions,
 grid coordinates and calculation coverage.
 
 ## Development
@@ -71,3 +74,9 @@ git diff --check
 The offline fetch and build scripts are documented in the data README. Index
 calculations use a pinned thermofeel release. Keep the source data, radiation
 scenarios, valid-domain masks and units explicit when extending the project.
+
+The 2024 record remains the default and its stored files are unchanged. Shared
+views include `year=YYYY`; old 2024 links remain valid. Each year uses its actual
+calendar and solar geometry. Three years support year-to-year comparisons, not
+a long-term climate-trend estimate. Full-year summary percentages account for
+leap-year length. WBGT coverage remains conditional on its property-fit filter.

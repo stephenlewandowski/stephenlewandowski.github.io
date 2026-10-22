@@ -1,6 +1,12 @@
 export const HOURS_2024 = 8784;
 export const START_2024 = Date.UTC(2024, 0, 1);
 
+export function yearGrid(year = 2024) {
+  if (!Number.isInteger(year) || year < 1900 || year > 2100) throw new RangeError('A supported calendar year is required.');
+  const start = Date.UTC(year, 0, 1);
+  return {year, start, hours: (Date.UTC(year + 1, 0, 1) - start) / 3600000};
+}
+
 export function summarize(values) {
   const valid = values.filter(value => Number.isFinite(value) && value >= 0).sort((a, b) => a - b);
   if (!valid.length) return {count: 0, mean: null, median: null, p95: null, max: null};
@@ -39,10 +45,11 @@ export function aggregate(values, mode = 'daily') {
   });
 }
 
-export function monthlySummary(values) {
+export function monthlySummary(values, year = 2024) {
+  const {start} = yearGrid(year);
   return Array.from({length: 12}, (_, month) => {
-    const first = (Date.UTC(2024, month, 1) - START_2024) / 3600000;
-    const last = (Date.UTC(2024, month + 1, 1) - START_2024) / 3600000;
+    const first = (Date.UTC(year, month, 1) - start) / 3600000;
+    const last = (Date.UTC(year, month + 1, 1) - start) / 3600000;
     const statistics = summarize(values.slice(first, last));
     return {month: month + 1, expected: last - first, ...statistics};
   });

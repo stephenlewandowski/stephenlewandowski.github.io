@@ -1,4 +1,4 @@
-"""Build the static 2024 city comparison from archived Open-Meteo ERA5 responses.
+"""Build one full year of the city comparison from archived Open-Meteo ERA5 responses.
 
 Install scripts/requirements_heat_stress.txt into a virtual environment first.
 The source folder contains raw/{city}-era5-2024.json and
@@ -17,8 +17,6 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-START = datetime(2024, 1, 1, tzinfo=timezone.utc)
-HOURS = 8784
 OFFSETS = {'seoul': 9, 'pyeongtaek': 9, 'london': 0, 'beijing': 8, 'los-angeles': -8}
 EXPECTED = {'numpy': '2.3.5', 'thermofeel': '2.3.0', 'earthkit-meteo': '1.2.1'}
 FIELDS = {
@@ -130,12 +128,14 @@ def calculate(inputs, cosine):
     return {'utci': utci, 'wbgt': wbgt, 'wbgtShade': shade}, diagnostics
 
 
-def build(source_root, destination):
+def build(source_root, destination, year=2024):
+    start = datetime(year, 1, 1, tzinfo=timezone.utc)
+    hours = int((datetime(year + 1, 1, 1, tzinfo=timezone.utc) - start).total_seconds() / 3600)
     provenance = json.loads((source_root / 'open-meteo-provenance.json').read_text(encoding='utf-8'))
     validation = reference_validation()
     manifest = {
-        'schemaVersion': 1, 'year': 2024, 'startUtc': '2024-01-01T00:00:00Z',
-        'intervalMinutes': 60, 'hours': HOURS,
+        'schemaVersion': 1, 'year': year, 'startUtc': f'{year}-01-01T00:00:00Z',
+        'intervalMinutes': 60, 'hours': hours,
         'dataset': 'ERA5 reanalysis accessed via Open-Meteo Historical Weather API',
         'dataKind': 'Gridded reanalysis estimates; not city monitoring-station observations.',
         'spatialSelection': 'Nearest native ERA5 grid point; elevation adjustment disabled (elevation=nan).',
@@ -171,35 +171,35 @@ def build(source_root, destination):
         ],
         'records': [],
     }
-    expected_time = [(START + timedelta(hours=hour)).strftime('%Y-%m-%dT%H:%M') for hour in range(HOURS)]
+    expected_time = [(start + timedelta(hours=hour)).strftime('%Y-%m-%dT%H:%M') for hour in range(hours)]
     for source in provenance['sources']:
         city_id = source['id']
         raw_path = source_root / 'raw' / source['file']
         raw_bytes = raw_path.read_bytes()
         assert hashlib.sha256(raw_bytes).hexdigest() == source['sha256'], f'{city_id}: source SHA256 mismatch'
         raw = json.loads(raw_bytes)
-        assert raw['hourly']['time'] == expected_time, f'{city_id}: not the complete UTC2024 hourly grid'
+        assert raw['hourly']['time'] == expected_time, f'{city_id}: not the complete UTC{year} hourly grid'
         assert raw['utc_offset_seconds'] == 0, f'{city_id}: source time zone must be UTC'
         assert raw['hourly_units']['wind_speed_10m'] == 'm/s', f'{city_id}: wind unit mismatch'
         assert raw['hourly_units']['surface_pressure'] == 'hPa', f'{city_id}: pressure unit mismatch'
         inputs = {key: np.asarray(raw['hourly'][field], dtype=float) for key, field in FIELDS.items()}
-        assert all(len(values) == HOURS and np.isfinite(values).all() for values in inputs.values()), f'{city_id}: incomplete/nonfinite inputs'
+        assert all(len(values) == hours and np.isfinite(values).all() for values in inputs.values()), f'{city_id}: incomplete/nonfinite inputs'
         assert (inputs['humidity'] >= 0).all() and (inputs['humidity'] <= 100).all()
         assert (inputs['windSpeed10m'] >= 0).all() and (inputs['surfacePressure'] > 0).all()
         # earthkit's array implementation accepts a single date with array-like
         # coordinates. A single time loop avoids hidden timezone conversion.
         latitude, longitude = np.array([raw['latitude']]), np.array([raw['longitude']])
         cosine = np.array([float(cos_solar_zenith_angle(
-            (START + timedelta(hours=hour)).replace(tzinfo=None), latitude, longitude,
-        )[0]) for hour in range(HOURS)])
+            (start + timedelta(hours=hour)).replace(tzinfo=None), latitude, longitude,
+        )[0]) for hour in range(hours)])
         computed, diagnostics = calculate(inputs, cosine)
         values = {key: quantize(inputs[key]) for key in ['temperature', 'humidity']}
         values.update({key: quantize(value) for key, value in computed.items()})
         # Retain driving weather inputs beside the plotted metrics, so exported
         # hours can be independently inspected without repeating acquisition.
         record = {
-            'id': city_id, 'city': source['city'], 'year': 2024,
-            'startUtc': '2024-01-01T00:00:00Z', 'intervalMinutes': 60,
+            'id': city_id, 'city': source['city'], 'year': year,
+            'startUtc': f'{year}-01-01T00:00:00Z', 'intervalMinutes': 60,
             'latitude': source['requestedLatitude'], 'longitude': source['requestedLongitude'],
             'gridLatitude': raw['latitude'], 'gridLongitude': raw['longitude'],
             'gridElevationMetres': raw['elevation'], 'utcOffsetHours': OFFSETS[city_id],
@@ -209,15 +209,15 @@ def build(source_root, destination):
             'source': {'url': source['url'], 'retrievedAt': source['retrievedAt'], 'sha256': source['sha256'],
                        'dataKind': 'ERA5 reanalysis grid estimate'},
         }
-        filename = f'{city_id}-2024.json'
+        filename = f'{city_id}-{year}.json'
         checksum = write_json(destination / filename, record)
         manifest['records'].append({'id': city_id, 'city': source['city'], 'file': f'data/{filename}',
-                                    'sha256': checksum, 'sourceSha256': source['sha256'], 'hours': HOURS,
+                                    'sha256': checksum, 'sourceSha256': source['sha256'], 'hours': hours,
                                     'gridLatitude': raw['latitude'], 'gridLongitude': raw['longitude'],
                                     'utcOffsetHours': OFFSETS[city_id], 'diagnostics': diagnostics})
-        print(f'{source["city"]}: {HOURS} hourly values; {diagnostics}')
+        print(f'{source["city"]} {year}: {hours} hourly values; {diagnostics}', flush=True)
     assert len(manifest['records']) == 5 and any(record['id'] == 'seoul' for record in manifest['records'])
-    write_json(destination / 'manifest.json', manifest, indent=2)
+    write_json(destination / ('manifest.json' if year == 2024 else f'manifest-{year}.json'), manifest, indent=2)
     print(f'Built {len(manifest["records"])} records; reference cases passed.')
 
 
@@ -227,6 +227,7 @@ if __name__ == '__main__':
     parser.add_argument('--destination', type=Path, default=ROOT / 'projects' / 'heat-stress' / 'data')
     parser.add_argument('--dependency-dir', type=Path, help='Optional task-local pip --target directory.')
     parser.add_argument('--validate-only', action='store_true', help='Run independent reference cases without writing data.')
+    parser.add_argument('--year', type=int, default=2024, help='UTC year of the archived input (default: 2024).')
     args = parser.parse_args()
     if args.dependency_dir:
         sys.path.insert(0, str(args.dependency_dir.resolve()))
@@ -239,4 +240,4 @@ if __name__ == '__main__':
     if args.validate_only:
         print(json.dumps(reference_validation(), indent=2))
     else:
-        build(args.source_root, args.destination)
+        build(args.source_root, args.destination, args.year)

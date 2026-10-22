@@ -1,4 +1,5 @@
-import {dailyPairs} from './analysis.mjs';
+import {dailyPairs} from './analysis.mjs?v=20261023';
+let activeYear = 2024;
 
 const NS = 'http://www.w3.org/2000/svg';
 const $ = id => document.getElementById(id);
@@ -69,7 +70,7 @@ function drawSeasons(city, metric, pairedDays) {
     figure.append(chart, element('p', `Displayed smooth: ${fmt(panel.centralRange[0], 1)} to ${fmt(panel.centralRange[1], 1)} °C.`, {class: 'air-note'})); target.append(figure);
   }
   table('seasonal-summary', ['Season', 'Days', 'Mean PM₂.₅ · µg/m³', 'Pearson r', 'Smooth endpoint change · µg/m³', 'Changes with span 50% / 80%'], panels.map(panel => [seasonNames[panel.season], panel.n, fmt(panel.meanPm, 1), fmt(panel.r, 3), fmt(panel.curve.at(-1).y - panel.curve[0].y), `${fmt(panel.curve.at(-1).span50Y - panel.curve[0].span50Y)} / ${fmt(panel.curve.at(-1).span80Y - panel.curve[0].span80Y)}`]), 'Endpoint changes compare the fitted 90th-percentile value with the 10th-percentile value within each season; they are not a common temperature increment or a test of monotonicity.');
-  $('seasonal-finding').textContent = `The PM₂.₅ scale is shared across panels; thermal ranges differ by season. Curves describe unadjusted seasonal pairs and can still reflect changes within a season. Winter combines January–February with December. ${city.id === 'pyeongtaek' ? 'Pyeongtaek has only 15 eligible August days, limiting its summer curve.' : 'Dashed lines show smoothing choices rather than sampling uncertainty.'}`;
+  $('seasonal-finding').textContent = `The PM₂.₅ scale is shared across panels; thermal ranges differ by season. Curves describe unadjusted seasonal pairs and can still reflect changes within a season. Winter combines January–February with December. ${city.id === 'pyeongtaek' ? `Pyeongtaek has ${pairedDays.filter(day => day.month === 8).length} eligible August days out of 31 in ${activeYear}; inspect summer coverage before comparing curves.` : 'Dashed lines show smoothing choices rather than sampling uncertainty.'}`;
 }
 
 function drawLags(model, metric) {
@@ -111,13 +112,19 @@ function renderModels(city, metric) {
   const methods = $('extended-methods'); methods.replaceChildren();
   ['Every model has separate intercepts for the 12 months. Weather terms are linear wind, linear relative humidity and log-transformed daily precipitation. Thermal lag values refer to real calendar days; gaps are not bridged.', 'Intervals use a calendar-aware Bartlett Newey–West covariance, n/(n−p) correction and a normal 1.96 multiplier. They address serial dependence under this model; they do not remove confounding, measurement error or uncertainty from model selection.', `The common sample covers ${models.matchedFrom} through ${models.matchedThrough}, with ${models.monthlyMatchedDays.join(', ')} days in January through December. Seasonal smooths use all eligible daily pairs rather than this smaller lag-complete sample.`, metric === 'utci' ? 'UTCI includes wind and humidity. The weather-adjusted UTCI coefficient conditions on components already used to calculate the index; it does not estimate an overall effect of thermal stress.' : 'Weather adjustment describes the temperature association conditional on the included weather variables. Rain, wind and humidity may have nonlinear or lagged relationships beyond the main specification.'].forEach(text => methods.append(element('p', text)));
   if (models.weatherFormSensitivity) methods.append(element('p', `Allowing squared wind and humidity terms changes the same-day weather-adjusted estimate to ${interval(models.weatherFormSensitivity.current)} µg/m³ per °C, on the same sample.`));
-  const summary = $('findings-summary'); summary.replaceChildren(element('p', `${city.city}: the within-month same-day estimate is ${fmt(models.monthOnly.current.estimate)} µg/m³ per °C before weather adjustment and ${fmt(models.weatherAdjusted.current.estimate)} after including wind, humidity and precipitation.`), element('p', `The adjusted same-day 95% interval is ${fmt(models.weatherAdjusted.current.ci95[0])} to ${fmt(models.weatherAdjusted.current.ci95[1])}. The lag 0–3 sum is ${interval(models.distributedLag.cumulative)}; after also conditioning on previous-day PM₂.₅, it is ${interval(models.priorPmSensitivity.cumulative)}.`), element('p', interpretation[city.id]));
+  const comparison = Math.abs(models.weatherAdjusted.current.estimate) < Math.abs(models.monthOnly.current.estimate) ? 'smaller' : 'larger';
+  const yearInterpretation = `${activeYear}: the adjusted same-day coefficient is ${comparison} in absolute magnitude than the month-only coefficient. Compare its uncertainty interval, weather-form sensitivity and lag sum before assigning a direction. Each year is fitted separately; differences among estimates are not a formal test of a change over time.`;
+  const summary = $('findings-summary'); summary.replaceChildren(element('p', `${city.city}, ${activeYear}: the within-month same-day estimate is ${fmt(models.monthOnly.current.estimate)} µg/m³ per °C before weather adjustment and ${fmt(models.weatherAdjusted.current.estimate)} after including wind, humidity and precipitation.`), element('p', `The adjusted same-day 95% interval is ${fmt(models.weatherAdjusted.current.ci95[0])} to ${fmt(models.weatherAdjusted.current.ci95[1])}. The lag 0–3 sum is ${interval(models.distributedLag.cumulative)}; after also conditioning on previous-day PM₂.₅, it is ${interval(models.priorPmSensitivity.cumulative)}.`), element('p', activeYear === 2024 ? interpretation[city.id] : yearInterpretation));
 }
 
-export async function mountFindings(records) {
-  const response = await fetch(new URL('./data/findings.json', import.meta.url));
+export async function mountFindings(records, year = 2024) {
+  activeYear = year;
+  const findingsFile = year === 2024 ? 'data/findings.json' : `data/findings-${year}.json`;
+  const response = await fetch(new URL(`./${findingsFile}`, import.meta.url));
   if (!response.ok) throw new Error(`findings.json (${response.status})`);
   const findings = await response.json();
+  $('findings-period').textContent = `${year} local standard-time record. ${findings.excluded?.length ? `Not modeled because of incomplete seasonal coverage: ${findings.excluded.map(row => records.find(record => record.id === row.id)?.city || row.id).join(', ')}. Those records remain available in the daily and hourly explorer.` : 'All retained city records support the seasonal coverage requirement.'}`;
+  $('findings-json').href = findingsFile; $('findings-json').download = `air-heat-${year}-findings.json`;
   const params = new URLSearchParams(location.search);
   const state = {city: params.get('fCity') || params.get('city') || 'seoul', metric: params.get('fMetric') || params.get('metric') || 'temperature'};
   if (!findings.cities.some(city => city.id === state.city)) state.city = 'seoul';
@@ -128,7 +135,7 @@ export async function mountFindings(records) {
   const render = () => {
     state.city = $('findings-city').value; state.metric = $('findings-metric').value;
     const city = findings.cities.find(city => city.id === state.city), record = records.find(record => record.id === state.city);
-    const {days} = dailyPairs(record.pmData, record.heatData, {heatMetric: state.metric, basis: 'local', utcOffsetMinutes: record.utcOffsetHours * 60, from: '2024-01-01', through: '2024-12-31'});
+    const {days} = dailyPairs(record.pmData, record.heatData, {heatMetric: state.metric, basis: 'local', utcOffsetMinutes: record.utcOffsetHours * 60, from: `${year}-01-01`, through: `${year}-12-31`});
     drawSeasons(city, state.metric, days); renderModels(city, state.metric); current = {city, metric: state.metric}; currentDays = days;
   };
   const saveSelection = () => {
@@ -143,11 +150,11 @@ export async function mountFindings(records) {
     for (const [key, model] of Object.entries(current.city.models[current.metric])) {
       if (!model?.current) continue;
       const entries = key === 'distributedLag' || key === 'priorPmSensitivity' ? [...model.lags.map((result, i) => [`lag${i}`, result]), ['lag0to3Sum', model.cumulative]] : [['current', model.current]];
-      for (const [contrast, result] of entries) rows.push([current.city.id, current.metric, 'local-standard', 2024, key, model.n, contrast, result.estimate, result.standardError, ...result.ci95, model.partialR2, model.residualLag1]);
+      for (const [contrast, result] of entries) rows.push([current.city.id, current.metric, 'local-standard', year, key, model.n, contrast, result.estimate, result.standardError, ...result.ci95, model.partialR2, model.residualLag1]);
     }
     const cell = value => /[",\r\n]/.test(String(value)) ? `"${String(value).replaceAll('"', '""')}"` : String(value);
     const blob = new Blob(['\uFEFF', rows.map(row => row.map(cell).join(',')).join('\r\n')], {type: 'text/csv;charset=utf-8'});
-    const url = URL.createObjectURL(blob), link = element('a', undefined, {href: url, download: `air-heat-adjusted-${current.city.id}-${current.metric}-2024.csv`});
+    const url = URL.createObjectURL(blob), link = element('a', undefined, {href: url, download: `air-heat-adjusted-${current.city.id}-${current.metric}-${year}.csv`});
     document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
     $('findings-download-status').textContent = 'Model estimates downloaded.';
   });

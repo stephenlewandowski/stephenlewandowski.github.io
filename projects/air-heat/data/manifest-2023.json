@@ -1,0 +1,2532 @@
+{
+  "schemaVersion": 1,
+  "year": 2023,
+  "period": {
+    "from": "2023-01-01",
+    "through": "2023-12-31"
+  },
+  "metrics": {
+    "temperature": {
+      "label": "Air temperature",
+      "unit": "°C",
+      "method": "ERA5 2 m air temperature."
+    },
+    "humidity": {
+      "label": "Relative humidity",
+      "unit": "%",
+      "method": "Open-Meteo relative humidity at 2 m from ERA5."
+    },
+    "utci": {
+      "label": "UTCI · no added radiant heat",
+      "unit": "°C",
+      "method": "Bröde sixth-order polynomial through thermofeel. Mean radiant temperature equals air temperature: a no-added-radiant-heat scenario, not observed urban shade or full-sun UTCI. Humidity converted to vapour pressure with thermofeel Hardy saturation pressure.",
+      "wind": "ERA5 10 m wind; values below 0.5 m/s raised to 0.5 m/s and counted in diagnostics.",
+      "domain": "Air -50 to 50 C; 10 m wind no more than 17 m/s; vapour pressure no more than 50 hPa; RH 0 to 100%. Out-of-domain values are null.",
+      "heatThresholdsCelsius": [
+        26,
+        32,
+        38,
+        46
+      ]
+    },
+    "wbgt": {
+      "label": "WBGT · exposed outdoors",
+      "unit": "°C",
+      "method": "Physically based Liljegren energy-balance model through thermofeel.calculate_wbgt_liljegren. WBGT = 0.7 natural wet-bulb + 0.2 globe + 0.1 air temperature. Solar radiation uses Open-Meteo instantaneous-time estimates; cosine of solar zenith uses earthkit-meteo at the returned grid point and UTC timestamp.",
+      "wind": "KNMI/Liljegren stability-dependent 10 m to 2 m conversion; 10 m floor 0.62 m/s, internal 2 m floor 0.13 m/s.",
+      "radiation": "Direct-horizontal/global-horizontal fraction; package caps fraction at 0.9 and removes direct beam at zenith above 89.5 degrees. Default Liljegren clear-sky atmospheric emissivity, surface temperature equal to air temperature, surface albedo 0.45 and emissivity 0.999 retained. No measured street-scale radiative environment.",
+      "propertyFitFilter": "Conservative application filter, not a published whole-model validity range: omit hours when the converged mean of air and natural-wet-bulb temperature is outside 283 to 313 K, the documented fit range of the latent-heat property helper. Each WBGT scenario is filtered separately. Summary averages are conditional on retained hours; omitted hours are not zero or known below threshold.",
+      "interpretation": "Historical screening estimate, not a measured workplace WBGT, work/rest prescription or compliance determination. Interpretation depends on workload, clothing and acclimatization. WBGT is not a cold-stress measure."
+    },
+    "wbgtShade": {
+      "label": "WBGT · no shortwave radiation",
+      "unit": "°C",
+      "method": "Same Liljegren sensor energy-balance solvers and ambient wind profile, with all shortwave radiation at the sensors removed. No-solar-load WBGT = 0.7 natural wet-bulb + 0.3 globe temperature. Longwave model assumptions remain; this does not reconstruct actual shade at a site. The same 283 to 313 K property-fit application filter is applied using this scenario's natural-wet-bulb temperature."
+    }
+  },
+  "records": [
+    {
+      "id": "seoul",
+      "city": "Seoul",
+      "utcOffsetHours": 9,
+      "seasonallyComplete": true,
+      "pm": {
+        "file": "../air-quality/data/seoul-2023.json",
+        "sha256": "dfe8c2cbdcd66ddbea49960aa179abef2607bc807754632ebbe15d929deb7d74",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "units": "µg/m³",
+        "station": {
+          "id": "seoul-network-mean",
+          "name": "Mean of Seoul's 25 district monitors",
+          "provider": "Seoul Metropolitan Government",
+          "type": "Mean of 25 district monitors",
+          "url": "https://data.seoul.go.kr/dataList/OA-2221/S/1/datasetView.do",
+          "aggregation": "Unweighted mean of valid hourly concentrations at the same 25 district monitors used in 2024; at least 20 monitors required per hour. Fixed monitor membership preserves the geographic definition across years. District-specific annual and seasonal completeness is audited separately. Not a population-weighted exposure estimate.",
+          "minimumStationsPerHour": 20,
+          "stationCount": 25,
+          "stationIds": [
+            "111171",
+            "111152",
+            "111241",
+            "111181",
+            "111291",
+            "111274",
+            "111261",
+            "111212",
+            "111281",
+            "111221",
+            "111251",
+            "111141",
+            "111123",
+            "111121",
+            "111151",
+            "111201",
+            "111311",
+            "111262",
+            "111191",
+            "111161",
+            "111142",
+            "111273",
+            "111301",
+            "111231",
+            "111131"
+          ]
+        },
+        "qaStatus": "Archived municipal observations; final national ratification status is not supplied."
+      },
+      "heat": {
+        "file": "../heat-stress/data/seoul-2023.json",
+        "sha256": "e12417bdc352b135dbb36e5a5735d374150e1ec592765c8b5ad501c4da369242",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "gridLatitude": 37.5,
+        "gridLongitude": 127.0,
+        "dataset": "ERA5 reanalysis accessed via Open-Meteo Historical Weather API"
+      },
+      "expectedDailyPairs": {
+        "local": {
+          "temperature": {
+            "completeDays": 364,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 364,
+            "expectedHours": 8736,
+            "pmHours": 8725,
+            "heatHours": 8736,
+            "pairedHours": 8725,
+            "eligiblePairedHours": 8725,
+            "monthlyPairedDays": [
+              30,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": -0.26230099,
+            "withinMonthPearsonR": 0.18778568
+          },
+          "humidity": {
+            "completeDays": 364,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 364,
+            "expectedHours": 8736,
+            "pmHours": 8725,
+            "heatHours": 8736,
+            "pairedHours": 8725,
+            "eligiblePairedHours": 8725,
+            "monthlyPairedDays": [
+              30,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": -0.09943274,
+            "withinMonthPearsonR": 0.20283001
+          },
+          "utci": {
+            "completeDays": 364,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 364,
+            "expectedHours": 8736,
+            "pmHours": 8725,
+            "heatHours": 8736,
+            "pairedHours": 8725,
+            "eligiblePairedHours": 8725,
+            "monthlyPairedDays": [
+              30,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": -0.20688017,
+            "withinMonthPearsonR": 0.30751292
+          },
+          "wbgt": {
+            "completeDays": 364,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 186,
+            "pairedEligibleDays": 186,
+            "expectedHours": 8736,
+            "pmHours": 8725,
+            "heatHours": 5180,
+            "pairedHours": 5172,
+            "eligiblePairedHours": 4375,
+            "monthlyPairedDays": [
+              0,
+              0,
+              1,
+              11,
+              26,
+              30,
+              31,
+              31,
+              30,
+              19,
+              6,
+              1
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 1
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 38
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 55
+              }
+            },
+            "rawPearsonR": 0.00733917,
+            "withinMonthPearsonR": 0.23884303
+          },
+          "wbgtShade": {
+            "completeDays": 364,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 186,
+            "pairedEligibleDays": 186,
+            "expectedHours": 8736,
+            "pmHours": 8725,
+            "heatHours": 5072,
+            "pairedHours": 5064,
+            "eligiblePairedHours": 4372,
+            "monthlyPairedDays": [
+              0,
+              0,
+              1,
+              11,
+              26,
+              30,
+              31,
+              31,
+              30,
+              19,
+              6,
+              1
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 1
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 38
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 55
+              }
+            },
+            "rawPearsonR": -0.04696202,
+            "withinMonthPearsonR": 0.11334398
+          }
+        },
+        "utc": {
+          "temperature": {
+            "completeDays": 365,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 364,
+            "expectedHours": 8760,
+            "pmHours": 8740,
+            "heatHours": 8760,
+            "pairedHours": 8740,
+            "eligiblePairedHours": 8725,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              30
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": -0.25194452,
+            "withinMonthPearsonR": 0.19902916
+          },
+          "humidity": {
+            "completeDays": 365,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 364,
+            "expectedHours": 8760,
+            "pmHours": 8740,
+            "heatHours": 8760,
+            "pairedHours": 8740,
+            "eligiblePairedHours": 8725,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              30
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": -0.10013739,
+            "withinMonthPearsonR": 0.19743998
+          },
+          "utci": {
+            "completeDays": 365,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 364,
+            "expectedHours": 8760,
+            "pmHours": 8740,
+            "heatHours": 8760,
+            "pairedHours": 8740,
+            "eligiblePairedHours": 8725,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              30
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": -0.19865338,
+            "withinMonthPearsonR": 0.31226372
+          },
+          "wbgt": {
+            "completeDays": 365,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 191,
+            "pairedEligibleDays": 191,
+            "expectedHours": 8760,
+            "pmHours": 8740,
+            "heatHours": 5180,
+            "pairedHours": 5172,
+            "eligiblePairedHours": 4501,
+            "monthlyPairedDays": [
+              0,
+              0,
+              2,
+              13,
+              27,
+              30,
+              31,
+              31,
+              30,
+              21,
+              5,
+              1
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 1
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 42
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 56
+              }
+            },
+            "rawPearsonR": -0.04981843,
+            "withinMonthPearsonR": 0.26526654
+          },
+          "wbgtShade": {
+            "completeDays": 365,
+            "pmEligibleDays": 364,
+            "heatEligibleDays": 190,
+            "pairedEligibleDays": 190,
+            "expectedHours": 8760,
+            "pmHours": 8740,
+            "heatHours": 5072,
+            "pairedHours": 5064,
+            "eligiblePairedHours": 4477,
+            "monthlyPairedDays": [
+              0,
+              0,
+              2,
+              12,
+              27,
+              30,
+              31,
+              31,
+              30,
+              21,
+              5,
+              1
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 1
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 41
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 56
+              }
+            },
+            "rawPearsonR": -0.11400865,
+            "withinMonthPearsonR": 0.12209915
+          }
+        }
+      }
+    },
+    {
+      "id": "pyeongtaek",
+      "city": "Pyeongtaek",
+      "utcOffsetHours": 9,
+      "seasonallyComplete": true,
+      "pm": {
+        "file": "../air-quality/data/pyeongtaek-2023.json",
+        "sha256": "4e04b718e42674af09b52099f5f658e20380015ea5b33100101e905b1c83f801",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "units": "µg/m³",
+        "station": {
+          "id": "131344",
+          "name": "Songbuk-dong",
+          "sourceName": "송북동",
+          "provider": "Gyeonggi Institute of Health and Environment",
+          "type": "Urban-air monitoring station (도시대기)",
+          "url": "https://air.gg.go.kr/default/esData.do?mCode=A010010000"
+        },
+        "qaStatus": "Provincial raw hourly observations, before final confirmation. Reported numeric zeros retained; no per-reading QA flags or detection-limit metadata supplied."
+      },
+      "heat": {
+        "file": "../heat-stress/data/pyeongtaek-2023.json",
+        "sha256": "edb25ffda64c95e2020c319e913359f4de6484ffe58cd669d7eb4a1aedd578a0",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "gridLatitude": 37.0,
+        "gridLongitude": 127.0,
+        "dataset": "ERA5 reanalysis accessed via Open-Meteo Historical Weather API"
+      },
+      "expectedDailyPairs": {
+        "local": {
+          "temperature": {
+            "completeDays": 364,
+            "pmEligibleDays": 356,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 356,
+            "expectedHours": 8736,
+            "pmHours": 8559,
+            "heatHours": 8736,
+            "pairedHours": 8559,
+            "eligiblePairedHours": 8476,
+            "monthlyPairedDays": [
+              30,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              30,
+              26,
+              28
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 86
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 86
+              }
+            },
+            "rawPearsonR": -0.29567719,
+            "withinMonthPearsonR": 0.12406185
+          },
+          "humidity": {
+            "completeDays": 364,
+            "pmEligibleDays": 356,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 356,
+            "expectedHours": 8736,
+            "pmHours": 8559,
+            "heatHours": 8736,
+            "pairedHours": 8559,
+            "eligiblePairedHours": 8476,
+            "monthlyPairedDays": [
+              30,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              30,
+              26,
+              28
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 86
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 86
+              }
+            },
+            "rawPearsonR": -0.12245605,
+            "withinMonthPearsonR": 0.215898
+          },
+          "utci": {
+            "completeDays": 364,
+            "pmEligibleDays": 356,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 356,
+            "expectedHours": 8736,
+            "pmHours": 8559,
+            "heatHours": 8736,
+            "pairedHours": 8559,
+            "eligiblePairedHours": 8476,
+            "monthlyPairedDays": [
+              30,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              30,
+              26,
+              28
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 86
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 86
+              }
+            },
+            "rawPearsonR": -0.23929181,
+            "withinMonthPearsonR": 0.28012162
+          },
+          "wbgt": {
+            "completeDays": 364,
+            "pmEligibleDays": 356,
+            "heatEligibleDays": 200,
+            "pairedEligibleDays": 197,
+            "expectedHours": 8736,
+            "pmHours": 8559,
+            "heatHours": 5351,
+            "pairedHours": 5265,
+            "eligiblePairedHours": 4601,
+            "monthlyPairedDays": [
+              0,
+              0,
+              2,
+              14,
+              29,
+              30,
+              31,
+              31,
+              30,
+              25,
+              4,
+              1
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 1
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 45
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 59
+              }
+            },
+            "rawPearsonR": -0.25240915,
+            "withinMonthPearsonR": 0.04181053
+          },
+          "wbgtShade": {
+            "completeDays": 364,
+            "pmEligibleDays": 356,
+            "heatEligibleDays": 198,
+            "pairedEligibleDays": 195,
+            "expectedHours": 8736,
+            "pmHours": 8559,
+            "heatHours": 5242,
+            "pairedHours": 5159,
+            "eligiblePairedHours": 4562,
+            "monthlyPairedDays": [
+              0,
+              0,
+              2,
+              13,
+              29,
+              30,
+              31,
+              31,
+              30,
+              24,
+              4,
+              1
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 1
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 44
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 58
+              }
+            },
+            "rawPearsonR": -0.29690563,
+            "withinMonthPearsonR": -0.10369754
+          }
+        },
+        "utc": {
+          "temperature": {
+            "completeDays": 365,
+            "pmEligibleDays": 358,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 358,
+            "expectedHours": 8760,
+            "pmHours": 8574,
+            "heatHours": 8760,
+            "pairedHours": 8574,
+            "eligiblePairedHours": 8517,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              30,
+              27,
+              28
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 87
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 87
+              }
+            },
+            "rawPearsonR": -0.27771642,
+            "withinMonthPearsonR": 0.13538309
+          },
+          "humidity": {
+            "completeDays": 365,
+            "pmEligibleDays": 358,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 358,
+            "expectedHours": 8760,
+            "pmHours": 8574,
+            "heatHours": 8760,
+            "pairedHours": 8574,
+            "eligiblePairedHours": 8517,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              30,
+              27,
+              28
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 87
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 87
+              }
+            },
+            "rawPearsonR": -0.12371486,
+            "withinMonthPearsonR": 0.20708051
+          },
+          "utci": {
+            "completeDays": 365,
+            "pmEligibleDays": 358,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 358,
+            "expectedHours": 8760,
+            "pmHours": 8574,
+            "heatHours": 8760,
+            "pairedHours": 8574,
+            "eligiblePairedHours": 8517,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              30,
+              27,
+              28
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 87
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 87
+              }
+            },
+            "rawPearsonR": -0.21911932,
+            "withinMonthPearsonR": 0.2938904
+          },
+          "wbgt": {
+            "completeDays": 365,
+            "pmEligibleDays": 358,
+            "heatEligibleDays": 202,
+            "pairedEligibleDays": 199,
+            "expectedHours": 8760,
+            "pmHours": 8574,
+            "heatHours": 5351,
+            "pairedHours": 5265,
+            "eligiblePairedHours": 4677,
+            "monthlyPairedDays": [
+              0,
+              0,
+              2,
+              15,
+              29,
+              30,
+              31,
+              31,
+              30,
+              25,
+              4,
+              2
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 2
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 46
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 59
+              }
+            },
+            "rawPearsonR": -0.2361917,
+            "withinMonthPearsonR": 0.07535135
+          },
+          "wbgtShade": {
+            "completeDays": 365,
+            "pmEligibleDays": 358,
+            "heatEligibleDays": 199,
+            "pairedEligibleDays": 196,
+            "expectedHours": 8760,
+            "pmHours": 8574,
+            "heatHours": 5242,
+            "pairedHours": 5159,
+            "eligiblePairedHours": 4615,
+            "monthlyPairedDays": [
+              0,
+              0,
+              2,
+              13,
+              29,
+              30,
+              31,
+              31,
+              30,
+              24,
+              4,
+              2
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 2
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 44
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 58
+              }
+            },
+            "rawPearsonR": -0.28056669,
+            "withinMonthPearsonR": -0.0769975
+          }
+        }
+      }
+    },
+    {
+      "id": "london",
+      "city": "London",
+      "utcOffsetHours": 0,
+      "seasonallyComplete": true,
+      "pm": {
+        "file": "../air-quality/data/london-2023.json",
+        "sha256": "c36c762ab114c32323f7f333770696d8176c3f58fa5e2238eaf0fe33aa80f917",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "units": "µg/m³",
+        "station": {
+          "id": "HP1",
+          "name": "Lewisham – Honor Oak Park",
+          "provider": "London Air Quality Network / Imperial College London",
+          "type": "Urban Background; single monitoring location",
+          "latitude": 51.44967,
+          "longitude": -0.03741536,
+          "url": "https://www.londonair.org.uk/london/asp/publicdetails.asp?site=HP1"
+        },
+        "qaStatus": "See source archive quality notes."
+      },
+      "heat": {
+        "file": "../heat-stress/data/london-2023.json",
+        "sha256": "dc497a5e1067c34155ae61d8b424ad60ca91d2505d73278839fa04c55c92c646",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "gridLatitude": 51.5,
+        "gridLongitude": -0.25,
+        "dataset": "ERA5 reanalysis accessed via Open-Meteo Historical Weather API"
+      },
+      "expectedDailyPairs": {
+        "local": {
+          "temperature": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 365,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 8760,
+            "pairedHours": 8753,
+            "eligiblePairedHours": 8753,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 90
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": -0.16151199,
+            "withinMonthPearsonR": -0.11332581
+          },
+          "humidity": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 365,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 8760,
+            "pairedHours": 8753,
+            "eligiblePairedHours": 8753,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 90
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.03546283,
+            "withinMonthPearsonR": 0.03052711
+          },
+          "utci": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 365,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 8760,
+            "pairedHours": 8753,
+            "eligiblePairedHours": 8753,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 90
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.05425364,
+            "withinMonthPearsonR": 0.29869506
+          },
+          "wbgt": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 162,
+            "pairedEligibleDays": 162,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 4894,
+            "pairedHours": 4890,
+            "eligiblePairedHours": 3744,
+            "monthlyPairedDays": [
+              1,
+              1,
+              3,
+              1,
+              12,
+              28,
+              31,
+              31,
+              29,
+              17,
+              4,
+              4
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 6
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 16
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 90
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 50
+              }
+            },
+            "rawPearsonR": 0.51031241,
+            "withinMonthPearsonR": 0.56689406
+          },
+          "wbgtShade": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 154,
+            "pairedEligibleDays": 154,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 4767,
+            "pairedHours": 4763,
+            "eligiblePairedHours": 3597,
+            "monthlyPairedDays": [
+              1,
+              1,
+              3,
+              1,
+              8,
+              25,
+              31,
+              31,
+              29,
+              17,
+              4,
+              3
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 5
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 12
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 87
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 50
+              }
+            },
+            "rawPearsonR": 0.52200366,
+            "withinMonthPearsonR": 0.5346093
+          }
+        },
+        "utc": {
+          "temperature": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 365,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 8760,
+            "pairedHours": 8753,
+            "eligiblePairedHours": 8753,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 90
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": -0.16151199,
+            "withinMonthPearsonR": -0.11332581
+          },
+          "humidity": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 365,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 8760,
+            "pairedHours": 8753,
+            "eligiblePairedHours": 8753,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 90
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.03546283,
+            "withinMonthPearsonR": 0.03052711
+          },
+          "utci": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 365,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 8760,
+            "pairedHours": 8753,
+            "eligiblePairedHours": 8753,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              30,
+              31,
+              30,
+              31,
+              31,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 90
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 92
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.05425364,
+            "withinMonthPearsonR": 0.29869506
+          },
+          "wbgt": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 162,
+            "pairedEligibleDays": 162,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 4894,
+            "pairedHours": 4890,
+            "eligiblePairedHours": 3744,
+            "monthlyPairedDays": [
+              1,
+              1,
+              3,
+              1,
+              12,
+              28,
+              31,
+              31,
+              29,
+              17,
+              4,
+              4
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 6
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 16
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 90
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 50
+              }
+            },
+            "rawPearsonR": 0.51031241,
+            "withinMonthPearsonR": 0.56689406
+          },
+          "wbgtShade": {
+            "completeDays": 365,
+            "pmEligibleDays": 365,
+            "heatEligibleDays": 154,
+            "pairedEligibleDays": 154,
+            "expectedHours": 8760,
+            "pmHours": 8753,
+            "heatHours": 4767,
+            "pairedHours": 4763,
+            "eligiblePairedHours": 3597,
+            "monthlyPairedDays": [
+              1,
+              1,
+              3,
+              1,
+              8,
+              25,
+              31,
+              31,
+              29,
+              17,
+              4,
+              3
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 5
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 12
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 87
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 50
+              }
+            },
+            "rawPearsonR": 0.52200366,
+            "withinMonthPearsonR": 0.5346093
+          }
+        }
+      }
+    },
+    {
+      "id": "beijing",
+      "city": "Beijing",
+      "utcOffsetHours": 8,
+      "seasonallyComplete": false,
+      "pm": {
+        "file": "../air-quality/data/beijing-2023.json",
+        "sha256": "4e7d10966e07c8d65a759ea9c4a9df35476ecbd28c42a4a514fefc8372f68deb",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "units": "µg/m³",
+        "station": {
+          "id": "8833",
+          "name": "Beijing (OpenAQ 8833)",
+          "provider": "AirNow via OpenAQ",
+          "type": "Single monitoring location",
+          "url": "https://explore.openaq.org/locations/8833",
+          "latitude": 39.953352,
+          "longitude": 116.466258,
+          "sensorId": "25754"
+        },
+        "qaStatus": "The same monitor has major winter/spring gaps in 2023. February has 10.7% and March 49.2% hourly capture. Source rows do not supply ratification or quality flags."
+      },
+      "heat": {
+        "file": "../heat-stress/data/beijing-2023.json",
+        "sha256": "cd85e9af50b04789f8f1e9cd5fe766f4b25e869354248bf41a8053bcc5e3ca14",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "gridLatitude": 40.0,
+        "gridLongitude": 116.5,
+        "dataset": "ERA5 reanalysis accessed via Open-Meteo Historical Weather API"
+      },
+      "expectedDailyPairs": {
+        "local": {
+          "temperature": {
+            "completeDays": 364,
+            "pmEligibleDays": 286,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 286,
+            "expectedHours": 8736,
+            "pmHours": 7003,
+            "heatHours": 8736,
+            "pairedHours": 7003,
+            "eligiblePairedHours": 6802,
+            "monthlyPairedDays": [
+              22,
+              2,
+              15,
+              22,
+              22,
+              30,
+              29,
+              31,
+              29,
+              29,
+              28,
+              27
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 51
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 59
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 90
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 86
+              }
+            },
+            "rawPearsonR": -0.06144227,
+            "withinMonthPearsonR": 0.35339867
+          },
+          "humidity": {
+            "completeDays": 364,
+            "pmEligibleDays": 286,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 286,
+            "expectedHours": 8736,
+            "pmHours": 7003,
+            "heatHours": 8736,
+            "pairedHours": 7003,
+            "eligiblePairedHours": 6802,
+            "monthlyPairedDays": [
+              22,
+              2,
+              15,
+              22,
+              22,
+              30,
+              29,
+              31,
+              29,
+              29,
+              28,
+              27
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 51
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 59
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 90
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 86
+              }
+            },
+            "rawPearsonR": 0.12834591,
+            "withinMonthPearsonR": 0.36600144
+          },
+          "utci": {
+            "completeDays": 364,
+            "pmEligibleDays": 286,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 286,
+            "expectedHours": 8736,
+            "pmHours": 7003,
+            "heatHours": 8736,
+            "pairedHours": 7003,
+            "eligiblePairedHours": 6802,
+            "monthlyPairedDays": [
+              22,
+              2,
+              15,
+              22,
+              22,
+              30,
+              29,
+              31,
+              29,
+              29,
+              28,
+              27
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 51
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 59
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 90
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 86
+              }
+            },
+            "rawPearsonR": -0.03117145,
+            "withinMonthPearsonR": 0.44216912
+          },
+          "wbgt": {
+            "completeDays": 364,
+            "pmEligibleDays": 286,
+            "heatEligibleDays": 183,
+            "pairedEligibleDays": 166,
+            "expectedHours": 8736,
+            "pmHours": 7003,
+            "heatHours": 5069,
+            "pairedHours": 4542,
+            "eligiblePairedHours": 3902,
+            "monthlyPairedDays": [
+              0,
+              0,
+              1,
+              10,
+              22,
+              30,
+              29,
+              31,
+              29,
+              12,
+              2,
+              0
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 0
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 33
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 90
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 43
+              }
+            },
+            "rawPearsonR": -0.41653554,
+            "withinMonthPearsonR": 0.26725251
+          },
+          "wbgtShade": {
+            "completeDays": 364,
+            "pmEligibleDays": 286,
+            "heatEligibleDays": 181,
+            "pairedEligibleDays": 164,
+            "expectedHours": 8736,
+            "pmHours": 7003,
+            "heatHours": 4955,
+            "pairedHours": 4461,
+            "eligiblePairedHours": 3865,
+            "monthlyPairedDays": [
+              0,
+              0,
+              0,
+              9,
+              22,
+              30,
+              29,
+              31,
+              29,
+              12,
+              2,
+              0
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 0
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 31
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 90
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 43
+              }
+            },
+            "rawPearsonR": -0.40894988,
+            "withinMonthPearsonR": 0.2739705
+          }
+        },
+        "utc": {
+          "temperature": {
+            "completeDays": 365,
+            "pmEligibleDays": 287,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 287,
+            "expectedHours": 8760,
+            "pmHours": 7019,
+            "heatHours": 8760,
+            "pairedHours": 7019,
+            "eligiblePairedHours": 6815,
+            "monthlyPairedDays": [
+              24,
+              3,
+              11,
+              22,
+              21,
+              30,
+              30,
+              31,
+              29,
+              30,
+              29,
+              27
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 54
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 54
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 88
+              }
+            },
+            "rawPearsonR": -0.04521359,
+            "withinMonthPearsonR": 0.35462247
+          },
+          "humidity": {
+            "completeDays": 365,
+            "pmEligibleDays": 287,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 287,
+            "expectedHours": 8760,
+            "pmHours": 7019,
+            "heatHours": 8760,
+            "pairedHours": 7019,
+            "eligiblePairedHours": 6815,
+            "monthlyPairedDays": [
+              24,
+              3,
+              11,
+              22,
+              21,
+              30,
+              30,
+              31,
+              29,
+              30,
+              29,
+              27
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 54
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 54
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 88
+              }
+            },
+            "rawPearsonR": 0.16228004,
+            "withinMonthPearsonR": 0.39304103
+          },
+          "utci": {
+            "completeDays": 365,
+            "pmEligibleDays": 287,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 287,
+            "expectedHours": 8760,
+            "pmHours": 7019,
+            "heatHours": 8760,
+            "pairedHours": 7019,
+            "eligiblePairedHours": 6815,
+            "monthlyPairedDays": [
+              24,
+              3,
+              11,
+              22,
+              21,
+              30,
+              30,
+              31,
+              29,
+              30,
+              29,
+              27
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 54
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 54
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 88
+              }
+            },
+            "rawPearsonR": -0.01041576,
+            "withinMonthPearsonR": 0.45602546
+          },
+          "wbgt": {
+            "completeDays": 365,
+            "pmEligibleDays": 287,
+            "heatEligibleDays": 188,
+            "pairedEligibleDays": 170,
+            "expectedHours": 8760,
+            "pmHours": 7019,
+            "heatHours": 5069,
+            "pairedHours": 4542,
+            "eligiblePairedHours": 3991,
+            "monthlyPairedDays": [
+              0,
+              0,
+              1,
+              11,
+              21,
+              30,
+              30,
+              31,
+              29,
+              14,
+              3,
+              0
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 0
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 33
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 46
+              }
+            },
+            "rawPearsonR": -0.41928412,
+            "withinMonthPearsonR": 0.2821287
+          },
+          "wbgtShade": {
+            "completeDays": 365,
+            "pmEligibleDays": 287,
+            "heatEligibleDays": 184,
+            "pairedEligibleDays": 167,
+            "expectedHours": 8760,
+            "pmHours": 7019,
+            "heatHours": 4955,
+            "pairedHours": 4461,
+            "eligiblePairedHours": 3929,
+            "monthlyPairedDays": [
+              0,
+              0,
+              1,
+              9,
+              21,
+              30,
+              30,
+              31,
+              29,
+              13,
+              3,
+              0
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 0
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 31
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 45
+              }
+            },
+            "rawPearsonR": -0.38536879,
+            "withinMonthPearsonR": 0.30063405
+          }
+        }
+      }
+    },
+    {
+      "id": "los-angeles",
+      "city": "Los Angeles",
+      "utcOffsetHours": -8,
+      "seasonallyComplete": true,
+      "pm": {
+        "file": "../air-quality/data/los-angeles-2023.json",
+        "sha256": "eb7b2c224456ee2cae680a57af3bcf13d28621c0242563c25d60f03acbcc4eb5",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "units": "µg/m³",
+        "station": {
+          "id": "06-037-1103",
+          "name": "Los Angeles – North Main Street",
+          "provider": "South Coast Air Quality Management District / US EPA AirData",
+          "type": "Single continuous FEM monitoring location; BAM-1020 with VSCC",
+          "latitude": 34.06659,
+          "longitude": -118.22688,
+          "url": "https://www.aqmd.gov/docs/default-source/clean-air-plans/air-quality-monitoring-network-plan/aaqmnp-losangeles.pdf?sfvrsn=16",
+          "parameterCode": "88101",
+          "poc": 3,
+          "methodCode": "170",
+          "methodType": "FEM"
+        },
+        "qaStatus": "EPA annual hourly summary: Certified. The app excludes negative concentrations and retains informational event flags. The site primary regulatory monitor is daily FRM POC 1; this same-monitor hourly POC 3 series is retained for exploratory exposure comparison."
+      },
+      "heat": {
+        "file": "../heat-stress/data/los-angeles-2023.json",
+        "sha256": "65708486fab8785595bb0d325d20da1512dbe3e2e10715c9011a1a0285873ce9",
+        "startUtc": "2023-01-01T00:00:00Z",
+        "intervalMinutes": 60,
+        "gridLatitude": 34.0,
+        "gridLongitude": -118.25,
+        "dataset": "ERA5 reanalysis accessed via Open-Meteo Historical Weather API"
+      },
+      "expectedDailyPairs": {
+        "local": {
+          "temperature": {
+            "completeDays": 364,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 359,
+            "expectedHours": 8736,
+            "pmHours": 8575,
+            "heatHours": 8736,
+            "pairedHours": 8575,
+            "eligiblePairedHours": 8540,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              26,
+              31,
+              30,
+              31,
+              30,
+              30,
+              31,
+              30,
+              30
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 88
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.35414623,
+            "withinMonthPearsonR": 0.2007554
+          },
+          "humidity": {
+            "completeDays": 364,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 359,
+            "expectedHours": 8736,
+            "pmHours": 8575,
+            "heatHours": 8736,
+            "pairedHours": 8575,
+            "eligiblePairedHours": 8540,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              26,
+              31,
+              30,
+              31,
+              30,
+              30,
+              31,
+              30,
+              30
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 88
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.01790195,
+            "withinMonthPearsonR": 0.02979175
+          },
+          "utci": {
+            "completeDays": 364,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 364,
+            "pairedEligibleDays": 359,
+            "expectedHours": 8736,
+            "pmHours": 8575,
+            "heatHours": 8736,
+            "pairedHours": 8575,
+            "eligiblePairedHours": 8540,
+            "monthlyPairedDays": [
+              31,
+              28,
+              31,
+              26,
+              31,
+              30,
+              31,
+              30,
+              30,
+              31,
+              30,
+              30
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 88
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.40522094,
+            "withinMonthPearsonR": 0.32917443
+          },
+          "wbgt": {
+            "completeDays": 364,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 262,
+            "pairedEligibleDays": 257,
+            "expectedHours": 8736,
+            "pmHours": 8575,
+            "heatHours": 7458,
+            "pairedHours": 7314,
+            "eligiblePairedHours": 5980,
+            "monthlyPairedDays": [
+              10,
+              1,
+              11,
+              23,
+              31,
+              30,
+              31,
+              30,
+              30,
+              29,
+              15,
+              16
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 27
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 65
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 74
+              }
+            },
+            "rawPearsonR": 0.32241227,
+            "withinMonthPearsonR": 0.27001719
+          },
+          "wbgtShade": {
+            "completeDays": 364,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 258,
+            "pairedEligibleDays": 253,
+            "expectedHours": 8736,
+            "pmHours": 8575,
+            "heatHours": 7383,
+            "pairedHours": 7241,
+            "eligiblePairedHours": 5903,
+            "monthlyPairedDays": [
+              10,
+              1,
+              11,
+              22,
+              30,
+              30,
+              31,
+              30,
+              30,
+              29,
+              15,
+              14
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 89,
+                "pairedEligibleDays": 25
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 63
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 74
+              }
+            },
+            "rawPearsonR": 0.27358502,
+            "withinMonthPearsonR": 0.17299791
+          }
+        },
+        "utc": {
+          "temperature": {
+            "completeDays": 365,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 359,
+            "expectedHours": 8760,
+            "pmHours": 8591,
+            "heatHours": 8760,
+            "pairedHours": 8591,
+            "eligiblePairedHours": 8536,
+            "monthlyPairedDays": [
+              30,
+              28,
+              31,
+              26,
+              31,
+              30,
+              31,
+              30,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 88
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.35175463,
+            "withinMonthPearsonR": 0.20939913
+          },
+          "humidity": {
+            "completeDays": 365,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 359,
+            "expectedHours": 8760,
+            "pmHours": 8591,
+            "heatHours": 8760,
+            "pairedHours": 8591,
+            "eligiblePairedHours": 8536,
+            "monthlyPairedDays": [
+              30,
+              28,
+              31,
+              26,
+              31,
+              30,
+              31,
+              30,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 88
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.0066647,
+            "withinMonthPearsonR": 0.01115562
+          },
+          "utci": {
+            "completeDays": 365,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 365,
+            "pairedEligibleDays": 359,
+            "expectedHours": 8760,
+            "pmHours": 8591,
+            "heatHours": 8760,
+            "pairedHours": 8591,
+            "eligiblePairedHours": 8536,
+            "monthlyPairedDays": [
+              30,
+              28,
+              31,
+              26,
+              31,
+              30,
+              31,
+              30,
+              30,
+              31,
+              30,
+              31
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 89
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 88
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 91
+              }
+            },
+            "rawPearsonR": 0.40334307,
+            "withinMonthPearsonR": 0.33867885
+          },
+          "wbgt": {
+            "completeDays": 365,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 267,
+            "pairedEligibleDays": 261,
+            "expectedHours": 8760,
+            "pmHours": 8591,
+            "heatHours": 7481,
+            "pairedHours": 7329,
+            "eligiblePairedHours": 6076,
+            "monthlyPairedDays": [
+              9,
+              2,
+              13,
+              23,
+              30,
+              30,
+              31,
+              30,
+              30,
+              29,
+              17,
+              17
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 28
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 66
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 76
+              }
+            },
+            "rawPearsonR": 0.28571605,
+            "withinMonthPearsonR": 0.23958533
+          },
+          "wbgtShade": {
+            "completeDays": 365,
+            "pmEligibleDays": 359,
+            "heatEligibleDays": 262,
+            "pairedEligibleDays": 257,
+            "expectedHours": 8760,
+            "pmHours": 8591,
+            "heatHours": 7406,
+            "pairedHours": 7256,
+            "eligiblePairedHours": 5999,
+            "monthlyPairedDays": [
+              9,
+              2,
+              13,
+              22,
+              30,
+              30,
+              31,
+              30,
+              30,
+              29,
+              16,
+              15
+            ],
+            "seasonPairedDays": {
+              "winter": {
+                "completeDays": 90,
+                "pairedEligibleDays": 26
+              },
+              "spring": {
+                "completeDays": 92,
+                "pairedEligibleDays": 65
+              },
+              "summer": {
+                "completeDays": 92,
+                "pairedEligibleDays": 91
+              },
+              "autumn": {
+                "completeDays": 91,
+                "pairedEligibleDays": 75
+              }
+            },
+            "rawPearsonR": 0.24735099,
+            "withinMonthPearsonR": 0.15325621
+          }
+        }
+      }
+    }
+  ],
+  "pairing": {
+    "minimumPairedHoursPerDay": 18,
+    "calendar": "UTC or fixed local standard time; complete days; both means on identical valid hours."
+  },
+  "seoulStations": {
+    "file": "../air-quality/data/seoul-stations-2023.json",
+    "sha256": "38c10478d13d773cc81ade11158b1b11faa89529bce7b10fca0504ea0eb07f2b",
+    "startUtc": "2022-12-31T15:00:00Z",
+    "intervalMinutes": 60,
+    "stationCount": 25
+  }
+}

@@ -1,6 +1,8 @@
 # Pairing air-quality and weather records
 
-This project reuses the retained 2024 records from the [air-quality comparison](../../air-quality/data/README.md)
+The archive now includes 2023, 2024 and 2025, with year selectors and yearly coverage/association tables. See the [timeline notes](TIMELINE.md) for sources, partial Beijing records, year-by-year models and reproduction. Existing links default to 2024.
+
+This project reuses the retained 2023–2025 records from the [air-quality comparison](../../air-quality/data/README.md)
 and [heat-stress comparison](../../heat-stress/data/README.md). It does not download
 new measurements when a visitor changes the controls. The [manifest](manifest.json)
 links to those existing files, identifies their checksums and records independent

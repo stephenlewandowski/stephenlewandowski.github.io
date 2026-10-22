@@ -1,6 +1,6 @@
-import {dailyPairs, fitAssociation, predict, pearson, spearman} from './analysis.mjs';
-import {hourlyJoint} from './hourly.mjs';
-import {mountFindings} from './findings.mjs';
+import {dailyPairs, fitAssociation, predict, pearson, spearman} from './analysis.mjs?v=20261023';
+import {hourlyJoint} from './hourly.mjs?v=20261023';
+import {mountFindings} from './findings.mjs?v=20261023';
 
 const $ = id => document.getElementById(id);
 const NS = 'http://www.w3.org/2000/svg';
@@ -11,7 +11,7 @@ const avg = values => values.length ? values.reduce((sum, value) => sum + value,
 const seasons = {DJF: {name: 'Winter · Dec–Feb', color: '#3463ad'}, MAM: {name: 'Spring · Mar–May', color: '#16766a'}, JJA: {name: 'Summer · Jun–Aug', color: '#bb542e'}, SON: {name: 'Autumn · Sep–Nov', color: '#8b549c'}};
 const seasonOf = month => month === 12 || month <= 2 ? 'DJF' : month <= 5 ? 'MAM' : month <= 8 ? 'JJA' : 'SON';
 const models = {linear: 'Linear', quadratic: 'Quadratic', monthAdjusted: 'Month-adjusted linear'};
-const defaults = {city: 'seoul', seoul: 'seoul-network-mean', metric: 'temperature', basis: 'local', from: '2024-01-01', through: '2024-12-31', season: 'all', model: 'linear', pm: 35, heat: 30, direction: 'above'};
+const defaults = {year: 2024, city: 'seoul', seoul: 'seoul-network-mean', metric: 'temperature', basis: 'local', from: '2024-01-01', through: '2024-12-31', season: 'all', model: 'linear', pm: 35, heat: 30, direction: 'above'};
 const state = {...defaults, manifest: null, records: [], supplement: null, current: null};
 let resizeFrame;
 
@@ -344,7 +344,7 @@ function renderHourly() {
   table('hourly-cities', ['City', 'Paired hours', 'PM₂.₅ threshold hours', 'Thermal threshold hours', 'Both · hours', 'Both · % paired', 'Days with overlap', 'Longest run · h'],
     results.map(({record, result: r}) => [record.city, integer(r.pairedHours), integer(r.pmHoursAbove), integer(r.thermalHoursMeeting), integer(r.bothHours), finite(r.fractionOfPaired) ? `${fmt(r.fractionOfPaired * 100, 2)}%` : '—', integer(r.daysWithBoth), integer(r.longestRunHours)]),
     `Hourly comparison · PM₂.₅ ≥ ${fmt(state.pm, 1)} µg/m³; ${metricLabel()} ${symbol} ${fmt(state.heat, 1)} ${thermalUnit()} · ${state.from} through ${state.through}`);
-  const monthValues = Array.from({length: 12}, (_, index) => ({label: new Date(Date.UTC(2024, index, 1)).toLocaleString('en', {month: 'short', timeZone: 'UTC'}), value: 0}));
+  const monthValues = Array.from({length: 12}, (_, index) => ({label: new Date(Date.UTC(state.year, index, 1)).toLocaleString('en', {month: 'short', timeZone: 'UTC'}), value: 0}));
   for (const event of current.events) {
     for (let timestamp = Date.parse(event.startUtc); timestamp <= Date.parse(event.endUtc); timestamp += 3600000) {
       const local = new Date(timestamp + current.utcOffsetMinutes * 60000);
@@ -366,8 +366,9 @@ function renderSources(record, pm) {
   pmCard.append(node('h3', 'PM₂.₅ observations'));
   paragraph(pmCard, `${record.city} · ${pm.station?.name || pm.station?.id || 'monitor record'}. ${record.pm.qaStatus || pm.quality?.qaStatus || 'See the source notes for quality status.'}`);
   if (record.id === 'seoul') paragraph(pmCard, state.seoul === state.supplement?.network.id ? 'The network mean is unweighted and requires at least 20 of 25 monitors in an hour. It is not population-weighted exposure.' : 'Changing a district monitor changes the pollution series. All Seoul districts use the same city-centred weather grid; these are not district-specific temperatures.');
-  if (record.id === 'pyeongtaek') paragraph(pmCard, 'The archive includes zeros and a summer data gap. Zeros are retained as reported; they are not independently confirmed clean-air episodes.');
+  if (record.id === 'pyeongtaek') paragraph(pmCard, 'The archive includes reported zeros and missing observations. Coverage varies by year. Zeros are retained as reported; they are not independently confirmed clean-air episodes.');
   if (record.id === 'los-angeles') paragraph(pmCard, 'This is the North Main Street continuous monitor, POC 3. It is distinct from the site’s primary daily regulatory monitor. Reported values and quality flags follow the EPA source archive.');
+  for (const key of ['partialYearNote', 'regulatoryInterpretation']) if (pm.quality?.[key]) paragraph(pmCard, pm.quality[key]);
   const source = pm.sources?.[0], sourceUrl = pm.station?.url || source?.pageUrl || source?.url;
   if (sourceUrl) pmCard.append(node('a', 'PM₂.₅ source', {href: sourceUrl, target: '_blank', rel: 'noopener noreferrer'}));
   if (pm.timeConvention?.interpretation_limit) paragraph(pmCard, pm.timeConvention.interpretation_limit);
@@ -403,15 +404,16 @@ function render() {
   $('record-note').textContent = `${record.city} · ${pm.station?.name || 'PM₂.₅ monitor'} · ${state.basis === 'utc' ? 'UTC days' : `local standard-time days (UTC${record.utcOffsetHours >= 0 ? '+' : ''}${record.utcOffsetHours})`}.`;
   $('metric-note').textContent = state.metric === 'utci' ? 'UTCI assumes mean radiant temperature equals air temperature. It is a controlled radiation scenario, not the published ERA5-HEAT series.' : state.metric.startsWith('wbgt') ? 'WBGT means use only retained model hours. Days with fewer than 18 paired hours are excluded; winter coverage can be limited.' : 'Both daily means use the same valid hourly timestamps. A day needs at least 18 paired hours.';
   $('plot-note').textContent = state.model === 'monthAdjusted' ? 'Each point is one eligible day after subtracting its month’s mean from both exposures. Colours show meteorological seasons; the line is the within-month association.' : 'Each point is one eligible day. Colours show meteorological seasons. The fitted line or curve stays inside the observed temperature or humidity range.';
-  if (state.from > state.through || !/^2024-\d{2}-\d{2}$/.test(state.from) || !/^2024-\d{2}-\d{2}$/.test(state.through)) {
-    $('load-status').textContent = 'Choose a valid date range within 2024, with the start date before the end date.';
+  const datePattern = new RegExp(`^${state.year}-\\d{2}-\\d{2}$`);
+  if (state.from > state.through || !datePattern.test(state.from) || !datePattern.test(state.through)) {
+    $('load-status').textContent = `Choose a valid date range within ${state.year}, with the start date before the end date.`;
     for (const id of ['coverage', 'associations', 'models', 'diagnostics', 'comparison', 'joint-counts', 'daily-table', 'hourly-summary', 'hourly-cities', 'hourly-events']) $(id).replaceChildren();
     for (const id of ['model-note', 'selection-note']) $(id).textContent = '';
     $('scatter-tooltip').hidden = true;
     for (const id of ['download', 'download-model', 'copy-link', 'download-hourly']) $(id).disabled = true;
     for (const id of ['hourly-months', 'hourly-runs']) emptyChart(id, 'Choose a valid date range.');
     $('hourly-note').textContent = ''; state.hourly = null;
-    emptyChart('scatter', 'Choose a valid 2024 date range.'); emptyChart('residual-chart', 'Choose a valid 2024 date range.');
+    emptyChart('scatter', 'Choose a valid selected-year date range.'); emptyChart('residual-chart', 'Choose a valid selected-year date range.');
     state.current = null; return;
   }
   $('load-status').textContent = '';
@@ -420,6 +422,18 @@ function render() {
   const fits = Object.fromEntries(Object.keys(models).map(model => [model, fitAssociation(days, {model})]));
   state.current = {record, pm, result, fits};
   renderCoverage(result); drawScatter(days, fits[state.model]); renderAssociations(days, fits); drawResiduals(fits[state.model]); renderComparison(); renderCounts(days); renderHourly(); renderSources(record, pm);
+  if (state.timeline) {
+    const hasAdjusted = ['temperature', 'utci'].includes(state.metric);
+    const headers = ['Year', 'Coverage', 'Paired / possible days', 'Mean PM₂.₅ · µg/m³', `Mean ${metricLabel()} · ${thermalUnit()}`, 'Pearson r · raw', 'Pearson r · within month'];
+    if (hasAdjusted) headers.push('Weather-adjusted current · 95% HAC interval', 'Lag 0–3 sum · 95% HAC interval');
+    const estimate = result => result ? `${fmt(result.estimate)} (${fmt(result.ci95[0])} to ${fmt(result.ci95[1])})` : 'Not fitted · seasonal coverage';
+    table('timeline-comparison', headers, state.timeline.records.filter(row => row.id === state.city).map(row => {
+      const m = row.metrics[state.metric];
+      const cells = [row.year, m.seasonallyComplete ? 'All seasons ≥75% paired days' : 'Partial seasonal coverage', `${m.days} / ${m.possibleDays}`, fmt(m.meanPm, 1), fmt(m.meanThermal, 1), fmt(m.r, 3), fmt(m.rWithin, 3)];
+      if (hasAdjusted) cells.push(`${estimate(m.adjusted?.current)}${m.adjusted ? ` · n=${m.adjusted.n}` : ''}`, estimate(m.adjusted?.lagSum));
+      return cells;
+    }), `${record.city} · full archived local standard-time years · Seoul network mean · independent of dates, season and district · model coefficients in µg/m³ per °C on each year's lag-complete sample`);
+  }
   const predictions = new Map(fits[state.model].predictions.map(row => [row.date, row]));
   table('daily-table', ['Date', 'PM₂.₅ · µg/m³', `${metricLabel()} · ${thermalUnit()}`, 'PM hours', 'Thermal hours', 'Paired hours', 'Included', 'Fitted PM₂.₅', 'Residual'], result.allDays.map(day => [day.date, fmt(day.pmMean, 2), fmt(day.heatMean, 2), day.pmHours, day.heatHours, day.pairedHours, day.eligible ? 'Yes' : 'No · fewer than 18 paired hours', fmt(predictions.get(day.date)?.fitted, 2), fmt(predictions.get(day.date)?.residual, 2)]), 'Daily pairing and completeness');
   history.replaceState(null, '', `${location.pathname}?${query()}${location.hash}`);
@@ -468,19 +482,31 @@ async function fetchJson(path) {
 
 async function start() {
   try {
-    $('load-status').textContent = 'Loading 2024 pollution and weather data…';
-    const manifest = await fetchJson('./data/manifest.json'); state.manifest = manifest;
+    const periods = await fetchJson('./data/periods.json');
+    const requestedYear = Number(new URLSearchParams(location.search).get('year') || periods.defaultYear);
+    const year = periods.periods.some(period => period.year === requestedYear) ? requestedYear : periods.defaultYear;
+    state.year = year;
+    options('year', periods.periods.map(period => [period.year, String(period.year)]), year);
+    $('year').addEventListener('change', () => { const url = new URL(location.href); url.searchParams.set('year', $('year').value); url.searchParams.set('from', `${$('year').value}-01-01`); url.searchParams.set('through', `${$('year').value}-12-31`); location.assign(url); });
+    $('load-status').textContent = `Loading ${year} pollution and weather data…`;
+    const manifest = await fetchJson(`./${periods.periods.find(period => period.year === year).manifest}`); state.manifest = manifest;
+    $('year-note').textContent = `${year} · ${manifest.records.filter(record => record.seasonallyComplete === false).map(record => `${record.city} has partial seasonal coverage.`).join(' ')} All means, fits and counts retain their actual data gaps.`;
+    state.timeline = await fetchJson('./data/timeline-summary.json');
     const [records, supplement] = await Promise.all([
       Promise.all(manifest.records.map(async record => ({...record, pmData: await fetchJson(record.pm.file), heatData: await fetchJson(record.heat.file)}))),
       manifest.seoulStations ? fetchJson(manifest.seoulStations.file) : null
     ]);
     state.records = records; state.supplement = supplement;
-    mountFindings(records).catch(error => { $('findings-status').textContent = `The full-year analysis could not be loaded: ${error.message}`; });
+    mountFindings(records, year).catch(error => { $('findings-status').textContent = `The full-year analysis could not be loaded: ${error.message}`; });
     for (const record of records) {
       if (!Array.isArray(record.pmData.values) || !Object.keys(manifest.metrics).every(metric => Array.isArray(record.heatData.values[metric]))) throw new Error(`The archived data for ${record.city} have an unexpected format.`);
     }
     const params = new URLSearchParams(location.search);
     for (const key of Object.keys(defaults)) if (params.has(key)) state[key] = typeof defaults[key] === 'number' ? Number(params.get(key)) : params.get(key);
+    state.year = year;
+    if (!state.from.startsWith(`${year}-`)) state.from = `${year}-01-01`;
+    if (!state.through.startsWith(`${year}-`)) state.through = `${year}-12-31`;
+    for (const id of ['from', 'through']) { $(id).min = `${year}-01-01`; $(id).max = `${year}-12-31`; }
     if (!records.some(record => record.id === state.city)) state.city = defaults.city;
     if (!manifest.metrics[state.metric]) state.metric = defaults.metric;
     if (!['local', 'utc'].includes(state.basis)) state.basis = defaults.basis;

@@ -1,0 +1,179 @@
+{
+  "file": "los-angeles-2025.json",
+  "outputSha256": "b93ae119108c8ad04225bcae80d0d5ebaa4e310d7e9669741ff0273204239884",
+  "quality": {
+    "expectedHours": 8760,
+    "validHours": 8376,
+    "capturePercent": 95.616,
+    "minimum": 0.0,
+    "maximum": 301.1,
+    "allMonthsPresent": true,
+    "minimumMonthlyCapturePercent": 85.119,
+    "longestMissingRunHours": 101,
+    "eligibleForSeasonalComparison": true,
+    "seasonalEligibilityRule": "At least 75% valid hourly readings in every UTC meteorological season",
+    "exclusionReason": null,
+    "missingTreatment": "null; no interpolation, imputation, or substitution of a different monitor",
+    "sourcePrecisionNote": "Concentrations serialized to three decimal places",
+    "firstValidUtc": "2025-01-01T08:00:00Z",
+    "lastValidUtc": "2025-12-31T23:00:00Z",
+    "spatialScope": "One monitoring location; not a citywide or population-weighted exposure estimate",
+    "negativeReadingsExcluded": 27,
+    "nonFiniteReadingsExcluded": 0,
+    "nonHourlyReadingsExcluded": 0,
+    "outOfPeriodReadings": 8,
+    "duplicateHours": 0,
+    "conflictingDuplicateHours": 0,
+    "sourceTimestamps": "EPA Date GMT + Time GMT retained; checked against PST fixed local standard timestamp plus eight hours",
+    "license": "Public domain US EPA AQS monitoring data",
+    "licenseDocumentation": "https://www.epa.gov/outdoor-air-quality-data/do-i-need-request-permission-use-monitoring-data-and-graphics-airdata",
+    "certificationStatus": "Certified",
+    "certificationEvidence": "annual_conc_by_monitor_2025.zip; 06-037-1103/88101/POC3/1HOUR",
+    "qaStatus": "EPA annual hourly summary: Certified. The app excludes negative concentrations and retains informational event flags. South Coast AQMD requests that POC3 2025 not be compared to the NAAQS after failed comparability testing. Use these measured data for exploratory exposure comparisons, not an official regulatory assessment.",
+    "sourceQualityFlagsAvailable": true,
+    "sourceQualifiers": {
+      "(none)": 8266,
+      "IJ": 12,
+      "IT": 84,
+      "IH": 48,
+      "J": 1
+    },
+    "qualifierDefinitions": {
+      "IH": {
+        "meaning": "Fireworks",
+        "type": "Informational Only"
+      },
+      "IJ": {
+        "meaning": "High Winds",
+        "type": "Informational Only"
+      },
+      "IT": {
+        "meaning": "Wildfire-U. S.",
+        "type": "Informational Only"
+      },
+      "J": {
+        "meaning": "Construction",
+        "type": "Informational Only"
+      }
+    },
+    "qualifierDocumentation": "https://aqs.epa.gov/aqsweb/documents/codetables/qualifiers.html",
+    "sampleDuration": "1 HOUR",
+    "selectionReason": "Same site 06-037-1103, parameter 88101, POC 3, continuous FEM method 170 retained across years",
+    "eventTreatment": "Retain IH fireworks, IJ high winds, IT US wildfire and J construction observations, which EPA classifies as informational. Exclude negative reported concentrations under the application rule; original source rows remain in the research extract.",
+    "regulatoryInterpretation": "The July 2026 South Coast AQMD comparability appendix requests that this POC 3 2025 series not be compared to the NAAQS after its 2023–2025 bias assessment. It is retained for exploratory exposure comparison, not as an official regulatory design value.",
+    "regulatoryDocumentation": "https://www.aqmd.gov/docs/default-source/clean-air-plans/air-quality-monitoring-network-plan/aaqmnp-appendix-cA4ED7731453B.pdf",
+    "utcBoundaryMissingHours": 8,
+    "boundaryNote": "EPA file indexed by local standard 2025; first eight UTC-year hours are not in this file and remain null. Genuine localYear is retained separately.",
+    "regulatoryComparisonExcluded": true
+  },
+  "monthlyCapture": [
+    {
+      "month": 1,
+      "expectedHours": 744,
+      "validHours": 730,
+      "capturePercent": 98.118
+    },
+    {
+      "month": 2,
+      "expectedHours": 672,
+      "validHours": 572,
+      "capturePercent": 85.119
+    },
+    {
+      "month": 3,
+      "expectedHours": 744,
+      "validHours": 740,
+      "capturePercent": 99.462
+    },
+    {
+      "month": 4,
+      "expectedHours": 720,
+      "validHours": 615,
+      "capturePercent": 85.417
+    },
+    {
+      "month": 5,
+      "expectedHours": 744,
+      "validHours": 741,
+      "capturePercent": 99.597
+    },
+    {
+      "month": 6,
+      "expectedHours": 720,
+      "validHours": 616,
+      "capturePercent": 85.556
+    },
+    {
+      "month": 7,
+      "expectedHours": 744,
+      "validHours": 741,
+      "capturePercent": 99.597
+    },
+    {
+      "month": 8,
+      "expectedHours": 744,
+      "validHours": 741,
+      "capturePercent": 99.597
+    },
+    {
+      "month": 9,
+      "expectedHours": 720,
+      "validHours": 711,
+      "capturePercent": 98.75
+    },
+    {
+      "month": 10,
+      "expectedHours": 744,
+      "validHours": 739,
+      "capturePercent": 99.328
+    },
+    {
+      "month": 11,
+      "expectedHours": 720,
+      "validHours": 699,
+      "capturePercent": 97.083
+    },
+    {
+      "month": 12,
+      "expectedHours": 744,
+      "validHours": 731,
+      "capturePercent": 98.253
+    }
+  ],
+  "seasonalCapture": {
+    "Winter (Jan–Feb, Dec)": {
+      "expectedHours": 2160,
+      "validHours": 2033,
+      "capturePercent": 94.12
+    },
+    "Spring (Mar–May)": {
+      "expectedHours": 2208,
+      "validHours": 2096,
+      "capturePercent": 94.928
+    },
+    "Summer (Jun–Aug)": {
+      "expectedHours": 2208,
+      "validHours": 2098,
+      "capturePercent": 95.018
+    },
+    "Autumn (Sep–Nov)": {
+      "expectedHours": 2184,
+      "validHours": 2149,
+      "capturePercent": 98.397
+    }
+  },
+  "sources": [
+    {
+      "url": "https://aqs.epa.gov/aqsweb/airdata/annual_conc_by_monitor_2025.zip",
+      "sha256": "7af948b3dcaf2d214e7d8fdcfb8ab7b4b6dd9865a43ead6f1e21955bcc326cb8",
+      "bytes": 3785819,
+      "downloadedAtUtc": "2026-10-22T22:25:28.658407+00:00"
+    },
+    {
+      "url": "https://aqs.epa.gov/aqsweb/airdata/hourly_88101_2025.zip",
+      "sha256": "6ba1444c76a0ce2e6b72016c6c688875c1a690782549b3bb5f99f67db4221ac2",
+      "bytes": 68558274,
+      "downloadedAtUtc": "2026-10-22T22:26:03.182589+00:00"
+    }
+  ]
+}

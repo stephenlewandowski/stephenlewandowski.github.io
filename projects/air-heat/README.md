@@ -1,4 +1,6 @@
-# Temperature and air pollution in 2024
+# Temperature and air pollution across years
+
+The archive now includes 2023, 2024 and 2025, with year selectors and yearly coverage/association tables. See the [timeline notes](data/TIMELINE.md) for sources, partial Beijing records, year-by-year models and reproduction. Existing links default to 2024.
 
 [Open the daily-pair comparison](https://stephenlewandowski.github.io/projects/air-heat/).
 

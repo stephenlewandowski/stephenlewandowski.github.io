@@ -1,0 +1,924 @@
+{
+  "annualHourlySummary": {
+    "State Code": "06",
+    "County Code": "037",
+    "Site Num": "1103",
+    "Parameter Code": "88101",
+    "POC": "3",
+    "Latitude": "34.06659",
+    "Longitude": "-118.22688",
+    "Datum": "WGS84",
+    "Parameter Name": "PM2.5 - Local Conditions",
+    "Sample Duration": "1 HOUR",
+    "Pollutant Standard": "",
+    "Metric Used": "Observed Values",
+    "Method Name": "Met One BAM-1020 Mass Monitor w/VSCC - Beta Attenuation",
+    "Year": "2025",
+    "Units of Measure": "Micrograms/cubic meter (LC)",
+    "Event Type": "No Events",
+    "Observation Count": "8411",
+    "Observation Percent": "96",
+    "Completeness Indicator": "Y",
+    "Valid Day Count": "356",
+    "Required Day Count": "365",
+    "Exceptional Data Count": "0",
+    "Null Data Count": "349",
+    "Primary Exceedance Count": "",
+    "Secondary Exceedance Count": "",
+    "Certification Indicator": "Certified",
+    "Num Obs Below MDL": "0",
+    "Arithmetic Mean": "12.720973",
+    "Arithmetic Standard Dev": "11.977169",
+    "1st Max Value": "301.1",
+    "1st Max DateTime": "2025-01-08 04:00",
+    "2nd Max Value": "238.7",
+    "2nd Max DateTime": "2025-07-05 03:00",
+    "3rd Max Value": "217.4",
+    "3rd Max DateTime": "2025-07-05 04:00",
+    "4th Max Value": "200.1",
+    "4th Max DateTime": "2025-01-08 03:00",
+    "1st Max Non Overlapping Value": "",
+    "1st NO Max DateTime": "",
+    "2nd Max Non Overlapping Value": "",
+    "2nd NO Max DateTime": "",
+    "99th Percentile": "48",
+    "98th Percentile": "36.3",
+    "95th Percentile": "27.1",
+    "90th Percentile": "21.2",
+    "75th Percentile": "15.5",
+    "50th Percentile": "10.6",
+    "10th Percentile": "4.4",
+    "Local Site Name": "Los Angeles-North Main Street",
+    "Address": "1630 N MAIN ST, LOS ANGELES",
+    "State Name": "California",
+    "County Name": "Los Angeles",
+    "City Name": "Los Angeles",
+    "CBSA Name": "Los Angeles-Long Beach-Anaheim, CA",
+    "Date of Last Change": "2026-03-26"
+  },
+  "flaggedObservations": [
+    {
+      "utc": "2025-01-08T06:00:00Z",
+      "value": 139.1,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-08T08:00:00Z",
+      "value": 36.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-08T09:00:00Z",
+      "value": 157.9,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-08T10:00:00Z",
+      "value": 184.5,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-08T11:00:00Z",
+      "value": 200.1,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-08T12:00:00Z",
+      "value": 301.1,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-08T14:00:00Z",
+      "value": 101.6,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-08T15:00:00Z",
+      "value": 175.7,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-08T16:00:00Z",
+      "value": 91.3,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-08T17:00:00Z",
+      "value": 76.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-08T18:00:00Z",
+      "value": 88.1,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-08T19:00:00Z",
+      "value": 87.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-08T20:00:00Z",
+      "value": 69.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-08T21:00:00Z",
+      "value": 31.4,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-08T22:00:00Z",
+      "value": 51.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-08T23:00:00Z",
+      "value": 55.0,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T00:00:00Z",
+      "value": 19.5,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T01:00:00Z",
+      "value": 25.6,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T02:00:00Z",
+      "value": 56.5,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T03:00:00Z",
+      "value": 66.8,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T04:00:00Z",
+      "value": 56.5,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T05:00:00Z",
+      "value": 73.8,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T06:00:00Z",
+      "value": 59.7,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T07:00:00Z",
+      "value": 68.7,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T08:00:00Z",
+      "value": 84.5,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T09:00:00Z",
+      "value": 87.7,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T10:00:00Z",
+      "value": 69.0,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T11:00:00Z",
+      "value": 76.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T12:00:00Z",
+      "value": 78.4,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T13:00:00Z",
+      "value": 71.4,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T14:00:00Z",
+      "value": 100.1,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-09T15:00:00Z",
+      "value": 97.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T16:00:00Z",
+      "value": 110.2,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-09T17:00:00Z",
+      "value": 110.2,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-09T18:00:00Z",
+      "value": 115.3,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-09T19:00:00Z",
+      "value": 103.5,
+      "qualifier": "IJ"
+    },
+    {
+      "utc": "2025-01-09T20:00:00Z",
+      "value": 51.3,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T21:00:00Z",
+      "value": 51.6,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T22:00:00Z",
+      "value": 56.0,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-09T23:00:00Z",
+      "value": 59.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T00:00:00Z",
+      "value": 50.4,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T01:00:00Z",
+      "value": 55.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T02:00:00Z",
+      "value": 58.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T03:00:00Z",
+      "value": 65.3,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T04:00:00Z",
+      "value": 58.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T05:00:00Z",
+      "value": 56.4,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T06:00:00Z",
+      "value": 56.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T07:00:00Z",
+      "value": 57.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T08:00:00Z",
+      "value": 54.5,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T09:00:00Z",
+      "value": 49.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T10:00:00Z",
+      "value": 47.7,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T11:00:00Z",
+      "value": 41.7,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T12:00:00Z",
+      "value": 34.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T13:00:00Z",
+      "value": 36.1,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T14:00:00Z",
+      "value": 39.1,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T15:00:00Z",
+      "value": 40.6,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T16:00:00Z",
+      "value": 43.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T17:00:00Z",
+      "value": 44.5,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T18:00:00Z",
+      "value": 19.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T19:00:00Z",
+      "value": 25.1,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T20:00:00Z",
+      "value": 28.5,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T21:00:00Z",
+      "value": 24.6,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T22:00:00Z",
+      "value": 61.6,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-10T23:00:00Z",
+      "value": 25.4,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T00:00:00Z",
+      "value": 15.8,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T01:00:00Z",
+      "value": 14.3,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T02:00:00Z",
+      "value": 21.7,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T03:00:00Z",
+      "value": 22.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T04:00:00Z",
+      "value": 30.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T05:00:00Z",
+      "value": 32.4,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T06:00:00Z",
+      "value": 35.4,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T07:00:00Z",
+      "value": 33.1,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T08:00:00Z",
+      "value": 33.7,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T09:00:00Z",
+      "value": 32.4,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T10:00:00Z",
+      "value": 43.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T11:00:00Z",
+      "value": 40.8,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T12:00:00Z",
+      "value": 38.3,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T13:00:00Z",
+      "value": 36.8,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T14:00:00Z",
+      "value": 40.1,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T15:00:00Z",
+      "value": 33.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T16:00:00Z",
+      "value": 33.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T17:00:00Z",
+      "value": 40.1,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T18:00:00Z",
+      "value": 15.8,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T19:00:00Z",
+      "value": 16.3,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T20:00:00Z",
+      "value": 18.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T21:00:00Z",
+      "value": 20.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T22:00:00Z",
+      "value": 18.3,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-11T23:00:00Z",
+      "value": 15.8,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-12T00:00:00Z",
+      "value": 13.6,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-12T01:00:00Z",
+      "value": 17.0,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-12T02:00:00Z",
+      "value": 20.7,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-12T03:00:00Z",
+      "value": 22.6,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-12T04:00:00Z",
+      "value": 25.9,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-12T05:00:00Z",
+      "value": 25.1,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-12T06:00:00Z",
+      "value": 27.6,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-01-12T07:00:00Z",
+      "value": 23.2,
+      "qualifier": "IT"
+    },
+    {
+      "utc": "2025-07-04T08:00:00Z",
+      "value": 10.3,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T09:00:00Z",
+      "value": 6.9,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T10:00:00Z",
+      "value": 5.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T11:00:00Z",
+      "value": 9.6,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T12:00:00Z",
+      "value": 13.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T13:00:00Z",
+      "value": 8.5,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T14:00:00Z",
+      "value": 12.3,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T15:00:00Z",
+      "value": 11.8,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T16:00:00Z",
+      "value": 13.2,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T17:00:00Z",
+      "value": 14.1,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T18:00:00Z",
+      "value": 16.5,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T19:00:00Z",
+      "value": 21.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T20:00:00Z",
+      "value": 12.7,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T21:00:00Z",
+      "value": 12.9,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T22:00:00Z",
+      "value": 14.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-04T23:00:00Z",
+      "value": 11.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T00:00:00Z",
+      "value": 9.1,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T01:00:00Z",
+      "value": 12.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T02:00:00Z",
+      "value": 10.2,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T03:00:00Z",
+      "value": 11.8,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T04:00:00Z",
+      "value": 67.0,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T05:00:00Z",
+      "value": 144.2,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T06:00:00Z",
+      "value": 161.5,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T07:00:00Z",
+      "value": 184.8,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T08:00:00Z",
+      "value": 163.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T09:00:00Z",
+      "value": 168.2,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T10:00:00Z",
+      "value": 194.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T11:00:00Z",
+      "value": 238.7,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T12:00:00Z",
+      "value": 217.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T13:00:00Z",
+      "value": 159.3,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T14:00:00Z",
+      "value": 192.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T15:00:00Z",
+      "value": 180.6,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T16:00:00Z",
+      "value": 145.9,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T17:00:00Z",
+      "value": 101.8,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T18:00:00Z",
+      "value": 34.8,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T19:00:00Z",
+      "value": 18.1,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T20:00:00Z",
+      "value": 15.5,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T21:00:00Z",
+      "value": 15.3,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T22:00:00Z",
+      "value": 14.5,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-05T23:00:00Z",
+      "value": 19.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-06T00:00:00Z",
+      "value": 28.2,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-06T01:00:00Z",
+      "value": 18.1,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-06T02:00:00Z",
+      "value": 15.2,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-06T03:00:00Z",
+      "value": 11.4,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-06T04:00:00Z",
+      "value": 12.5,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-06T05:00:00Z",
+      "value": 11.7,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-06T06:00:00Z",
+      "value": 12.1,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-07-06T07:00:00Z",
+      "value": 11.0,
+      "qualifier": "IH"
+    },
+    {
+      "utc": "2025-10-29T03:00:00Z",
+      "value": 112.9,
+      "qualifier": "J"
+    }
+  ],
+  "excludedNegativeObservations": [
+    {
+      "utc": "2025-01-22T21:00:00Z",
+      "value": -0.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-02-05T21:00:00Z",
+      "value": -0.6,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-02-05T22:00:00Z",
+      "value": -0.9,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-03-13T11:00:00Z",
+      "value": -0.4,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-09-29T06:00:00Z",
+      "value": -0.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-10-15T08:00:00Z",
+      "value": -0.3,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-15T08:00:00Z",
+      "value": -0.2,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-15T09:00:00Z",
+      "value": -2.0,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-15T10:00:00Z",
+      "value": -0.2,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-15T19:00:00Z",
+      "value": -0.2,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-15T20:00:00Z",
+      "value": -0.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-17T12:00:00Z",
+      "value": -0.9,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-17T13:00:00Z",
+      "value": -0.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-17T20:00:00Z",
+      "value": -1.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-18T01:00:00Z",
+      "value": -0.9,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-18T12:00:00Z",
+      "value": -0.5,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-21T05:00:00Z",
+      "value": -1.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-21T09:00:00Z",
+      "value": -0.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-21T14:00:00Z",
+      "value": -0.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-21T15:00:00Z",
+      "value": -1.6,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-11-26T23:00:00Z",
+      "value": -1.7,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-12-04T20:00:00Z",
+      "value": -0.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-12-04T21:00:00Z",
+      "value": -1.0,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-12-25T12:00:00Z",
+      "value": -0.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-12-26T13:00:00Z",
+      "value": -0.9,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-12-26T20:00:00Z",
+      "value": -0.1,
+      "qualifier": ""
+    },
+    {
+      "utc": "2025-12-26T21:00:00Z",
+      "value": -1.1,
+      "qualifier": ""
+    }
+  ],
+  "rawExtractSha256": "34c70a060470dd1ae09f59a84b712ee845605f1533dbff8d29e6a956175d4900"
+}

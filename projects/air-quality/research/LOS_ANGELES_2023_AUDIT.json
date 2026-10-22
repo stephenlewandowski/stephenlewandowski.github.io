@@ -1,0 +1,176 @@
+{
+  "file": "los-angeles-2023.json",
+  "outputSha256": "065060a3b9b343ae2b30e2357bdcc5615293e4995098a2ac1e0d2aaacea55911",
+  "quality": {
+    "expectedHours": 8760,
+    "validHours": 8591,
+    "capturePercent": 98.071,
+    "minimum": 0.0,
+    "maximum": 110.0,
+    "allMonthsPresent": true,
+    "minimumMonthlyCapturePercent": 89.306,
+    "longestMissingRunHours": 74,
+    "eligibleForSeasonalComparison": true,
+    "seasonalEligibilityRule": "At least 75% valid hourly readings in every UTC meteorological season",
+    "exclusionReason": null,
+    "missingTreatment": "null; no interpolation, imputation, or substitution of a different monitor",
+    "sourcePrecisionNote": "Concentrations serialized to three decimal places",
+    "spatialScope": "One monitoring location; not a citywide or population-weighted exposure estimate",
+    "negativeReadingsExcluded": 32,
+    "nonFiniteReadingsExcluded": 0,
+    "nonHourlyReadingsExcluded": 0,
+    "outOfPeriodReadings": 8,
+    "duplicateHours": 0,
+    "conflictingDuplicateHours": 0,
+    "sourceTimestamps": "EPA Date GMT + Time GMT retained; checked against PST fixed local standard timestamp plus eight hours",
+    "license": "Public domain US EPA AQS monitoring data",
+    "licenseDocumentation": "https://www.epa.gov/outdoor-air-quality-data/do-i-need-request-permission-use-monitoring-data-and-graphics-airdata",
+    "certificationStatus": "Certified",
+    "certificationEvidence": "annual_conc_by_monitor_2023.zip; 06-037-1103/88101/POC3/1HOUR",
+    "sourceQualityFlagsAvailable": true,
+    "sourceQualifiers": {
+      "(none)": 8629,
+      "IH": 2
+    },
+    "sampleDuration": "1 HOUR",
+    "selectionReason": "Same site 06-037-1103, parameter 88101, POC 3, continuous FEM method 170 retained across years",
+    "eventTreatment": "Retain IH fireworks, IJ high winds, IT US wildfire and J construction observations, which EPA classifies as informational. Exclude negative reported concentrations under the application rule; original source rows remain in the research extract.",
+    "regulatoryInterpretation": "POC 3 is an hourly FEM; the site daily FRM POC 1 is its primary monitor. These exploratory hourly comparisons do not reproduce official regulatory design values.",
+    "regulatoryDocumentation": "https://www.aqmd.gov/docs/default-source/clean-air-plans/air-quality-monitoring-network-plan/aaqmnp-appendix-cA4ED7731453B.pdf",
+    "utcBoundaryMissingHours": 8,
+    "boundaryNote": "EPA file indexed by local standard 2023; first eight UTC-year hours are not in this file and remain null. Genuine localYear is retained separately.",
+    "firstValidUtc": "2023-01-01T08:00:00Z",
+    "lastValidUtc": "2023-12-31T23:00:00Z",
+    "regulatoryComparisonExcluded": false,
+    "qualifierDefinitions": {
+      "IH": {
+        "meaning": "Fireworks",
+        "type": "Informational Only"
+      },
+      "IJ": {
+        "meaning": "High Winds",
+        "type": "Informational Only"
+      },
+      "IT": {
+        "meaning": "Wildfire-U. S.",
+        "type": "Informational Only"
+      },
+      "J": {
+        "meaning": "Construction",
+        "type": "Informational Only"
+      }
+    },
+    "qualifierDocumentation": "https://aqs.epa.gov/aqsweb/documents/codetables/qualifiers.html",
+    "qaStatus": "EPA annual hourly summary: Certified. The app excludes negative concentrations and retains informational event flags. The site primary regulatory monitor is daily FRM POC 1; this same-monitor hourly POC 3 series is retained for exploratory exposure comparison."
+  },
+  "monthlyCapture": [
+    {
+      "month": 1,
+      "expectedHours": 744,
+      "validHours": 723,
+      "capturePercent": 97.177
+    },
+    {
+      "month": 2,
+      "expectedHours": 672,
+      "validHours": 668,
+      "capturePercent": 99.405
+    },
+    {
+      "month": 3,
+      "expectedHours": 744,
+      "validHours": 737,
+      "capturePercent": 99.059
+    },
+    {
+      "month": 4,
+      "expectedHours": 720,
+      "validHours": 643,
+      "capturePercent": 89.306
+    },
+    {
+      "month": 5,
+      "expectedHours": 744,
+      "validHours": 739,
+      "capturePercent": 99.328
+    },
+    {
+      "month": 6,
+      "expectedHours": 720,
+      "validHours": 717,
+      "capturePercent": 99.583
+    },
+    {
+      "month": 7,
+      "expectedHours": 744,
+      "validHours": 741,
+      "capturePercent": 99.597
+    },
+    {
+      "month": 8,
+      "expectedHours": 744,
+      "validHours": 725,
+      "capturePercent": 97.446
+    },
+    {
+      "month": 9,
+      "expectedHours": 720,
+      "validHours": 713,
+      "capturePercent": 99.028
+    },
+    {
+      "month": 10,
+      "expectedHours": 744,
+      "validHours": 734,
+      "capturePercent": 98.656
+    },
+    {
+      "month": 11,
+      "expectedHours": 720,
+      "validHours": 712,
+      "capturePercent": 98.889
+    },
+    {
+      "month": 12,
+      "expectedHours": 744,
+      "validHours": 739,
+      "capturePercent": 99.328
+    }
+  ],
+  "seasonalCapture": {
+    "Winter (Jan–Feb, Dec)": {
+      "expectedHours": 2160,
+      "validHours": 2130,
+      "capturePercent": 98.611
+    },
+    "Spring (Mar–May)": {
+      "expectedHours": 2208,
+      "validHours": 2119,
+      "capturePercent": 95.969
+    },
+    "Summer (Jun–Aug)": {
+      "expectedHours": 2208,
+      "validHours": 2183,
+      "capturePercent": 98.868
+    },
+    "Autumn (Sep–Nov)": {
+      "expectedHours": 2184,
+      "validHours": 2159,
+      "capturePercent": 98.855
+    }
+  },
+  "sources": [
+    {
+      "url": "https://aqs.epa.gov/aqsweb/airdata/annual_conc_by_monitor_2023.zip",
+      "sha256": "5e118442dd01791c08880cb5836d9b5b13d461b7230fe39f2cb2718c4d2ecc96",
+      "bytes": 4347093,
+      "downloadedAtUtc": "2026-10-22T22:22:19.537662+00:00"
+    },
+    {
+      "url": "https://aqs.epa.gov/aqsweb/airdata/hourly_88101_2023.zip",
+      "sha256": "32ec38a1dce00d2ea055d43f84b9abf5e09c5a11738c844d2afd294fe896b99f",
+      "bytes": 76998372,
+      "downloadedAtUtc": "2026-10-22T22:24:46.481917+00:00"
+    }
+  ]
+}
