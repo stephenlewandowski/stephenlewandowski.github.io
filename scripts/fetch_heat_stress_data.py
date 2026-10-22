@@ -1,4 +1,4 @@
-"""Fetch the public hourly ERA5 inputs for the 2024 city heat comparison.
+"""Fetch public hourly ERA5 inputs for one full UTC year of the city comparison.
 
 The default destination is outside the website repository. Existing raw files
 are checked and reused unless --refresh is specified. No API key is required.
@@ -27,28 +27,31 @@ CITIES = [
     ('beijing', 'Beijing', 39.9042, 116.4074, 'Asia/Shanghai'),
     ('los-angeles', 'Los Angeles', 34.0522, -118.2437, 'America/Los_Angeles'),
 ]
-START = datetime(2024, 1, 1)
-EXPECTED_TIMES = [(START + timedelta(hours=hour)).isoformat(timespec='minutes') for hour in range(8784)]
+def expected_times(year):
+    start, end = datetime(year, 1, 1), datetime(year + 1, 1, 1)
+    return [(start + timedelta(hours=hour)).isoformat(timespec='minutes')
+            for hour in range(int((end - start).total_seconds() / 3600))]
 
 
-def source_url(latitude, longitude):
+def source_url(latitude, longitude, year=2024):
     """Pin one model and its native nearest grid cell, without elevation adjustment."""
     query = {
         'latitude': latitude, 'longitude': longitude,
-        'start_date': '2024-01-01', 'end_date': '2024-12-31',
+        'start_date': f'{year}-01-01', 'end_date': f'{year}-12-31',
         'hourly': ','.join(FIELDS), 'models': 'era5', 'wind_speed_unit': 'ms',
         'timezone': 'GMT', 'elevation': 'nan', 'cell_selection': 'nearest',
     }
     return 'https://archive-api.open-meteo.com/v1/archive?' + urllib.parse.urlencode(query, safe=',')
 
 
-def audit(data):
+def audit(data, year=2024):
     """Reject incomplete time grids and unusable meteorological inputs."""
     assert data['utc_offset_seconds'] == 0
-    assert data['hourly']['time'] == EXPECTED_TIMES, 'Expected the complete 8,784-hour UTC year.'
+    times = expected_times(year)
+    assert data['hourly']['time'] == times, f'Expected the complete {len(times):,}-hour UTC year.'
     for field in FIELDS:
         values = data['hourly'][field]
-        assert len(values) == len(EXPECTED_TIMES), field
+        assert len(values) == len(times), field
         assert all(type(value) in (int, float) and math.isfinite(value) for value in values), field
     assert all(0 <= value <= 100 for value in data['hourly']['relative_humidity_2m'])
     assert all(value >= 0 for value in data['hourly']['wind_speed_10m'])
@@ -70,10 +73,10 @@ def input_hash(data):
     return hashlib.sha256(raw).hexdigest()
 
 
-def acquire(city, raw_root, previous, refresh=False):
+def acquire(city, raw_root, previous, refresh=False, year=2024):
     slug, name, latitude, longitude, civil_tz = city
-    url = source_url(latitude, longitude)
-    path = raw_root / f'{slug}-era5-2024.json'
+    url = source_url(latitude, longitude, year)
+    path = raw_root / f'{slug}-era5-{year}.json'
     old = previous.get(slug, {})
     if path.exists() and not refresh:
         content = path.read_bytes()
@@ -95,17 +98,17 @@ def acquire(city, raw_root, previous, refresh=False):
         retrieved_at = datetime.now(timezone.utc).isoformat()
         path.write_bytes(content)
     data = json.loads(content)
-    audit(data)
+    audit(data, year)
     result = {
         'id': slug, 'city': name, 'requestedLatitude': latitude,
         'requestedLongitude': longitude, 'civilTimezone': civil_tz,
         'returnedGridLatitude': data['latitude'], 'returnedGridLongitude': data['longitude'],
-        'gridElevationMetres': data['elevation'], 'timeBasis': 'UTC', 'hours': 8784,
+        'gridElevationMetres': data['elevation'], 'timeBasis': 'UTC', 'hours': len(expected_times(year)),
         'file': path.name, 'bytes': len(content),
         'sha256': hashlib.sha256(content).hexdigest(), 'inputSha256': input_hash(data),
         'url': url, 'retrievedAt': retrieved_at, 'units': data['hourly_units'],
     }
-    print(f"{name}: 8,784 complete hours; grid {data['latitude']}, {data['longitude']}")
+    print(f"{name} {year}: {result['hours']:,} complete hours; grid {data['latitude']}, {data['longitude']}", flush=True)
     return result
 
 
@@ -113,6 +116,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-root', type=Path, default=ROOT.parent / 'heat-stress-comparison' / 'research')
     parser.add_argument('--refresh', action='store_true', help='Download again instead of reusing audited raw files.')
+    parser.add_argument('--year', type=int, default=2024, help='Full UTC calendar year (default: 2024).')
     args = parser.parse_args()
     raw_root = args.output_root / 'raw'
     raw_root.mkdir(parents=True, exist_ok=True)
@@ -120,12 +124,13 @@ if __name__ == '__main__':
     previous = {}
     if manifest_path.exists():
         previous = {record['id']: record for record in json.loads(manifest_path.read_text(encoding='utf-8'))['sources']}
-    sources = [acquire(city, raw_root, previous, args.refresh) for city in CITIES]
+    assert 1940 <= args.year < datetime.now(timezone.utc).year, 'Choose a completed ERA5 calendar year since 1940.'
+    sources = [acquire(city, raw_root, previous, args.refresh, args.year) for city in CITIES]
     provenance = {
         'dataset': 'ERA5 reanalysis, accessed via Open-Meteo Historical Weather API',
         'documentation': 'https://open-meteo.com/en/docs/historical-weather-api',
         'licence': 'https://open-meteo.com/en/licence',
-        'period': '2024-01-01T00:00Z/2024-12-31T23:00Z',
+        'period': f'{args.year}-01-01T00:00Z/{args.year}-12-31T23:00Z',
         'nativeGrid': True,
         'selection': 'models=era5, elevation=nan disables elevation adjustment; cell_selection=nearest',
         'radiation': 'Hourly average radiation is over the preceding hour; *_instant fields are Open-Meteo instantaneous-time estimates.',

@@ -1,4 +1,4 @@
-import {aggregate, HOURS_2024, START_2024} from './analysis.mjs';
+import {aggregate, HOURS_2024, START_2024} from './analysis.mjs?v=20261023';
 
 // Concentration units throughout this module are micrograms per cubic metre.
 // These are standard levels, not classifications of this one-year dataset.
@@ -178,7 +178,7 @@ function countValues(values, threshold) {
  * monthly reports hourly counts in each calendar month; dailyValues contains
  * the eligible raw day objects. Percent denominators are valid observations.
  */
-export function thresholdCounts(record, threshold, {first = 0, last = HOURS_2024 - 1, basis = 'utc'} = {}) {
+export function thresholdCounts(record, threshold, {first = 0, last = record.values.length - 1, basis = 'utc'} = {}) {
   if (!Number.isFinite(threshold)) throw new Error('The threshold must be finite');
   if (!['utc', 'local-standard'].includes(basis)) throw new Error(`Unknown calendar basis: ${basis}`);
   if (!Number.isFinite(first) || !Number.isFinite(last)) throw new Error('The selected hour indices must be finite');

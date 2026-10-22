@@ -1,0 +1,148 @@
+{
+  "file": "london-2025.json",
+  "outputSha256": "5d35baf555a78d375083dc3cb11d5cb7a9c583e3ae79d67fcd1523b6dff44fd7",
+  "quality": {
+    "expectedHours": 8760,
+    "validHours": 8653,
+    "capturePercent": 98.779,
+    "minimum": 0.278,
+    "maximum": 74.842,
+    "allMonthsPresent": true,
+    "minimumMonthlyCapturePercent": 90.054,
+    "longestMissingRunHours": 73,
+    "eligibleForSeasonalComparison": true,
+    "seasonalEligibilityRule": "At least 75% valid hourly readings in every UTC meteorological season",
+    "exclusionReason": null,
+    "missingTreatment": "null; no interpolation, imputation, or substitution of a different monitor",
+    "sourcePrecisionNote": "Concentrations serialized to three decimal places",
+    "firstValidUtc": "2025-01-01T00:00:00Z",
+    "lastValidUtc": "2025-12-31T23:00:00Z",
+    "spatialScope": "One monitoring location; not a citywide or population-weighted exposure estimate",
+    "negativeReadingsExcluded": 0,
+    "nonFiniteReadingsExcluded": 6,
+    "nonHourlyReadingsExcluded": 0,
+    "outOfPeriodReadings": 0,
+    "duplicateHours": 0,
+    "conflictingDuplicateHours": 0,
+    "sourceTimestamps": "Annual RData POSIXct instants converted to GMT, following openair::importImperial(); no summer-time shift",
+    "license": "Open Government Licence v2; London Air Quality Network / Imperial College London",
+    "licenseDocumentation": "https://api.erg.ic.ac.uk/AirQuality/Information/Documentation/pdf",
+    "sourceDocumentation": "https://github.com/openair-project/openair/blob/main/R/importImperial.R",
+    "sourceFields": [
+      "date",
+      "no2",
+      "o3",
+      "pm10",
+      "pm25",
+      "FINE",
+      "site"
+    ],
+    "sourceQualityFlagsAvailable": false,
+    "ratificationStatus": "Not provided in the annual RData archive; no ratification claim is made",
+    "selectionReason": "Same HP1 urban-background monitor retained across years"
+  },
+  "monthlyCapture": [
+    {
+      "month": 1,
+      "expectedHours": 744,
+      "validHours": 670,
+      "capturePercent": 90.054
+    },
+    {
+      "month": 2,
+      "expectedHours": 672,
+      "validHours": 646,
+      "capturePercent": 96.131
+    },
+    {
+      "month": 3,
+      "expectedHours": 744,
+      "validHours": 744,
+      "capturePercent": 100.0
+    },
+    {
+      "month": 4,
+      "expectedHours": 720,
+      "validHours": 718,
+      "capturePercent": 99.722
+    },
+    {
+      "month": 5,
+      "expectedHours": 744,
+      "validHours": 744,
+      "capturePercent": 100.0
+    },
+    {
+      "month": 6,
+      "expectedHours": 720,
+      "validHours": 720,
+      "capturePercent": 100.0
+    },
+    {
+      "month": 7,
+      "expectedHours": 744,
+      "validHours": 743,
+      "capturePercent": 99.866
+    },
+    {
+      "month": 8,
+      "expectedHours": 744,
+      "validHours": 744,
+      "capturePercent": 100.0
+    },
+    {
+      "month": 9,
+      "expectedHours": 720,
+      "validHours": 719,
+      "capturePercent": 99.861
+    },
+    {
+      "month": 10,
+      "expectedHours": 744,
+      "validHours": 742,
+      "capturePercent": 99.731
+    },
+    {
+      "month": 11,
+      "expectedHours": 720,
+      "validHours": 720,
+      "capturePercent": 100.0
+    },
+    {
+      "month": 12,
+      "expectedHours": 744,
+      "validHours": 743,
+      "capturePercent": 99.866
+    }
+  ],
+  "seasonalCapture": {
+    "Winter (Jan–Feb, Dec)": {
+      "expectedHours": 2160,
+      "validHours": 2059,
+      "capturePercent": 95.324
+    },
+    "Spring (Mar–May)": {
+      "expectedHours": 2208,
+      "validHours": 2206,
+      "capturePercent": 99.909
+    },
+    "Summer (Jun–Aug)": {
+      "expectedHours": 2208,
+      "validHours": 2207,
+      "capturePercent": 99.955
+    },
+    "Autumn (Sep–Nov)": {
+      "expectedHours": 2184,
+      "validHours": 2181,
+      "capturePercent": 99.863
+    }
+  },
+  "sources": [
+    {
+      "url": "https://londonair.org.uk/r_data/HP1_2025.RData",
+      "sha256": "d5076766dc8d568f39b4cbeb7aae01f3fd1ba28454869f5f4d016715a73c5cc6",
+      "bytes": 226673,
+      "downloadedAtUtc": "2026-10-22T22:22:07.149282+00:00"
+    }
+  ]
+}

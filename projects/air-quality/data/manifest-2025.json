@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "year": 2025,
+  "pollutant": "PM2.5",
+  "selectionRule": "Audited retained observations; partial records explicitly flagged. No missing values are filled.",
+  "records": [
+    {
+      "id": "seoul",
+      "city": "Seoul",
+      "file": "data/seoul-2025.json",
+      "sha256": "84d47816ccffcb7deefe68b36cbb74f67edf222cb57c36532d8e18ca0c151891",
+      "annualCapturePercent": 99.76,
+      "seasonCapturePercent": {
+        "winter": 99.398,
+        "spring": 99.955,
+        "summer": 99.909,
+        "autumn": 99.771
+      },
+      "seasonallyComplete": true,
+      "included": true
+    },
+    {
+      "id": "pyeongtaek",
+      "city": "Pyeongtaek",
+      "file": "data/pyeongtaek-2025.json",
+      "sha256": "f27199746cc010805d7ca25024525ad0b3bdbbf332782cc9faff2062a9562edb",
+      "annualCapturePercent": 97.272,
+      "seasonCapturePercent": {
+        "winter": 94.12,
+        "spring": 99.321,
+        "summer": 99.004,
+        "autumn": 96.566
+      },
+      "seasonallyComplete": true,
+      "included": true
+    },
+    {
+      "id": "london",
+      "city": "London",
+      "file": "data/london-2025.json",
+      "sha256": "abd02066f1b2f698d3e310056122ada9ba912c1d8119077c9103e57131f34717",
+      "annualCapturePercent": 98.779,
+      "seasonCapturePercent": {
+        "winter": 95.324,
+        "spring": 99.909,
+        "summer": 99.955,
+        "autumn": 99.863
+      },
+      "seasonallyComplete": true,
+      "included": true
+    },
+    {
+      "id": "beijing",
+      "city": "Beijing",
+      "file": "data/beijing-2025.json",
+      "sha256": "77d43ddbcd13ee3fa2f5eb61c18adeb4a57ab9abe452608f7eccc53e71ffeede",
+      "annualCapturePercent": 16.781,
+      "seasonCapturePercent": {
+        "winter": 64.12,
+        "spring": 3.85,
+        "summer": 0.0,
+        "autumn": 0.0
+      },
+      "seasonallyComplete": false,
+      "included": true
+    },
+    {
+      "id": "los-angeles",
+      "city": "Los Angeles",
+      "file": "data/los-angeles-2025.json",
+      "sha256": "9578ed1374a989f7f1eb5a3c5d72c23a05ee1d7a0654b5bab04a73f3762cd0a1",
+      "annualCapturePercent": 95.616,
+      "seasonCapturePercent": {
+        "winter": 94.12,
+        "spring": 94.928,
+        "summer": 95.018,
+        "autumn": 98.397
+      },
+      "seasonallyComplete": true,
+      "included": true
+    }
+  ],
+  "excluded": [],
+  "seoulStations": {
+    "file": "data/seoul-stations-2025.json",
+    "sha256": "00ced62a3f444fa750c3773fd6a8e6feaa1f10b7c106fafbe9624c72d7eed264"
+  }
+}

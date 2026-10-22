@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "defaultYear": 2024,
+  "periods": [
+    {"year": 2023, "manifest": "data/manifest-2023.json"},
+    {"year": 2024, "manifest": "data/manifest.json"},
+    {"year": 2025, "manifest": "data/manifest-2025.json"}
+  ]
+}

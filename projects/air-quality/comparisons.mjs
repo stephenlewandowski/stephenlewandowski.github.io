@@ -1,5 +1,5 @@
-import {summarize, START_2024} from './analysis.mjs';
-import {pm25Benchmark, thresholdCounts, PM25_STANDARDS, standardOffset} from './benchmarks.mjs?v=20261020-cities';
+import {summarize} from './analysis.mjs?v=20261023';
+import {pm25Benchmark, thresholdCounts, PM25_STANDARDS, standardOffset} from './benchmarks.mjs?v=20261023';
 
 const $ = selector => document.querySelector(selector);
 const NS = 'http://www.w3.org/2000/svg';
@@ -51,6 +51,11 @@ function renderStandards(records) {
   body.replaceChildren();
   const notes = [];
   for (const record of records) {
+    if (record.quality?.regulatoryComparisonExcluded) {
+      const row = el('tr', null); row.append(rowName(record));
+      for (let column = 0; column < 5; column++) row.append(noteCell('Not compared', 'Provider requests exclusion from NAAQS comparison'));
+      body.append(row); notes.push(`${name(record)}, ${record.year}: POC 3 is omitted from this reference table under the provider's exclusion request; measured values remain available in the explorer.`); continue;
+    }
     const data = benchmark(record);
     const annualNote = data.annualMean === null ? 'Insufficient data' : data.annualMean > PM25_STANDARDS.annualSecondary ? 'Above 9.0 and 15.0 reference levels' : data.annualMean > PM25_STANDARDS.annualPrimary ? 'Above 9.0; below 15.0 reference level' : data.annualMean === PM25_STANDARDS.annualPrimary ? 'At 9.0 reference level' : 'Below 9.0 and 15.0 reference levels';
     const dailyNote = data.p98 === null ? 'Insufficient data' : `${data.p98 > 35 ? 'Above' : data.p98 === 35 ? 'At' : 'Below'} 35 reference level · rank ${data.p98Rank}`;
@@ -62,9 +67,9 @@ function renderStandards(records) {
       noteCell(`${data.daysAbove35} / ${data.validDays}`, 'EPA-precision daily values'),
       noteCell(`${fmt(capture)}%`, capture >= 75 ? 'All quarters ≥75%' : 'At least one quarter below 75%', capture < 75 ? 'air-low-capture' : ''));
     body.append(row);
-    notes.push(`${name(record)}: ${data.validDays}/366 valid local days${data.highValueExceptionDays ? `, including ${data.highValueExceptionDays} sparse high day${data.highValueExceptionDays === 1 ? '' : 's'} using the conservative lower bound` : ''}.`);
+    notes.push(`${name(record)}: ${data.validDays}/${data.expectedDays} valid local days${data.highValueExceptionDays ? `, including ${data.highValueExceptionDays} sparse high day${data.highValueExceptionDays === 1 ? '' : 's'} using the conservative lower bound` : ''}.`);
   }
-  $('#standards-note').textContent = notes.length ? notes.join(' ') + ' No exceptional-event exclusions or regulatory data-substitution tests are applied.' : 'Select a record above to compare its 2024 statistics.';
+  $('#standards-note').textContent = notes.length ? notes.join(' ') + ' No exceptional-event exclusions or regulatory data-substitution tests are applied.' : 'Select a record above to compare its selected-year statistics.';
 }
 
 function plotFrame(id, {maximum = 100, unit = '% of valid days', xLabel = ''} = {}) {
@@ -137,7 +142,7 @@ function renderDistribution(series, options) {
       if (options.basis !== 'local-standard') return true;
       // Match the local-calendar-year restriction used by thresholdCounts.
       const offset = standardOffset(record) / 60;
-      return new Date(START_2024 + (options.first + index + offset) * 3600000).getUTCFullYear() === 2024;
+      return new Date(Date.parse(record.startUtc) + (options.first + index + offset) * 3600000).getUTCFullYear() === record.year;
     })}));
   const maximum = Math.max(10, ...distribution.map(item => summarize(item.values).max || 0));
   const ceiling = Math.ceil(maximum / 10) * 10;
@@ -193,8 +198,8 @@ export function renderComparisons(records, options) {
     row.append(el('td', `${data.hourly.longestRun.toLocaleString()} h`));
     body.append(row);
   }
-  const first = new Date(START_2024 + options.first * 3600000).toISOString().slice(0, 10);
-  const last = new Date(START_2024 + options.last * 3600000).toISOString().slice(0, 10);
+  const first = new Date(Date.UTC(options.year ?? 2024, 0, 1) + options.first * 3600000).toISOString().slice(0, 10);
+  const last = new Date(Date.UTC(options.year ?? 2024, 0, 1) + options.last * 3600000).toISOString().slice(0, 10);
   $('#count-period').textContent = `${first} through ${last} (UTC selection) · above ${fmt(options.threshold)} µg/m³ · ${options.basis === 'utc' ? 'UTC days' : 'local standard-time days'}`;
   $('#download-comparison').disabled = !records.length;
   renderMonths(series, options);
@@ -203,7 +208,7 @@ export function renderComparisons(records, options) {
 
 export function comparisonCsv(records, options) {
   const rows = [['record', 'scope', 'pollutant', 'units', 'period', 'day_basis', 'metric', 'value', 'valid_denominator', 'possible_denominator', 'threshold_ug_m3']];
-  const period = `${new Date(START_2024 + options.first * 3600000).toISOString().slice(0, 10)}/${new Date(START_2024 + options.last * 3600000).toISOString().slice(0, 10)}`;
+  const period = `${new Date(Date.UTC(options.year ?? 2024, 0, 1) + options.first * 3600000).toISOString().slice(0, 10)}/${new Date(Date.UTC(options.year ?? 2024, 0, 1) + options.last * 3600000).toISOString().slice(0, 10)}`;
   for (const record of records) {
     const scope = record.networkMean ? 'network mean; context only' : record.station.name;
     const prefix = [name(record), scope, 'PM2.5', 'ug/m3'];
@@ -212,11 +217,16 @@ export function comparisonCsv(records, options) {
       rows.push([...prefix, period, options.basis, `${key}_strictly_above`, data[key].above, data[key].valid, data[key].expected, options.threshold]);
     }
     rows.push([...prefix, period, options.basis, 'longest_consecutive_hours_above', data.hourly.longestRun, '', '', options.threshold]);
+    if (record.quality?.regulatoryComparisonExcluded) {
+      rows.push([...prefix, `${record.year} full local year`, 'local-standard', 'regulatory_comparison_excluded', 'true', '', '', '']);
+      monthCounts(data, options.threshold).forEach((count, index) => rows.push([...prefix, `${period}; month ${index + 1}`, options.basis, 'daily_strictly_above', count.above, count.valid, '', options.threshold]));
+      continue;
+    }
     const full = benchmark(record);
     for (const [metric, value, threshold] of [['annual_component', full.annualMean, 9], ['daily_p98_component', full.p98, 35], ['epa_precision_days_above_35', full.daysAbove35, 35], ['sparse_high_days', full.highValueExceptionDays, '']]) {
-      rows.push([...prefix, '2024 full local year; one-year comparison only', 'local-standard; EPA tenths truncation', metric, value ?? '', full.validDays, 366, threshold]);
+      rows.push([...prefix, `${record.year} full local year; one-year comparison only`, 'local-standard; EPA tenths truncation', metric, value ?? '', full.validDays, full.expectedDays, threshold]);
     }
-    for (const quarter of full.quarters) rows.push([...prefix, `2024 Q${quarter.quarter}`, 'local-standard; EPA tenths truncation', 'valid_days', quarter.validDays, quarter.expectedDays, quarter.expectedDays, '']);
+    for (const quarter of full.quarters) rows.push([...prefix, `${record.year} Q${quarter.quarter}`, 'local-standard; EPA tenths truncation', 'valid_days', quarter.validDays, quarter.expectedDays, quarter.expectedDays, '']);
     monthCounts(data, options.threshold).forEach((count, index) => rows.push([...prefix, `${period}; month ${index + 1}`, options.basis, 'daily_strictly_above', count.above, count.valid, '', options.threshold]));
   }
   return rows.map(row => row.map(value => `"${String(value).replaceAll('"', '""')}"`).join(',')).join('\r\n') + '\r\n';

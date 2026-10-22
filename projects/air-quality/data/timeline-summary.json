@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "seoul",
+      "city": "Seoul",
+      "year": 2023,
+      "validHours": 8740,
+      "expectedHours": 8760,
+      "mean": 19.63187414187643,
+      "seasonMeans": [
+        25.48014432029795,
+        23.195824275362316,
+        15.545353260869565,
+        14.389113051470588
+      ],
+      "seasonCapturePercent": {
+        "winter": 99.444,
+        "spring": 100.0,
+        "summer": 100.0,
+        "autumn": 99.634
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "pyeongtaek",
+      "city": "Pyeongtaek",
+      "year": 2023,
+      "validHours": 8574,
+      "expectedHours": 8760,
+      "mean": 25.031723816188478,
+      "seasonMeans": [
+        32.64708691499523,
+        31.306178489702518,
+        19.78391959798995,
+        16.404558404558404
+      ],
+      "seasonCapturePercent": {
+        "winter": 96.944,
+        "spring": 98.958,
+        "summer": 99.139,
+        "autumn": 96.429
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "london",
+      "city": "London",
+      "year": 2023,
+      "validHours": 8753,
+      "expectedHours": 8760,
+      "mean": 7.330393693590769,
+      "seasonMeans": [
+        8.73507735062529,
+        7.481913417951042,
+        5.745300407793385,
+        7.390612104539202
+      ],
+      "seasonCapturePercent": {
+        "winter": 99.954,
+        "spring": 99.909,
+        "summer": 99.955,
+        "autumn": 99.863
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "beijing",
+      "city": "Beijing",
+      "year": 2023,
+      "validHours": 7019,
+      "expectedHours": 8760,
+      "mean": 36.516597805955264,
+      "seasonMeans": [
+        36.2947932618683,
+        54.54735376044568,
+        22.740468534680755,
+        38.60619047619048
+      ],
+      "seasonCapturePercent": {
+        "winter": 60.463,
+        "spring": 65.036,
+        "summer": 98.596,
+        "autumn": 96.154
+      },
+      "seasonallyComplete": false
+    },
+    {
+      "id": "los-angeles",
+      "city": "Los Angeles",
+      "year": 2023,
+      "validHours": 8591,
+      "expectedHours": 8760,
+      "mean": 11.831335118146898,
+      "seasonMeans": [
+        10.572018779342724,
+        11.71864086833412,
+        13.614109024278514,
+        11.381750810560446
+      ],
+      "seasonCapturePercent": {
+        "winter": 98.611,
+        "spring": 95.969,
+        "summer": 98.868,
+        "autumn": 98.855
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "seoul",
+      "city": "Seoul",
+      "year": 2024,
+      "validHours": 8771,
+      "expectedHours": 8784,
+      "mean": 17.525730247406223,
+      "seasonMeans": [
+        22.087494252873565,
+        19.549646579066607,
+        15.511906702898552,
+        12.967226043099496
+      ],
+      "seasonCapturePercent": {
+        "winter": 99.588,
+        "spring": 99.955,
+        "summer": 100.0,
+        "autumn": 99.863
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "pyeongtaek",
+      "city": "Pyeongtaek",
+      "year": 2024,
+      "validHours": 8119,
+      "expectedHours": 8784,
+      "mean": 17.052592683828056,
+      "seasonMeans": [
+        23.727489280609813,
+        19.92442396313364,
+        11.79581447963801,
+        11.793948126801153
+      ],
+      "seasonCapturePercent": {
+        "winter": 96.108,
+        "spring": 98.279,
+        "summer": 80.072,
+        "autumn": 95.33
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "london",
+      "city": "London",
+      "year": 2024,
+      "validHours": 8775,
+      "expectedHours": 8784,
+      "mean": 6.738478974358975,
+      "seasonMeans": [
+        6.000874542124542,
+        7.085935659265972,
+        5.283341950113379,
+        8.598354290959154
+      ],
+      "seasonCapturePercent": {
+        "winter": 100.0,
+        "spring": 99.955,
+        "summer": 99.864,
+        "autumn": 99.771
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "beijing",
+      "city": "Beijing",
+      "year": 2024,
+      "validHours": 8443,
+      "expectedHours": 8784,
+      "mean": 43.2624659481227,
+      "seasonMeans": [
+        38.106253177427554,
+        51.852380952380955,
+        34.492951341518875,
+        48.49333945796968
+      ],
+      "seasonCapturePercent": {
+        "winter": 90.064,
+        "spring": 95.109,
+        "summer": 99.592,
+        "autumn": 99.679
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "los-angeles",
+      "city": "Los Angeles",
+      "year": 2024,
+      "validHours": 8598,
+      "expectedHours": 8784,
+      "mean": 13.523249592928588,
+      "seasonMeans": [
+        14.143154486586495,
+        10.695793036750484,
+        14.950932241928149,
+        14.153711387736285
+      ],
+      "seasonCapturePercent": {
+        "winter": 98.993,
+        "spring": 93.659,
+        "summer": 99.592,
+        "autumn": 99.313
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "seoul",
+      "city": "Seoul",
+      "year": 2025,
+      "validHours": 8739,
+      "expectedHours": 8760,
+      "mean": 18.485839340885686,
+      "seasonMeans": [
+        22.827657196087564,
+        23.90324422292705,
+        14.065376246600183,
+        13.196002753556677
+      ],
+      "seasonCapturePercent": {
+        "winter": 99.398,
+        "spring": 99.955,
+        "summer": 99.909,
+        "autumn": 99.771
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "pyeongtaek",
+      "city": "Pyeongtaek",
+      "year": 2025,
+      "validHours": 8521,
+      "expectedHours": 8760,
+      "mean": 18.1519774674334,
+      "seasonMeans": [
+        21.632070831283816,
+        21.679890560875513,
+        14.645471180237877,
+        14.76339497392129
+      ],
+      "seasonCapturePercent": {
+        "winter": 94.12,
+        "spring": 99.321,
+        "summer": 99.004,
+        "autumn": 96.566
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "london",
+      "city": "London",
+      "year": 2025,
+      "validHours": 8653,
+      "expectedHours": 8760,
+      "mean": 8.053605685889288,
+      "seasonMeans": [
+        10.265050024283633,
+        11.188456029011785,
+        5.7097539646579065,
+        5.166873452544704
+      ],
+      "seasonCapturePercent": {
+        "winter": 95.324,
+        "spring": 99.909,
+        "summer": 99.955,
+        "autumn": 99.863
+      },
+      "seasonallyComplete": true
+    },
+    {
+      "id": "beijing",
+      "city": "Beijing",
+      "year": 2025,
+      "validHours": 1470,
+      "expectedHours": 8760,
+      "mean": 32.06122448979592,
+      "seasonMeans": [
+        30.261371841155235,
+        61.38823529411765,
+        null,
+        null
+      ],
+      "seasonCapturePercent": {
+        "winter": 64.12,
+        "spring": 3.85,
+        "summer": 0.0,
+        "autumn": 0.0
+      },
+      "seasonallyComplete": false
+    },
+    {
+      "id": "los-angeles",
+      "city": "Los Angeles",
+      "year": 2025,
+      "validHours": 8376,
+      "expectedHours": 8760,
+      "mean": 12.770594555873926,
+      "seasonMeans": [
+        16.183030004918837,
+        11.113263358778626,
+        12.809580552907532,
+        11.120753838994881
+      ],
+      "seasonCapturePercent": {
+        "winter": 94.12,
+        "spring": 94.928,
+        "summer": 95.018,
+        "autumn": 98.397
+      },
+      "seasonallyComplete": true
+    }
+  ]
+}

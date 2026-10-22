@@ -1,5 +1,5 @@
 .heat-page { max-width: 1280px; }
-.heat-primary-controls { grid-template-columns: 1.6fr 1fr 1fr; }
+.heat-primary-controls { grid-template-columns: .7fr 1.6fr 1fr 1fr; }
 .heat-date-controls { grid-template-columns: 1fr 1fr auto; margin-top: 1.4rem; }
 .heat-assumption { padding: 1rem 1.2rem; border-left: 3px solid #a35830; background: #f4eee6; font-size: .93rem; margin: 1.2rem 0; max-width: 100%; }
 .heat-count-controls { grid-template-columns: minmax(12rem, 20rem) 1fr; align-items: center; margin: 1.4rem 0; }

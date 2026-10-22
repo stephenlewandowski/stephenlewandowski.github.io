@@ -1,4 +1,4 @@
-import {HOURS_2024, START_2024, aggregate, summarize, quantile, counts, monthly, hourlyProfile, utciCategories, exceedanceSteps} from './analysis.mjs';
+import {yearGrid, aggregate, summarize, quantile, counts, monthly, hourlyProfile, utciCategories, exceedanceSteps} from './analysis.mjs?v=20261023';
 
 const $ = selector => document.querySelector(selector);
 const NS = 'http://www.w3.org/2000/svg';
@@ -17,16 +17,20 @@ const METRICS = {
     note: 'This WBGT scenario removes shortwave radiation at the modeled sensors, retaining the ambient wind profile and longwave assumptions. WBGT is omitted where the model’s evaporation property fit would be extrapolated. Means summarize eligible hours, not the whole year; compare coverage. This does not reconstruct shade at a particular site.'},
 };
 const MODES = new Set(['hourly', 'dailyMean', 'dailyMax', 'dailyMin', 'rolling8', 'rolling24']);
-const state = {records: [], selected: new Set(['seoul', 'pyeongtaek', 'los-angeles']), metric: 'temperature',
-  mode: 'dailyMean', basis: 'local', threshold: 30, first: 0, last: HOURS_2024 - 1, indexCity: 'seoul'};
+const state = {year: 2024, startUtc: yearGrid().startUtc, hours: yearGrid().hours, records: [], selected: new Set(['seoul', 'pyeongtaek', 'los-angeles']), metric: 'temperature',
+  mode: 'dailyMean', basis: 'local', threshold: 30, first: 0, last: yearGrid().hours - 1, indexCity: 'seoul'};
 let plot = null;
+let periods = [];
+const yearCache = new Map();
+let comparisonRecords = [];
+let yearRequest = 0;
 let validInputs = true;
 
 const format = value => !Number.isFinite(value) ? '—' : value.toLocaleString('en', {minimumFractionDigits: 1, maximumFractionDigits: 1});
 const integer = value => value.toLocaleString('en');
-const isoDate = hour => new Date(START_2024 + hour * HOUR).toISOString().slice(0, 10);
-const shortDate = hour => new Intl.DateTimeFormat('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC'}).format(START_2024 + hour * HOUR);
-const monthName = month => new Intl.DateTimeFormat('en', {month: 'short', timeZone: 'UTC'}).format(Date.UTC(2024, month, 1));
+const isoDate = hour => new Date(state.startUtc + hour * HOUR).toISOString().slice(0, 10);
+const shortDate = hour => new Intl.DateTimeFormat('en-GB', {day: 'numeric', month: 'short', timeZone: 'UTC'}).format(state.startUtc + hour * HOUR);
+const monthName = month => new Intl.DateTimeFormat('en', {month: 'short', timeZone: 'UTC'}).format(Date.UTC(state.year, month, 1));
 const offset = record => state.basis === 'local' ? record.utcOffsetHours : 0;
 const selected = () => state.records.filter(record => state.selected.has(record.id));
 const metric = () => METRICS[state.metric];
@@ -57,19 +61,20 @@ function finiteValues(record, key = state.metric) {
   return record.values[key].slice(state.first, state.last + 1);
 }
 function parseDate(value) {
-  if (!/^2024-\d{2}-\d{2}$/.test(value)) return null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number(value.slice(0, 4)) !== state.year) return null;
   const timestamp = Date.parse(`${value}T00:00:00Z`);
   if (!Number.isFinite(timestamp) || new Date(timestamp).toISOString().slice(0, 10) !== value) return null;
-  return (timestamp - START_2024) / HOUR;
+  return (timestamp - state.startUtc) / HOUR;
 }
-function validateRecord(record, entry) {
-  if (record.id !== entry.id || record.year !== 2024 || record.intervalMinutes !== 60 || Date.parse(record.startUtc) !== START_2024) {
+function validateRecord(record, entry, year) {
+  const grid = yearGrid(year);
+  if (record.id !== entry.id || record.year !== year || record.intervalMinutes !== 60 || Date.parse(record.startUtc) !== grid.startUtc) {
     throw new Error(`Unexpected time grid for ${entry.city || entry.id}.`);
   }
   if (typeof record.city !== 'string' || !Number.isFinite(record.utcOffsetHours)) throw new Error('Invalid city metadata.');
   for (const key of Object.keys(METRICS)) {
     const values = record.values?.[key];
-    if (!Array.isArray(values) || values.length !== HOURS_2024 || !values.every(value => value === null || Number.isFinite(value))) {
+    if (!Array.isArray(values) || values.length !== grid.hours || !values.every(value => value === null || Number.isFinite(value))) {
       throw new Error(`Invalid ${key} data for ${record.city}.`);
     }
     if (key === 'humidity' && !values.every(value => value === null || value >= 0 && value <= 100)) {
@@ -92,13 +97,16 @@ function readQuery() {
     const available = new Set(state.records.map(record => record.id));
     state.selected = new Set(params.get('cities').split(',').filter(id => available.has(id)));
   }
-  const first = parseDate(params.get('from') || '2024-01-01');
-  const last = parseDate(params.get('through') || '2024-12-31');
+  const first = parseDate(params.get('from') || `${state.year}-01-01`);
+  const last = parseDate(params.get('through') || `${state.year}-12-31`);
   if (first !== null && last !== null && first <= last) { state.first = first; state.last = last + 23; }
   if (state.records.some(record => record.id === params.get('city'))) state.indexCity = params.get('city');
 }
 
 function setupControls() {
+  $('#year').replaceChildren(...periods.map(period => element('option', String(period.year), {value: period.year})));
+  $('#year').value = state.year;
+  $('#year').addEventListener('change', event => changeYear(Number(event.target.value)));
   const choices = $('#city-options');
   for (const record of state.records) {
     const label = element('label', null, {class: 'air-city'});
@@ -125,14 +133,15 @@ function setupControls() {
   $('#average').addEventListener('change', event => { state.mode = event.target.value; render(); });
   $('#basis').addEventListener('change', event => { state.basis = event.target.value; render(); });
   for (const id of ['from', 'through', 'threshold']) $(`#${id}`).addEventListener('change', updateInputValidity);
-  $('#reset-range').addEventListener('click', () => setRange(0, HOURS_2024 - 1));
+  $('#reset-range').addEventListener('click', () => setRange(0, state.hours - 1));
   document.querySelectorAll('[data-month]').forEach(button => button.addEventListener('click', () => {
     const month = Number(button.dataset.month);
-    setRange((Date.UTC(2024, month, 1) - START_2024) / HOUR, (Date.UTC(2024, month + 1, 1) - START_2024) / HOUR - 1);
+    setRange((Date.UTC(state.year, month, 1) - state.startUtc) / HOUR, (Date.UTC(state.year, month + 1, 1) - state.startUtc) / HOUR - 1);
   }));
   $('#index-city').addEventListener('change', event => { state.indexCity = event.target.value; renderIndices(selected()); });
   $('#download').addEventListener('click', exportHourly);
   $('#download-stats').addEventListener('click', exportComparison);
+  $('#download-years').addEventListener('click', exportYears);
   $('#copy-link').addEventListener('click', copyLink);
   $('#chart').addEventListener('pointermove', inspect);
   $('#chart').addEventListener('pointerleave', () => {
@@ -170,8 +179,8 @@ function updateInputValidity() {
   const threshold = thresholdInput.value.trim() === '' ? NaN : Number(thresholdInput.value);
   let message = '';
   let input = null;
-  if (first === null) { message = 'Choose a start date in 2024.'; input = from; }
-  else if (last === null) { message = 'Choose an end date in 2024.'; input = through; }
+  if (first === null) { message = `Choose a start date in ${state.year}.`; input = from; }
+  else if (last === null) { message = `Choose an end date in ${state.year}.`; input = through; }
   else if (first > last) { message = 'The start date must be on or before the end date.'; input = through; }
   else if (!Number.isFinite(threshold) || threshold < metric().min || threshold > metric().max) {
     message = `Enter a threshold between ${metric().min} and ${metric().max} ${metric().unit}.`; input = thresholdInput;
@@ -199,6 +208,7 @@ function setRange(first, last) {
 function updateActionButtons() {
   const disabled = !validInputs || !selected().length;
   for (const id of ['download', 'download-stats', 'copy-link']) $(`#${id}`).disabled = disabled;
+  $('#download-years').disabled = disabled || !comparisonRecords.length;
 }
 
 function chartBase(id, height = 330, minimumWidth = 290) {
@@ -263,7 +273,7 @@ function drawTimeSeries(records) {
   }
   if (span > 24 * 90) {
     for (let month = 0; month < 12; month += box.width < 600 ? 2 : 1) {
-      const hour = (Date.UTC(2024, month, 1) - START_2024) / HOUR;
+      const hour = (Date.UTC(state.year, month, 1) - state.startUtc) / HOUR;
       if (hour >= state.first && hour <= state.last) box.group.append(svg('text', {x: x(hour), y: box.height - 19}, monthName(month)));
     }
   } else {
@@ -279,7 +289,7 @@ function drawTimeSeries(records) {
   const cursor = svg('line', {x1: 0, x2: 0, y1: box.top, y2: box.bottom, stroke: '#17324d', 'stroke-dasharray': '3 4', visibility: 'hidden'});
   box.group.append(cursor);
   plot = {box, series, x, span, cursor};
-  box.chart.setAttribute('aria-label', `${metric().label}, ${$('#average').selectedOptions[0].textContent}, ${shortDate(state.first)} through ${shortDate(state.last)} 2024`);
+  box.chart.setAttribute('aria-label', `${metric().label}, ${$('#average').selectedOptions[0].textContent}, ${shortDate(state.first)} through ${shortDate(state.last)} ${state.year}`);
 }
 
 function inspect(event) {
@@ -291,7 +301,7 @@ function inspect(event) {
   plot.cursor.setAttribute('x2', plot.x(hour));
   plot.cursor.setAttribute('visibility', 'visible');
   const tooltip = $('#chart-tooltip');
-  const timestamp = new Date(START_2024 + Math.round(hour) * HOUR).toISOString();
+  const timestamp = new Date(state.startUtc + Math.round(hour) * HOUR).toISOString();
   tooltip.replaceChildren(element('strong', `${timestamp.slice(0, 10)} ${timestamp.slice(11, 16)} UTC`));
   for (const {record, points} of plot.series) {
     let nearest = null;
@@ -512,7 +522,7 @@ function sourceCards() {
       ? `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°` : 'See data record';
     const offsetLabel = `UTC${record.utcOffsetHours >= 0 ? '+' : ''}${record.utcOffsetHours}`;
     article.append(element('p', `City reference: ${coordinate(record.latitude, record.longitude)}. ERA5 grid: ${coordinate(record.gridLatitude, record.gridLongitude)}. Calendar days use ${offsetLabel} when local standard time is selected.`));
-    const coverage = Object.entries(METRICS).map(([key, measure]) => `${measure.label}: ${integer(record.values[key].filter(Number.isFinite).length)} / ${integer(HOURS_2024)} hours`);
+    const coverage = Object.entries(METRICS).map(([key, measure]) => `${measure.label}: ${integer(record.values[key].filter(Number.isFinite).length)} / ${integer(state.hours)} hours`);
     article.append(element('p', coverage.join('; ') + '.'));
     const diagnostics = record.diagnostics || {};
     if (Number.isFinite(diagnostics.utciWindFloorHours)) article.append(element('p', `UTCI wind floor applied: ${integer(diagnostics.utciWindFloorHours)} hours. Outside the UTCI domain: ${integer(diagnostics.utciOutsideDomainHours || 0)} hours. Missing UTCI: ${integer(diagnostics.utciMissingHours || 0)} hours.`));
@@ -529,7 +539,7 @@ function render() {
   const records = selected();
   const results = new Map(records.map(record => [record.id, {
     counts: counts(record.values[state.metric], state.threshold, offset(record), state.first, state.last),
-    months: monthly(record.values[state.metric], state.threshold, offset(record), state.first, state.last),
+    months: monthly(record.values[state.metric], state.threshold, offset(record), state.first, state.last, state.year),
     profile: hourlyProfile(record.values[state.metric], state.threshold, offset(record), state.first, state.last),
   }]));
   $('#chart-tooltip').hidden = true;
@@ -546,8 +556,9 @@ function render() {
   drawFrequency('clock-chart', records, results, 'profile');
   drawDistribution(records, results);
   renderIndices(records);
+  renderYearComparison();
   if (validInputs) $('#selection-note').textContent = records.length
-    ? `${shortDate(state.first)}–${shortDate(state.last)} 2024 · ${records.map(record => record.city).join(', ')} · ${metric().unit}`
+    ? `${shortDate(state.first)}–${shortDate(state.last)} ${state.year} · ${records.map(record => record.city).join(', ')} · ${metric().unit}`
     : 'Choose at least one city above.';
   $('#chart-note').textContent = `${$('#average').selectedOptions[0].textContent}. ${state.mode.startsWith('daily')
     ? 'Daily groups require 18 valid hours and all 24 hourly timestamps within the selected range.'
@@ -574,7 +585,7 @@ function exportHourly() {
   const rows = [['timestamp_utc', 'city', 'record_id', 'temperature_c', 'relative_humidity_percent', 'utci_no_added_radiant_heat_c',
     'wbgt_outdoor_c', 'wbgt_no_shortwave_c', 'utci_assumption', 'weather_source']];
   for (const record of selected()) for (let hour = state.first; hour <= state.last; hour++) rows.push([
-    new Date(START_2024 + hour * HOUR).toISOString(), record.city, record.id,
+    new Date(state.startUtc + hour * HOUR).toISOString(), record.city, record.id,
     ...Object.keys(METRICS).map(key => record.values[key][hour]), 'Mean radiant temperature equals air temperature; wind floor 0.5 m/s; domain limits applied', 'ERA5 via Open-Meteo',
   ]);
   downloadCsv(rows, `heat-hourly-${isoDate(state.first)}-to-${isoDate(state.last)}.csv`);
@@ -595,10 +606,24 @@ function exportComparison() {
   }
   downloadCsv(rows, `heat-comparison-${state.metric}-${isoDate(state.first)}-to-${isoDate(state.last)}.csv`);
 }
+function exportYears() {
+  if (!validInputs || !selected().length || !comparisonRecords.length) return;
+  const rows = [['city', 'record_id', 'year', 'measure', 'unit', 'period_basis', 'threshold_at_or_above',
+    'expected_hours', 'valid_hours', 'mean', 'p95', 'hours_at_or_above', 'percent_valid_hours_at_or_above', 'index_assumption']];
+  for (const record of comparisonRecords.filter(item => state.selected.has(item.id))) {
+    const values = record.values[state.metric];
+    const stats = summarize(values);
+    const qualifying = values.filter(value => Number.isFinite(value) && value >= state.threshold).length;
+    rows.push([record.city, record.id, record.year, state.metric, metric().unit, 'Full UTC year', state.threshold,
+      values.length, stats.count, stats.mean, stats.p95, qualifying, stats.count ? qualifying / stats.count * 100 : null, metric().note]);
+  }
+  downloadCsv(rows, `heat-yearly-${state.metric}-${periods[0].year}-to-${periods.at(-1).year}.csv`);
+}
 async function copyLink() {
   if (!validInputs) return;
   const url = new URL(location.href);
   url.search = '';
+  url.searchParams.set('year', state.year);
   url.searchParams.set('cities', selected().map(record => record.id).join(','));
   url.searchParams.set('metric', state.metric);
   url.searchParams.set('average', state.mode);
@@ -617,24 +642,144 @@ async function copyLink() {
   }
 }
 
-async function boot() {
-  const response = await fetch(new URL('data/manifest.json', import.meta.url));
-  if (!response.ok) throw new Error('The data manifest could not be loaded.');
-  const manifest = await response.json();
-  if (manifest.year !== 2024 || !Array.isArray(manifest.records) || !manifest.records.length) throw new Error('The data manifest is incomplete.');
-  state.records = await Promise.all(manifest.records.map(async entry => {
-    const file = entry.file || entry.path;
-    if (typeof file !== 'string') throw new Error('A city data file is missing from the manifest.');
-    const data = await fetch(new URL(file, import.meta.url));
-    if (!data.ok) throw new Error(`Weather data for ${entry.city || entry.id} could not be loaded.`);
-    return validateRecord(await data.json(), entry);
+async function loadYear(year) {
+  if (yearCache.has(year)) return yearCache.get(year);
+  const period = periods.find(item => item.year === year);
+  if (!period) throw new Error('This year is not in the weather archive.');
+  const task = (async () => {
+    const response = await fetch(new URL(period.manifest, import.meta.url));
+    if (!response.ok) throw new Error(`The ${year} weather manifest could not be loaded.`);
+    const manifest = await response.json();
+    const grid = yearGrid(year);
+    if (manifest.year !== year || manifest.hours !== grid.hours || !Array.isArray(manifest.records) || !manifest.records.length) {
+      throw new Error(`The ${year} weather manifest is incomplete.`);
+    }
+    const records = await Promise.all(manifest.records.map(async entry => {
+      const file = entry.file || entry.path;
+      if (typeof file !== 'string') throw new Error('A city data file is missing from the manifest.');
+      const data = await fetch(new URL(file, import.meta.url));
+      if (!data.ok) throw new Error(`Weather data for ${entry.city || entry.id} (${year}) could not be loaded.`);
+      return validateRecord(await data.json(), entry, year);
+    }));
+    return {manifest, records};
+  })();
+  yearCache.set(year, task);
+  try { return await task; }
+  catch (error) { yearCache.delete(year); throw error; }
+}
+
+function applyYear(year, records) {
+  const grid = yearGrid(year);
+  Object.assign(state, {year, startUtc: grid.startUtc, hours: grid.hours, first: 0, last: grid.hours - 1, records});
+  for (const id of ['from', 'through']) {
+    $(`#${id}`).min = `${year}-01-01`;
+    $(`#${id}`).max = `${year}-12-31`;
+  }
+  $('#from').value = `${year}-01-01`;
+  $('#through').value = `${year}-12-31`;
+  $('#reset-range').textContent = `Show all ${year}`;
+  $('#year').value = year;
+  $('#selected-manifest').href = periods.find(period => period.year === year).manifest;
+  $('#selected-manifest').textContent = `${year} data manifest (JSON)`;
+}
+
+async function changeYear(year) {
+  const request = ++yearRequest;
+  const status = $('#load-status');
+  status.hidden = false;
+  status.textContent = `Loading ${year} weather data…`;
+  $('#explorer').setAttribute('aria-busy', 'true');
+  try {
+    const {records} = await loadYear(year);
+    if (request !== yearRequest) return;
+    applyYear(year, records);
+    sourceCards();
+    updateInputValidity();
+    const url = new URL(location.href);
+    url.searchParams.set('year', year);
+    url.searchParams.delete('from');
+    url.searchParams.delete('through');
+    history.replaceState(null, '', url);
+    status.hidden = true;
+  } catch (error) {
+    if (request !== yearRequest) return;
+    $('#year').value = state.year;
+    status.textContent = `${error.message} The previous year is still shown.`;
+  } finally {
+    if (request === yearRequest) $('#explorer').removeAttribute('aria-busy');
+  }
+}
+
+function renderYearComparison() {
+  const body = $('#year-comparison tbody');
+  body.replaceChildren();
+  const rows = comparisonRecords.filter(record => state.selected.has(record.id));
+  $('#year-legend').replaceChildren(...selected().map(record => {
+    const item = element('span');
+    item.append(swatch(record.color), document.createTextNode(record.city));
+    return item;
   }));
+  for (const record of rows) {
+    const values = record.values[state.metric];
+    const stats = summarize(values);
+    const qualifying = values.filter(value => Number.isFinite(value) && value >= state.threshold).length;
+    const row = element('tr');
+    row.append(cityCell(record), element('td', String(record.year)), element('td', format(stats.mean)),
+      element('td', format(stats.p95)), element('td', `${integer(stats.count)} / ${integer(values.length)}`),
+      element('td', integer(qualifying)), element('td', stats.count ? `${format(qualifying / stats.count * 100)}%` : '—'));
+    body.append(row);
+  }
+  if (!rows.length) emptyRow(body, 7, comparisonRecords.length ? 'Choose at least one city above.' : 'Loading the other years…');
+  $('#year-comparison caption').textContent = `Full UTC years · ${metric().label} (${metric().unit}) · threshold ≥ ${format(state.threshold)} ${metric().unit}`;
+  const box = chartBase('year-chart', 310);
+  const years = periods.map(period => period.year);
+  const summaries = rows.map(record => ({record, stats: summarize(record.values[state.metric])}));
+  const means = summaries.map(item => item.stats.mean).filter(Number.isFinite);
+  if (!means.length) { noData(box, 'Choose cities to compare yearly means.'); return; }
+  let low = Math.min(...means), high = Math.max(...means);
+  if (low === high) { low--; high++; }
+  const {y} = numericAxis(box, low, high, `Mean ${metric().label.toLowerCase()} · ${metric().unit}`);
+  const x = year => box.left + (year - years[0]) / Math.max(1, years.at(-1) - years[0]) * (box.right - box.left);
+  for (const year of years) box.group.append(svg('text', {x: x(year), y: box.height - 19, 'text-anchor': year === years[0] ? 'start' : year === years.at(-1) ? 'end' : 'middle'}, String(year)));
+  for (const id of state.selected) {
+    const items = summaries.filter(item => item.record.id === id);
+    if (!items.length) continue;
+    const record = items[0].record;
+    appendPath(box, items.map(item => ({hour: item.record.year, value: item.stats.mean})), x, y, record);
+    for (const item of items) {
+      const dot = svg('circle', {cx: x(item.record.year), cy: y(item.stats.mean), r: 4, fill: record.color});
+      dot.append(svg('title', {}, `${record.city}, ${item.record.year}: ${format(item.stats.mean)} ${metric().unit}`));
+      box.group.append(dot);
+    }
+  }
+  box.chart.setAttribute('aria-label', `Full-year ${metric().label.toLowerCase()} means for selected cities, 2023 to 2025. Numerical values are in the year-comparison table.`);
+}
+
+async function boot() {
+  const response = await fetch(new URL('data/periods.json', import.meta.url));
+  if (!response.ok) throw new Error('The available weather years could not be loaded.');
+  const index = await response.json();
+  periods = index.periods;
+  if (!Array.isArray(periods) || !periods.length) throw new Error('The weather year list is incomplete.');
+  const requested = Number(new URLSearchParams(location.search).get('year'));
+  const year = periods.some(period => period.year === requested) ? requested : index.defaultYear;
+  const {records} = await loadYear(year);
+  applyYear(year, records);
   readQuery();
   setupControls();
   sourceCards();
   $('#explorer').hidden = false;
   $('#load-status').hidden = true;
   render();
+  Promise.all(periods.map(async period => (await loadYear(period.year)).records)).then(recordsByYear => {
+    comparisonRecords = recordsByYear.flat().sort((a, b) => a.city.localeCompare(b.city) || a.year - b.year);
+    renderYearComparison();
+    updateActionButtons();
+    $('#year-comparison-note').textContent = 'Full UTC years use all available hours, independently of the date range above. Percentages account for leap-year length. Three years show year-to-year variation, not a long-term climate trend. WBGT means cover eligible hours; changes in coverage can affect comparisons.';
+  }).catch(error => {
+    $('#year-comparison-note').textContent = `The yearly comparison could not be loaded: ${error.message}`;
+    renderYearComparison();
+  });
   let resizeFrame = null;
   new ResizeObserver(() => {
     if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);

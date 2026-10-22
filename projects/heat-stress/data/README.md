@@ -1,7 +1,8 @@
 # Weather data and heat-index calculations
 
-The comparison covers all 8,784 UTC hours of 2024 for Seoul, Pyeongtaek, London,
-Beijing and Los Angeles. These are **ERA5 reanalysis grid estimates**, accessed
+The comparison covers three full UTC years for Seoul, Pyeongtaek, London,
+Beijing and Los Angeles: 8,760 hours in 2023, 8,784 in 2024 and 8,760 in 2025.
+The original 2024 files are preserved; the year selector defaults to 2024. These are **ERA5 reanalysis grid estimates**, accessed
 through the [Open-Meteo Historical Weather API](https://open-meteo.com/en/docs/historical-weather-api).
 They are not readings from the air-quality monitors or from local WBGT instruments.
 
@@ -21,13 +22,15 @@ resolve the temperature of an individual street, courtyard or workplace.
 
 ## Retained files
 
-[manifest.json](manifest.json) identifies each city file and its SHA-256 hash,
+[periods.json](periods.json) lists the available years. [manifest.json](manifest.json)
+identifies the unchanged 2024 files; [manifest-2023.json](manifest-2023.json) and
+[manifest-2025.json](manifest-2025.json) identify the additional files and their SHA-256 hashes,
 software versions, methods, calculation diagnostics and references. Each city
 record includes the requested location, returned grid location, exact source URL,
 retrieval time and raw-response hash.
 
 The `values` object contains hourly `temperature`, `humidity`, `utci`, `wbgt` and
-`wbgtShade` arrays on the same UTC time grid. Index 0 is 2024-01-01 00:00 UTC;
+`wbgtShade` arrays on the same UTC time grid. Index 0 is January 1 at 00:00 UTC of the record’s `year`;
 subsequent indices advance by one hour. Temperature indices use °C; humidity uses
 percent. Missing or excluded estimates are `null`, never zero. This release has
 no missing weather inputs or UTCI estimates. The WBGT calculations exclude hours
@@ -110,7 +113,7 @@ This is an application policy tied to that property fit, **not a published
 validity range for the whole WBGT model** or an air-temperature cutoff. Each
 radiation scenario is filtered using its own natural wet-bulb temperature.
 
-| City | Exposed-outdoors hours retained | No-shortwave hours retained |
+| City (2024) | Exposed-outdoors hours retained | No-shortwave hours retained |
 | --- | --- | --- |
 | Seoul | 5,358 / 8,784 | 5,292 / 8,784 |
 | Pyeongtaek | 5,479 / 8,784 | 5,394 / 8,784 |
@@ -152,6 +155,26 @@ python scripts/build_heat_stress_data.py
 python scripts/build_heat_stress_data.py --validate-only
 python scripts/check_heat_stress_data.py
 ```
+
+For the additional years, keep the raw archives separate and pass the same year
+to acquisition, building and audit. For example:
+
+```powershell
+python scripts/fetch_heat_stress_data.py --year 2023 --output-root ../heat-stress-comparison/research/extended/2023
+python scripts/build_heat_stress_data.py --year 2023 --source-root ../heat-stress-comparison/research/extended/2023
+python scripts/check_heat_stress_data.py --year 2023 --source-root ../heat-stress-comparison/research/extended/2023
+```
+
+Repeat with `2025`. The builder writes `manifest-YYYY.json` for additional years
+and retains the 2024 default name `manifest.json`. Solar position uses each
+input hour’s actual year, including leap-day handling. All five cities retain
+the same grid points, software, calculation assumptions and filter policy.
+
+Yearly summary means, 95th percentiles and counts use each full UTC archive,
+independently of the explorer’s date filter. Percentages use finite hours and
+therefore account for the different leap-year denominator. WBGT statistics
+still describe the eligible subset: coverage can change between years. Three
+years show annual variation and do not establish a long-term climate trend.
 
 The fetcher retains the raw responses and provenance in the sibling
 `heat-stress-comparison/research/` directory by default. Both scripts accept

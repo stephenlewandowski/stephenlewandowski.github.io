@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#17324d">
-  <meta name="description" content="Compare hourly heat and humidity across five cities in 2024 using ERA5 weather reanalysis. Explore temperature, relative humidity, UTCI and estimated WBGT over different averaging periods.">
-  <meta property="og:title" content="Heat stress in 2024 | Stephen Lewandowski">
+  <meta name="description" content="Compare hourly heat and humidity across five cities in 2023–2025 using ERA5 weather reanalysis. Explore temperature, relative humidity, UTCI and estimated WBGT over different averaging periods.">
+  <meta property="og:title" content="Heat stress by city | Stephen Lewandowski">
   <meta property="og:description" content="Compare temperatures, heat indices, peaks and time above chosen thresholds in Seoul, Pyeongtaek, London, Beijing and Los Angeles.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://stephenlewandowski.github.io/projects/heat-stress/">
@@ -14,9 +14,9 @@
   <link rel="canonical" href="https://stephenlewandowski.github.io/projects/heat-stress/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/styles.css">
-  <link rel="stylesheet" href="../air-quality/air-quality.css?v=20261020">
-  <link rel="stylesheet" href="heat-stress.css?v=20261020">
-  <title>Heat stress in 2024 | Stephen Lewandowski</title>
+  <link rel="stylesheet" href="../air-quality/air-quality.css?v=20261023">
+  <link rel="stylesheet" href="heat-stress.css?v=20261023">
+  <title>Heat stress by city | Stephen Lewandowski</title>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -24,11 +24,11 @@
   <main id="main" class="air-page heat-page">
     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/projects/">Projects</a><span aria-hidden="true">/</span><span>Heat stress</span></nav>
     <header class="air-intro">
-      <p class="eyebrow">Hourly weather reanalysis · January–December 2024</p>
-      <h1>Heat stress in 2024</h1>
+      <p class="eyebrow">Hourly weather reanalysis · 2023–2025</p>
+      <h1>Heat stress by city</h1>
       <p class="lead">Compare air temperature, humidity and heat indices in Seoul, Pyeongtaek, London, Beijing and Los Angeles. See how a daily average, an afternoon peak and the number of hot hours describe different parts of the year.</p>
       <p>These are gridded weather estimates and calculated indices, rather than monitoring-station measurements. The same ERA5 source is used for all five cities. <a href="/projects/air-quality/">Compare air pollution in the same cities.</a></p>
-      <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Time series</a><a href="#counts-title">Hours and days</a><a href="#patterns-title">Monthly and daily patterns</a><a href="#indices-title">Compare indices</a><a href="#methods">Data and methods</a></nav>
+      <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Time series</a><a href="#counts-title">Hours and days</a><a href="#years-title">Compare years</a><a href="#patterns-title">Monthly and daily patterns</a><a href="#indices-title">Compare indices</a><a href="#methods">Data and methods</a></nav>
     </header>
 
     <section class="air-explorer" aria-labelledby="explore-title">
@@ -38,6 +38,7 @@
       <div id="explorer" hidden>
         <fieldset class="air-cities"><legend>Cities to show</legend><div id="city-options"></div></fieldset>
         <div class="air-controls heat-primary-controls">
+          <label>Year<select id="year"><option value="2024">2024</option></select></label>
           <label>Measure<select id="metric"><option value="temperature">Air temperature</option><option value="humidity">Relative humidity</option><option value="utci">UTCI · no added radiant heat</option><option value="wbgt">WBGT · exposed outdoors</option><option value="wbgtShade">WBGT · no shortwave radiation</option></select></label>
           <label>Display<select id="average"><option value="dailyMean">Daily mean</option><option value="dailyMax">Daily maximum</option><option value="dailyMin">Daily minimum</option><option value="hourly">Hourly values</option><option value="rolling8">Trailing 8-hour mean</option><option value="rolling24">Trailing 24-hour mean</option></select></label>
           <label>Calendar days<select id="basis"><option value="local">Local standard time</option><option value="utc">UTC</option></select></label>
@@ -65,7 +66,7 @@
           <p id="threshold-note" class="air-note"></p>
           <div class="air-table-scroll"><table id="counts"><caption>Values at or above the chosen threshold · selected period</caption><thead><tr><th scope="col">City</th><th scope="col">Hours</th><th scope="col">% of valid hours</th><th scope="col">Longest run<br>of hours</th><th scope="col">Days with any<br>qualifying hour</th><th scope="col">Daily mean<br>at or above</th><th scope="col">Daily minimum<br>at or above</th><th scope="col">Valid days</th></tr></thead><tbody></tbody></table></div>
           <div class="air-table-scroll"><table id="rolling-counts"><caption>Trailing average windows at or above the threshold</caption><thead><tr><th scope="col">City</th><th scope="col">8-hour windows</th><th scope="col">24-hour windows</th></tr></thead><tbody></tbody></table></div>
-          <p class="air-note">Counts include equality. “Days with any qualifying hour” counts dates with a known occurrence, including partial days; its denominator is dates with at least one usable hour. Non-UTC calendars can touch dates outside 2024 at the archive boundaries. Daily mean and minimum counts require all 24 hourly timestamps within the selected range and at least 18 usable values. Missing hours break consecutive runs. Trailing windows overlap; they are not independent events. Omitted WBGT hours are unknown, rather than known to be below the threshold.</p>
+          <p class="air-note">Counts include equality. “Days with any qualifying hour” counts dates with a known occurrence, including partial days; its denominator is dates with at least one usable hour. Non-UTC calendars can touch dates outside the selected year at the archive boundaries. Daily mean and minimum counts require all 24 hourly timestamps within the selected range and at least 18 usable values. Missing hours break consecutive runs. Trailing windows overlap; they are not independent events. Omitted WBGT hours are unknown, rather than known to be below the threshold.</p>
         </section>
 
         <section class="air-comparison" aria-labelledby="patterns-title">
@@ -79,6 +80,17 @@
           <h3>How often values were higher</h3>
           <p class="air-note">Each step curve shows the percentage of valid hourly values at or above a value on the vertical axis. Dots mark the exact share at the chosen threshold, when it falls within the plotted range. A short hot spell can remain visible even when the annual means are close.</p>
           <svg id="distribution-chart" class="air-comparison-chart" role="img" aria-label="Exceedance distributions of hourly values"></svg>
+        </section>
+
+        <section class="air-comparison" aria-labelledby="years-title">
+          <h2 id="years-title">Compare years</h2>
+          <p>Compare yearly means, upper values and hours above the selected threshold for the same cities and measure. The city selection, measure and threshold above apply here; the date range does not.</p>
+          <div id="year-legend" class="air-plot-legend" aria-label="City legend for yearly comparison"></div>
+          <svg id="year-chart" class="air-comparison-chart" role="img" aria-label="Yearly means for selected cities"></svg>
+          <div class="air-table-scroll"><table id="year-comparison"><caption>Full UTC years</caption><thead><tr><th scope="col">City</th><th scope="col">Year</th><th scope="col">Mean</th><th scope="col">95th percentile</th><th scope="col">Hours available</th><th scope="col">Hours at or above</th><th scope="col">% of valid hours</th></tr></thead><tbody></tbody></table></div>
+          <p id="year-comparison-note" class="air-note" role="status">Loading the other years…</p>
+          <p>In the temperature record, Seoul had 276 hours at or above 30 °C in 2023, 442 in 2024 and 400 in 2025. Los Angeles had a higher annual mean in 2025 than in 2024 (18.0 versus 17.6 °C), but fewer hours at or above 30 °C (227 versus 326). Annual means and hot-hour counts can move in different directions.</p>
+          <button id="download-years" type="button" class="button button-secondary" disabled>Download yearly comparison (CSV)</button>
         </section>
 
         <section class="air-comparison" aria-labelledby="indices-title">
@@ -97,8 +109,8 @@
     <section id="methods" class="air-methods" aria-labelledby="methods-title">
       <h2 id="methods-title">Data and methods</h2>
       <div class="air-method-grid">
-        <div><h3>Weather data</h3><p>Hourly 2024 ERA5 reanalysis is retrieved through <a href="https://open-meteo.com/en/docs/historical-weather-api">Open-Meteo’s Historical Weather API</a>. ERA5 combines observations with a weather model. Native nearest grid cells are selected, without elevation downscaling. A cell describes an area roughly 25 km across; it cannot resolve a shaded street, an indoor workplace or every neighborhood.</p><p>Weather data: Open-Meteo and Copernicus/ECMWF ERA5, redistributed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Heat indices, rounding and aggregates are calculated for this project. <a href="https://open-meteo.com/en/licence">Data attribution and licence</a>.</p></div>
-        <div><h3>Temperature and humidity</h3><p>Air temperature and relative humidity are at 2 m above the model surface. Wind is supplied at 10 m. All cities use the same source and processing. The chart spans the 8,784 hours of the UTC leap year. It is a historical comparison, not a forecast.</p></div>
+        <div><h3>Weather data</h3><p>Hourly 2023–2025 ERA5 reanalysis is retrieved through <a href="https://open-meteo.com/en/docs/historical-weather-api">Open-Meteo’s Historical Weather API</a>. ERA5 combines observations with a weather model. Native nearest grid cells are selected, without elevation downscaling. A cell describes an area roughly 25 km across; it cannot resolve a shaded street, an indoor workplace or every neighborhood.</p><p>Weather data: Open-Meteo and Copernicus/ECMWF ERA5, redistributed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Heat indices, rounding and aggregates are calculated for this project. <a href="https://open-meteo.com/en/licence">Data attribution and licence</a>.</p></div>
+        <div><h3>Temperature and humidity</h3><p>Air temperature and relative humidity are at 2 m above the model surface. Wind is supplied at 10 m. All cities use the same source and processing. Each archive spans a full UTC year: 8,760 hours in 2023 and 2025, and 8,784 in leap year 2024. It is a historical comparison, not a forecast.</p></div>
         <div><h3>UTCI scenario</h3><p>The Universal Thermal Climate Index combines air temperature, humidity, wind and radiant temperature. This version sets mean radiant temperature equal to air temperature: no added radiant heat. It does not reproduce sun-exposed UTCI. The polynomial uses its published validity limits; wind below 0.5 m/s is set to 0.5 m/s and flagged in the source notes.</p></div>
         <div><h3>WBGT estimates</h3><p>Wet-bulb globe temperature is calculated using the <a href="https://github.com/ecmwf/thermofeel">ECMWF thermofeel implementation of the Liljegren model</a>. The outdoor estimate uses modeled instantaneous sunlight, pressure, humidity and wind. A second scenario removes shortwave radiation. Both retain the model’s surface and sky assumptions; neither is a workplace globe measurement.</p><p>This project omits WBGT when the mean of air and natural wet-bulb temperature falls outside the evaporation property fit’s 283–313 K range. This is a conservative project filter, not a validation boundary for the whole model. WBGT means therefore describe eligible hours, with coverage shown.</p></div>
         <div><h3>Averages and counts</h3><p>Each index is calculated from hourly weather before any averaging. A heat index calculated from an annual mean temperature and humidity would give a different, misleading quantity. Daily summaries need at least 18 valid hours; trailing means need 75% of the hours in a complete window. The count of dates with any qualifying hour includes known occurrences on incomplete days. Missing and out-of-domain values remain gaps.</p></div>
@@ -106,10 +118,10 @@
       </div>
       <h3>City grid cells and calculation coverage</h3>
       <div id="sources"></div>
-      <p><a href="data/manifest.json">Data manifest (JSON)</a> · <a href="data/README.md">Sources, limitations and reproduction</a> · <a href="https://github.com/stephenlewandowski/stephenlewandowski.github.io/tree/main/projects/heat-stress">GitHub source</a></p>
+      <p><a id="selected-manifest" href="data/manifest.json">2024 data manifest (JSON)</a> · <a href="data/periods.json">Available years (JSON)</a> · <a href="data/README.md">Sources, limitations and reproduction</a> · <a href="https://github.com/stephenlewandowski/stephenlewandowski.github.io/tree/main/projects/heat-stress">GitHub source</a></p>
     </section>
   </main>
-  <footer class="site-footer"><p>© 2026 Stephen A. Lewandowski</p><p>Heat and humidity · 2024</p></footer>
-  <script type="module" src="heat-stress.mjs?v=20261020"></script>
+  <footer class="site-footer"><p>© 2026 Stephen A. Lewandowski</p><p>Heat and humidity · 2023–2025</p></footer>
+  <script type="module" src="heat-stress.mjs?v=20261023"></script>
 </body>
 </html>

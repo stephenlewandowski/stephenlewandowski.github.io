@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {START_2024, HOURS_2024, summarize, quantile, aggregate, counts, monthly, hourlyProfile, utciCategories, exceedanceSteps}
+import {START_2024, HOURS_2024, yearGrid, summarize, quantile, aggregate, counts, monthly, hourlyProfile, utciCategories, exceedanceSteps}
   from '../projects/heat-stress/analysis.mjs';
 
 test('summaries preserve negative temperatures, use finite values and interpolate type-7 quantiles', () => {
@@ -130,6 +130,27 @@ test('2024 UTC monthly denominators include leap day and do not shift with a loc
   assert.equal(result.reduce((sum, month) => sum + month.expected, 0), 8784);
   assert.equal(result.reduce((sum, month) => sum + month.count, 0), 8783);
   assert.deepEqual(result, monthly(values, -5, 9));
+});
+
+test('non-leap year grids and monthly boundaries match actual 2023 and 2025 calendars', () => {
+  for (const year of [2023, 2025]) {
+    const grid = yearGrid(year);
+    assert.equal(grid.hours, 8760);
+    assert.equal(new Date(grid.startUtc).toISOString(), `${year}-01-01T00:00:00.000Z`);
+    const values = Array(grid.hours).fill(20);
+    const marchStart = (Date.UTC(year, 2, 1) - grid.startUtc) / 3600000;
+    values[marchStart] = 40;
+    const months = monthly(values, 30, 9, 0, values.length - 1, year);
+    assert.equal(months[1].expected, 28 * 24);
+    assert.equal(months[1].hoursAtOrAbove, 0);
+    assert.equal(months[2].hoursAtOrAbove, 1);
+    assert.equal(months.reduce((sum, month) => sum + month.expected, 0), 8760);
+    assert.equal(aggregate(values, 'dailyMean').length, 365);
+    assert.equal(aggregate(values, 'dailyMean', 9).length, 364);
+    assert.equal(aggregate(values, 'dailyMean', -8).length, 364);
+  }
+  assert.deepEqual(yearGrid(), {year: 2024, startUtc: START_2024, hours: HOURS_2024});
+  assert.throws(() => yearGrid(2024.5), RangeError);
 });
 
 test('monthly summaries use only the selected hours while retaining missing hours in expected counts', () => {
