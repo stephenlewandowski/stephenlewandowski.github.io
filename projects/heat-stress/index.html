@@ -28,7 +28,7 @@
       <h1>Heat stress by city</h1>
       <p class="lead">Compare air temperature, humidity and heat indices in Seoul, Pyeongtaek, London, Beijing and Los Angeles. See how a daily average, an afternoon peak and the number of hot hours describe different parts of the year.</p>
       <p>These are gridded weather estimates and calculated indices, rather than monitoring-station measurements. The same ERA5 source is used for all five cities. <a href="/projects/air-quality/">Compare air pollution in the same cities.</a></p>
-      <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Time series</a><a href="#counts-title">Hours and days</a><a href="#years-title">Compare years</a><a href="#patterns-title">Monthly and daily patterns</a><a href="#indices-title">Compare indices</a><a href="#heat-risk-context">Understanding heat risk</a><a href="#methods">Data and methods</a></nav>
+      <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Time series</a><a href="#counts-title">Hours and days</a><a href="#years-title">Compare years</a><a href="#patterns-title">Monthly and daily patterns</a><a href="#indices-title">Compare indices</a><a href="#heat-risk-context">Understanding heat risk</a><a href="#heat-metric-research">Research guidance</a><a href="#methods">Data and methods</a></nav>
     </header>
 
     <section class="air-explorer" aria-labelledby="explore-title">
@@ -122,6 +122,30 @@
         </table>
       </div>
       <p>A <a href="https://doi.org/10.1038/s43247-026-04137-z">2026 study of 1,029 cities</a> examined how including social vulnerability changes a heat-risk comparison. Its 2000–2019 analysis uses different data and heatwave definitions from this page. The five-city records here cover 2023–2025; they support historical comparisons of conditions, rather than long-term climate trends or estimates of heat deaths.</p>
+    </section>
+
+    <section id="heat-metric-research" class="air-methods" aria-labelledby="heat-metric-research-title">
+      <h2 id="heat-metric-research-title">Choosing heat data for a research question</h2>
+      <p>The comparisons above describe historical environmental conditions. A study of health, outdoor work or an intervention also needs evidence matched to its population, location and time window.</p>
+      <div class="air-table-scroll">
+        <table>
+          <caption>Choices to check before reusing a heat estimate</caption>
+          <thead><tr><th scope="col">Choice</th><th scope="col">What to check</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Heat metric</th><td>Each index has its own inputs, assumptions and interpretation. Values and thresholds are not interchangeable across indices.</td></tr>
+            <tr><th scope="row">Time and place</th><td>A county daily summary, a city grid estimate and conditions during an outdoor shift represent different exposure windows and areas.</td></tr>
+            <tr><th scope="row">Aggregation</th><td>Area and population weighting answer different questions. Preserve the order of index calculation, spatial averaging and daily summaries.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Sources and credit</h3>
+      <ul>
+        <li>The <a href="https://gatewayexposome.org/resourcesanddata~measuring_heat">Gateway Exposome Coordinating Center (GECC), Resource: Measuring Heat</a> provides guidance and an interactive selector for matching heat data to a health-research question.</li>
+        <li>Emma L. Gause and colleagues (2026), <a href="https://doi.org/10.1007/s40572-026-00553-7">Data Considerations for Estimating Ambient Heat Exposure for Environmental Epidemiological Studies</a>, <cite>Current Environmental Health Reports</cite>.</li>
+        <li>Keith R. Spangler, Shixin Liang and Gregory A. Wellenius (2022), <a href="https://doi.org/10.1038/s41597-022-01405-3">Wet-Bulb Globe Temperature, Universal Thermal Climate Index, and Other Heat Metrics for US Counties, 2000–2020</a>, <cite>Scientific Data</cite>. This is a separate US county example, with a different period and geographic support from the five-city archive.</li>
+      </ul>
+      <p class="air-note">These resources were highlighted in the October 15, 2026 newsletter from <a href="https://www.climatehealthcafe.org/">CAFE RCC, the Research Coordinating Center for Health and Extreme Weather</a>. The table above is a project synthesis; the linked guidance and research belong to their credited authors and organizations.</p>
+      <p class="air-note">Research context checked October 25, 2026. These links do not add county data, personal exposure measurements, health outcomes or evaluated intervention effects to this project.</p>
     </section>
 
     <section id="methods" class="air-methods" aria-labelledby="methods-title">
