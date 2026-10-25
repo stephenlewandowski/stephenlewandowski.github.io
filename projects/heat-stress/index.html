@@ -28,7 +28,7 @@
       <h1>Heat stress by city</h1>
       <p class="lead">Compare air temperature, humidity and heat indices in Seoul, Pyeongtaek, London, Beijing and Los Angeles. See how a daily average, an afternoon peak and the number of hot hours describe different parts of the year.</p>
       <p>These are gridded weather estimates and calculated indices, rather than monitoring-station measurements. The same ERA5 source is used for all five cities. <a href="/projects/air-quality/">Compare air pollution in the same cities.</a></p>
-      <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Time series</a><a href="#counts-title">Hours and days</a><a href="#years-title">Compare years</a><a href="#patterns-title">Monthly and daily patterns</a><a href="#indices-title">Compare indices</a><a href="#methods">Data and methods</a></nav>
+      <nav class="air-jumps" aria-label="Comparison views"><a href="#explore-title">Time series</a><a href="#counts-title">Hours and days</a><a href="#years-title">Compare years</a><a href="#patterns-title">Monthly and daily patterns</a><a href="#indices-title">Compare indices</a><a href="#heat-risk-context">Understanding heat risk</a><a href="#methods">Data and methods</a></nav>
     </header>
 
     <section class="air-explorer" aria-labelledby="explore-title">
@@ -104,6 +104,24 @@
           <p class="air-note">“26 °C or lower” combines no heat stress and all cold-stress categories. Each category includes its upper boundary, following the <a href="https://confluence.ecmwf.int/spaces/CKB/pages/462912535">ECMWF UTCI scale</a>; the custom threshold counts above include equality at the chosen threshold. WBGT has no single universal action threshold: workload, clothing, acclimatization and the work/rest schedule matter. The app’s WBGT shortcuts are exploratory values.</p>
         </section>
       </div>
+    </section>
+
+    <section id="heat-risk-context" class="air-methods" aria-labelledby="heat-risk-title">
+      <h2 id="heat-risk-title">Understanding heat risk</h2>
+      <p>Hot conditions are one part of a heat-risk assessment. Who encounters them, their susceptibility and the protection available also matter.</p>
+      <div class="air-table-scroll">
+        <table>
+          <caption>Four questions that need different evidence</caption>
+          <thead><tr><th scope="col">Question</th><th scope="col">Example</th><th scope="col">Evidence needed</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Hazard</th><td>How hot was it, and for how long?</td><td>The weather estimates and calculated heat indices shown above describe environmental conditions.</td></tr>
+            <tr><th scope="row">Exposure</th><td>Who encountered those conditions?</td><td>Location, activity and time spent in the conditions are needed to estimate personal exposure.</td></tr>
+            <tr><th scope="row">Vulnerability</th><td>Who is more susceptible, and what protection is available?</td><td>Local information about health, housing, working conditions and access to cooling.</td></tr>
+            <tr><th scope="row">Health outcomes</th><td>What illness or harm occurred?</td><td>Health surveillance and a study design suited to the question.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A <a href="https://doi.org/10.1038/s43247-026-04137-z">2026 study of 1,029 cities</a> examined how including social vulnerability changes a heat-risk comparison. Its 2000–2019 analysis uses different data and heatwave definitions from this page. The five-city records here cover 2023–2025; they support historical comparisons of conditions, rather than long-term climate trends or estimates of heat deaths.</p>
     </section>
 
     <section id="methods" class="air-methods" aria-labelledby="methods-title">
