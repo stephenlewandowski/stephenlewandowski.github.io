@@ -80,3 +80,12 @@ views include `year=YYYY`; old 2024 links remain valid. Each year uses its actua
 calendar and solar geometry. Three years support year-to-year comparisons, not
 a long-term climate-trend estimate. Full-year summary percentages account for
 leap-year length. WBGT coverage remains conditional on its property-fit filter.
+
+## Heat-risk context
+
+The interpretation section separates environmental hazard, personal exposure,
+social vulnerability and health outcomes. It links to Lei et al. (2026),
+[doi:10.1038/s43247-026-04137-z](https://doi.org/10.1038/s43247-026-04137-z),
+as external research context. The study's 2000–2019 city assessment is separate
+from this project's 2023–2025 inputs, definitions and calculations. Its data are
+not joined to the five-city archive.
