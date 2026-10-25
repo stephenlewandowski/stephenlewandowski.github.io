@@ -86,7 +86,9 @@ leap-year length. WBGT coverage remains conditional on its property-fit filter.
 The interpretation section separates environmental hazard, personal exposure,
 social vulnerability and health outcomes. It links to Lei et al. (2026),
 [doi:10.1038/s43247-026-04137-z](https://doi.org/10.1038/s43247-026-04137-z),
-as external research context. The study's 2000–2019 city assessment is separate
+as external research context. Full study title and journal are credited on the
+page. Discovery credit is given to Ho Woo Nam's [DeBriefed, 16 October 2026](https://www.carbonbrief.org/debriefed-16-october-2026-nature-plans-insufficient-how-evs-saved-20bn-el-nino-and-uk-weather),
+published by Carbon Brief. The study's 2000–2019 city assessment is separate
 from this project's 2023–2025 inputs, definitions and calculations. Its data are
 not joined to the five-city archive.
 
