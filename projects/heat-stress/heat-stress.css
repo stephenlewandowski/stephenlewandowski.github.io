@@ -25,3 +25,9 @@
   .heat-page .hero-actions button { width: 100%; }
 }
 @media(prefers-reduced-motion: reduce) { .heat-page { scroll-behavior: auto; } }
+
+/* Research prose needs wrapping and left alignment, unlike numeric tables. */
+.heat-page #heat-metric-research table { width: 100%; min-width: 0; table-layout: fixed; }
+.heat-page #heat-metric-research th,
+.heat-page #heat-metric-research td { text-align: left; white-space: normal; vertical-align: top; overflow-wrap: anywhere; }
+.heat-page #heat-metric-research th:first-child { width: 8rem; }
