@@ -89,3 +89,22 @@ social vulnerability and health outcomes. It links to Lei et al. (2026),
 as external research context. The study's 2000–2019 city assessment is separate
 from this project's 2023–2025 inputs, definitions and calculations. Its data are
 not joined to the five-city archive.
+
+## Heat research guidance and attribution
+
+The research-guidance section adds a short table about metric selection, temporal
+and geographic support, and area versus population weighting. It links and credits:
+
+- Gateway Exposome Coordinating Center (GECC), [Resource: Measuring Heat](https://gatewayexposome.org/resourcesanddata~measuring_heat).
+- Emma L. Gause and colleagues (2026), *Data Considerations for Estimating Ambient Heat Exposure for Environmental Epidemiological Studies*, [doi:10.1007/s40572-026-00553-7](https://doi.org/10.1007/s40572-026-00553-7).
+- Keith R. Spangler, Shixin Liang and Gregory A. Wellenius (2022), *Wet-Bulb Globe Temperature, Universal Thermal Climate Index, and Other Heat Metrics for US Counties, 2000–2020*, [doi:10.1038/s41597-022-01405-3](https://doi.org/10.1038/s41597-022-01405-3).
+
+Discovery credit: [CAFE RCC](https://www.climatehealthcafe.org/), October 15,
+2026 Health and Extreme Weather Community News. The explanation table is a
+project synthesis, not a reproduction or endorsement by those sources.
+
+The research context was checked October 25, 2026. The 2022 county descriptor
+is cited for its documented period; the newer extended county release is not
+ingested or represented as audited. This addition changes no weather data,
+heat-index calculations, thresholds or health-outcome claims. Original weather,
+software and algorithm credits remain in the data notes.

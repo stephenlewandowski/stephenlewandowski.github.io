@@ -131,3 +131,11 @@ changes before publishing. The numerical checks include independent regression
 projection and calendar-aware covariance calculations, rainfall interval
 boundaries and smoother fixtures. Hourly tests cover gaps, offsets, partial
 endpoints and runs crossing midnight.
+
+## Heat-research context
+
+The methods section also links to the heat comparison's [research guidance and
+source credits](https://stephenlewandowski.github.io/projects/heat-stress/#heat-metric-research).
+GECC, Gause and colleagues (2026), and Spangler, Liang and Wellenius (2022) are
+credited there, with CAFE RCC acknowledged as the newsletter discovery source.
+This contextual addition changes no paired records, calculations or models.
